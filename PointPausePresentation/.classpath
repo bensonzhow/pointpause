@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/common-annotations.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/el-ri.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-facelets.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsf-impl.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/richfaces-api-3.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/richfaces-impl-3.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/richfaces-ui-3.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.aop-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.asm-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.aspects-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.beans-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.context-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.context.support-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.core-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.expression-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.instrument-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.instrument.tomcat-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.jdbc-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.jms-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.orm-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.oxm-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.test-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.transaction-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.web-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.web.portlet-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.web.servlet-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/org.springframework.web.struts-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
