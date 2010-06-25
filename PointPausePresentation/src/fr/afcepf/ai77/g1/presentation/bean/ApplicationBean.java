@@ -1,4 +1,4 @@
-package fr.afcepf.g1.presentation.bean;
+package fr.afcepf.ai77.g1.presentation.bean;
 
 public class ApplicationBean {
 	
