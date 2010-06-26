@@ -17,13 +17,16 @@ public class TestExampleDAO {
 
 	private IExampleDAO exampleDAO;
 
+	
 	public IExampleDAO getExampleDAO() {
 		return exampleDAO;
 	}
 
+	
 	public void setExampleDAO(IExampleDAO exampleDAO) {
 		this.exampleDAO = exampleDAO;
 	}
+	
 	
 	public TestExampleDAO (){
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
@@ -31,6 +34,7 @@ public class TestExampleDAO {
 		
 		setExampleDAO((IExampleDAO)factory.getBean("exampleDAO"));
 	}
+	
 	
 	public static void main(String[] args) {
 		TestExampleDAO example = new TestExampleDAO();
