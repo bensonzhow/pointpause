@@ -10,7 +10,9 @@ public class IExampleDTOImpl implements IExampleDTO {
 	@Override
 	public ExampleDTO getExampleDTOByNumero(int numero_dto) {
 		// TODO Auto-generated method stub
-		return null;
+		ExampleDTO newdto = new ExampleDTO();
+		newdto.setNumero(numero_dto);
+		return newdto;
 	}
 
 	@Override

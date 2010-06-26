@@ -11,7 +11,10 @@ public class IExampleDAOImpl implements IExampleDAO {
 	@Override
 	public ExampleDAO getExampleDAOByNumero(int numero_DAO) {
 		// TODO Auto-generated method stub
-		return null;
+		ExampleDAO ex = new ExampleDAO();
+		ex.setNumero(numero_DAO);
+		
+		return ex;
 	}
 
 	@Override
