@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+  <class name="Incident" table="incident">
+  	
+  	<id name="numero" type="integer" >
+  		<column name="numero_incident" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+   	
+    <many-to-one name="client"
+    			column="numero_client"
+    			class="Client"
+    			cascade="all"
+    			not-found="ignore"
+    />
+    
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- ###################configuration d'Hibernate################### -->
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		>
+
+
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>afcepf</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1:3306/pointpause</value>
+		</property>
+
+	</bean>
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+
+
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+
+
+		<property name="mappingResources">
+			<list>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Contrat.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Client.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Employe.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Incident.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/SiteClient.hbm.xml</value>
+			</list>
+		</property>
+
+	</bean>
+
+
+
+	<!-- ###########################Configuration des beans########################## -->
+
+
+	<bean id="exampleDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.ExampleDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="IDonneesClientDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

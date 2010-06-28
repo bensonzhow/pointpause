@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity" >
+  <class name="Client" table="client">
+  	
+  	<id name="numero" type="integer" >
+  		<column name="numero_client" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+  	<property name="nom">
+      <column name="nom_entreprise_client" length="50" not-null="true"/> 
+    </property>
+   
+  	<property name="codeSIRET">
+      <column name="code_entreprise_client" length="20" not-null="true"/> 
+    </property>
+   
+  	<property name="nomContact">
+      <column name="nom_contact" length="25" not-null="true"/> 
+    </property>
+   
+  	<property name="telephone">
+      <column name="telephone" length="10" not-null="true"/> 
+    </property>
+    
+    <property name="mail">
+      <column name="mail" length="30" not-null="true"/> 
+    </property>
+    
+    
+    <property name="login">
+      <column name="login" length="30" not-null="true"/> 
+    </property>  	
+    
+    <property name="pass">
+      <column name="pass" length="30" not-null="true"/> 
+    </property>  	   
+    	
+    
+    <property name="langue">
+      <column name="langue" length="25" not-null="true"/> 
+    </property>  	   
+    
+    <set name="listeContrats" cascade="save-update" >
+    	<key column="numero_client" />
+    	<one-to-many class="Contrat" />
+    </set>
+    
+    <set name="listeSitesClients" cascade="save-update" >
+    	<key column="numero_client" />
+    	<one-to-many class="SiteClient" />
+    </set>
+    
+    <set name="listeIncidents" cascade="save-update" >
+    	<key column="numero_client" />
+    	<one-to-many class="Incident" />
+    </set>
+    
+    <many-to-one name="employe"
+    			column="matricule_employe" 
+    			class="Employe"
+    			cascade="all"
+    			not-null="false"
+    />
+    
+    	  	
+  </class>
+</hibernate-mapping>
+
