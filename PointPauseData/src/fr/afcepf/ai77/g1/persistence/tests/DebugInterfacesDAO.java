@@ -4,7 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.afcepf.ai77.g1.persistence.dao.ClientDAO;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
-import fr.afcepf.ai77.g1.persistence.implementations.IDonneesClientDAOImpl;
+import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 //sert juste à debugger, le code n'a aucune importance
@@ -18,7 +18,7 @@ public class DebugInterfacesDAO {
 		IDonneesClientDAO donneesClient = (IDonneesClientDAO) context
 				.getBean("accessDonneesClient");*/
 		
-		IDonneesClientDAO donneesClient = new IDonneesClientDAOImpl();
+		IDonneesClientDAO donneesClient = new DonneesClientDAOImpl();
 
 		ClientDAO client = donneesClient.getClientByNumero(1);
 

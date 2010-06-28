@@ -5,7 +5,7 @@ import java.util.List;
 import fr.afcepf.ai77.g1.metiers.dto.ExampleDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IExampleDTO;
 
-public class IExampleDTOImpl implements IExampleDTO {
+public class ExampleDTOImpl implements IExampleDTO {
 
 	@Override
 	public ExampleDTO getExampleDTOByNumero(int numero_dto) {

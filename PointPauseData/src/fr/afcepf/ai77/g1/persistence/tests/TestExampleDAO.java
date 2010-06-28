@@ -30,9 +30,9 @@ public class TestExampleDAO {
 	
 	public TestExampleDAO (){
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
-		"DAOInterfacesGetter.xml"));
+		"SpringConfig.xml"));
 		
-		setExampleDAO((IExampleDAO)factory.getBean("exampleDAO"));
+		setExampleDAO((IExampleDAO)factory.getBean("SpringConfig.xml"));
 	}
 	
 	

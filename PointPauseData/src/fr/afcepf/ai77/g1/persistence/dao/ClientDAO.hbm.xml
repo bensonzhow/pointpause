@@ -60,13 +60,13 @@
     </set>
     
     <many-to-one name="employe"
-    			column="numero_client" insert="false" update="false"
+    			column="matricule_employe" 
     			class="EmployeDAO"
     			cascade="all"
-    			not-found="ignore"
-    			
+    			not-null="false"
     />
     
     	  	
   </class>
 </hibernate-mapping>
+
