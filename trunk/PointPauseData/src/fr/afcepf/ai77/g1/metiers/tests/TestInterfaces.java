@@ -1,16 +1,16 @@
 package fr.afcepf.ai77.g1.metiers.tests;
 
 import fr.afcepf.ai77.g1.metiers.dto.ExampleDTO;
-import fr.afcepf.ai77.g1.metiers.implementations.IExampleDTOImpl;
+import fr.afcepf.ai77.g1.metiers.implementations.ExampleDTOImpl;
 
 public class TestInterfaces {
-	private IExampleDTOImpl exampleDTOimpl;
+	private ExampleDTOImpl exampleDTOimpl;
 
-	public IExampleDTOImpl getExampleDTOimpl() {
+	public ExampleDTOImpl getExampleDTOimpl() {
 		return exampleDTOimpl;
 	}
 
-	public void setExampleDTOimpl(IExampleDTOImpl exampleDTOimpl) {
+	public void setExampleDTOimpl(ExampleDTOImpl exampleDTOimpl) {
 		this.exampleDTOimpl = exampleDTOimpl;
 	}
 	

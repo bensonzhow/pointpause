@@ -1,6 +1,8 @@
 package fr.afcepf.ai77.g1.persistence.tests;
 
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.dao.ClientDAO;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
@@ -12,14 +14,11 @@ public class TestDAOInterfaces extends TestCase {
 	 
 	public  void testGetClientDAOByNumero() throws Exception {
 
-		AnnotationConfigApplicationContext context = 
-			new AnnotationConfigApplicationContext(
-				DAOImplConfig.class);
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
 		
-		IDonneesClientDAO donneesClient = (IDonneesClientDAO)context.getBean("accessDonneesClient");
-
-		
-		
+		IDonneesClientDAO donneesClient = (IDonneesClientDAO)factory.getBean("IDonneesClientDAO");
+	
 		ClientDAO client = donneesClient.getClientByNumero(1);
 		
 		

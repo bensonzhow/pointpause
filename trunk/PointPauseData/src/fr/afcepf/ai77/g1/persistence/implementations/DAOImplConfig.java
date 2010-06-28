@@ -15,7 +15,7 @@ public class DAOImplConfig {
 	}
 	
 	public @Bean IDonneesClientDAO accessDonneesClient(){
-		return new IDonneesClientDAOImpl();
+		return new DonneesClientDAOImpl();
 	}
 	
 }
