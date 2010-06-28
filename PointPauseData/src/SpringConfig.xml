@@ -78,4 +78,13 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="IDonneesSessionDAO"
+		class="fr.afcepf.ai77.g1.métiers.implementations.DonneesSessionDTOImpl">
+		
+		<property name="donneesClient">
+			<ref bean="IDonneesClientDAO" />
+		</property>
+	
+	</bean>
 </beans>
