@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12777302476400" configfile="/PointPausePresentation/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="tableauBord.html" x="144" y="132" id="pf12777302932811" path="/tableauBord.html"/>
+</pageflow:Pageflow>
