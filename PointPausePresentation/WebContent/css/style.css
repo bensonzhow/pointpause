@@ -89,6 +89,10 @@ f	ont-family: Microsoft Sans Serif;
    background-color: rgb(225,225,225);
    }
    
+   #connexion{
+   text-align: center;
+   }
+   
    #photo{
    background-image: url(../images/moulin.png);
    float: left;
