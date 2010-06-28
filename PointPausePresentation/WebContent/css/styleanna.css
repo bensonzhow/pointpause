@@ -32,7 +32,7 @@
    
    li.OngletPrincipal  a{
     color:white;
-f	ont-family: Microsoft Sans Serif;
+	font-family: Microsoft Sans Serif;
 	position:relative;
 	top:5px;
 	font-weight:bold;
@@ -40,6 +40,13 @@ f	ont-family: Microsoft Sans Serif;
    
    .Selectionne{
    background-image: url(../images/OngletOrange.png);
+   }
+   li.Selectionne a{
+   color:white;
+	font-family: Microsoft Sans Serif;
+	position:relative;
+	top:5px;
+	font-weight:bold;
    }
    
    a{
@@ -61,7 +68,6 @@ f	ont-family: Microsoft Sans Serif;
    background-image: url(../images/OngletNoir.png);
    }
   
-<<<<<<< .mine
    #connexion ul{
    width : 1000px;
    padding-bottom : 0px;
@@ -79,7 +85,6 @@ f	ont-family: Microsoft Sans Serif;
    border-top: 3px rgb(0,0,0) solid;
    border-bottom: 2px rgb(0,0,0) solid;
    }
-
    
    #baniere{
    padding-top: 0px;
@@ -95,6 +100,23 @@ f	ont-family: Microsoft Sans Serif;
    background-color: rgb(50,50,50);
    }
       
+   #menuGauche{
+   background-color: rgb(119,119,119);
+   float: left;
+   padding-top: 0px;
+   padding-left: 0px;
+   margin-left: 30px;
+   margin-right: 30px;
+   width: 200px;
+   
+   }
+  
+   
+   #menuGauche ul {
+   padding-left: 0px;
+   }
+   #menuGauche ul li{
+   }
    
    body{
    background-color: rgb(255,255,255);
@@ -120,6 +142,12 @@ f	ont-family: Microsoft Sans Serif;
    margin-right: 20px;
    }
    
+   #centre{
+   text-align: left;
+   margin-right: 30px;
+   margin-left: 30px;
+   }
+   
    #piedPage{
    background-image: url(../images/piedPageRainure2.png);
    background-color: rgb(255,255,255);
@@ -129,6 +157,11 @@ f	ont-family: Microsoft Sans Serif;
    margin: auto;
    width: 1000px;
    height: 64px;
+   }
+
+   #GroupBox{
+   float: left;
+   width: 400px;
    }
    
    .pSociete{
@@ -172,6 +205,10 @@ f	ont-family: Microsoft Sans Serif;
    padding:0px;
   color:white;
 font-family: Microsoft Sans Serif; 
+   }
+   ul#conteneurMenu a
+   {
+   color: maroon;
    }
 
    ul.horizontal>li  {
