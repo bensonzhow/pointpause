@@ -21,7 +21,7 @@
    float:left;
    width: 350px;
    height: 526px; 
-   background-image: url(imgPreojet3/tasseGrain.png);
+   background-image: url(../images/tasseGrain.png);
    }
    
    .pSociete{
@@ -77,7 +77,7 @@
    font-weight: bold;
    }
    
-    #userConnexion{
+   #userConnexion{
    margin: auto;
    }
    #fieldset{
