@@ -27,5 +27,24 @@ public class TestDAOInterfaces extends TestCase {
 		
 
 	}
+	
+	public void testGetClientDAOByLogin(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		
+		IDonneesClientDAO donneesClient = (IDonneesClientDAO)factory.getBean("IDonneesClientDAO");
+	
+		Client client = donneesClient.getClientBySession("rhanouna", "sandrine01");
+
+	
+		assertEquals(client.getNumero(), new Integer(1));
+		
+		
+		client = donneesClient.getClientBySession("rhanouna", "sandfddfdfrine01");
+
+		
+		assertNull(client);
+		
+	}
 
 }
