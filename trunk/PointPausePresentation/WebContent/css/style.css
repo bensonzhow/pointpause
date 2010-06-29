@@ -1,92 +1,6 @@
 
-   #page{
-   margin: auto;
-   padding-top: 20px;
-   width: 1000px;
-   }
-   #onglet{
-   height:40px;
-   }
-   
-   #onglet ul li{
-   float: left;
-   background-repeat: no-repeat;
-   width: 140px;
-   height: 30px;
-   padding-left : 0px;
-   padding-right : 0px;
-   padding-top : 0px;
-   padding-bottom : 0px;
-   text-decoration: none;
-   }
-   
-   #baniere {
-   background-image: url(../images/Baniere3.png);
-   
-   height:130px;
-   }
-   
-   .OngletPrincipal {
-   background-image: url(../images/OngletSelection.png);
-   }
-   
-   li.OngletPrincipal  a{
-    color:white;
-f	ont-family: Microsoft Sans Serif;
-	position:relative;
-	top:5px;
-	font-weight:bold;
- }
-   
-   .Selectionne{
-   background-image: url(../images/OngletOrange.png);
-   }
-   
    a{
    text-decoration: none;
-   }
-   
-   #onglet ul{
-   width : 900px;
-   padding-left : 301px;
-   padding-top: 10px;
-   padding-bottom : 0px;
-   margin-top : 0px;
-   
-   }
-   #onglet ul li:hover {
-   background-image: url(../images/OngletNoir.png);
-   }
-  
-   
-   #baniere{
-   padding-top: 0px;
-   padding-bottom: 0px;
-   }
-   
-   #sousMenu{
-   padding-bottom: 0px;
-   text-decoration: none;
-   text-align: center;
-   }
-   #caseTableSousMenu:hover{
-   background-color: rgb(50,50,50);
-   }
-      
-   
-   body{
-   background-color: rgb(255,255,255);
-   background-image: url(../images/backBody.png);
-   background-repeat: repeat-x;
-   text-align: center;
-   }
-   
-   #Contenu{
-   text-align: center;
-   width: 1000px;
-   padding-top: 20px;
-   padding-bottom: 20px;
-   background-color: rgb(225,225,225);
    }
    
    #connexion{
@@ -100,17 +14,6 @@ f	ont-family: Microsoft Sans Serif;
    height: 180px;
    margin-left: 30px;
    margin-right: 20px;
-   }
-   
-   #piedPage{
-   background-image: url(../images/piedPageRainure2.png);
-   background-color: rgb(255,255,255);
-   background-repeat: no-repeat;
-   clear: both;
-   text-align: center;
-   margin: auto;
-   width: 1000px;
-   height: 100px;
    }
    
    .pSociete{
@@ -142,70 +45,7 @@ f	ont-family: Microsoft Sans Serif;
    height: 388px;
    width: 625px;
    }
-   
-   
-   /***********DEBUT code Menu Deroulant master page*************************/
- 
-   ul#conteneurMenu
-   {
-   background-color:#CCCCCC;
-   height:27px;
-   margin:0px;
-   padding:0px;
-  color:white;
-font-family: Microsoft Sans Serif;
- 
-   }
-
-   ul.horizontal>li  {
-text-align:justify;
-width:110px;
-list-style: none;
-float:left;
-background-image:url(../images/sousMenu2.png);
-background-repeat: no-repeat;
-padding:3px;
-display: block;
-}
-ul.horizontal>li:hover
-{
-text-align:justify;
-background-image:url(../images/sousMenuHover2.png);
-background-repeat: no-repeat;
-padding:3px;
-width:110px;
-display: block;
-}
-.horizontal li p
-{
-margin:5px;
-}
- ul.cache{
- border:1px solid #FF9900;
- background-color:#FFFFFF;
--moz-border-radius: 5px;
-margin:0px;
-padding:4px;
-position : absolute;
-/*opacity:0.9;*/
-
-}
-ul.cache li{
-list-style:none;
-}
-
-ul.cache li:hover{
-
-}
-
-ul.cache li a:hover{
-text-decoration:underline;
-
-
-}
-   /***********FIN code Menu Deroulant master page*************************/
-   
-   
+  
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden { display: none; }
