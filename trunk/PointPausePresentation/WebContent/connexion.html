@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html xmlns:facelets="http://java.sun.com/jsf/facelets"
 	xmlns:jsf="http://java.sun.com/jsf/html"
 	xmlns:jsfCore="http://java.sun.com/jsf/core"
@@ -9,13 +9,15 @@
  	<facelets:define name="Contenu">
  		<jsfCore:subview id="connexion">
  			<jsf:form>
+ 			<richfaces:panel>
   				<div id="connexion">
-	  				<jsf:output value="Login"></jsf:output>
-					<jsf:input type="text" name="txtlogin" />
-					<jsf:output value="Mot de passe" />
-					<jsf:input type="text" name="txtpass" />
-					<jsf:input type="submit" name="btConnexion" value="Valider" />
+	  				<jsf:outputText value="Login"/> 
+					<jsf:inputText type="text" name="txtlogin" />
+					<jsf:outputText value="Mot de passe" />
+					<jsf:inputText type="text" name="txtpass" />
+					<jsf:inputText type="submit" name="btConnexion" value="Valider" />
 				</div>
+				</richfaces:panel>
 			</jsf:form>
 		</jsfCore:subview>
 	</facelets:define>
