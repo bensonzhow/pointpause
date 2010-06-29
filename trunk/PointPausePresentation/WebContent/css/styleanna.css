@@ -127,14 +127,6 @@
    text-align: center;
    }
    
-   #Contenu{
-   text-align: center;
-   width: 1000px;
-   padding-top: 20px;
-   padding-bottom: 20px;
-   background-color: rgb(225,225,225);
-   }
-   
    #photo{
    background-image: url(../images/moulin.png);
    float: left;
