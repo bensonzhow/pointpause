@@ -16,16 +16,17 @@
   			Connectez-vous
   			</jsfCore:facet>
 	  			<div style="float:left;">	
-	  			Login <p></p>
+	  			Login <p margin-bottom="5px"></p>
 	  			Mot de passe
 	  			</div>
 	  			
 	  			<div style="float:left;"> 
-	  			<jsf:inputText value=""/> <br />
-					 <jsf:inputText value="" /><br />
-					
+	  			<jsf:inputText value="#{connectionMB.login}"/> <br />
+					 <jsf:inputText value="#{connectionMB.mdp}" /><br />
+	<!-- 				
 				<a4j:commandButton action="#{monBean.clickAjax}" value="Click"
-  			   reRender="reponseAjax"/><br />
+  			   reRender="reponseAjax"/><br /> -->
+  			   <jsf:commandButton action="#{connectionMB.connecter}" value ="Connecter"/>
   				<jsf:outputText id="reponseAjax" value="#{monBean.premiereReponseAjax}" />
   				</div>
 				</richfaces:panel>
