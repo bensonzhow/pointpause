@@ -64,20 +64,23 @@
 
 	<!-- ###########################Configuration des beans########################## -->
 
-
+<!-- 
 	<bean id="exampleDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.ExampleDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-
+ -->
+ 
+ 
 	<bean id="IDonneesClientDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
 	
 	<bean id="IDonneesSessionDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesSessionDTOImpl">
