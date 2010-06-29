@@ -1,6 +1,9 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
 
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
 import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
@@ -9,7 +12,7 @@ public class ConnectionBean {
 
 	
 	private String login;
-	private String mdp;
+	private String mdp; 
 	
 	public String getLogin() {
 		return login;
@@ -34,8 +37,13 @@ public class ConnectionBean {
 		
 		SessionDTO session = donneesSession.getSessionDTO(login, mdp);
 		
-		if (session==null) return "failure";
-		return "ok";
+		if (session==null) {
+			System.out.println("login failed");
+			return "Failure";
+		}else{
+			System.out.println("login success");
+			return "OK";	
+		}
 	}
 	
 }
