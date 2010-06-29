@@ -23,6 +23,7 @@ public class TestDTOInterfaces extends TestCase {
 		SessionDTO session = donneesSession.getSessionDTO("rhanouna", "sandrine01");
 		
 		
+		
 		assertEquals(new Integer(session.getNumeroClient()), new Integer(1));
 	}
 	

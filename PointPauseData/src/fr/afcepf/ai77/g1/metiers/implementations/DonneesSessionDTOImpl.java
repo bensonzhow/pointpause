@@ -36,7 +36,7 @@ public class DonneesSessionDTOImpl implements IDonneesSessionDTO {
 		session.setNom(client.getNom());
 		session.setNumeroClient(client.getNumero());
 		
-		return null;
+		return session;
 	}
 
 }

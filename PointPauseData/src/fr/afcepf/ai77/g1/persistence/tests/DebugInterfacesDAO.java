@@ -24,9 +24,10 @@ public class DebugInterfacesDAO {
 		"SpringConfig.xml"));
 		
 		IDonneesClientDAO donneesClient = (IDonneesClientDAO)factory.getBean("IDonneesClientDAO");
-	
-
+		
 		Client client = donneesClient.getClientBySession("rhanouna", "sandrine01");
+		
+		if (client==null) System.out.println("fail");
 		
 		System.out.println(client.getLangue());
 /*
