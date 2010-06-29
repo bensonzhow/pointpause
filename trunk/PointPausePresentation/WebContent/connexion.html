@@ -11,24 +11,14 @@
  			<jsf:form>
  		 			
  			<richfaces:panel>
- 			<richfaces:spacer width="1" height="50" /> 
- 			<jsfCore:facet name="header">
-  			Connectez-vous
-  			</jsfCore:facet>
-	  			<div style="float:left;">	
-	  			Login <p margin-bottom="5px"></p>
-	  			Mot de passe
-	  			</div>
-	  			
-	  			<div style="float:left;"> 
-	  			<jsf:inputText value="#{connectionMB.login}"/> <br />
-					 <jsf:inputText value="#{connectionMB.mdp}" /><br />
-	<!-- 				
-				<a4j:commandButton action="#{monBean.clickAjax}" value="Click"
-  			   reRender="reponseAjax"/><br /> -->
-  			   <jsf:commandButton action="#{connectionMB.connecter}" value ="Connecter"/>
-  				<jsf:outputText id="reponseAjax" value="#{monBean.premiereReponseAjax}" />
-  				</div>
+ 			
+ 			<jsf:panelGrid columns="2">
+            <jsf:outputText value="Votre login"/>
+            <jsf:inputText value="#{connectionMB.login}"/>
+            <jsf:outputText value="Votre mot de passe"/>
+            <jsf:inputText value="#{connectionMB.mdp}"/>
+      <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
+        </jsf:panelGrid>
 				</richfaces:panel>
 			</jsf:form>
 		</jsfCore:subview>
