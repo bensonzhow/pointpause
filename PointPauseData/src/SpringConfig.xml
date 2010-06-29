@@ -79,12 +79,13 @@
 		</property>
 	</bean>
 	
-	<bean id="IDonneesSessionDAO"
-		class="fr.afcepf.ai77.g1.métiers.implementations.DonneesSessionDTOImpl">
+	<bean id="IDonneesSessionDTO"
+		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesSessionDTOImpl">
 		
 		<property name="donneesClient">
 			<ref bean="IDonneesClientDAO" />
 		</property>
 	
 	</bean>
+	
 </beans>

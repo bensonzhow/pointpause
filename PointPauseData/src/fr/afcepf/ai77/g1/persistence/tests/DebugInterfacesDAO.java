@@ -1,6 +1,8 @@
 package fr.afcepf.ai77.g1.persistence.tests;
 
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
@@ -18,15 +20,21 @@ public class DebugInterfacesDAO {
 		IDonneesClientDAO donneesClient = (IDonneesClientDAO) context
 				.getBean("accessDonneesClient");*/
 		
-		IDonneesClientDAO donneesClient = new DonneesClientDAOImpl();
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		
+		IDonneesClientDAO donneesClient = (IDonneesClientDAO)factory.getBean("IDonneesClientDAO");
+	
 
-		Client client = donneesClient.getClientByNumero(1);
-
+		Client client = donneesClient.getClientBySession("rhanouna", "sandrine01");
+		
+		System.out.println(client.getLangue());
+/*
 		if (client == null) {
 			System.out.println("pas de client");
 		} 
 		else
-			System.out.println(client.toString());
+			System.out.println(client.toString());*/
 
 	}
 

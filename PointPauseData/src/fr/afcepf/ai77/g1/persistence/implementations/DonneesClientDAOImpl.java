@@ -2,9 +2,12 @@ package fr.afcepf.ai77.g1.persistence.implementations;
 
 
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -39,21 +42,15 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 	public Client getClientBySession(String login, String password){
 		Client client=null;
 		try {
-			org.hibernate.Session session =hibernateTemplate.getSessionFactory().getCurrentSession();
-			
-			if (session.isOpen()==false ) System.out.println("connection hibernate fermée !"); 
-				
-			Transaction tx = session.beginTransaction();	
-		
-			Criteria crit = session.createCriteria(Client.class);
-			
+			DetachedCriteria crit = DetachedCriteria.forClass(Client.class);
 			crit.add(Restrictions.eq("login", login));
 			crit.add(Restrictions.eq("pass", password));
+			List<Client> liste = hibernateTemplate.findByCriteria(crit);
 			
-			client= (Client) crit.uniqueResult();
 			
+			if ((liste==null)||(liste.size()==0)) return null;
+			client= liste.get(0);
 			
-			tx.commit();
 
 			
 		} catch (Exception e) {
