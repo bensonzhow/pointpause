@@ -1,8 +1,8 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
 
+import fr.afcepf.ai77.g1.facade.DTOFactory;
+import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
 
 public class ConnectionBean {
@@ -29,11 +29,13 @@ public class ConnectionBean {
 		return "ConnectionBean [login=" + login + ", mdp=" + mdp + "]";
 	} 
 	
-	public void Connecter(){
-		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
-		"SpringConfig.xml"));
-		IDonneesSessionDTO donneesSession = (IDonneesSessionDTO)factory.getBean("IDonneesSessionDTO");
-	
+	public String connecter(){
+		IDonneesSessionDTO donneesSession = DTOFactory.getIDonneesSessionDTO();
+		
+		SessionDTO session = donneesSession.getSessionDTO(login, mdp);
+		
+		if (session==null) return "failure";
+		return "ok";
 	}
 	
 }
