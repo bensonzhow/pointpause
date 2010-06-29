@@ -62,7 +62,7 @@
    margin-top : 0px;
    list-style-type: none;
    font-family: Microsoft Sans Serif;
-   font-size:large;
+   font-size:normal;
    
    }
    li.OngletPrincipal:hover {
@@ -227,7 +227,7 @@ ul.horizontal>li>a
 {
 	color:maroon;
 	font-family: Microsoft Sans Serif;
-	font-size:medium;
+	font-size:small;
 	font-weight:bold;
 	
 	}
