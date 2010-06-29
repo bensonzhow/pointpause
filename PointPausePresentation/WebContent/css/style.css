@@ -16,6 +16,14 @@
    margin-right: 20px;
    }
    
+   #photoAccueil{
+   margin-left: 30px;
+   float:left;
+   width: 350px;
+   height: 526px; 
+   background-image: url(imgPreojet3/tasseGrain.png);
+   }
+   
    .pSociete{
    font-family: Microsoft Sans Serif;
    font-size: small;
@@ -44,6 +52,53 @@
    border: 1px;
    height: 388px;
    width: 625px;
+   }
+   #Contenu{
+   float: left;
+   text-align: center;
+   width: 1000px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   background-color: rgb(225,225,225);
+   }
+   
+   #textAcceuil{
+   font-family: microsoft Sans Serif;
+   font-size: small;
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-left: 35px;
+   width: 500px;
+   text-align: justify;
+   float: left;
+   }
+   .titreAccueil{
+   font-size: 16px;
+   font-weight: bold;
+   }
+   
+    #userConnexion{
+   margin: auto;
+   }
+   #fieldset{
+   width: 350px;
+   }
+   #btConnexion{
+   width: 100px;
+   }
+   .lblLogin{
+   width: 100px;
+   }
+   #txtLogin{
+   width: 150px;
+   margin-bottom: 10px;
+   }
+   .lblPass{
+   width: 100px;
+   }
+   #txtPass{
+   width: 150px;
+   margin-bottom: 10px;
    }
   
 /* Layout helpers
