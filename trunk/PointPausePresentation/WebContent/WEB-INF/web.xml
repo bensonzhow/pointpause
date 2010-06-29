@@ -20,7 +20,7 @@
   </context-param>
   <context-param>
     <param-name>org.richfaces.SKIN</param-name>
-    <param-value>classic</param-value>
+    <param-value>blueSky</param-value>
   </context-param>
   <filter>
     <display-name>Ajax4jsf Filter</display-name>
