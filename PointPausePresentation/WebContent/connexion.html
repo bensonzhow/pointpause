@@ -9,14 +9,25 @@
  	<facelets:define name="Contenu">
  		<jsfCore:subview id="connexion">
  			<jsf:form>
+ 		 			
  			<richfaces:panel>
-  				<div id="connexion">
-	  				<jsf:outputText value="Login"/> 
-					<jsf:inputText type="text" name="txtlogin" />
-					<jsf:outputText value="Mot de passe" />
-					<jsf:inputText type="text" name="txtpass" />
-					<jsf:inputText type="submit" name="btConnexion" value="Valider" />
-				</div>
+ 			<richfaces:spacer width="1" height="50" /> 
+ 			<jsfCore:facet name="header">
+  			Connectez-vous
+  			</jsfCore:facet>
+	  			<div style="float:left;">	
+	  			Login <p></p>
+	  			Mot de passe
+	  			</div>
+	  			
+	  			<div style="float:left;"> 
+	  			<jsf:inputText value=""/> <br />
+					 <jsf:inputText value="" /><br />
+					
+				<a4j:commandButton action="#{monBean.clickAjax}" value="Click"
+  			   reRender="reponseAjax"/><br />
+  				<jsf:outputText id="reponseAjax" value="#{monBean.premiereReponseAjax}" />
+  				</div>
 				</richfaces:panel>
 			</jsf:form>
 		</jsfCore:subview>
