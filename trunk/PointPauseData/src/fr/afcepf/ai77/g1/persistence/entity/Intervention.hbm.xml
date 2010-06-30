@@ -38,8 +38,8 @@
   
     
     <set name="listeProduits" cascade="save-update" >
-    	<key column="code_type_produit" />
-    	<one-to-many class="Produit" />
+    	<key column="numero_intervention" />
+    	<one-to-many class="ProduitsIntervention" />
     </set>    
     
     

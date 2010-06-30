@@ -25,6 +25,12 @@
     			not-null="false"
     />
     
+        
+    <set name="listeIncidents" cascade="save-update" >
+    	<key column="numero_deploiement" />
+    	<one-to-many class="Incident" />
+    </set>
+    
     	  	
   </class>
 </hibernate-mapping>
