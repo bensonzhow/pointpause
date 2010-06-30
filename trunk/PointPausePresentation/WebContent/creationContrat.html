@@ -1,16 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:facelets="http://java.sun.com/jsf/facelets" xmlns:jsf="http://java.sun.com/jsf/html"
 	xmlns:jsfCore="http://java.sun.com/jsf/core" xmlns:richfaces="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j"
-		xmlns:jstl="http://java.sun.com/jsp/jstl/core">
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:jstl="http://java.sun.com/jsp/jstl/core">
+	.
 	<facelets:composition template="masterPage.html">
 		<facelets:define name="Contenu">
 			<richfaces:panel>
+				Votre commande
+				<jsf:panelGrid width="50" columns="3" border="1">
+					<jsfCore:facet name="header">
+						Commande n°1
+				 </jsfCore:facet>
+					<jsf:outputText value="Quantité" />
+					<jsf:outputText value="Formule" />
+					<jsf:outputText value="Machine" />
+					<jsf:selectOneMenu id="quantite" value="1">
+						<jsfCore:selectItem itemValue="1" itemLabel="1" />
+						<jsfCore:selectItem itemValue="2" itemLabel="2" />
+						<jsfCore:selectItem itemValue="3" itemLabel="3" />
+						<jsfCore:selectItem itemValue="4" itemLabel="4" />
+						<jsfCore:selectItem itemValue="5" itemLabel="5" />
+					</jsf:selectOneMenu>
+					<jsf:selectOneMenu id="formule" value="2">
+						<jsfCore:selectItem itemValue="1" itemLabel="1" />
+						<jsfCore:selectItem itemValue="2" itemLabel="2" />
+						<jsfCore:selectItem itemValue="3" itemLabel="3" />
+						<jsfCore:selectItem itemValue="4" itemLabel="4" />
+						<jsfCore:selectItem itemValue="5" itemLabel="5" />
+					</jsf:selectOneMenu>
+					
 
-				<jsf:panelGrid columns="2">
-				
 				</jsf:panelGrid>
 			</richfaces:panel>
 		</facelets:define>
-	</facelets:composition>	
-	</html>
+	</facelets:composition>
+</html>

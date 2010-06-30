@@ -11,7 +11,9 @@ import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
 
 public class ConnectionBean {
 
-
+	FacesContext context = FacesContext.getCurrentInstance();  
+	HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+	HttpSession httpSession = request.getSession(false);  
 	private String login;
 	private String mdp; 
 	//private String statut;
@@ -47,24 +49,23 @@ public class ConnectionBean {
 		SessionDTO session = donneesSession.getSessionDTO(login, mdp);
 		
 		if (session==null) {
-			System.out.println("login failed");
-			
-			FacesContext context = FacesContext.getCurrentInstance();  
-			HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();  
-			HttpSession httpSession = request.getSession(false);  
-			
+			System.out.println("login failed");  
 			httpSession.setAttribute("session", null);		
 			//statut="probleme d'identifiants";
 			return "Failure";
 		}else{
-			System.out.println("login success");
-			FacesContext context = FacesContext.getCurrentInstance();  
-			HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();  
-			HttpSession httpSession = request.getSession(false);  
-			
+			System.out.println("login success");		
 			httpSession.setAttribute("session", session);
 			return "OK";	
 		}
+	}
+		
+		public String logOut(){
+			httpSession.setAttribute("session", null);		
+			if(httpSession.getAttribute("session"==null)
+				return "OK";
+			else
+				return "Failure";
 	}
 	
 }
