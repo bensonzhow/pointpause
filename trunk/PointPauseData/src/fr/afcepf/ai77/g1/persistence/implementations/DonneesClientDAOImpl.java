@@ -26,7 +26,6 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 	
 	@Override
 	public Client getClientByNumero(int numero) {
-		// TODO Auto-generated method stub
 		try {
 			Client client = hibernateTemplate.get(Client.class, numero);
 
