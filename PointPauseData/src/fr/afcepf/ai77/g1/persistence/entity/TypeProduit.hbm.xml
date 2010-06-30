@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+  <class name="TypeProduit" table="type_produit">
+  	
+  	<id name="codeType" type="integer" >
+  		<column name="code_type_produit" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+  	<property name="libelle">
+      <column name="libelle_type_produit" length="30" not-null="false"/> 
+    </property>
+    
+    <property name="commentaire">
+      <column name="commentaire_type_produit" sql-type="text" not-null="false"/> 
+    </property>
+    
+    <set name="listeProduits" cascade="save-update" >
+    	<key column="code_type_produit" />
+    	<one-to-many class="Produit" />
+    </set>    
+    
+    
+  </class>
+</hibernate-mapping>

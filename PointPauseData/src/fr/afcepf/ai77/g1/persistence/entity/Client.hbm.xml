@@ -11,37 +11,37 @@
   	</id>
   	
   	<property name="nom">
-      <column name="nom_entreprise_client" length="50" not-null="true"/> 
+      <column name="nom_entreprise_client" length="50" not-null="false"/> 
     </property>
    
   	<property name="codeSIRET">
-      <column name="code_entreprise_client" length="20" not-null="true"/> 
+      <column name="code_entreprise_client" length="20" not-null="false"/> 
     </property>
    
   	<property name="nomContact">
-      <column name="nom_contact" length="25" not-null="true"/> 
+      <column name="nom_contact" length="25" not-null="false"/> 
     </property>
    
   	<property name="telephone">
-      <column name="telephone" length="10" not-null="true"/> 
+      <column name="telephone" length="10" not-null="false"/> 
     </property>
     
     <property name="mail">
-      <column name="mail" length="30" not-null="true"/> 
+      <column name="mail" length="30" not-null="false"/> 
     </property>
     
     
     <property name="login">
-      <column name="login" length="30" not-null="true"/> 
+      <column name="login" length="30" not-null="false"/> 
     </property>  	
     
     <property name="pass">
-      <column name="pass" length="30" not-null="true"/> 
+      <column name="pass" length="30" not-null="false"/> 
     </property>  	   
     	
     
     <property name="langue">
-      <column name="langue" length="25" not-null="true"/> 
+      <column name="langue" length="25" not-null="false"/> 
     </property>  	   
     
     <set name="listeContrats" cascade="save-update" >
