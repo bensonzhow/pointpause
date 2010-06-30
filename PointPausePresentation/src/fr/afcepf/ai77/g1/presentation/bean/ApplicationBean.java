@@ -1,5 +1,9 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 public class ApplicationBean {
 	
 	/*
@@ -26,5 +30,16 @@ public class ApplicationBean {
 		 * 
 		 * 
 		 */
+	}
+	
+	public boolean testConnexion(){
+		FacesContext context = FacesContext.getCurrentInstance();  
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();  
+		HttpSession httpSession = request.getSession(false);  
+		
+		Object sessionOK= httpSession.getAttribute("session");
+		
+		return (sessionOK!=null)?true:false;
+	
 	}
 }
