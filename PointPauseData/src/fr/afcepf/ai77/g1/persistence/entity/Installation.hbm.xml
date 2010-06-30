@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity" >
+  <class name="Installation" table="installation">
+  	
+  	<id name="numero" type="integer" >
+  		<column name="numero_deploiement" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+    <property name="dateDebut">
+      <column name="date_debut_deploiement" sql-type="date" not-null="false"/> 
+    </property>
+    
+    <property name="dateFin">
+      <column name="date_fin_deploiement" sql-type="date" not-null="false"/> 
+    </property>
+    
+    <many-to-one name="site"
+    			column="numero_site" 
+    			class="SiteClient"
+    			cascade="all"
+    			not-null="false"
+    />
+    
+    	  	
+  </class>
+</hibernate-mapping>
+
