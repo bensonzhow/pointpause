@@ -62,6 +62,14 @@
    float:left;
    }
    
+   #Incident{
+   margin: auto;
+   }
+   #declareIncident{
+   margin: auto;
+   width: 850px;
+   }
+   
    #textAcceuil{
    font-family: microsoft Sans Serif;
    font-size: small;

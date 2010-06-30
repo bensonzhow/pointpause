@@ -1,0 +1,28 @@
+<html xmlns:facelets="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://java.sun.com/jsf/html"
+	xmlns:jsfCore="http://java.sun.com/jsf/core"
+	xmlns:richfaces="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<facelets:composition template="masterPage.html">
+ 	<facelets:define name="Contenu">
+ 		<div id="Incident">
+                <richfaces:panel id="declareIncident">
+                
+                 	<table>
+                 		<tr>
+                 			<th colspan="2">Déclaration d'incident :</th>
+                 		</tr>
+                 		<tr>
+                 			<td></td>
+                 			<td>N° de machine: </td>
+                 			<td><jsf:selectOneListbox width="100px"/></td>
+                 		</tr>
+                 	</table>
+                 	
+                 </richfaces:panel>
+ 		</div>
+ 	
+ 	</facelets:define>
+</facelets:composition>
+</html>
