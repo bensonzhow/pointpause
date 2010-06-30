@@ -9,14 +9,46 @@
  		<div id="Incident">
                 <richfaces:panel id="declareIncident">
                 
-                 	<table>
+                 	<table class="tableIncident" border="1px">
                  		<tr>
-                 			<th colspan="2">Déclaration d'incident :</th>
+                 			<th colspan="2"><font size="2px">Déclaration d'incident :</font></th>
+                 		</tr>
+                 		<tr>
+                 			<td ></td>
+                 			<td class="textTabIncident" width="100px">N° de machine: </td>
+                 			<td width="250px"><jsf:selectOneListbox width="200px" >
+                 					<!-- <jsfCore:selectItems value="Proutprout" /> --> 
+                 				</jsf:selectOneListbox>
+                 			</td>
+                 			<td class="textTabIncident" width="150px">Date de constat: </td>
+                 			<td>
+                 				<div class="demo">
+									<jsf:inputText id="datepicker" />
+								</div>
+                 			</td>
+                 			
                  		</tr>
                  		<tr>
                  			<td></td>
-                 			<td>N° de machine: </td>
-                 			<td><jsf:selectOneListbox width="100px"/></td>
+                 			<td class="textTabIncident" width="100px">N° de contrat: </td>
+                 			<td>
+                 				<jsf:selectOneListbox >
+                 					 
+                 				</jsf:selectOneListbox>
+                 			</td>
+                 			<td class="textTabIncident" width="150px">Date de Déclaration: </td>
+                 			<td>
+                 				<div class="demo">
+									<jsf:inputText id="datepicker2" />
+								</div>
+                 			</td>
+                 		</tr>
+                 		<tr>
+                 			<td></td>
+                 			<td class="textTabIncident">Contact: </td>
+                 			<td><jsf:inputText id="nomContact" /></td>
+                 			<td class="textTabIncident">Télephone: </td>
+                 			<td><jsf:inputText id="telContact" /></td>
                  		</tr>
                  	</table>
                  	
