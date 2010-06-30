@@ -7,17 +7,18 @@
 <facelets:composition template="masterPage.html">
  	<facelets:define name="Contenu">
  		<div id="Incident">
-                <richfaces:panel id="declareIncident">
-                
-                 	<table class="tableIncident" border="1px">
+                <richfaces:panel id="declareIncident" >
+                 	<table class="tableIncident">
                  		<tr>
                  			<th colspan="2"><font size="2px">Déclaration d'incident :</font></th>
                  		</tr>
                  		<tr>
                  			<td ></td>
-                 			<td class="textTabIncident" width="100px">N° de machine: </td>
-                 			<td width="250px"><jsf:selectOneListbox width="200px" >
-                 					<!-- <jsfCore:selectItems value="Proutprout" /> --> 
+                 			<td class="textTabIncident" width="100px" >N° de machine: </td>
+                 			<td width="250px">
+                 				<jsf:selectOneListbox style="width:147px;" >	
+                                 <!-- <jsfCore:selectItems value="Proutprout" />  -->
+                                 
                  				</jsf:selectOneListbox>
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de constat: </td>
@@ -32,7 +33,7 @@
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de contrat: </td>
                  			<td>
-                 				<jsf:selectOneListbox >
+                 				<jsf:selectOneListbox style="width:147px;" >
                  					 
                  				</jsf:selectOneListbox>
                  			</td>
@@ -45,12 +46,25 @@
                  		</tr>
                  		<tr>
                  			<td></td>
-                 			<td class="textTabIncident">Contact: </td>
+                 			<td class="textTabIncident" >Contact: </td>
                  			<td><jsf:inputText id="nomContact" /></td>
                  			<td class="textTabIncident">Télephone: </td>
                  			<td><jsf:inputText id="telContact" /></td>
                  		</tr>
+                 		<tr>
+                 			<td></td>
+                 			<td valign="top" align="right">Commentaire: </td>
+                 			<td colspan="3"><jsf:inputTextarea  id="comContact" cols="66" rows="5" />
+                 			</td>
+                 		</tr>
+                 		<tr>
+                 			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
+                 			<td><jsf:commandButton id="submitIncident" value="Suivant" style="width:147px; height:30px;" /></td>
+                 		</tr>
                  	</table>
+                 	
+                 </richfaces:panel>
+                 <richfaces:panel id="recapitulationIncident" >
                  	
                  </richfaces:panel>
  		</div>
