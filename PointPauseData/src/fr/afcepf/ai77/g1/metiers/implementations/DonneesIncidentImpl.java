@@ -11,9 +11,9 @@ public class DonneesIncidentImpl implements IDonneesIncidentDTO {
 
 	@Override
 	public IncidentDTO getIncidentDTOByNumero(int numero) {
-		Incident incident = getDonneesIncident().getIncidentDTOByNumero(numero);
-		
-		return numero;
+//		Incident incident = getDonneesIncident().getIncidentDTOByNumero(numero);
+//		
+		return null;
 	}
 
 }
