@@ -16,6 +16,7 @@
     			class="Client"
     			cascade="all"
     			not-found="ignore"
+    			not-null="false"
     />
     
     

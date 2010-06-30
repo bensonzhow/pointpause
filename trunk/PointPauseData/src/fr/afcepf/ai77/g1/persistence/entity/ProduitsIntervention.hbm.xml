@@ -3,21 +3,27 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
-  <class name="SiteClient" table="site_client">
+  <class name="ProduitsIntervention" table="produits_intervention">
   	
   	<id name="numero" type="integer" >
-  		<column name="numero_site" sql-type="int" not-null="true"/>
+  		<column name="numero_produit" sql-type="int" not-null="true"/>
   		<generator class="increment"/>
   	</id>
-  
   	
-    <many-to-one name="client"
-    			column="numero_client"
-    			class="Client"
+  	    
+    <property name="quantite">
+      <column name="quantite" sql-type="int" not-null="false"/> 
+    </property>
+  	
+    	
+    <many-to-one name="intervention"
+    			column="numero_intervention"
+    			class="Intervention"
     			cascade="all"
     			not-found="ignore"
     			not-null="false"
     />
+ 
   
   
   </class>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+  <class name="Intervention" table="intervention">
+  	
+  	<id name="numero" type="integer" >
+  		<column name="numero_intervention" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+	<many-to-one name="employe" class="Employe" column="matricule_employe">
+	</many-to-one>
+	
+    <set name="listeProduits" cascade="save-update" >
+    	<key column="numero_intervention" />
+    	<one-to-many class="ProduitsIntervention" />
+    </set>
+    
+
+    <property name="dateDebutIntervention">
+      <column name="date_heure_debut_intervention" sql-type="date" not-null="false"/> 
+    </property>
+    
+    
+    <property name="dateFinIntervention">
+      <column name="date_heure_fin_intervention" sql-type="date" not-null="false"/> 
+    </property>
+    
+    <property name="statut">
+      <column name="statut" sql-type="boolean" not-null="false"/> 
+    </property>
+
+      <property name="commentaire">
+      <column name="commentaire_intervention" sql-type="text" not-null="false"/> 
+    </property>
+  
+    
+    <set name="listeProduits" cascade="save-update" >
+    	<key column="code_type_produit" />
+    	<one-to-many class="Produit" />
+    </set>    
+    
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+  <class name="Produit" table="produit">
+  	
+  	<id name="numero" type="integer" >
+  		<column name="numero_produit" sql-type="int" not-null="true"/>
+  		<generator class="increment"/>
+  	</id>
+  	
+     
+    <property name="libelle">
+      <column name="libelle_produit" length="30" not-null="false"/> 
+    </property>  	
+    
+    <property name="prix">
+      <column name="prix" sql-type="decimal" not-null="false"/> 
+    </property>  	
+       
+  
+  	
+    <many-to-one name="typeProduit"
+    			column="code_type_produit"
+    			class="TypeProduit"
+    			cascade="all"
+    			not-found="ignore"
+    			not-null="false"
+    />
+  
+  
+  </class>
+</hibernate-mapping>
