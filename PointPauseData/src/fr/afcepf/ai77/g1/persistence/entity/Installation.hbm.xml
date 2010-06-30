@@ -2,36 +2,38 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity" >
-  <class name="Installation" table="installation">
-  	
-  	<id name="numero" type="integer" >
-  		<column name="numero_deploiement" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
-  	</id>
-  	
-    <property name="dateDebut">
-      <column name="date_debut_deploiement" sql-type="date" not-null="false"/> 
-    </property>
-    
-    <property name="dateFin">
-      <column name="date_fin_deploiement" sql-type="date" not-null="false"/> 
-    </property>
-    
-    <many-to-one name="site"
-    			column="numero_site" 
-    			class="SiteClient"
-    			cascade="all"
-    			not-null="false"
-    />
-    
-        
-    <set name="listeIncidents" cascade="save-update" >
-    	<key column="numero_deploiement" />
-    	<one-to-many class="Incident" />
-    </set>
-    
-    	  	
-  </class>
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="Installation" table="installation">
+
+		<id name="numero" type="integer">
+			<column name="numero_deploiement" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+		<property name="dateDebut">
+			<column name="date_debut_deploiement" sql-type="date"
+				not-null="false" />
+		</property>
+
+		<property name="dateFin">
+			<column name="date_fin_deploiement" sql-type="date" not-null="false" />
+		</property>
+
+		<many-to-one name="site" column="numero_site" class="SiteClient"
+			cascade="all" not-null="false" />
+
+
+		<set name="listeIncidents" cascade="save-update">
+			<key column="numero_deploiement" />
+			<one-to-many class="Incident" />
+		</set>
+
+		<set name=historiqueBouquet table="installation_bouquet">
+			<key column="numero_deploiement" />
+			<many-to-many column="code_bouquet" class="Bouquet" />
+		</set>
+
+
+	</class>
 </hibernate-mapping>
 

@@ -11,9 +11,17 @@ public class Installation {
 	private Date dateDebut;
 	private Date dateFin;
 	private Set<Incident> listeIncidents = new HashSet<Incident>();
+	private Set<Bouquet> historiqueBouquet = new HashSet<Bouquet>();
 	
 	
 	
+	
+	public Set<Bouquet> getHistoriqueBouquet() {
+		return historiqueBouquet;
+	}
+	public void setHistoriqueBouquet(Set<Bouquet> historiqueBouquet) {
+		this.historiqueBouquet = historiqueBouquet;
+	}
 	
 	public Set<Incident> getListeIncidents() {
 		return listeIncidents;

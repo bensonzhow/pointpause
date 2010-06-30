@@ -3,19 +3,54 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
-  <class name="Contrat" table="contrat">
-  	
-  	<id name="numero" type="integer" >
-  		<column name="numero_contrat" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
-  	</id>
-  	
-    <many-to-one name="client"
-    			column="numero_client"
-    			class="Client"
-    			cascade="all"
-    			not-found="ignore"
-    			not-null="false"
-    />
-  </class>
+	<class name="Contrat" table="contrat">
+
+		<id name="numero" type="integer">
+			<column name="numero_contrat" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+		<many-to-one name="client" column="numero_client" class="Client"
+			cascade="all" not-found="ignore" not-null="false" />
+
+		<property name="dateDebut">
+			<column name="date_debut_contrat" sql-type="date" not-null="false" />
+		</property>
+
+		<property name="dateFin">
+			<column name="date_fin_contrat" sql-type="date" not-null="false" />
+		</property>
+
+		<property name="garantie">
+			<column name="garantie" sql-type="boolean" not-null="false" />
+		</property>
+
+		<property name="freqApprovisionnement">
+			<column name="frequence_approvisionnement" sql-type="int"
+				not-null="false" />
+		</property>
+
+		<property name="dateSignature">
+			<column name="date_signature" sql-type="date" not-null="false" />
+		</property>
+
+		<property name="duree">
+			<column name="duree" sql-type="int" not-null="false" />
+		</property>
+
+		<property name="commentaire">
+			<column name="commentaire_contrat" sql-type="text" not-null="false" />
+		</property>
+
+		<property name="flag">
+			<column name="flag" sql-type="boolean" not-null="false" />
+		</property>
+
+
+		<set name="listeBouquets" cascade="save-update">
+			<key column="numero_contrat" />
+			<one-to-many class="Bouquet" />
+		</set>
+
+	</class>
 </hibernate-mapping>

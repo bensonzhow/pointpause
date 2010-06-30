@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="Bouquet" table="bouquet">
+
+		<id name="codebouquet" type="integer">
+			<column name="code_bouquet" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+		<property name="quantite">
+			<column name="quantite" sql-type="int" not-null="false" />
+		</property>
+
+
+
+		<many-to-one name="contrat" column="numero_contrat" class="Contrat"
+			cascade="all" not-null="false" />
+
+
+		<set name="historiqueInstallations" cascade="save-update">
+			<key column="numero_deploiement" />
+			<one-to-many class="Installation" />
+		</set>
+
+
+	
+
+
+
+	</class>
+</hibernate-mapping>
+

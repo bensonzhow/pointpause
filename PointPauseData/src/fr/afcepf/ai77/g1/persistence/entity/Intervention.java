@@ -10,9 +10,15 @@ public class Intervention {
 	
 	private Set<ProduitsIntervention> listeProduits = new HashSet<ProduitsIntervention>();
 	
-	//private StatutIncident statutIncident;
+	private StatutIncident statutIncident;
 	//private Urgence urgence;
 	
+	public StatutIncident getStatutIncident() {
+		return statutIncident;
+	}
+	public void setStatutIncident(StatutIncident statutIncident) {
+		this.statutIncident = statutIncident;
+	}
 	private Date dateDebutIntervention;
 	private Date dateFinIntervention;
 	private Boolean statut;
