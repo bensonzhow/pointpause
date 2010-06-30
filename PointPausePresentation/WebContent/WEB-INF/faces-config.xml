@@ -18,8 +18,13 @@
     <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TableauBordBean</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+
  
- 
+ <managed-bean>
+    <managed-bean-name>creationContratMB</managed-bean-name>
+    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.CreationContratBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 
  
  
@@ -37,6 +42,25 @@
             <from-outcome>Failure</from-outcome>
             <to-view-id>/tableauBord.html</to-view-id>
     </navigation-case>
+    
+    
+     
+ </navigation-rule>
+ 
+ <navigation-rule>
+    <from-view-id>/PointPausePresentation/connexion.html</from-view-id>
+    <navigation-case>
+            <from-action>#{connectionMB.logOut}</from-action>
+            <from-outcome>Failure</from-outcome>
+            <to-view-id>/tableauBord.html</to-view-id>
+    </navigation-case>
+    
+    <navigation-case>
+            <from-action>#{connectionMB.logOut}</from-action>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/connexion.html</to-view-id>
+    </navigation-case>
+    
     
     
  </navigation-rule>
