@@ -6,8 +6,11 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 	
 <facelets:composition template="masterPage.html">
+ 	
  	<facelets:define name="Contenu">
+ 	
  		<jsfCore:subview id="connexion">
+ 		
  			<jsf:form>
  		 			
  			<richfaces:panel>
@@ -17,7 +20,7 @@
             <jsf:inputText value="#{connectionMB.login}"/>
             <jsf:outputText value="Votre mot de passe"/>
             <jsf:inputText value="#{connectionMB.mdp}"/>
-      <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
+       <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
         </jsf:panelGrid>
 				</richfaces:panel>
 			</jsf:form>
@@ -25,3 +28,5 @@
 	</facelets:define>
 </facelets:composition>
 </html>
+          <!--    <jsf:outputText id="statut" value="#{connectionMB.statut}"/> 
+      <a4j:commandButton action="#{connectionMB.connecter}" value="connecter !" reRender="statut"></a4j:commandButton>-->
