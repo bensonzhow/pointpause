@@ -31,7 +31,7 @@
     <navigation-case>
             <from-action>#{connectionMB.connecter}</from-action>
             <from-outcome>Failure</from-outcome>
-            <to-view-id>/connexion.html</to-view-id>
+            <to-view-id>/tableauBord.html</to-view-id>
     </navigation-case>
     
     

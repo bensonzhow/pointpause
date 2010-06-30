@@ -11,7 +11,7 @@ import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
 
 public class ConnectionBean {
 
-	protected Object sessionOK=null;
+
 	private String login;
 	private String mdp; 
 	//private String statut;
@@ -63,7 +63,6 @@ public class ConnectionBean {
 			HttpSession httpSession = request.getSession(false);  
 			
 			httpSession.setAttribute("session", session);
-			sessionOK= httpSession.getAttribute("session");
 			return "OK";	
 		}
 	}
