@@ -64,10 +64,17 @@
    
    #Incident{
    margin: auto;
+   font-size: 62.5%;
    }
    #declareIncident{
    margin: auto;
    width: 850px;
+   }
+   .tableIncident{
+   width: 830px;
+   }
+   .textTabIncident{
+   text-align: right;
    }
    
    #textAcceuil{
