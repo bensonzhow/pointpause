@@ -37,10 +37,12 @@
     </property>
   
     
-    <set name="listeProduits" cascade="save-update" >
+    <set name="listeProduits" table="produits_intervention" cascade="save-update" >
     	<key column="numero_intervention" />
     	<one-to-many class="ProduitsIntervention" />
     </set>    
+    
+    <one-to-one name="statutIncident" class="StatutIncident" />
     
     
   </class>
