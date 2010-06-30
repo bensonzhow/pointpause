@@ -20,6 +20,10 @@
  </managed-bean>
  
  
+
+ 
+ 
+ 
  <navigation-rule>
     <from-view-id>/connexion.html</from-view-id>
        <navigation-case>
@@ -36,4 +40,8 @@
     
     
  </navigation-rule>
+ 
+
+ 
+ 
 </faces-config>
