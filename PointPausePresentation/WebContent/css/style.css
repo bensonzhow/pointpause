@@ -68,6 +68,7 @@
    }
    #declareIncident{
    margin: auto;
+   margin-bottom: 35px;
    width: 850px;
    }
    .tableIncident{
@@ -75,6 +76,16 @@
    }
    .textTabIncident{
    text-align: right;
+   height: 30px;
+   }
+   #comContact{
+   cols: 67;
+   rows: 6;
+   }
+   #recapitulationIncident{
+   margin: auto;
+   margin-bottom: 35px;
+   width: 850px;
    }
    
    #textAcceuil{
