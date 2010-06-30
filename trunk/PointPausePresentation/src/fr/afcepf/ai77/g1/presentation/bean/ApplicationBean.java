@@ -32,14 +32,14 @@ public class ApplicationBean {
 		 */
 	}
 	
-	public boolean testConnexion(){
+	public String testConnexion(){
 		FacesContext context = FacesContext.getCurrentInstance();  
 		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();  
 		HttpSession httpSession = request.getSession(false);  
 		
 		Object sessionOK= httpSession.getAttribute("session");
 		
-		return (sessionOK!=null)?true:false;
+		if (sessionOK==null) return "fail"; else return "ok";
 	
 	}
 }
