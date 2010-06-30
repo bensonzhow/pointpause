@@ -3,16 +3,19 @@
 	xmlns:jsf="http://java.sun.com/jsf/html"
 	xmlns:jsfCore="http://java.sun.com/jsf/core"
 	xmlns:richfaces="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j">
-
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:jstl="http://java.sun.com/jsp/jstl/core">
 
 <facelets:composition template="masterPage.html">
   <facelets:define name="Contenu"> 
-  
 
-  
+   <jstl:if test='#{session.getAttribute("session")}==null'>
+   		<jstl.redirect url="http://www.google.com" />
+   </jstl:if>
+   
+   
  Bienvenue M, [value du client], votre tableau de bord !
- 
+
 <jsfCore:subview id="tableauBord">
 	<jsf:form>
 

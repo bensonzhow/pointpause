@@ -6,9 +6,16 @@
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
  </application>
+ 
  <managed-bean>
     <managed-bean-name>connectionMB</managed-bean-name>
     <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConnectionBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ 
+  <managed-bean>
+    <managed-bean-name>tableaubordMB</managed-bean-name>
+    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TableauBordBean</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  
@@ -25,6 +32,8 @@
             <from-action>#{connectionMB.connecter}</from-action>
             <from-outcome>Failure</from-outcome>
             <to-view-id>/connexion.html</to-view-id>
-        </navigation-case>
+    </navigation-case>
+    
+    
  </navigation-rule>
 </faces-config>
