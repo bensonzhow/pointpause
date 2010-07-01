@@ -5,17 +5,21 @@
 
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
 	<class name="Formule" table="formule">
-		<id column="CODE_FORMULE" name="codeFormule" type="integer">
-			<generator class="sequence" />
+		
+			<id name="codeFormule" type="integer">
+			<column name="CODE_FORMULE" sql-type="int" not-null="true" />
+			<generator class="increment" />
 		</id>
 		<property column="COMMENTAIRE_FORMULE" name="commentaireFormule"
 			not-null="false" type="string" />
-		<property column="PRIX" length="10" name="prix" not-null="false"
-			type="big_decimal" />
+
+			 <property name="prix">
+      <column name="PRIX" sql-type="decimal" not-null="false"/> 
+    </property> 
 		<property column="LIBELLE_FORMULE" length="30" name="libelleFormule"
 			not-null="false" type="string" />
 
-		<many-to-one class="Client" name="NumeroClient" not-null="true">
+		<!-- <many-to-one class="Client" name="NumeroClient" not-null="true">
 			<column name="NUMERO_CLIENT" />
 		</many-to-one>
 		<set inverse="true" name="BouquetSet">
@@ -29,6 +33,6 @@
 		<set cascade="all" name="TypeAutomateSet" table="type_automate_formule">
 			<key column="CODE_FORMULE" />
 			<many-to-many class="TypeAutomate" column="CODE_TYPE_AUTOMATE" />
-		</set>
+		</set>-->
 	</class>
 </hibernate-mapping>
