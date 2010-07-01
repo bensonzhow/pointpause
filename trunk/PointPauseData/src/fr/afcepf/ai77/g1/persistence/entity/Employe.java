@@ -37,9 +37,15 @@ public class Employe {
 		return "Employe [matricule=" + matricule + ", listeClient=" + listeClients
 				+ "]";
 	}
+	public Employe(Integer matricule) {
+		super();
+		this.matricule = matricule;
+	}
 	
 	
-	
+	public Employe(){
+		
+	}
 	
 }
 

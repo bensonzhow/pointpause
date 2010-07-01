@@ -62,6 +62,16 @@ public class Installation {
 		return "Installation [numero=" + numero + ", site=" + site
 				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
 	}
+	public Installation(Integer numero, SiteClient site, Date dateDebut,
+			Date dateFin ) {
+		super();
+		this.numero = numero;
+		this.site = site;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+	}
 	
-	
+	public Installation(){
+		
+	}
 }

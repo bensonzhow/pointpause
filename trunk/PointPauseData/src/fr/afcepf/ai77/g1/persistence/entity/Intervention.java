@@ -75,7 +75,21 @@ public class Intervention {
 				+ ", dateFinIntervention=" + dateFinIntervention + ", statut="
 				+ statut + ", commentaire=" + commentaire + "]";
 	}
+	public Intervention(Integer numero, Employe employe,
+			StatutIncident statutIncident, Date dateDebutIntervention,
+			Date dateFinIntervention, Boolean statut, String commentaire) {
+		super();
+		this.numero = numero;
+		this.employe = employe;
+		this.statutIncident = statutIncident;
+		this.dateDebutIntervention = dateDebutIntervention;
+		this.dateFinIntervention = dateFinIntervention;
+		this.statut = statut;
+		this.commentaire = commentaire;
+	}
 	
-	
+	public Intervention(){
+		
+	}
 	
 }

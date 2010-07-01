@@ -60,5 +60,24 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 		}
 		
 	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO#insertClient(fr.afcepf.ai77.g1.persistence.entity.Client)
+	 * si l'insertion ne leve pas d'exception alors c'est que tout s'est bien passé et on return true. Si exception, on retourne false
+	 */
+	
+	@Override
+	public boolean insertClient(Client c) {
+		// TODO Auto-generated method stub
+		try{
+			hibernateTemplate.save(c);
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();return false;
+		}
+		
+	}
 
 }

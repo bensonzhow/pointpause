@@ -7,12 +7,12 @@
   	
   	<id name="matricule" type="integer" >
   		<column name="matricule_employe" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
+  		<generator class="identity"/>
   	</id>
   	
     
-    <set name="listeClients" cascade="save-update" >
-    	<key column="numero_client" />
+    <set name="listeClients" cascade="all" inverse="true">
+    	<key column="matricule_employe" />
     	<one-to-many class="Client" />
     </set>
   	

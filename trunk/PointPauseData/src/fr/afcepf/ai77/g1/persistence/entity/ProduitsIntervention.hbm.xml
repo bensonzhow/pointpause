@@ -23,6 +23,9 @@
     			not-found="ignore"
     			not-null="false"
     />
+    
+    <one-to-one name="produit" class="Produit" />
+    
  
   
   

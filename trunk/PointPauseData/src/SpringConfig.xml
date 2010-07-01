@@ -49,12 +49,19 @@
 
 
 		<property name="mappingResources">
-			<list>
-				<value>fr/afcepf/ai77/g1/persistence/entity/Contrat.hbm.xml</value>
+			<list>			
+				<value>fr/afcepf/ai77/g1/persistence/entity/Bouquet.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Client.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Contrat.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Employe.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/Incident.hbm.xml</value>
+  		    	<value>fr/afcepf/ai77/g1/persistence/entity/Incident.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Installation.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Intervention.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Produit.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/ProduitsIntervention.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/SiteClient.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/StatutIncident.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/TypeProduit.hbm.xml</value>
 			</list>
 		</property>
 
@@ -90,5 +97,12 @@
 		</property>
 	
 	</bean>
+	
+	<bean id="IDonneesEmployeDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesEmployeDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>	
 	
 </beans>

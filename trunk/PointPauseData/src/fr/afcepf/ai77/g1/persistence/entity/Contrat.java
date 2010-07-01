@@ -102,8 +102,25 @@ public class Contrat {
 	public String toString() {
 		return "Contrat [numero=" + numero + ", client=" + client + "]";
 	}
+	public Contrat(Integer numero, Client client, Date dateDebut, Date dateFin,
+			Boolean garantie, Integer freqApprovisionnement,
+			Date dateSignature, int duree, String commentaire, Boolean flag) {
+		super();
+		this.numero = numero;
+		this.client = client;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.garantie = garantie;
+		this.freqApprovisionnement = freqApprovisionnement;
+		this.dateSignature = dateSignature;
+		this.duree = duree;
+		this.commentaire = commentaire;
+		this.flag = flag;
+	}
 	
-	
+	public Contrat(){
+		
+	}
 	
 }
 

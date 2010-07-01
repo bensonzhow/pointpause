@@ -5,7 +5,7 @@
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
 	<class name="Bouquet" table="bouquet">
 
-		<id name="codebouquet" type="integer">
+		<id name="codeBouquet" type="integer">
 			<column name="code_bouquet" sql-type="int" not-null="true" />
 			<generator class="increment" />
 		</id>

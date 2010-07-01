@@ -7,7 +7,7 @@
   	
   	<id name="numero" type="integer" >
   		<column name="numero_client" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
+  		<generator class="identity"/>
   	</id>
   	
   	<property name="nom">

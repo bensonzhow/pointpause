@@ -9,9 +9,7 @@ public class Bouquet {
 	//private ModeleAutomate modeleAutomate;
 	private Contrat contrat;
 	private Integer quantite;
-
-	
-	private Set<Installation> historiqueInstallation = new HashSet<Installation>();
+	private Set<Installation> historiqueInstallations = new HashSet<Installation>();
 
 	public Integer getCodeBouquet() {
 		return codeBouquet;
@@ -37,21 +35,33 @@ public class Bouquet {
 		this.quantite = quantite;
 	}
 
-	public Set<Installation> getHistoriqueInstallation() {
-		return historiqueInstallation;
+
+	
+	
+	public Set<Installation> getHistoriqueInstallations() {
+		return historiqueInstallations;
 	}
 
-	public void setHistoriqueInstallation(Set<Installation> historiqueInstallation) {
-		this.historiqueInstallation = historiqueInstallation;
+	public void setHistoriqueInstallations(Set<Installation> historiqueInstallations) {
+		this.historiqueInstallations = historiqueInstallations;
 	}
 
 	@Override
 	public String toString() {
 		return "Bouquet [codebouquet=" + codeBouquet + ", contrat=" + contrat
 				+ ", quantite=" + quantite + ", historiqueInstallation="
-				+ historiqueInstallation + "]";
+				+ historiqueInstallations + "]";
+	}
+
+	public Bouquet(Integer codeBouquet, Contrat contrat, Integer quantite) {
+		super();
+		this.codeBouquet = codeBouquet;
+		this.contrat = contrat;
+		this.quantite = quantite;
 	}
 	
 	
-	
+	public Bouquet(){
+		
+	}
 }

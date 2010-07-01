@@ -36,9 +36,19 @@ public class Produit {
 		return "Produit [numero=" + numero + ", typeProduit=" + typeProduit
 				+ ", libelle=" + libelle + ", prix=" + prix + "]";
 	}
+	public Produit(Integer numero, TypeProduit typeProduit, String libelle,
+			Double prix) {
+		super();
+		this.numero = numero;
+		this.typeProduit = typeProduit;
+		this.libelle = libelle;
+		this.prix = prix;
+	}
 	
 	
 	
-	
+	public Produit(){
+		
+	}
 	
 }
