@@ -6,7 +6,7 @@
 		<facelets:define name="Contenu">
 			<richfaces:panel>
 				Votre commande
-				<jsf:panelGrid width="50" columns="3" border="1">
+				<table >
 					<jsfCore:facet name="header">
 						Commande n°1
 				 </jsfCore:facet>
@@ -27,9 +27,10 @@
 						<jsfCore:selectItem itemValue="4" itemLabel="4" />
 						<jsfCore:selectItem itemValue="5" itemLabel="5" />
 					</jsf:selectOneMenu>
+					<jsf:selectOneMenu id="machine" value="3">
+					</jsf:selectOneMenu>
 					
-
-				</jsf:panelGrid>
+				</table>
 			</richfaces:panel>
 		</facelets:define>
 	</facelets:composition>

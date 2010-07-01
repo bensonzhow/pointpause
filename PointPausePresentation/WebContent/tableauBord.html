@@ -10,7 +10,7 @@
     
 <facelets:composition template="masterPage.html">
   <facelets:define name="Contenu"> 
-   <jstl:if test="${sessionScope['session']!=null}" >
+   <jstl:if test="${sessionScope['session']==null}" >
    		<meta http-equiv="refresh" content="0; url=connexion.html" />
    </jstl:if>
  
