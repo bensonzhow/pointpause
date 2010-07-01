@@ -5,11 +5,12 @@
 	xmlns:a4j="http://richfaces.org/a4j">	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <facelets:composition template="masterPage.html">
-<facelets:define name="HeadScriptorCss"><script type="text/javascript" src="javaScript/jquery-1.4.2.js"></script>
+<facelets:define name="HeadScriptorCss"><script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="ui/jquery.ui.core.js"></script>
 	<script type="text/javascript" src="ui/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="ui/jquery.ui.datepicker.js"></script>
 	<link type="text/css" href="css/demos.css" rel="stylesheet" />
+	<link type="text/css" href="css/style.css" rel="stylesheet" />
 	<script type="text/javascript">
 	$(function() {
 		$("#datepicker").datepicker();
@@ -64,7 +65,7 @@
                  			<td class="textTabIncident" >Contact: </td>
                  			<td><jsf:inputText id="nomContact" /></td>
                  			<td class="textTabIncident">Télephone: </td>
-                 			<td><jsf:inputText id="telContact" /></td>
+                 			<td><jsf:inputText id="telContact" value="#{declaraIndicentMB.telephone}"/></td>
                  		</tr>
                  		<tr>
                  			<td></td>
@@ -74,13 +75,13 @@
                  		</tr>
                  		<tr>
                  			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
-                 			<td><jsf:commandButton id="submitIncident" value="Confirmer" style="width:147px; height:30px;" /></td>
+                 			<td><jsf:commandButton id="submitIncident" action="#{incidentMB.declare}" value="Confirmer" style="width:147px; height:30px;" /></td>
                  		</tr>
                  	</table>
                  	
                  </richfaces:panel>
                  <richfaces:panel id="recapitulationIncident" >
-                 	<table class="tableRecapIncident">
+                 	<table class="tableRecapIncident" border="1px">
                  		<tr>
                  			<th colspan="2"><font size="2px">Votre Récapitulatif: </font></th>
                  		</tr>
@@ -106,6 +107,7 @@
                  		<tr>
                  			<td></td>
                  			<td class="textTabIncident" >Contact: </td>
+                 			<td></td> 
                  			<td class="textTabIncident">Télephone: </td>
                  		</tr>
                  		<tr>
@@ -113,7 +115,7 @@
                  			<td valign="top" align="right">Commentaire: </td>
                  		</tr>
                  		<tr>
-                 			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
+                 			<td class="textTabIncident" colspan="4"> Voulez allez suivre cette incident dans votre tableau de bord</td>
                  		</tr>
                  	</table>
                  </richfaces:panel>
