@@ -10,7 +10,7 @@
  <managed-bean>
     <managed-bean-name>connectionMB</managed-bean-name>
     <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConnectionBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
+    <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  
   <managed-bean>
@@ -63,9 +63,26 @@
     
     
     
- </navigation-rule>
+ </navigation-rule> 
  
-
+ 
+ <navigation-rule>
+    <from-view-id>/incident.html</from-view-id>
+       <navigation-case>
+     <from-action>#{connectionMB.logOut}</from-action>
+            <from-outcome>Failure</from-outcome>
+            <to-view-id>/incident.html</to-view-id>
+    
+    </navigation-case>
+    <navigation-case>
+                <from-action>#{connectionMB.logOut}</from-action>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/tableauBord.html</to-view-id>
+    </navigation-case>
+    
+    
+     
+ </navigation-rule>
  
  
 </faces-config>
