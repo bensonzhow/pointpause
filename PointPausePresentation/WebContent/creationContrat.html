@@ -3,35 +3,40 @@
 	xmlns:a4j="http://richfaces.org/a4j" xmlns:jstl="http://java.sun.com/jsp/jstl/core">
 	
 	<facelets:composition template="masterPage.html">
+	
+	<facelets:define name="HeadScriptorCss">
+	<link type="text/css" href="css/contrat.css" rel="stylesheet"/>
+	</facelets:define>
 		<facelets:define name="Contenu">
-			<richfaces:panel>
-				Votre commande
-				<table >
-					<jsfCore:facet name="header">
+			 
+			<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
+			<a4j:form ajaxSubmit="true">
+				<jsfCore:facet name="header">
 						Commande n°1
 				 </jsfCore:facet>
-					<jsf:outputText value="Quantité" />
-					<jsf:outputText value="Formule" />
-					<jsf:outputText value="Machine" />
-					<jsf:selectOneMenu id="quantite" value="1">
-						<jsfCore:selectItem itemValue="1" itemLabel="1" />
-						<jsfCore:selectItem itemValue="2" itemLabel="2" />
-						<jsfCore:selectItem itemValue="3" itemLabel="3" />
-						<jsfCore:selectItem itemValue="4" itemLabel="4" />
-						<jsfCore:selectItem itemValue="5" itemLabel="5" />
-					</jsf:selectOneMenu>
-					<jsf:selectOneMenu id="formule" value="2">
-						<jsfCore:selectItem itemValue="1" itemLabel="1" />
-						<jsfCore:selectItem itemValue="2" itemLabel="2" />
-						<jsfCore:selectItem itemValue="3" itemLabel="3" />
-						<jsfCore:selectItem itemValue="4" itemLabel="4" />
-						<jsfCore:selectItem itemValue="5" itemLabel="5" />
-					</jsf:selectOneMenu>
-					<jsf:selectOneMenu id="machine" value="3">
-					</jsf:selectOneMenu>
+				<table >					
+					<tr>
+					<th>Quantite</th>
+					<th>Formule</th>
+					<th>Machine	</th>
+					</tr>
+					<tr>
+					<td>
+					<richfaces:inputNumberSpinner enableManualInput="true" value="1" step="1"></richfaces:inputNumberSpinner>
+					</td>
+					<td><richfaces:comboBox selectFirstOnUpdate="false"
+        defaultLabel="Quelle formule ? ">
+        <jsfCore:selectItems value="#{CreationContratBean.contrat}" />
+   				 </richfaces:comboBox></td>
+					<td><jsf:selectOneMenu id="machine" value="3">
+					</jsf:selectOneMenu></td>
+					</tr>
 					
 				</table>
-			</richfaces:panel>
+				</a4j:form>	
+				</richfaces:simpleTogglePanel>
+		
 		</facelets:define>
+		
 	</facelets:composition>
 </html>
