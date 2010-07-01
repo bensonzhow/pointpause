@@ -1,5 +1,5 @@
 ﻿/* Afrikaans initialisation for the jQuery UI date picker plugin. */
-/* Written by Renier Pretorius. */
+/* Written by Renier Pretorius. */ 
 jQuery(function($){
 	$.datepicker.regional['af'] = {
 		closeText: 'Selekteer',
@@ -1152,7 +1152,7 @@ jQuery(function($){
 	$.datepicker.setDefaults($.datepicker.regional['zh-HK']);
 });
 ﻿/* Chinese initialisation for the jQuery UI date picker plugin. */
-/* Written by Ressol (ressol@gmail.com). */
+/* Written by Ressol (ressol@gmail.com). */ 
 jQuery(function($){
 	$.datepicker.regional['zh-TW'] = {
 		closeText: '關閉',
