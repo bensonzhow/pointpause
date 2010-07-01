@@ -1,11 +1,18 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 
 public class ProduitsIntervention {
+	private Integer numero;
 	private Intervention intervention;
 	private Produit produit;
 	private Integer quantite;
 	
 	
+	public Integer getNumero() {
+		return numero;
+	}
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
 	public Intervention getIntervention() {
 		return intervention;
 	}
@@ -31,5 +38,16 @@ public class ProduitsIntervention {
 	}
 	
 	
+	public ProduitsIntervention(Intervention intervention, Produit produit,
+			Integer quantite) {
+		super();
+		this.intervention = intervention;
+		this.produit = produit;
+		this.quantite = quantite;
+	}
 	
+	
+	public ProduitsIntervention(){
+		
+	}
 }

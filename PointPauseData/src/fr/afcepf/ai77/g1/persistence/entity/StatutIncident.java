@@ -52,6 +52,20 @@ public class StatutIncident {
 				+ ", dateChangementStatut=" + dateChangementStatut
 				+ ", commentaire=" + commentaire + "]";
 	}
+	
+	
+	public StatutIncident(Integer numero, Intervention intervention,
+			Incident incident, Date dateChangementStatut, String commentaire) {
+		super();
+		this.numero = numero;
+		this.intervention = intervention;
+		this.incident = incident;
+		this.dateChangementStatut = dateChangementStatut;
+		this.commentaire = commentaire;
+	}
 
+	public StatutIncident(){
+	
+	}
 	
 }

@@ -13,11 +13,7 @@
 	<many-to-one name="employe" class="Employe" column="matricule_employe">
 	</many-to-one>
 	
-    <set name="listeProduits" cascade="save-update" >
-    	<key column="numero_intervention" />
-    	<one-to-many class="ProduitsIntervention" />
-    </set>
-    
+  
 
     <property name="dateDebutIntervention">
       <column name="date_heure_debut_intervention" sql-type="date" not-null="false"/> 

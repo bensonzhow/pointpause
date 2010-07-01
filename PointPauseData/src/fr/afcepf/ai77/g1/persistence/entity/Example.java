@@ -12,6 +12,13 @@ public class Example implements Serializable{
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+
+	public Example(int numero) {
+		super();
+		this.numero = numero;
+	}
 	
-	
+	public Example(){
+		
+	}
 }

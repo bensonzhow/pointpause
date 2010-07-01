@@ -35,6 +35,14 @@ public class SiteClient {
 	public String toString() {
 		return "SiteClient [numero=" + numero + ", client=" + client + "]";
 	}
+
+	public SiteClient(Integer numero, Client client) {
+		super();
+		this.numero = numero;
+		this.client = client;
+	}
 	
-	
+	public SiteClient(){
+		
+	}
 }

@@ -47,8 +47,19 @@ public class Incident {
 				+ dateDeclarationIncident + ", flag=" + flag + ", numero="
 				+ numero + "]";
 	}
+	public Incident(Integer numero, Client client, Boolean flag,
+			Date dateDeclarationIncident, Date dateConstatIncident) {
+		super();
+		this.numero = numero;
+		this.client = client;
+		this.flag = flag;
+		this.dateDeclarationIncident = dateDeclarationIncident;
+		this.dateConstatIncident = dateConstatIncident;
+	}
 	
 	
-	
+	public Incident(){
+		
+	}
 	
 }

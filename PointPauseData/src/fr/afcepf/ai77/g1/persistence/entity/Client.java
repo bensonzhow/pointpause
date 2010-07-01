@@ -111,7 +111,26 @@ public class Client {
 				+ ", employe=" + employe + ", listeIncidents=" + listeIncidents
 				+ "]";
 	}
+	public Client(Integer numero, String nom, String codeSIRET,
+			String nomContact, String telephone, String mail, String login,
+			String pass, String langue, 
+			Employe employe
+			) {
+		super();
+		this.numero = numero;
+		this.nom = nom;
+		this.codeSIRET = codeSIRET;
+		this.nomContact = nomContact;
+		this.telephone = telephone;
+		this.mail = mail;
+		this.login = login;
+		this.pass = pass;
+		this.langue = langue;
+		this.employe = employe;
+	}
 	
-	
+	public Client(){
+		
+	}
 	
 }

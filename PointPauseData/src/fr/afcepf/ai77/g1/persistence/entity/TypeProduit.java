@@ -42,6 +42,15 @@ public class TypeProduit {
 		this.listeProduits = listeProduits;
 	}
 	
+	public TypeProduit(Integer codeType, String libelle, String commentaire) {
+		super();
+		this.codeType = codeType;
+		this.libelle = libelle;
+		this.commentaire = commentaire;
+	}
 	
+	public TypeProduit(){
+		
+	}
 	
 }
