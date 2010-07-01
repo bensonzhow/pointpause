@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Intervention {
-	private Integer numero;
+	private Integer numero=null;
 	private Employe employe;
 	
 	private Set<ProduitsIntervention> listeProduits = new HashSet<ProduitsIntervention>();
@@ -75,11 +75,10 @@ public class Intervention {
 				+ ", dateFinIntervention=" + dateFinIntervention + ", statut="
 				+ statut + ", commentaire=" + commentaire + "]";
 	}
-	public Intervention(Integer numero, Employe employe,
+	public Intervention(Employe employe,
 			StatutIncident statutIncident, Date dateDebutIntervention,
 			Date dateFinIntervention, Boolean statut, String commentaire) {
 		super();
-		this.numero = numero;
 		this.employe = employe;
 		this.statutIncident = statutIncident;
 		this.dateDebutIntervention = dateDebutIntervention;

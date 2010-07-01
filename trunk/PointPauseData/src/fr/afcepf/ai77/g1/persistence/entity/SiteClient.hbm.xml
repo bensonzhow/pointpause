@@ -15,8 +15,6 @@
     			column="numero_client"
     			class="Client"
     			cascade="all"
-    			not-found="ignore"
-    			not-null="false"
     />
   
   

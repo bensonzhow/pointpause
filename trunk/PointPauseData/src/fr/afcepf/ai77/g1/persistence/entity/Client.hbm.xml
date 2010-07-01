@@ -7,7 +7,7 @@
   	
   	<id name="numero" type="integer" >
   		<column name="numero_client" sql-type="int" not-null="true"/>
-  		<generator class="identity"/>
+  		<generator class="increment"/>
   	</id>
   	
   	<property name="nom">
@@ -49,7 +49,7 @@
     	<one-to-many class="Contrat" />
     </set>
     
-    <set name="listeSitesClients" cascade="save-update" >
+    <set name="listeSitesClients" cascade="save-update" inverse="true" >
     	<key column="numero_client" />
     	<one-to-many class="SiteClient" />
     </set>
@@ -63,7 +63,6 @@
     			column="matricule_employe" 
     			class="Employe"
     			cascade="all"
-    			not-null="false"
     />
     
     	  	

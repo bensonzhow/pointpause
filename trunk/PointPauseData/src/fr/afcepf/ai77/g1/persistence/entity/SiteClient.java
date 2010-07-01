@@ -12,7 +12,7 @@ package fr.afcepf.ai77.g1.persistence.entity;
  */
 
 public class SiteClient {
-	private Integer numero;
+	private Integer numero=null;
 	private Client client;
 
 	public Integer getNumero() {
@@ -36,9 +36,8 @@ public class SiteClient {
 		return "SiteClient [numero=" + numero + ", client=" + client + "]";
 	}
 
-	public SiteClient(Integer numero, Client client) {
+	public SiteClient(Client client) {
 		super();
-		this.numero = numero;
 		this.client = client;
 	}
 	

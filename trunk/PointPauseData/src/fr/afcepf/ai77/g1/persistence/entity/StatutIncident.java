@@ -5,7 +5,7 @@ import java.util.Date;
 public class StatutIncident {
 	
 	
-	private Integer numero;
+	private Integer numero=null;
 	private Intervention intervention;
 	//private Type_Statut_Incident typeStatutIncident;
 	private Incident incident;
@@ -54,10 +54,9 @@ public class StatutIncident {
 	}
 	
 	
-	public StatutIncident(Integer numero, Intervention intervention,
+	public StatutIncident( Intervention intervention,
 			Incident incident, Date dateChangementStatut, String commentaire) {
 		super();
-		this.numero = numero;
 		this.intervention = intervention;
 		this.incident = incident;
 		this.dateChangementStatut = dateChangementStatut;

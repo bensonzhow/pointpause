@@ -14,7 +14,7 @@ import java.util.Set;
 */
 public class Employe {
 	
-	private Integer matricule;
+	private Integer matricule=null;
 	private Set<Client> listeClients = new HashSet<Client>();
 	
 	
@@ -36,10 +36,6 @@ public class Employe {
 	public String toString() {
 		return "Employe [matricule=" + matricule + ", listeClient=" + listeClients
 				+ "]";
-	}
-	public Employe(Integer matricule) {
-		super();
-		this.matricule = matricule;
 	}
 	
 	

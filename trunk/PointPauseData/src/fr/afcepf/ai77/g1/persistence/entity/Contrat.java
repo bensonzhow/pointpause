@@ -16,7 +16,7 @@ import java.util.Set;
 */
 
 public class Contrat {
-	private Integer numero;
+	private Integer numero=null;
 	private Client client;
 	//private Contrat contrat;
 	private Date dateDebut;
@@ -102,11 +102,10 @@ public class Contrat {
 	public String toString() {
 		return "Contrat [numero=" + numero + ", client=" + client + "]";
 	}
-	public Contrat(Integer numero, Client client, Date dateDebut, Date dateFin,
+	public Contrat( Client client, Date dateDebut, Date dateFin,
 			Boolean garantie, Integer freqApprovisionnement,
 			Date dateSignature, int duree, String commentaire, Boolean flag) {
 		super();
-		this.numero = numero;
 		this.client = client;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;

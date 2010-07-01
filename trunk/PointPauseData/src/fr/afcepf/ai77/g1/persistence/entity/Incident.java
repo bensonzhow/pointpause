@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Incident {
 	
-	private Integer numero;
+	private Integer numero=null;
 	private Client client;
 	private Boolean flag;
 	private Date dateDeclarationIncident;
@@ -47,10 +47,9 @@ public class Incident {
 				+ dateDeclarationIncident + ", flag=" + flag + ", numero="
 				+ numero + "]";
 	}
-	public Incident(Integer numero, Client client, Boolean flag,
+	public Incident( Client client, Boolean flag,
 			Date dateDeclarationIncident, Date dateConstatIncident) {
 		super();
-		this.numero = numero;
 		this.client = client;
 		this.flag = flag;
 		this.dateDeclarationIncident = dateDeclarationIncident;
