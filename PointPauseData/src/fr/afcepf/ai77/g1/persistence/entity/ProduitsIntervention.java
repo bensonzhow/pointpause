@@ -1,7 +1,7 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 
 public class ProduitsIntervention {
-	private Integer numero;
+	private Integer numero=null;
 	private Intervention intervention;
 	private Produit produit;
 	private Integer quantite;

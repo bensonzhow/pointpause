@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Bouquet {
-	private Integer codeBouquet;
+	private Integer codeBouquet=null;
 	//private Formule formule;
 	//private ModeleAutomate modeleAutomate;
 	private Contrat contrat;
@@ -53,9 +53,8 @@ public class Bouquet {
 				+ historiqueInstallations + "]";
 	}
 
-	public Bouquet(Integer codeBouquet, Contrat contrat, Integer quantite) {
+	public Bouquet( Contrat contrat, Integer quantite) {
 		super();
-		this.codeBouquet = codeBouquet;
 		this.contrat = contrat;
 		this.quantite = quantite;
 	}

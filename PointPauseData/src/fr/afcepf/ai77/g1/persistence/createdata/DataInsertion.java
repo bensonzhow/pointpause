@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Employe;
+import fr.afcepf.ai77.g1.persistence.entity.SiteClient;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesEmployeDAO;
@@ -37,24 +38,36 @@ public class DataInsertion {
 
 		return donneesClient;
 	}
+	
 
 	public static void main(String[] args) {
 
 		BasicConfigurator.configure();
 
 		IDonneesEmployeDAO donneesEmploye = DataInsertion.getDonneesEmploye();
-
-		Client bob = new Client(20, "BobEntreprise", "12355", "Bob",
+		IDonneesClientDAO donneesClient = DataInsertion.getDonneesClient();
+		
+		
+		Client bob = new Client( "BobEntreprise", "12355", "Bob",
 				"0123456789", "rbob@bobE.com", "rbob", "bobr", "FRA", null);
 
 		Employe marc = new Employe();
 
-		bob.setEmploye(marc);
+	    bob.setEmploye(marc);
 		marc.getListeClients().add(bob);
+		
+		SiteClient site = new SiteClient(bob);
+		bob.getListeSitesClients().add(site);
+		site = new SiteClient(bob);
+		bob.getListeSitesClients().add(site);
+		
+		
+		
+		
+		
+		boolean res =donneesClient.insertClient(bob);
 
-		// donneesClient.insertClient(bob);
-
-		boolean res = donneesEmploye.insertEmploye(marc);
+		//boolean res = donneesEmploye.insertEmploye(marc);
 		System.out.println(res);
 
 	}

@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Client {
 	
-	private Integer numero;
+	private Integer numero=null;
 	private String nom;
 	private String codeSIRET;
 	private String nomContact;
@@ -111,13 +111,12 @@ public class Client {
 				+ ", employe=" + employe + ", listeIncidents=" + listeIncidents
 				+ "]";
 	}
-	public Client(Integer numero, String nom, String codeSIRET,
+	public Client( String nom, String codeSIRET,
 			String nomContact, String telephone, String mail, String login,
 			String pass, String langue, 
 			Employe employe
 			) {
 		super();
-		this.numero = numero;
 		this.nom = nom;
 		this.codeSIRET = codeSIRET;
 		this.nomContact = nomContact;

@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class TypeProduit {
 	
-	private Integer codeType;
+	private Integer codeType=null;
 	//private int codeModeConserv;
 	private String libelle;
 	private String commentaire;
@@ -42,9 +42,8 @@ public class TypeProduit {
 		this.listeProduits = listeProduits;
 	}
 	
-	public TypeProduit(Integer codeType, String libelle, String commentaire) {
+	public TypeProduit( String libelle, String commentaire) {
 		super();
-		this.codeType = codeType;
 		this.libelle = libelle;
 		this.commentaire = commentaire;
 	}

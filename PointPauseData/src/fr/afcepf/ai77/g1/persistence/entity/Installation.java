@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Installation {
-	private Integer numero;
+	private Integer numero=null;
 	//private
 	private SiteClient site;
 	private Date dateDebut;
@@ -62,10 +62,9 @@ public class Installation {
 		return "Installation [numero=" + numero + ", site=" + site
 				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
 	}
-	public Installation(Integer numero, SiteClient site, Date dateDebut,
+	public Installation( SiteClient site, Date dateDebut,
 			Date dateFin ) {
 		super();
-		this.numero = numero;
 		this.site = site;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
