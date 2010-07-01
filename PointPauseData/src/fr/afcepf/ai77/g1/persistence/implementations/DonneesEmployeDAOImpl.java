@@ -25,5 +25,20 @@ public class DonneesEmployeDAOImpl implements IDonneesEmployeDAO {
 			return false;
 		}
 	}
+	
+	@Override
+	public Employe getEmployeByNum(int id) {
+		// TODO Auto-generated method stub
+		Employe toreturn = null;
+		try{
+			toreturn = hibernateTemplate.get(Employe.class, new Integer(id));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return toreturn;
+		}
+		
+	}
 
 }

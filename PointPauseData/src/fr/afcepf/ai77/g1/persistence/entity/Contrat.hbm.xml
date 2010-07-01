@@ -47,7 +47,7 @@
 		</property>
 
 
-		<set name="listeBouquets" cascade="save-update">
+		<set name="listeBouquets" cascade="save-update" inverse="true">
 			<key column="numero_contrat" />
 			<one-to-many class="Bouquet" />
 		</set>

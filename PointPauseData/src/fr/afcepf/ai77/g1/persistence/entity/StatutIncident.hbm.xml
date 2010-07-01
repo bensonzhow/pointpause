@@ -2,31 +2,34 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity" >
-  <class name="StatutIncident" table="statut_incident">
-  	
-  	<id name="numero" type="integer" >
-  		<column name="numero_statut_incident" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
-  	</id>
-  	
-  	
-    <property name="dateChangementStatut">
-      <column name="date_changement_statut_incident" sql-type="date" not-null="false"/> 
-    </property>
-    
-    
-    <property name="commentaire">
-      <column name="commentaire" sql-type="date" not-null="false"/> 
-    </property>
- 
- 
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="StatutIncident" table="statut_incident">
 
-    <one-to-one name="intervention" class="Intervention" />
- 
-    <one-to-one name="incident" class="Incident" />
-    
-    	  	
-  </class>
+		<id name="numero" type="integer">
+			<column name="numero_statut_incident" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+
+		<property name="dateChangementStatut">
+			<column name="date_changement_statut_incident" sql-type="date"
+				not-null="false" />
+		</property>
+
+
+		<property name="commentaire">
+			<column name="commentaire" sql-type="date" not-null="false" />
+		</property>
+
+
+
+		<one-to-one name="intervention" class="Intervention" />
+
+
+		<many-to-one name="incident" column="numero_incident"
+			class="Incident" cascade="all" not-found="ignore" not-null="false" />
+
+
+	</class>
 </hibernate-mapping>
 
