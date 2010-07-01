@@ -25,8 +25,21 @@
     <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.CreationContratBean</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
-
  
+ <managed-bean>
+    <managed-bean-name>declareIncidentMB</managed-bean-name>
+    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.DeclarationIncidentBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+
+ <navigation-rule>
+    <from-view-id>/incident.html</from-view-id>
+       <navigation-case>
+     <from-action>#{incidentMB.declare}</from-action>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/incident.html</to-view-id>
+    </navigation-case> 
+ </navigation-rule>
  
  
  <navigation-rule>
