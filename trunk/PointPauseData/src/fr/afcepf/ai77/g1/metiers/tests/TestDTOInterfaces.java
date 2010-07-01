@@ -39,9 +39,7 @@ public class TestDTOInterfaces extends TestCase {
 	}
 	
 	public void testGetContrat(){
-		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO(); 
-		ContratDTO contratDTO = donneesContrat.getContrat();
-		assertEquals(contratDTO.getFormule().get(0).getLibelleFormule(), "fraicheur");
+		
 	}
 	
 	public void testInsertIncident(){
