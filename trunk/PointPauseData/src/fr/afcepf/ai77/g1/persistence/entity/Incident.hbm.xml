@@ -28,8 +28,13 @@
 			<column name="date_constat_incident" sql-type="date" not-null="false" />
 		</property>
 
-		<many-to-one name="numeroDeploiement" column="numero_deploiement" class="Installation"
-			cascade="all" not-found="ignore" not-null="false" />
+		<many-to-one name="numeroDeploiement" column="numero_deploiement"
+			class="Installation" cascade="all" not-found="ignore" not-null="false" />
+
+		<set name="listeStatutsIncidents" cascade="save-update" inverse="true">
+			<key column="numero_incident" />
+			<one-to-many class="StatutIncident" />
+		</set>
 
 
 	</class>
