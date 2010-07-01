@@ -4,12 +4,19 @@ import java.util.Date;
 
 public class Incident {
 	
-	private Integer numero=null;
+	private Integer numero;
 	private Client client;
 	private Boolean flag;
 	private Date dateDeclarationIncident;
 	private Date dateConstatIncident;
+	private Installation numeroDeploiement;
 	
+	public Installation getNumeroDeploiement() {
+		return numeroDeploiement;
+	}
+	public void setNumeroDeploiement(Installation numeroDeploiement) {
+		this.numeroDeploiement = numeroDeploiement;
+	}
 	public Date getDateConstatIncident() {
 		return dateConstatIncident;
 	}
@@ -40,25 +47,32 @@ public class Incident {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	
 	@Override
 	public String toString() {
 		return "Incident [client=" + client + ", dateConstatIncident="
 				+ dateConstatIncident + ", dateDeclarationIncident="
 				+ dateDeclarationIncident + ", flag=" + flag + ", numero="
-				+ numero + "]";
+				+ numero + ", numeroDeploiement=" + numeroDeploiement + "]";
 	}
-	public Incident( Client client, Boolean flag,
-			Date dateDeclarationIncident, Date dateConstatIncident) {
+	
+	
+	public Incident(){
+	
+	}
+	
+	public Incident(Client client, Boolean flag, Date dateDeclarationIncident,
+			Date dateConstatIncident, Installation numeroDeploiement) {
 		super();
 		this.client = client;
 		this.flag = flag;
 		this.dateDeclarationIncident = dateDeclarationIncident;
 		this.dateConstatIncident = dateConstatIncident;
+		this.numeroDeploiement = numeroDeploiement;
 	}
 	
 	
-	public Incident(){
-		
-	}
+	
+	
 	
 }

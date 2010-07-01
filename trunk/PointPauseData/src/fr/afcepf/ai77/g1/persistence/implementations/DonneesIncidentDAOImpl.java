@@ -32,4 +32,12 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 		}
 		return null;
 	}
+
+	@Override
+	public Integer insertIncident(Incident incident) {
+		
+		
+		
+		return null;
+	}
 }
