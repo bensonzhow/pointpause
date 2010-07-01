@@ -4,6 +4,7 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
 
 public class DTOFactory {
@@ -14,8 +15,15 @@ public class DTOFactory {
 		IDonneesSessionDTO sessionProvider = (IDonneesSessionDTO) factory.getBean("IDonneesSessionDTO");
 		return sessionProvider;
 	}
+	
 	public static IDonneesContratDTO getIDonneesContratDTO(){
 		IDonneesContratDTO donneesContrat = (IDonneesContratDTO) factory.getBean("IDonneesContratDTO");
 		return donneesContrat;
 	}
+
+	public static IDonneesIncidentDTO getIDonneesIncidentDTO(){
+		IDonneesIncidentDTO donneesIncident = (IDonneesIncidentDTO) factory.getBean("IDonneesIncidentDTO");
+		return donneesIncident;
+	}
+	
 }

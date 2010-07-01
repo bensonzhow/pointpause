@@ -2,6 +2,8 @@ package fr.afcepf.ai77.g1.persistence.implementations;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -35,9 +37,23 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 	@Override
 	public Integer insertIncident(Incident incident) {
+		try{
+			hibernateTemplate.save(incident);
+			
+			
+			/*
+			Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+			
+			Query q = session.createQuery("max(numero_incident) from Incident c");
+			
+			Integer i = (Integer) q.uniqueResult();
+			
+			return i;*/
+			
+			return 0;
+		}catch(Exception e){
+			e.printStackTrace();return -1;
+		}
 		
-		
-		
-		return null;
 	}
 }

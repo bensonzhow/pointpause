@@ -3,22 +3,34 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
-  <class name="Incident" table="incident">
-  	
-  	<id name="numero" type="integer" >
-  		<column name="numero_incident" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
-  	</id>
-  	
-   	
-    <many-to-one name="client"
-    			column="numero_client"
-    			class="Client"
-    			cascade="all"
-    			not-found="ignore"
-    			not-null="false"
-    />
-    
-    
-  </class>
+	<class name="Incident" table="incident">
+
+		<id name="numero" type="integer">
+			<column name="numero_incident" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+
+		<many-to-one name="client" column="numero_client" class="Client"
+			cascade="all" not-found="ignore" not-null="false" />
+
+		<property name="flag">
+			<column name="flag" sql-type="boolean" not-null="false" />
+		</property>
+
+		<property name="dateDeclarationIncident">
+			<column name="date_declaration_incident" sql-type="date"
+				not-null="false" />
+		</property>
+
+
+		<property name="dateConstatIncident">
+			<column name="date_constat_incident" sql-type="date" not-null="false" />
+		</property>
+
+		<many-to-one name="numeroDeploiement" column="numero_deploiement" class="Installation"
+			cascade="all" not-found="ignore" not-null="false" />
+
+
+	</class>
 </hibernate-mapping>

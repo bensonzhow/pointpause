@@ -54,7 +54,7 @@
     	<one-to-many class="SiteClient" />
     </set>
     
-    <set name="listeIncidents" cascade="save-update" >
+    <set name="listeIncidents" cascade="save-update" inverse="true">
     	<key column="numero_client" />
     	<one-to-many class="Incident" />
     </set>
