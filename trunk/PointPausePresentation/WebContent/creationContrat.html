@@ -1,16 +1,17 @@
 <html xmlns:facelets="http://java.sun.com/jsf/facelets" xmlns:jsf="http://java.sun.com/jsf/html"
 	xmlns:jsfCore="http://java.sun.com/jsf/core" xmlns:richfaces="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:jstl="http://java.sun.com/jsp/jstl/core">
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:jstl="http://java.sun.com/jstl/core">
 	
 	<facelets:composition template="masterPage.html">
-	
 	<facelets:define name="HeadScriptorCss">
 	<link type="text/css" href="css/contrat.css" rel="stylesheet"/>
 	</facelets:define>
+	
 		<facelets:define name="Contenu">
-			 
+		<jsfCore:view id="creationContrat">
+			 <jsf:form>
 			<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
-			<a4j:form ajaxSubmit="true">
+			
 				<jsfCore:facet name="header">
 						Commande n°1
 				 </jsfCore:facet>
@@ -24,18 +25,24 @@
 					<td>
 					<richfaces:inputNumberSpinner enableManualInput="true" value="1" step="1"></richfaces:inputNumberSpinner>
 					</td>
-					<td><richfaces:comboBox selectFirstOnUpdate="false"
-        defaultLabel="Quelle formule ? ">
-        <jsfCore:selectItems value="#{CreationContratBean.contrat}" />
-   				 </richfaces:comboBox></td>
+					<td>
+					<richfaces:comboBox defaultLabel="Enter some value">
+            <jsfCore:selectItem itemValue="suggestion 1"/>
+            <jsfCore:selectItem itemValue="suggestion 2"/>
+            <jsfCore:selectItem itemValue="suggestion 3"/>
+            <jsfCore:selectItem itemValue="suggestion 4"/>
+            <jsfCore:selectItem itemValue="suggestion 5"/>
+      </richfaces:comboBox>
+   				 </td>
 					<td><jsf:selectOneMenu id="machine" value="3">
 					</jsf:selectOneMenu></td>
 					</tr>
 					
 				</table>
-				</a4j:form>	
+				
 				</richfaces:simpleTogglePanel>
-		
+		</jsf:form>
+		</jsfCore:view>
 		</facelets:define>
 		
 	</facelets:composition>

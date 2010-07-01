@@ -1,4 +1,8 @@
-{$(document).ready(function(){
+ var $j = jQuery.noConflict();
+ 
+$j(document).ready(function($){
+
+
 $('ul .cache').hide();
 
 
@@ -56,7 +60,8 @@ if (url=="masterPage.html") {
 
 
 });
-}
+
+
 
 
 

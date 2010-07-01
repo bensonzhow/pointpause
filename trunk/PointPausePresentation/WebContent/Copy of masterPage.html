@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:facelets="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://java.sun.com/jsf/html"
+	xmlns:jsfCore="http://java.sun.com/jsf/core"
+	xmlns:richfaces="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+>	
+<body>
+ <facelets:composition template="masterPage.html">
+	<facelets:define name="HeadScriptorCss">
+	
+	
+	
+	</facelets:define>
+	
+		<facelets:define name="Contenu">
+		<richfaces:panel>
+	<richfaces:comboBox defaultLabel="Enter some value">
+            <jsfCore:selectItem itemValue="suggestion 1"/>
+            <jsfCore:selectItem itemValue="suggestion 2"/>
+            <jsfCore:selectItem itemValue="suggestion 3"/>
+            <jsfCore:selectItem itemValue="suggestion 4"/>
+            <jsfCore:selectItem itemValue="suggestion 5"/>
+      </richfaces:comboBox>
+      </richfaces:panel>
+      </facelets:define>
+      </facelets:composition>
+      
+</body>
+	</html>
