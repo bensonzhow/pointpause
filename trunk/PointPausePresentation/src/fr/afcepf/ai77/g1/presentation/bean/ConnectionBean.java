@@ -69,13 +69,10 @@ public class ConnectionBean {
 	public String logOut() {
 		System.out.println("logout");
 		httpSession.setAttribute("session", null);
-		// if(httpSession.getAttribute("session"==null)
-		// return "OK";
-		// else
+		 if(httpSession.getAttribute("session")==null)
+		 return "OK";
+		 else
 		return "Failure";
 	}
-	public void logOut(ActionEvent al ){
-		System.out.println("logout");
-		httpSession.setAttribute("session", null);
-	}
+	
 }
