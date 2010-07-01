@@ -34,7 +34,6 @@
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -80,8 +79,6 @@
 		</property>
 	</bean>
  -->
- 
- 
 	<bean id="IDonneesClientDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl">
 		<property name="sessionFactory">
@@ -94,7 +91,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+	<bean id="IDonneesEmployeDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesEmployeDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	<bean id="IDonneesSessionDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesSessionDTOImpl">
@@ -102,14 +104,13 @@
 		<property name="donneesClient">
 			<ref bean="IDonneesClientDAO" />
 		</property>
-	
 	</bean>
-	
-	<bean id="IDonneesEmployeDAO"
-		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesEmployeDAOImpl">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
+	<bean id="IDonneesContratDTO"
+		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesContratDTOImpl">
+		
+		<property name="donneesContrat">
+			<ref bean="IDonneesContratDAO" />
 		</property>
-	</bean>	
-	
+	</bean>
+		
 </beans>
