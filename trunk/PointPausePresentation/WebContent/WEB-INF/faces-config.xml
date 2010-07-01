@@ -48,7 +48,7 @@
  </navigation-rule>
  
  <navigation-rule>
-    <from-view-id>/PointPausePresentation/connexion.html</from-view-id>
+    <from-view-id>*</from-view-id>
     <navigation-case>
             <from-action>#{connectionMB.logOut}</from-action>
             <from-outcome>Failure</from-outcome>
@@ -64,25 +64,6 @@
     
     
  </navigation-rule> 
- 
- 
- <navigation-rule>
-    <from-view-id>/incident.html</from-view-id>
-       <navigation-case>
-     <from-action>#{connectionMB.logOut}</from-action>
-            <from-outcome>Failure</from-outcome>
-            <to-view-id>/incident.html</to-view-id>
-    
-    </navigation-case>
-    <navigation-case>
-                <from-action>#{connectionMB.logOut}</from-action>
-            <from-outcome>OK</from-outcome>
-            <to-view-id>/tableauBord.html</to-view-id>
-    </navigation-case>
-    
-    
-     
- </navigation-rule>
  
  
 </faces-config>
