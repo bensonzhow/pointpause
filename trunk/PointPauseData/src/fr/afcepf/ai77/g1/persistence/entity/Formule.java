@@ -10,7 +10,7 @@ public class Formule implements Serializable{
 	
 	private int codeFormule; 
 	private String commentaireFormule;
-	private BigDecimalType prix;
+	private Double prix;
 	private String libelleFormule;
 	public int getCodeFormule() {
 		return codeFormule;
@@ -24,10 +24,10 @@ public class Formule implements Serializable{
 	public void setCommentaireFormule(String pCommentaireFormule) {
 		commentaireFormule = pCommentaireFormule;
 	}
-	public BigDecimalType getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
-	public void setPrix(BigDecimalType pPrix) {
+	public void setPrix(Double pPrix) {
 		prix = pPrix;
 	}
 	public String getLibelleFormule() {
