@@ -8,4 +8,5 @@ public interface IDonneesIncidentDAO {
 	
 	Incident getIncidentByNumero(int numero);
 	List<Incident> getIncidentByContrat(int numContrat);
+	Integer insertIncident(Incident incident);
 }

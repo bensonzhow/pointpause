@@ -8,23 +8,24 @@ import fr.afcepf.ai77.g1.persistence.entity.Client;
 public class IncidentDTO implements Serializable {
 	
 	private Integer numero;
-	private Client client;
+	private Integer numClient;
 	private Boolean flag;
 	private Date dateDeclarationIncident;
 	private Date dateConstatIncident;
-	
-	
+	private Integer numInstallation;
+	private String commentaire;
+	private Integer numContrat;
 	public Integer getNumero() {
 		return numero;
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
-	public Client getClient() {
-		return client;
+	public Integer getNumClient() {
+		return numClient;
 	}
-	public void setClient(Client client) {
-		this.client = client;
+	public void setNumClient(Integer numClient) {
+		this.numClient = numClient;
 	}
 	public Boolean getFlag() {
 		return flag;
@@ -44,14 +45,36 @@ public class IncidentDTO implements Serializable {
 	public void setDateConstatIncident(Date dateConstatIncident) {
 		this.dateConstatIncident = dateConstatIncident;
 	}
-	
-	
+	public Integer getNumInstallation() {
+		return numInstallation;
+	}
+	public void setNumInstallation(Integer numInstallation) {
+		this.numInstallation = numInstallation;
+	}
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	public Integer getNumContrat() {
+		return numContrat;
+	}
+	public void setNumContrat(Integer numContrat) {
+		this.numContrat = numContrat;
+	}
 	@Override
 	public String toString() {
-		return "IncidentDTO [client=" + client + ", dateConstatIncident="
-				+ dateConstatIncident + ", dateDeclarationIncident="
-				+ dateDeclarationIncident + ", flag=" + flag + ", numero="
-				+ numero + "]";
+		return "IncidentDTO [commentaire=" + commentaire
+				+ ", dateConstatIncident=" + dateConstatIncident
+				+ ", dateDeclarationIncident=" + dateDeclarationIncident
+				+ ", flag=" + flag + ", numClient=" + numClient
+				+ ", numContrat=" + numContrat + ", numInstallation="
+				+ numInstallation + ", numero=" + numero + "]";
 	}
+	
+	
+	
+	
 	
 }

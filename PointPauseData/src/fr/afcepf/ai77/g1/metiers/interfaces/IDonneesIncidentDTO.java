@@ -4,5 +4,7 @@ import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 
 public interface IDonneesIncidentDTO {
 
-	IncidentDTO getIncidentDTOByNumero(int numero);
+	IncidentDTO getIncidentDTOByNumero(int numeroContrat);
+	Integer insertIncident(IncidentDTO incidentDto);
+	
 }
