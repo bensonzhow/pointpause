@@ -45,17 +45,19 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	public Integer insertIncident(IncidentDTO iDTO) {
 		
 		Client c = donneesClient.getClientByNumero(iDTO.getNumClient());
+		//TypeProbleme tp = donneesTypePb.getTypePbByNumero(iDTO.getNumTypePb());
 		
 		Incident incident = new Incident();
 		incident.setClient(c);
-		incident.setDateDeclarationIncident(new Date());
+		//incident.setTypePb(tp);
+		incident.setDateDeclarationIncident(iDTO.getDateDeclarationIncident());
 		incident.setDateConstatIncident(iDTO.getDateConstatIncident());
 		incident.setFlag(iDTO.getFlag());
 		
+		Integer res = donneesIncident.insertIncident(incident);
 		
 		
-		
-		return null;
+		return res;
 	}
 	
 

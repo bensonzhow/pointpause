@@ -23,7 +23,7 @@
 			cascade="all" not-null="false" />
 
 
-		<set name="listeIncidents" cascade="save-update">
+		<set name="listeIncidents" cascade="save-update" inverse="true" >
 			<key column="numero_deploiement" />
 			<one-to-many class="Incident" />
 		</set>
