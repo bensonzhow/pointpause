@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="Formule" table="formule">
+		<id column="CODE_FORMULE" name="codeFormule" type="integer">
+			<generator class="sequence" />
+		</id>
+		<property column="COMMENTAIRE_FORMULE" name="commentaireFormule"
+			not-null="false" type="string" />
+		<property column="PRIX" length="10" name="prix" not-null="false"
+			type="big_decimal" />
+		<property column="LIBELLE_FORMULE" length="30" name="libelleFormule"
+			not-null="false" type="string" />
+
+		<many-to-one class="Client" name="NumeroClient" not-null="true">
+			<column name="NUMERO_CLIENT" />
+		</many-to-one>
+		<set inverse="true" name="BouquetSet">
+			<key column="CODE_FORMULE" />
+			<one-to-many class="Bouquet" />
+		</set>
+		<set cascade="all" name="TypeProduitSet" table="type_produit_formule">
+			<key column="CODE_FORMULE" />
+			<many-to-many class="TypeProduit" column="CODE_TYPE_PRODUIT" />
+		</set>
+		<set cascade="all" name="TypeAutomateSet" table="type_automate_formule">
+			<key column="CODE_FORMULE" />
+			<many-to-many class="TypeAutomate" column="CODE_TYPE_AUTOMATE" />
+		</set>
+	</class>
+</hibernate-mapping>

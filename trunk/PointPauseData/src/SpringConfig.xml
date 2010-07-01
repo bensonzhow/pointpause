@@ -62,6 +62,7 @@
 				<value>fr/afcepf/ai77/g1/persistence/entity/SiteClient.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/StatutIncident.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/TypeProduit.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Formule.hbm.xml</value>
 			</list>
 		</property>
 
@@ -83,6 +84,12 @@
  
 	<bean id="IDonneesClientDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IDonneesContratDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesContratDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

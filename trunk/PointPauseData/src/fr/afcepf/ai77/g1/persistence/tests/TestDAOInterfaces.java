@@ -1,12 +1,16 @@
 package fr.afcepf.ai77.g1.persistence.tests;
 
+import java.util.List;
+
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
+import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IExampleDAO;
 import junit.framework.TestCase;
 
@@ -46,5 +50,13 @@ public class TestDAOInterfaces extends TestCase {
 		assertNull(client);
 		
 	}
+	
+	public void testGetAllFormules(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesContratDAO donneesContrat = (IDonneesContratDAO)factory.getBean("IDonneesContratDAO");
+		List<Formule> lf = donneesContrat.getAllFormule();
+		System.out.println(lf.get(0).getLibelleFormule());
+		assertEquals("fraicheur",lf.get(0).getLibelleFormule())	;}
 
 }
