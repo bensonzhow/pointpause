@@ -299,7 +299,14 @@ public class DataInsertion {
 		List<Incident> listeIncident = donneesIncident.getSuiviIncidentByClient(numClient);
 		
 		for (Incident inc : listeIncident){
-			System.out.println(inc.getNumero());
+			
+			System.out.println("incident numero n°"+inc.getNumero() +" a propos de " +
+					"l'incident n°:" +inc.getNumeroDeploiement().getNumero());
+			
+			for (StatutIncident stinc : inc.getListeStatutsIncidents()){
+				System.out.println("\t statut n°"+ stinc.getNumero()+" : "+stinc.getCommentaire());
+			}
+			
 		}
 		
 	}
@@ -312,15 +319,15 @@ public class DataInsertion {
 
 		//createBouquetContrat(6);
 		
-		//installBouquet(6);
+		//installBouquet(7);
 		//removeInstallBouquet(5);
 		
-	//	createIncidentForInstall(10);
-	//	createIncidentForInstall(11);
-	//	createIncidentForInstall(22);
-	//	createIncidentForInstall(23);
+		//createIncidentForInstall(45);
+		//createIncidentForInstall(46);
+		//createIncidentForInstall(47);
+		//createIncidentForInstall(48);
 		
-		getAllIncidentsForClient(19);
+		getAllIncidentsForClient(20);
 		
 	}
 
