@@ -28,7 +28,7 @@
 			<one-to-many class="Incident" />
 		</set>
 
-		<set name="historiqueBouquet" table="installation_bouquet">
+		<set name="historiqueBouquet" table="installation_bouquet" cascade="all" inverse="true">
 			<key column="numero_deploiement" />
 			<many-to-many column="code_bouquet" class="Bouquet" />
 		</set>
