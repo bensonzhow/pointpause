@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.BasicConfigurator;
@@ -14,14 +15,17 @@ import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Employe;
+import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.SiteClient;
+import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesBouquetDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesEmployeDAO;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesInstallationDAO;
 
 public class DataInsertion {
@@ -63,6 +67,19 @@ public class DataInsertion {
 				.getBean("IDonneesContratDAO");
 
 		return donneesContrat;
+	}	
+	
+	public static IDonneesIncidentDAO getDonneesIncident() {
+
+		DataInsertion builder = new DataInsertion();
+
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+				"SpringConfig.xml"));
+
+		IDonneesIncidentDAO donneesIncident= (IDonneesIncidentDAO) factory
+				.getBean("IDonneesIncidentDAO");
+
+		return donneesIncident;
 	}	
 	
 	
@@ -230,17 +247,80 @@ public class DataInsertion {
 		
 	}
 	
-
+	
+	public static void createIncidentForInstall(int numInstall){
+		IDonneesInstallationDAO donneesInstallation =
+			DataInsertion.getDonneesInstallation();
+		
+		IDonneesIncidentDAO donneesIncident = DataInsertion.getDonneesIncident();
+		
+		Installation install = donneesInstallation.getInstallation(numInstall);
+		
+		Incident incident = new Incident(null,true,new Date(), new Date(),
+				install);
+		
+		/*
+		 * 
+		 * ajouter quelques StatutIncident
+		 */
+		
+		
+		StatutIncident statut;
+		
+		statut = new StatutIncident();
+		
+		statut.setCommentaire("constat");
+		statut.setIncident(incident);
+		
+		incident.getListeStatutsIncidents().add(statut);
+		
+		statut = new StatutIncident();
+		
+		statut.setCommentaire("pris en charge");
+		statut.setIncident(incident);
+		
+		incident.getListeStatutsIncidents().add(statut);
+		
+		statut = new StatutIncident();
+		
+		statut.setCommentaire("résolu");
+		statut.setIncident(incident);
+		
+		incident.getListeStatutsIncidents().add(statut);
+		
+		
+		donneesIncident.insertIncident(incident);
+		
+	}
+	
+	public static void getAllIncidentsForClient(int numClient){
+		IDonneesIncidentDAO donneesIncident = DataInsertion.getDonneesIncident();
+		
+		List<Incident> listeIncident = donneesIncident.getSuiviIncidentByClient(numClient);
+		
+		for (Incident inc : listeIncident){
+			System.out.println(inc.getNumero());
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 
 		//BasicConfigurator.configure();
 
 		//createClientContrat();
 
-		//createBouquetContrat(5);
+		//createBouquetContrat(6);
 		
-		//installBouquet(5);
-		removeInstallBouquet(5);
+		//installBouquet(6);
+		//removeInstallBouquet(5);
+		
+	//	createIncidentForInstall(10);
+	//	createIncidentForInstall(11);
+	//	createIncidentForInstall(22);
+	//	createIncidentForInstall(23);
+		
+		getAllIncidentsForClient(19);
 		
 	}
 

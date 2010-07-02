@@ -90,5 +90,19 @@ public class DonneesInstallationDAOImpl implements IDonneesInstallationDAO {
 			return result;
 		}		
 	}
+	
+@Override
+	public Installation getInstallation(int numInstal) {
+		// TODO Auto-generated method stub
+		Installation i = null;
+		try{
+			i = hibernateTemplate.get(Installation.class, numInstal);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return i;
+		}
+	
+	}
 
 }
