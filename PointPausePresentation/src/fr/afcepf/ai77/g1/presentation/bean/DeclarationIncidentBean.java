@@ -11,8 +11,27 @@ public class DeclarationIncidentBean {
 	HttpServletRequest request = (HttpServletRequest) context
 	.getExternalContext().getRequest();
 	
+	
+	
+	private Date dateConstatIncident;
+	private Date dateDeclarationIncident;
 	private String telephone;
 	
+	public Date getDateConstatIncident() {
+		return dateConstatIncident;
+	}
+
+	public void setDateConstatIncident(Date dateConstatIncident) {
+		this.dateConstatIncident = dateConstatIncident;
+	}
+
+	public Date getDateDeclarationIncident() {
+		return dateDeclarationIncident;
+	}
+
+	public void setDateDeclarationIncident(Date dateDeclarationIncident) {
+		this.dateDeclarationIncident = dateDeclarationIncident;
+	}
 
 	public String getTelephone() {
 		return telephone;
@@ -22,9 +41,7 @@ public class DeclarationIncidentBean {
 		this.telephone = telephone;
 	}
 	
-	public String declare(String numContrat, String numMachine, 
-							String tel, Date dateConstat, Date dateDeclaration, String comment, Boolean flag){
-		
+	public String declare(){
 		
 		return null;
 	}
