@@ -296,7 +296,7 @@ public class DataInsertion {
 	public static void getAllIncidentsForClient(int numClient){
 		IDonneesIncidentDAO donneesIncident = DataInsertion.getDonneesIncident();
 		
-		List<Incident> listeIncident = donneesIncident.getSuiviIncidentByClient(numClient);
+		List<Incident> listeIncident = donneesIncident.getSuiviIncidentByClient(numClient,-1,-1);
 		
 		for (Incident inc : listeIncident){
 			
