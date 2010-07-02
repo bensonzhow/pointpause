@@ -12,15 +12,17 @@ public class Incident {
 	private Date dateDeclarationIncident;
 	private Date dateConstatIncident;
 	private Installation numeroDeploiement;
-	private TypePb typePb;
-	private Set<StatutIncident> listeStatutsIncidents = new HashSet<StatutIncident>();
+	private TypePb typePb; 
+	private Set<StatutIncident> listeStatutsIncidents = new HashSet()<StatutIncident>(); 
+	
+	
+	
 	public Set<StatutIncident> getListeStatutsIncidents() {
 		return listeStatutsIncidents;
 	}
 	public void setListeStatutsIncidents(Set<StatutIncident> listeStatutsIncidents) {
 		this.listeStatutsIncidents = listeStatutsIncidents;
 	}
-	
 	public TypePb getTypePb() {
 		return typePb;
 	}
