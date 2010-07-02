@@ -1,11 +1,14 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
@@ -23,9 +26,9 @@ public class DeclarationIncidentBean {
 	
 	private Integer numMachine;
 	private Integer numContrat;
-	private Date dateConstatIncident;
-	private Date dateDeclarationIncident;
-	private Boolean flag;
+	private String dateConstatIncident;
+	private String dateDeclarationIncident;
+	private Boolean flag=false;
 	
 	
 	public Integer getNumMachine() {
@@ -44,19 +47,19 @@ public class DeclarationIncidentBean {
 		this.numContrat = numContrat;
 	}
 
-	public Date getDateConstatIncident() {
+	public String getDateConstatIncident() {
 		return dateConstatIncident;
 	}
 
-	public void setDateConstatIncident(Date dateConstatIncident) {
+	public void setDateConstatIncident(String dateConstatIncident) {
 		this.dateConstatIncident = dateConstatIncident;
 	}
 
-	public Date getDateDeclarationIncident() {
+	public String getDateDeclarationIncident() {
 		return dateDeclarationIncident;
 	}
 
-	public void setDateDeclarationIncident(Date dateDeclarationIncident) {
+	public void setDateDeclarationIncident(String dateDeclarationIncident) {
 		this.dateDeclarationIncident = dateDeclarationIncident;
 	}
 
@@ -71,7 +74,8 @@ public class DeclarationIncidentBean {
 
 
 	public String declare(){
-		IDonneesIncidentDTO donneesIncdent = new DonneesIncidentDTOImpl();
+		System.out.println("Entrer");
+		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -83,15 +87,33 @@ public class DeclarationIncidentBean {
 		
 		SessionDTO session = (SessionDTO)httpSession.getAttribute("session");
 		ContratDTO contrat = new ContratDTO();
-		
+		System.out.println("Contrat");
 		IncidentDTO incident = new IncidentDTO();
-		incident.setDateConstatIncident(dateConstatIncident);
+		System.out.println("Incident");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		System.out.println("Date");
+		Date date =null;
+		try {
+			dateConstatIncident = getDateConstatIncident();
+			date = sdf.parse(dateConstatIncident);
+			System.out.println("fintry");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		incident.setDateConstatIncident(date);
+		System.out.println("ConstatOk");
 		incident.setDateDeclarationIncident(new Date());
+		System.out.println("Date");
 		incident.setFlag(flag);
+		System.out.println("Flag");
+		incident.setNumTypePb(2);
 		incident.setNumClient(session.getNumeroClient());
+		System.out.println("NumClient");
 		//incident.setNumContrat(contrat.)
 		
-		int res = donneesIncdent.insertIncident(incident);
+		int res = donneesIncident.insertIncident(incident);
+		System.out.println(res);
 		
 		if(res != -1)
 			return "ok";
