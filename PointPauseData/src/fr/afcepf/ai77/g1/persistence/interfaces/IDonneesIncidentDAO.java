@@ -3,17 +3,22 @@ package fr.afcepf.ai77.g1.persistence.interfaces;
 import java.util.List;
 
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 
 public interface IDonneesIncidentDAO {
 	
 	Incident getIncidentByNumero(int numero);
+	
+	/*policies acceptees : "installation", "statutIncident", "intervention"*/
+	Incident getIncidentByNumero(int numero, LoadingPolicy policies);
+	
 	List<Incident> getIncidentByContrat(int numContrat);
 	Integer insertIncident(Incident incident);
 	
 	
 	
-	/*
-	 * 
+	/*rechercher la liste des incidents pour un même client
+	 * note : on initialisera automatiquement les statutincidents associés
 	 */
 	List<Incident> getSuiviIncidentByClient(Integer clientID);
 	
@@ -24,7 +29,9 @@ public interface IDonneesIncidentDAO {
 	/*Variante, permettant de préciser quel intervalle */
 	List<Incident> getSuiviIncidentByClient(Integer clientID, int min, int max);	
 	
-	/*La complete !
+	/**********************************************************
+	 * 
+	 * La complete !
 	 * 
 	 * cette méthode va remonter tous les incidents du client, ainsi que les statuts incidents
 	 * et interventions eventuellement associées.
@@ -41,7 +48,7 @@ public interface IDonneesIncidentDAO {
 	 * 			: >=0  -> on récupère depuis min jusqu'à max, ou dernier résultat (ca dépend de ce qui arrive en premier) 
 	 * 
 	 * 
-	 * */
+	 ************************************************************************ */
 	List<Incident> getSuiviIncidentByClient(Integer clientID, boolean unfinishedOnly,int min, int max);	
 	
 }
