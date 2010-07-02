@@ -42,6 +42,7 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 		Client client=null;
 		try {
 			DetachedCriteria crit = DetachedCriteria.forClass(Client.class);
+			
 			crit.add(Restrictions.eq("login", login));
 			crit.add(Restrictions.eq("pass", password));
 			List<Client> liste = hibernateTemplate.findByCriteria(crit);

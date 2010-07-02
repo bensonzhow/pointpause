@@ -19,10 +19,10 @@
 		<property column="LIBELLE_FORMULE" length="30" name="libelleFormule"
 			not-null="false" type="string" />
 
-		<!-- <many-to-one class="Client" name="NumeroClient" not-null="true">
-			<column name="NUMERO_CLIENT" />
-		</many-to-one>
-		<set inverse="true" name="BouquetSet">
+		<many-to-one name="client" column="numero_client" class="Client"
+			cascade="all"  not-null="false" />
+			
+		<!-- <set inverse="true" name="BouquetSet">
 			<key column="CODE_FORMULE" />
 			<one-to-many class="Bouquet" />
 		</set>
