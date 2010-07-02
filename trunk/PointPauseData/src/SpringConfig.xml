@@ -26,7 +26,7 @@
 			<value>anna01</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://localhost:3306/pointpause</value>
+			<value>jdbc:mysql://192.168.10.49:3306/pointpause</value>
 		</property>
 
 	</bean>
@@ -37,7 +37,6 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 
@@ -116,6 +115,14 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>	
+	
+	
+	<bean id="IDonneesBouquetDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesBouquetDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>		
 	
 	
 	<bean id="IDonneesSessionDTO"

@@ -20,9 +20,9 @@
 			cascade="all" not-null="false" />
 
 
-		<set name="historiqueInstallations" cascade="save-update">
-			<key column="numero_deploiement" />
-			<one-to-many class="Installation" />
+		<set name="historiqueInstallations" table="installation_bouquet"  cascade="all" >
+			<key column="code_bouquet" />
+			<many-to-many column="numero_deploiement" class="Installation" />
 		</set>
 
 

@@ -23,12 +23,14 @@ public class Incident {
 	public void setListeStatutsIncidents(Set<StatutIncident> listeStatutsIncidents) {
 		this.listeStatutsIncidents = listeStatutsIncidents;
 	}
+	
 	public TypePb getTypePb() {
 		return typePb;
 	}
 	public void setTypePb(TypePb typePb) {
 		this.typePb = typePb;
 	}
+	
 	public Installation getNumeroDeploiement() {
 		return numeroDeploiement;
 	}

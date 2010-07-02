@@ -2,6 +2,7 @@ package fr.afcepf.ai77.g1.persistence.createdata;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -11,9 +12,11 @@ import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Employe;
+import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.SiteClient;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesBouquetDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesEmployeDAO;
@@ -31,6 +34,19 @@ public class DataInsertion {
 				.getBean("IDonneesClientDAO");
 
 		return donneesClient;
+	}
+	
+	public static IDonneesBouquetDAO getDonneesBouquet(){
+
+		DataInsertion builder = new DataInsertion();
+
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+				"SpringConfig.xml"));
+
+		IDonneesBouquetDAO donneesBouquet = (IDonneesBouquetDAO) factory
+				.getBean("IDonneesBouquetDAO");
+
+		return donneesBouquet;		
 	}
 	
 	public static IDonneesContratDAO getDonneesContrat() {
@@ -125,6 +141,26 @@ public class DataInsertion {
 		
 	}
 	
+	public static void installBouquet(int numerobouquet){
+		IDonneesBouquetDAO donneesBouquet = getDonneesBouquet();
+		
+		LoadingPolicy policies = new LoadingPolicy();
+		policies.getPolicies().add("installation");
+	
+		Bouquet b = donneesBouquet.getBouquetByNumero(numerobouquet,policies);
+		
+		for (int i=0;i<b.getQuantite();i++){
+			Installation inst = new Installation(null, new Date(), new Date());
+			b.getHistoriqueInstallations().add(inst);
+			inst.getHistoriqueBouquet().add(b);
+		}
+		donneesBouquet.updateBouquet(b);
+		
+		
+		
+	}
+	
+	
 	public static void createBouquetContrat(int contratId){
 
 		IDonneesContratDAO donneesContrat = getDonneesContrat();
@@ -149,14 +185,40 @@ public class DataInsertion {
 
 		
 	}
+	
+	public static void removeInstallBouquet(int numBouquet){
+		IDonneesBouquetDAO donneesBouquet = DataInsertion.getDonneesBouquet();
+		
+		LoadingPolicy policies= new LoadingPolicy();
+		policies.getPolicies().add("installation");
+		
+		Bouquet b = donneesBouquet.getBouquetByNumero(numBouquet,policies);
+		
+		b.getHistoriqueInstallations().clear();
+	
+		Iterator<Installation> iter = b.getHistoriqueInstallations().iterator();
+		
+		while (iter.hasNext()){
+			
+			iter.next();
+			iter.remove();
+		}
+		
+		donneesBouquet.updateBouquet(b);
+		
+	}
+	
 
 	public static void main(String[] args) {
 
-		//BasicConfigurator.configure();
+		BasicConfigurator.configure();
 
 		//createClientContrat();
 
-		createBouquetContrat(5);
+		//createBouquetContrat(5);
+		
+		//installBouquet(5);
+		removeInstallBouquet(5);
 		
 	}
 
