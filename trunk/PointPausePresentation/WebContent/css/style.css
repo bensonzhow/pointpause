@@ -66,7 +66,7 @@
    margin: auto;
    font-size: 62.5%;
    }
-   #declareIncident{
+  .declareIncident{
    margin: auto;
    margin-bottom: 35px;
    width: 850px;
@@ -82,7 +82,7 @@
    cols: 67;
    rows: 6;
    }
-   #recapitulationIncident{
+   .recapitulationIncident{
    margin: auto;
    margin-bottom: 35px;
    width: 850px;
