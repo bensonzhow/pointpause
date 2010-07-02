@@ -1,6 +1,8 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Incident {
 	
@@ -10,8 +12,14 @@ public class Incident {
 	private Date dateDeclarationIncident;
 	private Date dateConstatIncident;
 	private Installation numeroDeploiement;
-	private TypePb typePb; 
-	
+	private TypePb typePb;
+	private Set<StatutIncident> listeStatutsIncidents = new HashSet<StatutIncident>();
+	public Set<StatutIncident> getListeStatutsIncidents() {
+		return listeStatutsIncidents;
+	}
+	public void setListeStatutsIncidents(Set<StatutIncident> listeStatutsIncidents) {
+		this.listeStatutsIncidents = listeStatutsIncidents;
+	}
 	
 	public TypePb getTypePb() {
 		return typePb;
