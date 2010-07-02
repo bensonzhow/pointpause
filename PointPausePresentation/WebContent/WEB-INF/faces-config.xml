@@ -41,7 +41,7 @@
  <navigation-rule>
     <from-view-id>/incident.html</from-view-id>
        <navigation-case>
-     <from-action>#{incidentMB.declare}</from-action>
+     <from-action>#{declareIncidentMB.declare}</from-action>
             <from-outcome>OK</from-outcome>
             <to-view-id>/incident.html</to-view-id>
     </navigation-case> 

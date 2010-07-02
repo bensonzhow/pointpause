@@ -13,34 +13,34 @@
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
 	<script type="text/javascript">
 	$(function() {
-		$("#datepicker").datepicker();
+		$(".datepicker").datepicker();
 	});
 	</script>
 	<script type="text/javascript">
 	$(function() {
-		$("#datepicker2").datepicker();
+		$(".datepicker2").datepicker();
 	});
 	</script></facelets:define>
  	<facelets:define name="Contenu">
  		<div id="Incident">
-                <richfaces:panel id="declareIncident" >
+                <richfaces:panel  styleClass="declareIncident" >
                  	<table class="tableIncident">
                  		<tr>
-                 			<th colspan="2"><font size="2px">Déclaration d'incident :</font></th>
+                 			<th colspan="2"><font size="2px">Declaration d'incident :</font></th>
                  		</tr>
                  		<tr>
                  			<td ></td>
                  			<td class="textTabIncident" width="100px" height="20px">N° de machine: </td>
                  			<td width="250px">
-                 				<jsf:selectOneListbox style="width:147px;" >	
-                                 <!-- <jsfCore:selectItems value="Proutprout" />  -->
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.numMachine}">	
+                                 <!-- <jsfCore:selectItems value="Proutprout" />   -->
                                  
                  				</jsf:selectOneListbox>
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de constat: </td>
                  			<td>
                  				<div class="demo">
-									<jsf:inputText id="datepicker" />
+									<jsf:inputText class ="datepicker" value="#{declareIncidentMB.dateConstatIncident}"/>
 								</div>
                  			</td>
                  			
@@ -49,14 +49,14 @@
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de contrat: </td>
                  			<td>
-                 				<jsf:selectOneListbox style="width:147px;" >
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.numContrat}">
                  					 
                  				</jsf:selectOneListbox>
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de Déclaration: </td>
                  			<td>
                  				<div class="demo">
-									<jsf:inputText id="datepicker2" />
+									<jsf:inputText class="datepicker2" value="#{declareIncidentMB.dateDeclarationIncident}"/>
 								</div>
                  			</td>
                  		</tr>
@@ -65,7 +65,7 @@
                  			<td class="textTabIncident" >Contact: </td>
                  			<td><jsf:inputText id="nomContact" /></td>
                  			<td class="textTabIncident">Télephone: </td>
-                 			<td><jsf:inputText id="telContact" value="#{declaraIndicentMB.telephone}"/></td>
+                 			<td><jsf:inputText id="telContact" value=""/></td>
                  		</tr>
                  		<tr>
                  			<td></td>
@@ -74,13 +74,13 @@
                  			</td>
                  		</tr>
                  		<tr>
-                 			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
-                 			<td><jsf:commandButton id="submitIncident" action="#{incidentMB.declare}" value="Confirmer" style="width:147px; height:30px;" /></td>
+                 			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox value="#{declareIncidentMB.flag}" /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
+                 			<td><jsf:commandButton id="submitIncident" action="#{declareIncidentMB.declare}" value="Confirmer" style="width:147px; height:30px;" /></td>
                  		</tr>
                  	</table>
                  	
                  </richfaces:panel>
-                 <richfaces:panel id="recapitulationIncident" >
+                 <richfaces:panel styleClass="recapitulationIncident" >
                  	<table class="tableRecapIncident" border="1px">
                  		<tr>
                  			<th colspan="2"><font size="2px">Votre Récapitulatif: </font></th>
