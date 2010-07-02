@@ -2,7 +2,9 @@ package fr.afcepf.ai77.g1.persistence.createdata;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -20,6 +22,7 @@ import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesBouquetDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesEmployeDAO;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesInstallationDAO;
 
 public class DataInsertion {
 
@@ -60,6 +63,20 @@ public class DataInsertion {
 				.getBean("IDonneesContratDAO");
 
 		return donneesContrat;
+	}	
+	
+	
+	public static IDonneesInstallationDAO getDonneesInstallation() {
+
+		DataInsertion builder = new DataInsertion();
+
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+				"SpringConfig.xml"));
+
+		IDonneesInstallationDAO donneesInstallation= (IDonneesInstallationDAO) factory
+				.getBean("IDonneesInstallationDAO");
+
+		return donneesInstallation;
 	}	
 
 	public static IDonneesEmployeDAO getDonneesEmploye() {
@@ -188,30 +205,35 @@ public class DataInsertion {
 	
 	public static void removeInstallBouquet(int numBouquet){
 		IDonneesBouquetDAO donneesBouquet = DataInsertion.getDonneesBouquet();
+		IDonneesInstallationDAO donneesInstallation = DataInsertion.getDonneesInstallation();
+		
 		
 		LoadingPolicy policies= new LoadingPolicy();
 		policies.getPolicies().add("installation");
 		
 		Bouquet b = donneesBouquet.getBouquetByNumero(numBouquet,policies);
 		
-		b.getHistoriqueInstallations().clear();
+		Set<Installation> saveSet = new HashSet<Installation>();
 	
 		Iterator<Installation> iter = b.getHistoriqueInstallations().iterator();
-		
+
 		while (iter.hasNext()){
-			
-			iter.next();
+			saveSet.add(iter.next());
 			iter.remove();
-		}
-		
+		}		
+
 		donneesBouquet.updateBouquet(b);
+		
+		donneesInstallation.deleteInstallationGroup(saveSet);
+		
+		
 		
 	}
 	
 
 	public static void main(String[] args) {
 
-		BasicConfigurator.configure();
+		//BasicConfigurator.configure();
 
 		//createClientContrat();
 
