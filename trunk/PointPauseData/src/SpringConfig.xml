@@ -125,6 +125,15 @@
 	</bean>		
 	
 	
+		
+	<bean id="IDonneesInstallationDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesInstallationDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
 	<bean id="IDonneesSessionDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesSessionDTOImpl">
 		
@@ -159,10 +168,6 @@
 			<ref bean="IDonneesClientDAO" />
 		</property>
 	</bean>	
-	
-	
-	
-	
 	
 		
 </beans>
