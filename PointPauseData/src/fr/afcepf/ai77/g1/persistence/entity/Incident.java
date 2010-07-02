@@ -13,7 +13,7 @@ public class Incident {
 	private Date dateConstatIncident;
 	private Installation numeroDeploiement;
 	private TypePb typePb; 
-	private Set<StatutIncident> listeStatutsIncidents = new HashSet()<StatutIncident>(); 
+	private Set<StatutIncident> listeStatutsIncidents = new HashSet<StatutIncident>(); 
 	
 	
 	
