@@ -1,6 +1,7 @@
 package fr.afcepf.ai77.g1.persistence.implementations;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -13,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Junction;
+import org.hibernate.criterion.Order;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -29,7 +31,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	public void setSessionFactory(SessionFactory sf) {
 		hibernateTemplate = new HibernateTemplate(sf);
 	}
-	
+
 	@Override
 	public List<Incident> getIncidentByContrat(int numContrat) {
 		return null;
@@ -48,102 +50,173 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 	@Override
 	public Integer insertIncident(Incident incident) {
-		try{
-			hibernateTemplate.save(incident);
-			
-			//FIXME : retourner le vrai max
-			return 0;
-		}catch(Exception e){
-			e.printStackTrace();return -1;
-		}
-		
-	}
-	
-	
-	@Override
-	public List<Incident> getSuiviIncidentByClient(final Integer clientID) {
-		// TODO Auto-generated method stub
-		
-		List<Incident> listIncident = null;		
-		
 		try {
-			
-			listIncident = hibernateTemplate.execute(new HibernateCallback<List<Incident>>() {
-				@Override
-				public List<Incident> doInHibernate(Session session) throws HibernateException,
-						SQLException {
-					
-					/*
-					 * premiere etape ; 
-					 */
-					
-					List<Incident> liste = new Vector<Incident>();
-					
-					/*
-					 * premiere etape : cherche la liste des incidents
-					 */
-				/*	
-					Query query = session.createQuery("select myincident from Incident as myincident " +
-							"inner join myincident.numeroDeploiement as instal " +
-							"inner join instal.historiqueBouquet as bouquet " +
-							"inner join bouquet.contrat as contrat " +
-							"inner join contrat.client as client " +
-							"where client.numero=:clientID" );
-			
-					
-					
-				    query.setInteger("clientID", clientID);
-					
-					
-					liste = query.list();
-					
-				*/
-					
-					Criteria critere = session.createCriteria(Incident.class)
-					.createCriteria("numeroDeploiement",Criteria.INNER_JOIN)
-					.createCriteria("historiqueBouquet", Criteria.INNER_JOIN)
-					.createCriteria("contrat",Criteria.INNER_JOIN)
-					.createCriteria("client", Criteria.INNER_JOIN)					
-					.add(Expression.eq("numero", new Integer(clientID)));
-					
-				
-					liste = critere.list();
-					
-					/*
-					 * deuxieme etape : charger 
-					 * 	les StatutIncidents, 
-					 * 	les interventions
-					 * 	, 
-					 * 
-					 */
-					
-					for (Incident incident : liste){
-						Hibernate.initialize(incident);
-						
-						Hibernate.initialize(incident.getListeStatutsIncidents());
-						
-						for (StatutIncident stinc : incident.getListeStatutsIncidents()){
-							Hibernate.initialize(stinc);
-							Hibernate.initialize(stinc.getIntervention());
-						}
-						
-					}
-					
-					
+			hibernateTemplate.save(incident);
+
+			// FIXME : retourner le vrai max
+			return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+
+	}
+
+	/**************************************************************************
+	 * Récupérer des incidents
+	 **************************************************************************/
+
+	@Override
+	public List<Incident> getSuiviIncidentByClient(Integer clientID) {
+		// TODO Auto-generated method stub
+		return getSuiviIncidentByClient(clientID, false, -1, -1);
+
+	}
+
+	/*
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO#
+	 * getSuiviIncidentByclient(java.lang.Integer, boolean)
+	 * 
+	 * todo : des qu'on est au point avec les type_statut_incident, ajouter les
+	 * criteres pour gérer le cas des incidents résolus en fonction de
+	 * unfinishedOnly
+	 */
+
+	@Override
+	public List<Incident> getSuiviIncidentByclient(Integer clientID,
+			boolean unfinishedOnly) {
+		// TODO Auto-generated method stub
+
+		return getSuiviIncidentByClient(clientID, unfinishedOnly, -1, -1);
+
+	}
+
+	@Override
+	public List<Incident> getSuiviIncidentByClient(Integer clientID, int min,
+			int max) {
+		// TODO Auto-generated method stub
+		return getSuiviIncidentByClient(clientID, false, min, max);
+	}
+
+	@Override
+	public List<Incident> getSuiviIncidentByClient(final Integer clientID,
+			final boolean unfinishedOnly, final int min, final int max) {
+		// TODO Auto-generated method stub
+
+		List<Incident> listIncident = null;
+
+		try {
+
+			listIncident = hibernateTemplate
+					.execute(new HibernateCallback<List<Incident>>() {
+						@Override
+						public List<Incident> doInHibernate(Session session)
+								throws HibernateException, SQLException {
+
+							/*
+							 * premiere etape ;
+							 */
+
+							List<Incident> liste = new Vector<Incident>();
+							List<Incident> reliste = new Vector<Incident>();
+
+							/*
+							 * premiere etape : cherche la liste des incidents
+							 */
+							/*
+							 * Query query = session.createQuery(
+							 * "select myincident from Incident as myincident "
+							 * +
+							 * "inner join myincident.numeroDeploiement as instal "
+							 * +
+							 * "inner join instal.historiqueBouquet as bouquet "
+							 * + "inner join bouquet.contrat as contrat " +
+							 * "inner join contrat.client as client " +
+							 * "where client.numero=:clientID" );
+							 * 
+							 * 
+							 * 
+							 * query.setInteger("clientID", clientID);
+							 * 
+							 * 
+							 * liste = query.list();
+							 */
+
+							Criteria critere = session.createCriteria(
+									Incident.class).addOrder(
+									Order.desc("dateDeclarationIncident"));
+
+							// FIXME : mettre la gestion de la restriction
+							// sur les interventions terminées ici
+
+							critere = critere
+									.createCriteria("numeroDeploiement",
+											Criteria.INNER_JOIN)
+									.createCriteria("historiqueBouquet",
+											Criteria.INNER_JOIN)
+									.createCriteria("contrat",
+											Criteria.INNER_JOIN)
+									.createCriteria("client",
+											Criteria.INNER_JOIN)
+									.add(Expression.eq("numero", new Integer(
+											clientID)));
+
+							liste = critere.list();
+
+							/*
+							 * raffiner les résultats en fonction des min et max
+							 */
+
+							int minimum = (min < 0) ? 0 : min;
+							int maximum = (max < 0) ? liste.size() :max;
+							int compteur = 0;
 							
-					return liste;
-				}
-			});
-			
-			
+
+							Iterator<Incident> iter = liste.iterator();
+
+							while (iter.hasNext()) {
+								Incident inc = iter.next();
+								if ((compteur >= minimum)
+										&& (compteur < maximum)) {
+									reliste.add(inc);
+								}
+
+								compteur++;
+							}
+
+							/*
+							 * deuxieme etape : charger les StatutIncidents, les
+							 * interventions ,
+							 */
+
+							for (Incident incident : reliste) {
+								Hibernate.initialize(incident);
+
+								Hibernate.initialize(incident
+										.getListeStatutsIncidents());
+
+								for (StatutIncident stinc : incident
+										.getListeStatutsIncidents()) {
+									Hibernate.initialize(stinc);
+									Hibernate.initialize(stinc
+											.getIntervention());
+								}
+
+							}
+
+							return reliste;
+						}
+					});
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			listIncident = null;
 		} finally {
 			return listIncident;
-		}		
-		
+		}
 	}
-	
-	
+
 }

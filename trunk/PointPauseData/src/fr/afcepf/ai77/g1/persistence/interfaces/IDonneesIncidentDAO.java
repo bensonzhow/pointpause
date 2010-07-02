@@ -13,11 +13,35 @@ public interface IDonneesIncidentDAO {
 	
 	
 	/*
-	 * cette méthode va remonter tous les incidents du client, ainsi que les statuts incidents
-	 * et interventions eventuellement associées
 	 * 
 	 */
 	List<Incident> getSuiviIncidentByClient(Integer clientID);
 	
+	
+	/*Variante, permet de filter lesquels sont termines*/	
+	List<Incident> getSuiviIncidentByclient(Integer clientID, boolean unfinishedOnly);
+	
+	/*Variante, permettant de préciser quel intervalle */
+	List<Incident> getSuiviIncidentByClient(Integer clientID, int min, int max);	
+	
+	/*La complete !
+	 * 
+	 * cette méthode va remonter tous les incidents du client, ainsi que les statuts incidents
+	 * et interventions eventuellement associées.
+	 * 
+	 * Les données sont retournées triées par ordre descendant sur la date de déclaration.
+	 * 
+	 * unfinished : true -> on ne selectione que les interventions non terminees
+	 * 				false-> on les prend toutes
+	 * 
+	 * min		: <0   -> on récupère le résultat depuis le début
+	 * 			: >=0  -> on récupère le résultat que depuis le rang min
+	 * 
+	 * max 		: <0   -> on récupère depuis min jusqu'au dernier résultat
+	 * 			: >=0  -> on récupère depuis min jusqu'à max, ou dernier résultat (ca dépend de ce qui arrive en premier) 
+	 * 
+	 * 
+	 * */
+	List<Incident> getSuiviIncidentByClient(Integer clientID, boolean unfinishedOnly,int min, int max);	
 	
 }
