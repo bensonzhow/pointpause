@@ -6,13 +6,16 @@ import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesIncidentDAOImpl;
+import fr.afcepf.ai77.g1.persistence.implementations.DonneesTypePbDAOImpl;
 
 public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 
 	private DonneesIncidentDAOImpl donneesIncident = null;
 	private DonneesClientDAOImpl donneesClient = null;
+	private DonneesTypePbDAOImpl donneesTypePb = null;
 	
 	
 	/*--------------------------Getters & Setters-----------------------------------*/
@@ -45,11 +48,11 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	public Integer insertIncident(IncidentDTO iDTO) {
 		
 		Client c = donneesClient.getClientByNumero(iDTO.getNumClient());
-		//TypeProbleme tp = donneesTypePb.getTypePbByNumero(iDTO.getNumTypePb());
-		
+		TypePb tp = donneesTypePb.getTypePbByNumero(iDTO.getNumTypePb());
+
 		Incident incident = new Incident();
 		incident.setClient(c);
-		//incident.setTypePb(tp);
+		incident.setTypePb(tp);
 		incident.setDateDeclarationIncident(iDTO.getDateDeclarationIncident());
 		incident.setDateConstatIncident(iDTO.getDateConstatIncident());
 		incident.setFlag(iDTO.getFlag());
