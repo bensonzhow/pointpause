@@ -1,24 +1,23 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Incident {
 	
-	private Integer numero=null;
+	private Integer numero;
 	private Client client;
 	private Boolean flag;
 	private Date dateDeclarationIncident;
 	private Date dateConstatIncident;
 	private Installation numeroDeploiement;
-	private Set<StatutIncident> listeStatutsIncidents = new HashSet<StatutIncident>(); 
+	private TypePb typePb; 
 	
-	public Set<StatutIncident> getListeStatutsIncidents() {
-		return listeStatutsIncidents;
+	
+	public TypePb getTypePb() {
+		return typePb;
 	}
-	public void setListeStatutsIncidents(Set<StatutIncident> listeStatutsIncidents) {
-		this.listeStatutsIncidents = listeStatutsIncidents;
+	public void setTypePb(TypePb typePb) {
+		this.typePb = typePb;
 	}
 	public Installation getNumeroDeploiement() {
 		return numeroDeploiement;
@@ -62,9 +61,9 @@ public class Incident {
 		return "Incident [client=" + client + ", dateConstatIncident="
 				+ dateConstatIncident + ", dateDeclarationIncident="
 				+ dateDeclarationIncident + ", flag=" + flag + ", numero="
-				+ numero + ", numeroDeploiement=" + numeroDeploiement + "]";
+				+ numero + ", numeroDeploiement=" + numeroDeploiement
+				+ ", typePb=" + typePb + "]";
 	}
-	
 	
 	public Incident(){
 	
