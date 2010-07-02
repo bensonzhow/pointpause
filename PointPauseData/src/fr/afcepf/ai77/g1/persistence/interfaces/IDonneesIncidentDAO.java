@@ -10,6 +10,13 @@ public interface IDonneesIncidentDAO {
 	List<Incident> getIncidentByContrat(int numContrat);
 	Integer insertIncident(Incident incident);
 	
+	
+	
+	/*
+	 * cette méthode va remonter tous les incidents du client, ainsi que les statuts incidents
+	 * et interventions eventuellement associées
+	 * 
+	 */
 	List<Incident> getSuiviIncidentByClient(Integer clientID);
 	
 	

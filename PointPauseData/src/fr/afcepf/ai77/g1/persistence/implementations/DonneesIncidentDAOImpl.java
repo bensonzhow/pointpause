@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Vector;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Junction;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
@@ -17,6 +19,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
 
 public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
@@ -48,16 +51,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 		try{
 			hibernateTemplate.save(incident);
 			
-			
-			/*
-			Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-			
-			Query q = session.createQuery("max(numero_incident) from Incident c");
-			
-			Integer i = (Integer) q.uniqueResult();
-			
-			return i;*/
-			
+			//FIXME : retourner le vrai max
 			return 0;
 		}catch(Exception e){
 			e.printStackTrace();return -1;
@@ -78,16 +72,64 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 				@Override
 				public List<Incident> doInHibernate(Session session) throws HibernateException,
 						SQLException {
+					
+					/*
+					 * premiere etape ; 
+					 */
+					
 					List<Incident> liste = new Vector<Incident>();
 					
-					Query query = session.createQuery("from Incident" );
+					/*
+					 * premiere etape : cherche la liste des incidents
+					 */
+				/*	
+					Query query = session.createQuery("select myincident from Incident as myincident " +
+							"inner join myincident.numeroDeploiement as instal " +
+							"inner join instal.historiqueBouquet as bouquet " +
+							"inner join bouquet.contrat as contrat " +
+							"inner join contrat.client as client " +
+							"where client.numero=:clientID" );
+			
 					
-				//	query.setInteger("clientID", clientID);
-				
+					
+				    query.setInteger("clientID", clientID);
+					
 					
 					liste = query.list();
 					
-					System.out.println(liste.size());
+				*/
+					
+					Criteria critere = session.createCriteria(Incident.class)
+					.createCriteria("numeroDeploiement",Criteria.INNER_JOIN)
+					.createCriteria("historiqueBouquet", Criteria.INNER_JOIN)
+					.createCriteria("contrat",Criteria.INNER_JOIN)
+					.createCriteria("client", Criteria.INNER_JOIN)					
+					.add(Expression.eq("numero", new Integer(clientID)));
+					
+				
+					liste = critere.list();
+					
+					/*
+					 * deuxieme etape : charger 
+					 * 	les StatutIncidents, 
+					 * 	les interventions
+					 * 	, 
+					 * 
+					 */
+					
+					for (Incident incident : liste){
+						Hibernate.initialize(incident);
+						
+						Hibernate.initialize(incident.getListeStatutsIncidents());
+						
+						for (StatutIncident stinc : incident.getListeStatutsIncidents()){
+							Hibernate.initialize(stinc);
+							Hibernate.initialize(stinc.getIntervention());
+						}
+						
+					}
+					
+					
 							
 					return liste;
 				}
