@@ -35,6 +35,8 @@
 			<key column="numero_incident" />
 			<one-to-many class="StatutIncident" />
 		</set>
+		
+		<one-to-one name="typePb" class="TypePb"/> 
 
 
 	</class>

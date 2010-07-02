@@ -20,6 +20,12 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	
 	/*--------------------------Getters & Setters-----------------------------------*/
 	
+	public DonneesTypePbDAOImpl getDonneesTypePb() {
+		return donneesTypePb;
+	}
+	public void setDonneesTypePb(DonneesTypePbDAOImpl donneesTypePb) {
+		this.donneesTypePb = donneesTypePb;
+	}
 	public DonneesClientDAOImpl getDonneesClient() {
 		return donneesClient;
 	}
