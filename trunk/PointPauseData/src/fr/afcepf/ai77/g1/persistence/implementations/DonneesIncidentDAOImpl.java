@@ -21,6 +21,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
 
@@ -39,6 +40,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 	@Override
 	public Incident getIncidentByNumero(int numero) {
+
 		try {
 			Incident incident = hibernateTemplate.get(Incident.class, numero);
 			return incident;
@@ -46,6 +48,60 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public Incident getIncidentByNumero(final int numero, final LoadingPolicy policies) {
+		// TODO Auto-generated method stub
+		Incident incident = null;
+		try {
+
+			incident = hibernateTemplate.execute(new HibernateCallback<Incident>() {
+				@Override
+				public Incident doInHibernate(Session session)
+						throws HibernateException, SQLException {
+					// TODO Auto-generated method stub
+					Incident tempc = (Incident) session.get(Incident.class, numero);
+
+					if (policies != null) {
+						Hibernate.initialize(tempc);
+						for (String policy : policies.getPolicies()) {
+							
+							if (policy.equals("installation")) {
+								Hibernate.initialize(tempc.getNumeroDeploiement());
+								continue;
+							}
+							
+							if (policy.equals("statutIncident")) {
+								Hibernate.initialize(tempc.getListeStatutsIncidents());
+								for (StatutIncident stinc : tempc.getListeStatutsIncidents()){
+									Hibernate.initialize(stinc);
+								}
+								continue;
+							}
+							
+							if (policy.equals("intervention")) {
+								for (StatutIncident stinc : tempc.getListeStatutsIncidents()){
+									Hibernate.initialize(stinc);
+									Hibernate.initialize(stinc.getIntervention());
+								}continue;
+							}							
+							
+							
+						}
+
+					}
+
+					return tempc;
+				}
+			});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			incident = null;
+		} finally {
+			return incident;
+		}
 	}
 
 	@Override
@@ -63,7 +119,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	}
 
 	/**************************************************************************
-	 * Récupérer des incidents
+	 * Récupérer des incidents pour un client
 	 **************************************************************************/
 
 	@Override
@@ -171,9 +227,8 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							 */
 
 							int minimum = (min < 0) ? 0 : min;
-							int maximum = (max < 0) ? liste.size() :max;
+							int maximum = (max < 0) ? liste.size() : max;
 							int compteur = 0;
-							
 
 							Iterator<Incident> iter = liste.iterator();
 
