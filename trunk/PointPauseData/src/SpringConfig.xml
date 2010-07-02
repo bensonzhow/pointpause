@@ -11,8 +11,7 @@
 
 
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		>
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 
 		<property name="driverClassName">
@@ -48,20 +47,27 @@
 
 
 		<property name="mappingResources">
-			<list>			
+			<list>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Bouquet.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Client.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Contrat.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Employe.hbm.xml</value>
-  		    	<value>fr/afcepf/ai77/g1/persistence/entity/Incident.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/Installation.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/Intervention.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Incident.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Installation.hbm.xml
+				</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/Intervention.hbm.xml
+				</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Produit.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/ProduitsIntervention.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/SiteClient.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/StatutIncident.hbm.xml</value>
-				<value>fr/afcepf/ai77/g1/persistence/entity/TypeProduit.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/ProduitsIntervention.hbm.xml
+				</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/SiteClient.hbm.xml
+				</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/StatutIncident.hbm.xml
+				</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/TypeProduit.hbm.xml
+				</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/Formule.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/TypePb.hbm.xml</value>
 			</list>
 		</property>
 
@@ -69,105 +75,117 @@
 
 
 
-	<!-- ###########################Configuration des beans########################## -->
+	<!--
+		###########################Configuration des
+		beans##########################
+	-->
 
-<!-- 
-	<bean id="exampleDAO"
+	<!--
+		<bean id="exampleDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.ExampleDAOImpl">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
- -->
+		<property name="sessionFactory"> <ref bean="sessionFactory" />
+		</property> </bean>
+	-->
 	<bean id="IDonneesClientDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
-	
-	
+
+
+
 	<bean id="IDonneesContratDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesContratDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+
 	<bean id="IDonneesChoixContratDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesChoixContratDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+
 	<bean id="IDonneesEmployeDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesEmployeDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+
+	<bean id="IDonneesTypePbDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesTypePbDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
 	<bean id="IDonneesIncidentDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesIncidentDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
-	</bean>	
-	
-	
+	</bean>
+
+
 	<bean id="IDonneesBouquetDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesBouquetDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
-	</bean>		
-	
-	
-		
+	</bean>
+
+
+
 	<bean id="IDonneesInstallationDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesInstallationDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
-	
+
+
 	<bean id="IDonneesSessionDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesSessionDTOImpl">
-		
+
 		<property name="donneesClient">
 			<ref bean="IDonneesClientDAO" />
 		</property>
 	</bean>
-	
+
 	<bean id="IDonneesContratDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesContratDTOImpl">
-		
+
 		<property name="donneesContrat">
 			<ref bean="IDonneesContratDAO" />
 		</property>
 	</bean>
-	
-		<bean id="IDonneesChoixContratDTO"
+
+	<bean id="IDonneesChoixContratDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesChoixContratDTOImpl">
-		
+
 		<property name="donneesChoixContrat">
 			<ref bean="IDonneesChoixContratDAO" />
 		</property>
 	</bean>
-	
+
 	<bean id="IDonneesIncidentDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl">
-		
+
 		<property name="donneesIncident">
 			<ref bean="IDonneesIncidentDAO" />
 		</property>
 		<property name="donneesClient">
 			<ref bean="IDonneesClientDAO" />
 		</property>
-	</bean>	
-	
-		
+		<property name="donneesTypePb">
+			<ref bean="IDonneesTypePbDAO" />
+		</property>
+	</bean>
+
+
 </beans>

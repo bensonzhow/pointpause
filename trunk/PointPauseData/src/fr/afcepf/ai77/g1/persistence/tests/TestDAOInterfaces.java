@@ -8,9 +8,11 @@ import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesTypePbDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IExampleDAO;
 import junit.framework.TestCase;
 
@@ -57,6 +59,18 @@ public class TestDAOInterfaces extends TestCase {
 		IDonneesContratDAO donneesContrat = (IDonneesContratDAO)factory.getBean("IDonneesContratDAO");
 		List<Formule> lf = donneesContrat.getAllFormule();
 		System.out.println(lf.get(0).getLibelleFormule());
-		assertEquals("fraicheur",lf.get(0).getLibelleFormule())	;}
+		assertEquals("fraicheur",lf.get(0).getLibelleFormule())	;
+	}
+	
+	public void testGetType(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesTypePbDAO donneesTypePb = (IDonneesTypePbDAO)factory.getBean("IDonneesTypePbDAO");	
+		
+		TypePb tpb = donneesTypePb.getTypePbByNumero(2);
+		
+		assertTrue(tpb.getLibelle().contains("dysfonctionnement")); 
+		
+	}
 
 }
