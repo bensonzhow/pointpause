@@ -15,6 +15,9 @@ public class IncidentDTO implements Serializable {
 	private Integer numInstallation;
 	private String commentaire;
 	private Integer numContrat;
+	private Integer numTypePb;
+
+	
 	public Integer getNumero() {
 		return numero;
 	}
@@ -63,6 +66,13 @@ public class IncidentDTO implements Serializable {
 	public void setNumContrat(Integer numContrat) {
 		this.numContrat = numContrat;
 	}
+	public Integer getNumTypePb() {
+		return numTypePb;
+	}
+	public void setNumTypePb(Integer numTypeProb) {
+		this.numTypePb = numTypeProb;
+	}
+	
 	@Override
 	public String toString() {
 		return "IncidentDTO [commentaire=" + commentaire
@@ -70,11 +80,8 @@ public class IncidentDTO implements Serializable {
 				+ ", dateDeclarationIncident=" + dateDeclarationIncident
 				+ ", flag=" + flag + ", numClient=" + numClient
 				+ ", numContrat=" + numContrat + ", numInstallation="
-				+ numInstallation + ", numero=" + numero + "]";
+				+ numInstallation + ", numTypeProb=" + numTypePb
+				+ ", numero=" + numero + "]";
 	}
-	
-	
-	
-	
 	
 }
