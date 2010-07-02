@@ -26,7 +26,7 @@
 			<value>anna01</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://192.168.10.49:3306/pointpause</value>
+			<value>jdbc:mysql://localhost:3306/pointpause</value>
 		</property>
 
 	</bean>
@@ -37,6 +37,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 
@@ -95,6 +96,13 @@
 		</property>
 	</bean>
 	
+	<bean id="IDonneesChoixContratDAO"
+		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesChoixContratDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
 	<bean id="IDonneesEmployeDAO"
 		class="fr.afcepf.ai77.g1.persistence.implementations.DonneesEmployeDAOImpl">
 		<property name="sessionFactory">
@@ -126,6 +134,14 @@
 		</property>
 	</bean>
 	
+		<bean id="IDonneesChoixContratDTO"
+		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesChoixContratDTOImpl">
+		
+		<property name="donneesChoixContrat">
+			<ref bean="IDonneesChoixContratDAO" />
+		</property>
+	</bean>
+	
 	<bean id="IDonneesIncidentDTO"
 		class="fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl">
 		
@@ -136,6 +152,7 @@
 			<ref bean="IDonneesClientDAO" />
 		</property>
 	</bean>	
+	
 	
 	
 	

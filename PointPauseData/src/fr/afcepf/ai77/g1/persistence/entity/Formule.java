@@ -11,6 +11,13 @@ public class Formule implements Serializable{
 	private int codeFormule; 
 	private String commentaireFormule;
 	private Double prix;
+	private Client client;
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	private String libelleFormule;
 	public int getCodeFormule() {
 		return codeFormule;
