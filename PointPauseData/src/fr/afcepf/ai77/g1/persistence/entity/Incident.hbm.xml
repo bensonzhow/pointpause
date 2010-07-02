@@ -35,8 +35,9 @@
 			<key column="numero_incident" />
 			<one-to-many class="StatutIncident" />
 		</set>
-		
-		<one-to-one name="typePb" class="TypePb"/> 
+
+		<many-to-one name="typePb" column="numero_type_probleme"
+			class="TypePb" cascade="all" not-found="ignore" not-null="false" />
 
 
 	</class>
