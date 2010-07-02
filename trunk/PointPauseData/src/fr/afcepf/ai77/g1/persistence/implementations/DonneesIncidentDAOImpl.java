@@ -80,12 +80,13 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 						SQLException {
 					List<Incident> liste = new Vector<Incident>();
 					
-					Query query = session.createQuery("from Incident " +
-							"where cat.numeroDeploiement.historiqueBouquet.contrat.client.id = :idClient " );
+					Query query = session.createQuery("" );
 					
 					query.setInteger(1, clientID);
 					
 					liste = query.list();
+					
+
 							
 					return liste;
 				}

@@ -9,5 +9,6 @@ public interface IDonneesInstallationDAO {
 	boolean deleteInstallation(int numInstall);
 	boolean deleteInstallation(Installation install);
 	boolean deleteInstallationGroup(Set<Installation> instalset);
+	Installation getInstallation(int numInstal);
 	
 }
