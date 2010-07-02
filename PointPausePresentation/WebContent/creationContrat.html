@@ -10,6 +10,7 @@
 		<facelets:define name="Contenu">
 		<jsfCore:view id="creationContrat">
 			 <jsf:form>
+			 
 			<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
 			
 				<jsfCore:facet name="header">
@@ -26,12 +27,8 @@
 					<richfaces:inputNumberSpinner enableManualInput="true" value="1" step="1"></richfaces:inputNumberSpinner>
 					</td>
 					<td>
-					<richfaces:comboBox defaultLabel="Enter some value">
-            <jsfCore:selectItem itemValue="suggestion 1"/>
-            <jsfCore:selectItem itemValue="suggestion 2"/>
-            <jsfCore:selectItem itemValue="suggestion 3"/>
-            <jsfCore:selectItem itemValue="suggestion 4"/>
-            <jsfCore:selectItem itemValue="suggestion 5"/>
+					<richfaces:comboBox defaultLabel="Enter some value" suggestionValues="#{ChoixContratBean.formules}">
+                 
       </richfaces:comboBox>
    				 </td>
 					<td><jsf:selectOneMenu id="machine" value="3">
@@ -41,6 +38,7 @@
 				</table>
 				
 				</richfaces:simpleTogglePanel>
+				
 		</jsf:form>
 		</jsfCore:view>
 		</facelets:define>
