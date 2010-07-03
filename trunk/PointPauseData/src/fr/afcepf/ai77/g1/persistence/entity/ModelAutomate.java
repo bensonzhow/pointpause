@@ -1,8 +1,9 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 import java.io.Serializable;
 public class ModelAutomate implements Serializable{
-	private int id;
+	private int id, codeType, nbEmplacement, capaciteParEmplacement, hauteur, largeur, profondeur, prix;
 	private String nom, description;
+	private byte[] photo;
 	public int getId() {
 		return id;
 	}
