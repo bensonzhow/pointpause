@@ -1,47 +1,73 @@
-<html xmlns:facelets="http://java.sun.com/jsf/facelets" xmlns:jsf="http://java.sun.com/jsf/html"
-	xmlns:jsfCore="http://java.sun.com/jsf/core" xmlns:richfaces="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j" xmlns:jstl="http://java.sun.com/jstl/core">
-	
-	<facelets:composition template="masterPage.html">
+<html xmlns:facelets="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://java.sun.com/jsf/html"
+	xmlns:jsfCore="http://java.sun.com/jsf/core"
+	xmlns:richfaces="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:jstl="http://java.sun.com/jstl/core">
+
+<facelets:composition template="masterPage.html">
 	<facelets:define name="HeadScriptorCss">
-	<link type="text/css" href="css/contrat.css" rel="stylesheet"/>
+		<link type="text/css" href="css/contrat.css" rel="stylesheet" />
+		<script type="text/javascript" src="scripts/toggle.js"></script>
 	</facelets:define>
-	
-		<facelets:define name="Contenu">
+
+	<facelets:define name="Contenu">
 		<jsfCore:view id="creationContrat">
-			 <jsf:form>
-			 
-			<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
-			
-				<jsfCore:facet name="header">
-						Commande n°1
+			<jsf:form>
+
+				<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
+
+					<jsfCore:facet name="header">
+						Commande n&#186;1
 				 </jsfCore:facet>
-				<table >					
-					<tr>
-					<th>Quantite</th>
-					<th>Formule</th>
-					<th>Machine	</th>
-					</tr>
-					<tr>
-					<td>
-					<richfaces:inputNumberSpinner enableManualInput="true" value="1" step="1"></richfaces:inputNumberSpinner>
-					</td>
-					<td>
-					<richfaces:comboBox defaultLabel="Enter some value" suggestionValues="#{ChoixContratBean.formules}">
-                 
-      </richfaces:comboBox>
-   				 </td>
-					<td><jsf:selectOneMenu id="machine" value="3">
-					</jsf:selectOneMenu></td>
-					</tr>
-					
-				</table>
-				
+					<table>
+						<tr>
+							<th>Quantite</th>
+							<th>Formule</th>
+							<th>Machine</th>
+						</tr>
+						<tr>
+							<td><richfaces:inputNumberSpinner enableManualInput="true"
+								value="1" step="1"></richfaces:inputNumberSpinner></td>
+							<td><richfaces:tabPanel swithType="ajax">
+								<richfaces:tab label="Nos formules">
+
+									 <richfaces:comboBox  selectFirstOnUpdate="true" value="#{ChoixContratBean.selectedFormule}"   > 
+									<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
+									
+									
+										<jsfCore:selectItems value="#{ChoixContratBean.formules}"/>
+										<a4j:support event="onselect"
+											action="#{ChoixContratBean.getDescriptionFormule}"
+											reRender="reponse" />
+										
+										
+									<!-- </jsf:selectOneMenu>-->
+										</richfaces:comboBox> <!-- je n'arrive pas avec a avoir un truc correct pourtant le composant est mieux-->
+									<jsf:outputText id="reponse"
+										value="#{ChoixContratBean.descriptionFormuleSelected}" />
+								</richfaces:tab>
+
+								<richfaces:tab label="A la carte">
+								composer sa formule
+					</richfaces:tab>
+
+							</richfaces:tabPanel></td>
+
+
+							<td><jsf:selectOneMenu id="e" value="3">
+							</jsf:selectOneMenu></td>
+
+							<td></td>
+						</tr>
+
+					</table>
+
 				</richfaces:simpleTogglePanel>
-				
-		</jsf:form>
+
+			</jsf:form>
 		</jsfCore:view>
-		</facelets:define>
-		
-	</facelets:composition>
+	</facelets:define>
+
+</facelets:composition>
 </html>

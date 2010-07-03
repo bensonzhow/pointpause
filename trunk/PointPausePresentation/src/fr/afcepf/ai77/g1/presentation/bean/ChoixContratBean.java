@@ -3,8 +3,9 @@ package fr.afcepf.ai77.g1.presentation.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import fr.afcepf.ai77.g1.facade.DTOFactory;
-import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesSessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 
@@ -15,24 +16,71 @@ import fr.afcepf.ai77.g1.persistence.entity.Formule;
  *
  */
 public class ChoixContratBean {
-	private List<String> formules = new ArrayList<String>();
+	private List<SelectItem> formules = new ArrayList<SelectItem>();
 
-	public List<String> getFormules() {
+	
+  public List<SelectItem> getFormules() {
 		return formules;
 	}
+	public void setFormules(List<SelectItem> formules) {
+		this.formules = formules;
+	}
 
-	public void setFormules(List<String> formules) {
-		this.formules = formules;}
+private String selectedFormule;
+	public String getSelectedFormule() {
+	return selectedFormule;
+}
+	public void setSelectedFormule(String selectedFormule) {
+		this.selectedFormule = selectedFormule;
+	}
+	
+private List<Formule> formulesList;
 
 
+	private String descriptionFormuleSelected;
+
+	
+
+	public String getDescriptionFormuleSelected() {
+		return descriptionFormuleSelected;
+	}
+
+	public void setDescriptionFormuleSelected(String descriptionFormuleSelected) {
+		this.descriptionFormuleSelected = descriptionFormuleSelected;
+	}
+
+
+
+	public void getDescriptionFormule(){
+		
+		{
+			for (Formule formule : formulesList) {
+				if (formule.getLibelleFormule().equals(this.selectedFormule))
+				{
+					descriptionFormuleSelected= formule.getCommentaireFormule();
+				}
+			}
+
+
+		}
+		
+		
+	//	descriptionFormuleSelected="lala";
+	}
+	
 	public ChoixContratBean(){
 		IDonneesChoixContratDTO  donneesSession = DTOFactory.getIDonneesChoixContratDTO();
-		List<Formule> formulesList= donneesSession.getAllGeneral();
-		List<String> formulesLocal = new ArrayList<String>();;
+		 formulesList= donneesSession.getAllGeneral();
+		
 		for (Formule formule : formulesList) {
-				formulesLocal.add(formule.getLibelleFormule());	
+			SelectItem si = new SelectItem();
+			si.setLabel(formule.getLibelleFormule());
+			si.setDescription(formule.getLibelleFormule());
+			si.setValue(formule.getLibelleFormule());
+			formules.add(si);
 		}
-		this.setFormules(formulesLocal);
+		
+
 
 	}
 
