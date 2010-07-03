@@ -18,6 +18,8 @@ public interface IDonneesContratDAO {
 	//update
 	boolean updateContrat(Contrat contrat);
 	
+	Contrat getContratByNumInstallation(int numInstallation);
 	
-	
+
+	List<Contrat> getListContratFromListNumInstallation(List<Integer> listInstalls);
 }
