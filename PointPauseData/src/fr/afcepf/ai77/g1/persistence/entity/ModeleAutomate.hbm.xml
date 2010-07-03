@@ -9,12 +9,8 @@
 			<column name="NUMERO_MODELE_AUTOMATE" sql-type="int" not-null="true" />
 			<generator class="increment" />
 		</id>
-			<many-to-one name="codeType" column="CODE_TYPE_AUTOMATE" class="TypeAutomate"
-			cascade="all" not-found="ignore" not-null="false" />
-		
-			<property name="codeType">
-			<column name="CODE_TYPE_AUTOMATE" sql-type="int" not-null="false" />
-		</property>
+			<many-to-one name="codeType" column="CODE_TYPE_AUTOMATE" 
+			property-ref="id" cascade="all" not-found="ignore" not-null="true" />
 		
 				<property name="nom">
 		<column name="LIBELE_MODELE_AUTOMATE"  sql-type="text" not-null="false"></column>
@@ -43,6 +39,10 @@
 		
 		<property name="prix">
 			<column name="PRIX_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+			<property name="description">
+		<column name="COMMENTAIRE_MODELE_AUTOMATE"  sql-type="text" not-null="false"></column>
 		</property>
 		
 		<property name="photo">

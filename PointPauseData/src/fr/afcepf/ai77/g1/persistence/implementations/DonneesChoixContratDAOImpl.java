@@ -10,7 +10,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
-import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
+import fr.afcepf.ai77.g1.persistence.entity.ModelAutomate;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 
 public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
@@ -31,8 +31,8 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 		return ttesformulesGeneral;
 	}
 	@Override
-	public List<TypeAutomate> getAllAutomates() {
-	List<TypeAutomate> ttAutomates = hibernateTemplate.find("from TypeAutomate");
+	public List<ModelAutomate> getAllAutomates() {
+	List<ModelAutomate> ttAutomates = hibernateTemplate.find("from ModelAutomate");
 		return ttAutomates;
 	}
 

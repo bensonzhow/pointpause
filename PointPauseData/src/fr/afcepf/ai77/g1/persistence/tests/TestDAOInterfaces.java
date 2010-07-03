@@ -8,7 +8,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
-import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
+import fr.afcepf.ai77.g1.persistence.entity.ModelAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
@@ -69,9 +69,9 @@ public class TestDAOInterfaces extends TestCase {
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
 		"SpringConfig.xml"));
 		IDonneesChoixContratDAO donneesContrat = (IDonneesChoixContratDAO)factory.getBean("IDonneesChoixContratDAO");
-		List<TypeAutomate> lf = donneesContrat.getAllAutomates();
+		List<ModelAutomate> lf = donneesContrat.getAllAutomates();
 		System.out.println(lf.get(0).getNom());
-		assertEquals("cafe seulement",lf.get(0).getNom());
+		assertEquals("Expresso",lf.get(0).getNom());
 	}
 	public void testGetType(){
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
