@@ -112,7 +112,6 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 			
 			crit = crit.createCriteria("historiqueBouquet", DetachedCriteria.INNER_JOIN)
 			.createCriteria("contrat", DetachedCriteria.INNER_JOIN)
-			.createCriteria("client", DetachedCriteria.INNER_JOIN)
 			.add(Restrictions.eq("client",c));
 			
 			
