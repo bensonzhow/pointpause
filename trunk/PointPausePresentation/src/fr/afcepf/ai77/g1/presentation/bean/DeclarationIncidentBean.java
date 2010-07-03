@@ -34,14 +34,14 @@ public class DeclarationIncidentBean {
 	private String dateConstatIncident;
 	private String dateDeclarationIncident;
 	private Boolean flag=false;
-	private Collection typePb;
+	private List typePb;
 	private String value = "";
 
 	public Integer getNumMachine() {
 		return numMachine;
 	}
 
-	public Collection getTypePb() {
+	public List getTypePb() {
 		
 		typePb = new ArrayList();
 		typePb.add(new SelectItem("Aucun"));
@@ -61,7 +61,7 @@ public class DeclarationIncidentBean {
 		this.value = value;
 	}
 
-	public void setTypePb(Collection typePb) {
+	public void setTypePb(List typePb) {
 		this.typePb = typePb;
 	}
 
@@ -122,7 +122,6 @@ public class DeclarationIncidentBean {
 			dateConstatIncident = getDateConstatIncident();
 			date = sdf.parse(dateConstatIncident);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		incident.setDateConstatIncident(date);
