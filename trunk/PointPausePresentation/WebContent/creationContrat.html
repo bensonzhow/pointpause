@@ -18,7 +18,7 @@
 				<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
 
 					<jsfCore:facet name="header">
-						Commande n&#186;1
+						Nouvelle commande ? 
 				 </jsfCore:facet>
 					<table>
 						<tr>
@@ -32,19 +32,21 @@
 							<td><richfaces:tabPanel swithType="ajax">
 								<richfaces:tab label="Nos formules">
 
-									 <richfaces:comboBox  selectFirstOnUpdate="true" value="#{ChoixContratBean.selectedFormule}"   > 
-									<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
-									
-									
-										<jsfCore:selectItems value="#{ChoixContratBean.formules}"/>
+									<richfaces:comboBox selectFirstOnUpdate="true"
+										value="#{ChoixContratBean.selectedFormule}">
+										<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
+
+
+										<jsfCore:selectItems value="#{ChoixContratBean.formules}" />
 										<a4j:support event="onselect"
 											action="#{ChoixContratBean.getDescriptionFormule}"
 											reRender="reponse" />
-										
-										
-									<!-- </jsf:selectOneMenu>-->
-										</richfaces:comboBox> <!-- je n'arrive pas avec a avoir un truc correct pourtant le composant est mieux-->
-									
+
+
+										<!-- </jsf:selectOneMenu>-->
+									</richfaces:comboBox>
+									<!-- je n'arrive pas avec a avoir un truc correct pourtant le composant est mieux-->
+
 								</richfaces:tab>
 
 								<richfaces:tab label="A la carte">
@@ -54,11 +56,30 @@
 							</richfaces:tabPanel></td>
 
 
-							<td><jsf:selectOneMenu id="e" value="3">
-							</jsf:selectOneMenu></td>
+							<td>
+							
 
-							<td><jsf:outputText id="reponse"
-										value="#{ChoixContratBean.descriptionFormuleSelected}" /></td>
+									<richfaces:comboBox selectFirstOnUpdate="true"
+										value="#{ChoixContratBean.selectedMachine}">
+										<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
+
+
+										<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
+										<a4j:support event="onselect"
+											action="#{ChoixContratBean.getDescriptionMachine}"
+											reRender="reponse" />
+
+
+										<!-- </jsf:selectOneMenu>-->
+									</richfaces:comboBox>
+							</td>
+
+							<td><richfaces:panel>
+								<jsf:outputText id="reponse"
+									value="#{ChoixContratBean.description}" />
+
+							</richfaces:panel></td>
+
 						</tr>
 
 					</table>
