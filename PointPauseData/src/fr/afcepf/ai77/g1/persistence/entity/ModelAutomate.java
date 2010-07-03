@@ -1,8 +1,8 @@
 package fr.afcepf.ai77.g1.persistence.entity;
 import java.io.Serializable;
-public class TypeAutomate implements Serializable{
+public class ModelAutomate implements Serializable{
 	private int id;
-	private String nom;
+	private String nom, description;
 	public int getId() {
 		return id;
 	}
@@ -15,6 +15,11 @@ public class TypeAutomate implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }
