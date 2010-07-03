@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
+import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 public class DonneesClientDAOImpl implements IDonneesClientDAO {
@@ -77,6 +78,24 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();return false;
+		}
+		
+	}
+
+
+
+	@Override
+	public List getNumContratbyNumClient(int numClient) {
+		List listeContrat = null;
+		try{
+			Client c = getClientByNumero(numClient);
+			DetachedCriteria crit = DetachedCriteria.forClass(Contrat.class);
+			crit.add(Restrictions.eq("client", c));
+			listeContrat = hibernateTemplate.findByCriteria(crit);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			return listeContrat;
 		}
 		
 	}

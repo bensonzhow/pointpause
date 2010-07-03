@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
+import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.ModelAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
@@ -83,5 +84,13 @@ public class TestDAOInterfaces extends TestCase {
 		assertTrue(tpb.getLibelle().contains("dysfonctionnement")); 
 		
 	}
-
+	
+	public void testGetContratByClient(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesClientDAO donneesClient = (IDonneesClientDAO)factory.getBean("IDonneesClientDAO");
+		List<Contrat> listeContrat = (List<Contrat>)donneesClient.getNumContratbyNumClient(19);
+		assertTrue(listeContrat != null);
+		assertTrue(listeContrat.get(0).getNumero() == 5);
+ 	}
 }
