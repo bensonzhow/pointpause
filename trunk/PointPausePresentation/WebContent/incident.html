@@ -37,7 +37,7 @@
                                  
                  				</jsf:selectOneListbox>
                  			</td>
-                 			<td class="textTabIncident" width="150px">Date de constat: </td>
+                 			<td class="textTabIncident" width="150px" style="font-size:62,5%">Date de constat: </td>
                  			<td>
                  				<div class="demo">
 									<jsf:inputText class ="datepicker" value="#{declareIncidentMB.dateConstatIncident}"/>
@@ -62,8 +62,11 @@
                  		</tr>
                  		<tr>
                  			<td></td>
-                 			<td class="textTabIncident" >Contact: </td>
-                 			<td><jsf:inputText id="nomContact" /></td>
+                 			<td class="textTabIncident" >Type problème: </td>
+                 			<td><jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.value}" size="1">	
+	                                 <jsfCore:selectItems value="#{declareIncidentMB.typePb}" />
+                 				</jsf:selectOneListbox>
+                 			</td>
                  			<td class="textTabIncident">Télephone: </td>
                  			<td><jsf:inputText id="telContact" value=""/></td>
                  		</tr>
