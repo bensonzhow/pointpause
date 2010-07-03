@@ -14,7 +14,7 @@
 	<facelets:define name="Contenu">
 		<jsfCore:view id="creationContrat">
 			<jsf:form>
-
+<div id="general">
 				<richfaces:simpleTogglePanel switchType="ajax" label="unecommande">
 
 					<jsfCore:facet name="header">
@@ -28,7 +28,7 @@
 						</tr>
 						<tr>
 							<td><richfaces:inputNumberSpinner enableManualInput="true"
-								value="1" step="1"></richfaces:inputNumberSpinner></td>
+								value="#{ChoixContratBean.quantite}" step="1"></richfaces:inputNumberSpinner></td>
 							<td><richfaces:tabPanel swithType="ajax">
 								<richfaces:tab label="Nos formules">
 
@@ -45,7 +45,7 @@
 
 										<!-- </jsf:selectOneMenu>-->
 									</richfaces:comboBox>
-									<!-- je n'arrive pas avec a avoir un truc correct pourtant le composant est mieux-->
+									
 
 								</richfaces:tab>
 
@@ -56,23 +56,19 @@
 							</richfaces:tabPanel></td>
 
 
-							<td>
-							
-
-									<richfaces:comboBox selectFirstOnUpdate="true"
-										value="#{ChoixContratBean.selectedMachine}">
-										<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
+							<td><richfaces:comboBox selectFirstOnUpdate="true"
+								value="#{ChoixContratBean.selectedMachine}">
+								<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
 
 
-										<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
-										<a4j:support event="onselect"
-											action="#{ChoixContratBean.getDescriptionMachine}"
-											reRender="reponse" />
+								<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
+								<a4j:support event="onselect"
+									action="#{ChoixContratBean.getDescriptionMachine}"
+									reRender="reponse" />
 
 
-										<!-- </jsf:selectOneMenu>-->
-									</richfaces:comboBox>
-							</td>
+								<!-- </jsf:selectOneMenu>-->
+							</richfaces:comboBox></td>
 
 							<td><richfaces:panel>
 								<jsf:outputText id="reponse"
@@ -80,12 +76,38 @@
 
 							</richfaces:panel></td>
 
+
+
 						</tr>
 
 					</table>
-
 				</richfaces:simpleTogglePanel>
-
+				<jsf:commandButton action="#{ChoixContratBean.Submit1}"
+						value="valider"></jsf:commandButton>
+						
+				<jstl:if test="${sessionScope['contratok']!=null}">			
+					<richfaces:simpleTogglePanel switchType="ajax" label="Modalites de contrat">
+						<table border="1" cellpadding="4" cellspacing="0" >
+						<tr>
+							<th>"#{ChoixContratBean.selectedFormule}"</th>
+							<th>Modalit&#233;s</th>
+						</tr>
+						<tr>
+							<td><richfaces:inputNumberSpinner enableManualInput="true"
+								value="#{ChoixContratBean.quantite}" step="1"></richfaces:inputNumberSpinner>
+								</td>
+							<td>
+							Fr&#233;quence d'approvisionnement <richfaces:comboBox></richfaces:comboBox>
+							Localisation <richfaces:comboBox></richfaces:comboBox>
+							Dur&#233;e <richfaces:comboBox></richfaces:comboBox>
+							</td>
+							
+							</tr>
+							</table>
+					</richfaces:simpleTogglePanel>
+					</jstl:if>
+					<jsf:commandButton action="#{ChoixContratBean.kill}" value="kill"></jsf:commandButton>
+			</div>
 			</jsf:form>
 		</jsfCore:view>
 	</facelets:define>

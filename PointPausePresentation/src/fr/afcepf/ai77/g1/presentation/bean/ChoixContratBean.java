@@ -3,12 +3,16 @@ package fr.afcepf.ai77.g1.presentation.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
-import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
+import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
+
 
 
 /**
@@ -17,48 +21,48 @@ import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
  *
  */
 public class ChoixContratBean {
+	FacesContext context = FacesContext.getCurrentInstance();
+	HttpServletRequest request = (HttpServletRequest) context
+			.getExternalContext().getRequest();
+	HttpSession httpSession = request.getSession(false);
 	private List<SelectItem> formules = new ArrayList<SelectItem>();
 	private List<SelectItem> machines = new ArrayList<SelectItem>();
-	private List<TypeAutomate> machinesDispo = new ArrayList<TypeAutomate>();
+	private List<ModeleAutomate> machinesDispo = new ArrayList<ModeleAutomate>();
 	private String selectedFormule;
 	private String selectedMachine;
+	private int quantite;
+	
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
 	public String getSelectedMachine() {
 		return selectedMachine;
 	}
 
-
-
 	public void setSelectedMachine(String selectedMachine) {
 		this.selectedMachine = selectedMachine;
 	}
-
 	private List<Formule> formulesList;
 	public List<SelectItem> getMachines() {
 		return machines;
 	}
-
 	private String description;
-
-
-
-
 	public String getDescription() {
 		return description;
 	}
-
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-
 	public List<SelectItem> getFormules() {
 		return formules;
 	}
-	
-
 	
 	public String getSelectedFormule() {
 		return selectedFormule;
@@ -78,7 +82,7 @@ public class ChoixContratBean {
 	
 
 public void getDescriptionMachine(){
-	for (TypeAutomate automate: machinesDispo)
+	for (ModeleAutomate automate: machinesDispo)
 	{
 		if(automate.getNom().equals(this.selectedMachine))
 		{
@@ -102,7 +106,18 @@ public void getDescriptionMachine(){
 
 		//	descriptionFormuleSelected="lala";
 	}
-
+	
+	public void Submit1(){
+		if(selectedFormule==""||selectedMachine=="" || quantite==0)
+			description= "choisir formule et machines ! ";
+		else if(selectedFormule!=""||selectedMachine!="")
+			{selectedFormule= "Formule choisie :" + selectedFormule;
+		httpSession.setAttribute("contratok", "ok");}
+	}
+public void kill()
+{
+	httpSession.setAttribute("contratok", null);
+}
 	public ChoixContratBean(){
 		IDonneesChoixContratDTO  donneesContrat = DTOFactory.getIDonneesChoixContratDTO();
 		formulesList= donneesContrat.getAllGeneral();
@@ -116,7 +131,7 @@ public void getDescriptionMachine(){
 		}
 		
 		machinesDispo= donneesContrat.getAllMachines();
-		for (TypeAutomate machine : machinesDispo) {
+		for (ModeleAutomate machine : machinesDispo) {
 			SelectItem si = new SelectItem();
 			si.setLabel(machine.getNom());
 			si.setDescription(machine.getNom());
