@@ -44,8 +44,7 @@
 										
 									<!-- </jsf:selectOneMenu>-->
 										</richfaces:comboBox> <!-- je n'arrive pas avec a avoir un truc correct pourtant le composant est mieux-->
-									<jsf:outputText id="reponse"
-										value="#{ChoixContratBean.descriptionFormuleSelected}" />
+									
 								</richfaces:tab>
 
 								<richfaces:tab label="A la carte">
@@ -58,7 +57,8 @@
 							<td><jsf:selectOneMenu id="e" value="3">
 							</jsf:selectOneMenu></td>
 
-							<td></td>
+							<td><jsf:outputText id="reponse"
+										value="#{ChoixContratBean.descriptionFormuleSelected}" /></td>
 						</tr>
 
 					</table>
