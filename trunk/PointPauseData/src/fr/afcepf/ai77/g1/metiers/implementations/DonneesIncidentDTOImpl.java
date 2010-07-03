@@ -1,10 +1,14 @@
 package fr.afcepf.ai77.g1.metiers.implementations;
 
 import java.util.Date;
+import java.util.List;
 
+import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
+import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
@@ -67,6 +71,15 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		
 		
 		return res;
+	}
+	@Override
+	public ListeContratDTO getContratsByNumClient(int numClient) {
+		List<Contrat> listeContrat = donneesClient.getNumContratbyNumClient(numClient);
+		ListeContratDTO listeContratDTO = new ListeContratDTO();
+		for (Contrat c : listeContrat){
+			listeContratDTO.getListeContrat().add(c.getNumero());
+		}
+		return listeContratDTO;
 	}
 	
 
