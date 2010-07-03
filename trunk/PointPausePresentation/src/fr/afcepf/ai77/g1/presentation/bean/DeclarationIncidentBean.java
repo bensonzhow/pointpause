@@ -2,9 +2,13 @@ package fr.afcepf.ai77.g1.presentation.bean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +20,7 @@ import fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 
 public class DeclarationIncidentBean {
 	
@@ -29,10 +34,35 @@ public class DeclarationIncidentBean {
 	private String dateConstatIncident;
 	private String dateDeclarationIncident;
 	private Boolean flag=false;
-	
-	
+	private Collection typePb;
+	private String value = "";
+
 	public Integer getNumMachine() {
 		return numMachine;
+	}
+
+	public Collection getTypePb() {
+		
+		typePb = new ArrayList();
+		typePb.add(new SelectItem("Aucun"));
+		typePb.add(new SelectItem("dysfonctionnement"));
+		typePb.add(new SelectItem("panne"));
+		 
+		return typePb;
+	}
+
+	
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public void setTypePb(Collection typePb) {
+		this.typePb = typePb;
 	}
 
 	public void setNumMachine(Integer numMachine) {
@@ -77,43 +107,32 @@ public class DeclarationIncidentBean {
 		System.out.println("Entrer");
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		
-		
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context
 				.getExternalContext().getRequest();
 	
 		HttpSession httpSession = request.getSession(false);
 		
-		
 		SessionDTO session = (SessionDTO)httpSession.getAttribute("session");
 		ContratDTO contrat = new ContratDTO();
-		System.out.println("Contrat");
 		IncidentDTO incident = new IncidentDTO();
-		System.out.println("Incident");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Date");
 		Date date =null;
 		try {
 			dateConstatIncident = getDateConstatIncident();
 			date = sdf.parse(dateConstatIncident);
-			System.out.println("fintry");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		incident.setDateConstatIncident(date);
-		System.out.println("ConstatOk");
 		incident.setDateDeclarationIncident(new Date());
-		System.out.println("Date");
 		incident.setFlag(flag);
-		System.out.println("Flag");
 		incident.setNumTypePb(2);
 		incident.setNumClient(session.getNumeroClient());
-		System.out.println("NumClient");
 		//incident.setNumContrat(contrat.)
 		
 		int res = donneesIncident.insertIncident(incident);
-		System.out.println(res);
 		
 		if(res != -1)
 			return "ok";
