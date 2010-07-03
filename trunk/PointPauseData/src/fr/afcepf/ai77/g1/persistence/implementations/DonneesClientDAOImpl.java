@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
+import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 public class DonneesClientDAOImpl implements IDonneesClientDAO {
@@ -100,4 +101,30 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 		
 	}
 
+	@Override
+	public List<Installation> getInstallationByNumClient(int numClient) {
+		// TODO Auto-generated method stub
+		List<Installation> listeInstall=null;
+		try{
+			Client c = getClientByNumero(numClient);
+			
+			DetachedCriteria crit = DetachedCriteria.forClass(Installation.class);
+			
+			crit = crit.createCriteria("historiqueBouquet", DetachedCriteria.INNER_JOIN)
+			.createCriteria("contrat", DetachedCriteria.INNER_JOIN)
+			.createCriteria("client", DetachedCriteria.INNER_JOIN)
+			.add(Restrictions.eq("client",c));
+			
+			
+			listeInstall = hibernateTemplate.findByCriteria(crit);	
+			
+			return listeInstall;
+		}catch(Exception e){
+			e.printStackTrace();
+			listeInstall=null;
+		}finally{
+			return listeInstall;
+		}
+	}
+	
 }
