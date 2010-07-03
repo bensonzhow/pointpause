@@ -3,7 +3,7 @@ package fr.afcepf.ai77.g1.metiers.implementations;
 import java.util.List;
 
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
-import fr.afcepf.ai77.g1.persistence.entity.ModelAutomate;
+import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 
@@ -35,8 +35,8 @@ public void setDonneesChoixContrat(IDonneesChoixContratDAO donneesChoixContrat) 
 
 
 	@Override
-	public List<ModelAutomate> getAllMachines() {
-		List<ModelAutomate> machines = donneesChoixContrat.getAllAutomates();
+	public List<ModeleAutomate> getAllMachines() {
+		List<ModeleAutomate> machines = donneesChoixContrat.getAllAutomates();
 		return machines;
 	}
 

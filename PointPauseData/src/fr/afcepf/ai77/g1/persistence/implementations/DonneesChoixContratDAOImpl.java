@@ -10,7 +10,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
-import fr.afcepf.ai77.g1.persistence.entity.ModelAutomate;
+import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 
 public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
@@ -21,6 +21,7 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 	public void setSessionFactory(SessionFactory sf) {
 		hibernateTemplate = new HibernateTemplate(sf);
 	}
+	
 	//retourne toutes les formules générales donc pas celles rattachées à un client particulier
 	@Override
 	public List<Formule> getAllGeneralFormules() {
@@ -30,9 +31,10 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 		List<Formule> ttesformulesGeneral = hibernateTemplate.findByCriteria(crit);
 		return ttesformulesGeneral;
 	}
+	
 	@Override
-	public List<ModelAutomate> getAllAutomates() {
-	List<ModelAutomate> ttAutomates = hibernateTemplate.find("from ModelAutomate");
+	public List<ModeleAutomate> getAllAutomates() {
+	List<ModeleAutomate> ttAutomates = hibernateTemplate.find("from ModeleAutomate");
 		return ttAutomates;
 	}
 
