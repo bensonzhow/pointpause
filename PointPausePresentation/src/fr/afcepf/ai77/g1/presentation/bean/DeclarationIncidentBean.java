@@ -15,12 +15,14 @@ import javax.servlet.http.HttpSession;
 import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 public class DeclarationIncidentBean {
 	
@@ -30,12 +32,14 @@ public class DeclarationIncidentBean {
 	
 	
 	private Integer numMachine;
-	private Integer numContrat;
+	private List numContrat;
 	private String dateConstatIncident;
 	private String dateDeclarationIncident;
 	private Boolean flag=false;
 	private List typePb;
 	private String value = "";
+	private String valueContrat = "";
+
 
 	public Integer getNumMachine() {
 		return numMachine;
@@ -50,16 +54,7 @@ public class DeclarationIncidentBean {
 		 
 		return typePb;
 	}
-
 	
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	public void setTypePb(List typePb) {
 		this.typePb = typePb;
@@ -69,11 +64,30 @@ public class DeclarationIncidentBean {
 		this.numMachine = numMachine;
 	}
 
-	public Integer getNumContrat() {
+	public List getNumContrat() {
+	  	numContrat = new ArrayList();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		SessionDTO session = (SessionDTO) httpSession.getAttribute("session");
+
+		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
+		ListeContratDTO listeContrat = donneesIncident.getContratsByNumClient(session.getNumeroClient());
+		List<Integer> retour = listeContrat.getListeContrat();
+		for(Integer i : retour){
+			numContrat.add(new SelectItem(i.toString()));
+		}
+		
 		return numContrat;
+//		numContrat = new ArrayList();
+//		numContrat.add(new SelectItem("est"));
+//		numContrat.add(new SelectItem("est"));
+//		numContrat.add(new SelectItem("est"));
+//		return numContrat;
+		
 	}
 
-	public void setNumContrat(Integer numContrat) {
+	public void setNumContrat(List numContrat) {
 		this.numContrat = numContrat;
 	}
 
@@ -100,7 +114,22 @@ public class DeclarationIncidentBean {
 	public void setFlag(Boolean flag) {
 		this.flag = flag;
 	}
+	
+	public String getValueContrat() {
+		return valueContrat;
+	}
 
+	public void setValueContrat(String valueContrat) {
+		this.valueContrat = valueContrat;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 
 	public String declare(){
