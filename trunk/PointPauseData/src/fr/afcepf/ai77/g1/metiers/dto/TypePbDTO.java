@@ -1,6 +1,8 @@
 package fr.afcepf.ai77.g1.metiers.dto;
 
-public class TypePbDTO {
+import java.io.Serializable;
+
+public class TypePbDTO implements Serializable{
 	
 	private Integer numTypePb;
 	private String libelleTypePb;

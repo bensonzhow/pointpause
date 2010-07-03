@@ -2,6 +2,7 @@ package fr.afcepf.ai77.g1.metiers.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 
@@ -16,8 +17,17 @@ public class IncidentDTO implements Serializable {
 	private String commentaire;
 	private Integer numContrat;
 	private Integer numTypePb;
+	
+	private List<StatutIncidentDTO> historique = null;
+
 
 	
+	public List<StatutIncidentDTO> getHistorique() {
+		return historique;
+	}
+	public void setHistorique(List<StatutIncidentDTO> historique) {
+		this.historique = historique;
+	}
 	public Integer getNumero() {
 		return numero;
 	}

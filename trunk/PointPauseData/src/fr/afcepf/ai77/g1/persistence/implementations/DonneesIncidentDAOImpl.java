@@ -21,6 +21,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.Intervention;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
@@ -244,21 +245,30 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 							/*
 							 * deuxieme etape : charger les StatutIncidents, les
-							 * interventions ,
+							 * interventions , les employes en charge des interventions
 							 */
 
 							for (Incident incident : reliste) {
 								Hibernate.initialize(incident);
+								Hibernate.initialize(incident.getTypePb());
 
 								Hibernate.initialize(incident
 										.getListeStatutsIncidents());
+								
+
+								Hibernate.initialize(incident.getNumeroDeploiement());
 
 								for (StatutIncident stinc : incident
 										.getListeStatutsIncidents()) {
 									Hibernate.initialize(stinc);
 									Hibernate.initialize(stinc
 											.getIntervention());
+									
+									if (stinc.getIntervention()!=null)
+										Hibernate.initialize(stinc.getIntervention().getEmploye());
+									
 								}
+								
 
 							}
 

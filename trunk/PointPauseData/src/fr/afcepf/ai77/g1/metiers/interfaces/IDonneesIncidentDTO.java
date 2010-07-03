@@ -12,4 +12,6 @@ public interface IDonneesIncidentDTO {
 	Integer insertIncident(IncidentDTO incidentDto);
 	ListeContratDTO getContratsByNumClient(int numClient);
 	
+	List<IncidentDTO> getHistoriqueIncidentByClient(int numClient); 
+	
 }
