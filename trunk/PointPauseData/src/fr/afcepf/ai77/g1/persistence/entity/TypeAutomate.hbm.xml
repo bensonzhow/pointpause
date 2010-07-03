@@ -13,9 +13,7 @@
 			<property name="nom">
 			<column name="LIBELLE_TYPE_AUTOMATE" sql-type="text" not-null="false" />
 		</property>
-		<property name="description">
-		<column name="DESCRIPTION"  sql-type="text" not-null="false"></column>
-		</property>
+		
 		
 		</class>
 		</hibernate-mapping>

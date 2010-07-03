@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="ModelAutomate" table="modele_automate">
+
+		<id name="id" type="integer">
+			<column name="NUMERO_MODELE_AUTOMATE" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+			<many-to-one name="codeType" column="CODE_TYPE_AUTOMATE" class="TypeAutomate"
+			cascade="all" not-found="ignore" not-null="false" />
+		
+			<property name="codeType">
+			<column name="CODE_TYPE_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+				<property name="nom">
+		<column name="LIBELE_MODELE_AUTOMATE"  sql-type="text" not-null="false"></column>
+		</property>
+		
+		<property name="nbEmplacement">
+			<column name="NOMBRE_EMPLACEMENTS" sql-type="int" not-null="false" />
+		</property>
+		
+		<property name="capaciteParEmplacement">
+			<column name="CAPACITE_PAR_EMPLACEMENT" sql-type="int" not-null="false" />
+		</property>
+		
+			
+		<property name="hauteur">
+			<column name="HAUTEUR_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+		<property name="largeur">
+			<column name="LARGEUR_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+		<property name="profondeur">
+			<column name="PROFONDEUR_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+		<property name="prix">
+			<column name="PRIX_AUTOMATE" sql-type="int" not-null="false" />
+		</property>
+		
+		<property name="photo">
+		<column name="PHOTOS"  sql-type="longblob" not-null="false"></column>
+		</property>
+		</class>
+		</hibernate-mapping>
