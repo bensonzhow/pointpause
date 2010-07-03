@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
+import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 
 public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
@@ -28,6 +29,11 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 		
 		List<Formule> ttesformulesGeneral = hibernateTemplate.findByCriteria(crit);
 		return ttesformulesGeneral;
+	}
+	@Override
+	public List<TypeAutomate> getAllAutomates() {
+	List<TypeAutomate> ttAutomates = hibernateTemplate.find("from TypeAutomate");
+		return ttAutomates;
 	}
 
 }

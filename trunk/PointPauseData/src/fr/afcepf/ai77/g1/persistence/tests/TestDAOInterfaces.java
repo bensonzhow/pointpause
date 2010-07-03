@@ -8,8 +8,10 @@ import org.springframework.core.io.ClassPathResource;
 
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
+import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesTypePbDAO;
@@ -56,12 +58,21 @@ public class TestDAOInterfaces extends TestCase {
 	public void testGetAllFormules(){
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
 		"SpringConfig.xml"));
-		IDonneesContratDAO donneesContrat = (IDonneesContratDAO)factory.getBean("IDonneesContratDAO");
-		List<Formule> lf = donneesContrat.getAllFormule();
+		IDonneesChoixContratDAO donneesContrat = (IDonneesChoixContratDAO)factory.getBean("IDonneesChoixContratDAO");
+		List<Formule> lf = donneesContrat.getAllGeneralFormules();
 		System.out.println(lf.get(0).getLibelleFormule());
 		assertEquals("fraicheur",lf.get(0).getLibelleFormule())	;
 	}
 	
+	
+	public void testGetAllMachines(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesChoixContratDAO donneesContrat = (IDonneesChoixContratDAO)factory.getBean("IDonneesChoixContratDAO");
+		List<TypeAutomate> lf = donneesContrat.getAllAutomates();
+		System.out.println(lf.get(0).getNom());
+		assertEquals("cafe seulement",lf.get(0).getNom());
+	}
 	public void testGetType(){
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
 		"SpringConfig.xml"));

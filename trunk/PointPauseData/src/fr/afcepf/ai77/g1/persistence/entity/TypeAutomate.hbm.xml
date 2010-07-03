@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="TypeAutomate" table="type_automate">
+
+		<id name="id" type="integer">
+			<column name="CODE_TYPE_AUTOMATE" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+		
+			<property name="nom">
+			<column name="LIBELLE_TYPE_AUTOMATE" sql-type="text" not-null="false" />
+		</property>
+		<property name="description">
+		<column name="DESCRIPTION"  sql-type="text" not-null="false"></column>
+		</property>
+		
+		</class>
+		</hibernate-mapping>
