@@ -35,7 +35,7 @@ public class ChoixContratBean {
 			.getExternalContext().getRequest();
 	HttpSession httpSession = request.getSession(false);
 	public String commentaire;
-	
+	private String test;
 	private Boolean flag;
 	private Date dateFin;
 	private Date dateDebut;
@@ -133,6 +133,11 @@ public String getDescriptionMachine() {
 	}
 	public Integer Inserer(){
 		System.out.println("inserer");
+		System.out.println("test= "+ test);
+		System.out.println("region"+ region);
+	System.out.println("commentaire:"+commentaire);
+		System.out.println("quantite"+quantite);
+		System.out.println("commentaire");
 		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();		
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context
@@ -144,7 +149,7 @@ public String getDescriptionMachine() {
 		ContratDTO contrat = new ContratDTO();
 		contrat.setFreqApprovisionnement(frequence);
 		System.out.println("commentaire");
-		System.out.println(commentaire);
+		
 		contrat.setFlag(flag);
 		/*contrat.setDateDebut(dateDebut);
 		contrat.setDateFin(dateFin);
@@ -276,6 +281,14 @@ public void kill()
 
 	public Integer getVerdict() {
 		return verdict;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	public String getTest() {
+		return test;
 	}
 
 }
