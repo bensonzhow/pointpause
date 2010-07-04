@@ -1,0 +1,27 @@
+@CHARSET "ISO-8859-1";
+
+.mainrapportincidentdiv{
+	witdh:900px;
+	background-color: white;	
+	text-align: left;
+}
+	
+.rapportincidentdiv{
+	width:900px;
+	float : left;
+	background-color: gray;
+	border : 1 px solid black;
+	margin : 5 px;	
+}
+	
+.incidentshortinfo{
+	width : 300px;
+	float : left;
+	text-align: left;
+	margin-right : 15px;
+}
+
+.statutincidenttable{
+	float : left;
+	width : 400px;
+}
