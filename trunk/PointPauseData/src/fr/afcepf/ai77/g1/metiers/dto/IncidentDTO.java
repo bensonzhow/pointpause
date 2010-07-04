@@ -18,9 +18,35 @@ public class IncidentDTO implements Serializable {
 	private String commentaire;
 	private Integer numContrat;
 	private Integer numTypePb;
-	
+	private String libelTypePb;
+	private Integer statutPriseEnCharge;
+	private String libelStatutPriseEnCharge;
+
+
 	private List<StatutIncidentDTO> historique = new Vector<StatutIncidentDTO>();
 
+
+	
+	
+	public String getLibelStatutPriseEnCharge() {
+		return libelStatutPriseEnCharge;
+	}
+	public void setLibelStatutPriseEnCharge(String libelStatutPriseEnCharge) {
+		this.libelStatutPriseEnCharge = libelStatutPriseEnCharge;
+	}
+	public Integer getStatutPriseEnCharge() {
+		return statutPriseEnCharge;
+	}
+	public void setStatutPriseEnCharge(Integer statutPriseEnCharge) {
+		this.statutPriseEnCharge = statutPriseEnCharge;
+	}
+	
+	public String getLibelTypePb() {
+		return libelTypePb;
+	}
+	public void setLibelTypePb(String libelTypePb) {
+		this.libelTypePb = libelTypePb;
+	}
 
 	
 	public List<StatutIncidentDTO> getHistorique() {

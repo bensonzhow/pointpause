@@ -32,6 +32,10 @@
 		<many-to-one name="incident" column="numero_incident"
 			class="Incident" cascade="all" not-found="ignore" not-null="false" />
 
+		<many-to-one name="typeStatut" column="numero_type_statut_incident"
+			class="TypeStatutIncident" cascade="all" not-found="ignore" not-null="false" />
+
+
 
 	</class>
 </hibernate-mapping>

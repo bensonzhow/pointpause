@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
+	<class name="TypeStatutIncident" table="type_statut_incident">
+
+		<id name="numeroType" type="integer">
+			<column name="numero_type_statut_incident" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+		<property name="libelle">
+			<column name="libele_type_statut_incident" sql-type="text"
+				not-null="false" />
+		</property>
+
+		<property name="couleur">
+			<column name="libele_type_statut_incident" sql-type="int"
+				not-null="false" />
+		</property>
+
+		<property name="libelleIntervention">
+			<column name="libelle_type_intervention" sql-type="text"
+				not-null="false" />
+		</property>
+
+	</class>
+</hibernate-mapping>
+

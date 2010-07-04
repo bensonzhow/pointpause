@@ -11,8 +11,15 @@ public class StatutIncident  implements Comparable<StatutIncident> {
 	private Incident incident;
 	private Date dateChangementStatut;
 	private String commentaire;
+	private TypeStatutIncident typeStatut;
 	
 	
+	public TypeStatutIncident getTypeStatut() {
+		return typeStatut;
+	}
+	public void setTypeStatut(TypeStatutIncident typeStatut) {
+		this.typeStatut = typeStatut;
+	}
 	public Integer getNumero() {
 		return numero;
 	}

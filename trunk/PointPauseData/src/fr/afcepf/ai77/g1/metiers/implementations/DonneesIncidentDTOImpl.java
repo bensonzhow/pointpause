@@ -158,13 +158,18 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 			IncidentDTO newIncDto = new IncidentDTO();
 
 			newIncDto.setDateConstatIncident(incident.getDateConstatIncident());
-			newIncDto.setDateDeclarationIncident(incident
-					.getDateDeclarationIncident());
+			newIncDto.setDateDeclarationIncident(incident.getDateDeclarationIncident());
 			newIncDto.setFlag(incident.getFlag());
 			newIncDto.setNumClient(numClient);
 			newIncDto.setNumero(incident.getNumero());
-			newIncDto.setNumInstallation(incident.getNumeroDeploiement()
-					.getNumero());
+			newIncDto.setNumInstallation(incident.getNumeroDeploiement().getNumero());
+			
+			try{
+				newIncDto.setLibelTypePb(incident.getTypePb().getLibelle());
+			}catch(Exception e){
+				newIncDto.setLibelTypePb("inconnu");
+			}
+			
 
 			try {
 				newIncDto.setNumTypePb(incident.getTypePb().getNumTypePb());
@@ -188,6 +193,15 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 				stincdto.setCommentaire(stinc.getCommentaire());
 				stincdto.setDateNouveauStatut(stinc.getDateChangementStatut());
 				stincdto.setNumero(stinc.getNumero());
+				
+			
+				try{
+					stincdto.setStatut(stinc.getTypeStatut().getLibelle());
+					stincdto.setIntStatut(stinc.getTypeStatut().getNumeroType());
+				}catch(Exception e){
+					stincdto.setStatut("indetermine");
+					stincdto.setIntStatut(-1);
+				}
 
 				// FIXME
 				/*
@@ -201,12 +215,9 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 				if (stinc.getIntervention() != null) {
 					InterventionDTO intervDTO = new InterventionDTO();
 
-					intervDTO.setCommentaire(stinc.getIntervention()
-							.getCommentaire());
-					intervDTO.setDebutIntervention(stinc.getIntervention()
-							.getDateDebutIntervention());
-					intervDTO.setFinIntervention(stinc.getIntervention()
-							.getDateFinIntervention());
+					intervDTO.setCommentaire(stinc.getIntervention().getCommentaire());
+					intervDTO.setDebutIntervention(stinc.getIntervention().getDateDebutIntervention());
+					intervDTO.setFinIntervention(stinc.getIntervention().getDateFinIntervention());
 
 					// FIXME : mapper le nom de l'employe
 					/*
@@ -216,6 +227,7 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 						intervDTO.setNomEmploye("aucun employe defini");
 					}
 					*/
+					
 					 
 					stincdto.setIntervention(intervDTO);
 				}
@@ -227,6 +239,17 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 
 			//trier la liste des statutincidents
 			if (newIncDto.getHistorique()!=null) Collections.sort(newIncDto.getHistorique());
+			
+			//maintenant que la liste est triée, on peut récupérer les infos du dernier statut pour les 
+			//mettre dans l'incident directement
+			try{
+				StatutIncidentDTO statutDTO = newIncDto.getHistorique().get(newIncDto.getHistorique().size()-1);
+				newIncDto.setStatutPriseEnCharge(statutDTO.getIntStatut());
+				newIncDto.setLibelStatutPriseEnCharge(statutDTO.getStatut());
+			}catch(Exception e){
+				newIncDto.setStatutPriseEnCharge(-1);
+				newIncDto.setLibelStatutPriseEnCharge("indetermine");				
+			}
 			
 			// maintenant que le bousin est créé, on l'ajoute
 			listIncidentDTO.add(newIncDto);

@@ -266,6 +266,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 								for (StatutIncident stinc : incident
 										.getListeStatutsIncidents()) {
 									Hibernate.initialize(stinc);
+									Hibernate.initialize(stinc.getTypeStatut());
 									Hibernate.initialize(stinc
 											.getIntervention());
 									
