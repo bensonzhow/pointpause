@@ -1,6 +1,7 @@
 package fr.afcepf.ai77.g1.persistence.implementations;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -15,6 +16,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Order;
+import org.hibernate.mapping.Collection;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -183,6 +185,8 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							/*
 							 * premiere etape : cherche la liste des incidents
 							 */
+
+							
 							/*
 							 * Query query = session.createQuery(
 							 * "select myincident from Incident as myincident "
@@ -202,6 +206,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							 * liste = query.list();
 							 */
 
+							
 							Criteria critere = session.createCriteria(
 									Incident.class).addOrder(
 									Order.desc("dateDeclarationIncident"));
@@ -267,9 +272,8 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 									if (stinc.getIntervention()!=null)
 										Hibernate.initialize(stinc.getIntervention().getEmploye());
 									
+												
 								}
-								
-
 							}
 
 							return reliste;
