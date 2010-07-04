@@ -25,17 +25,20 @@ public class ChoixContratBean {
 	HttpServletRequest request = (HttpServletRequest) context
 			.getExternalContext().getRequest();
 	HttpSession httpSession = request.getSession(false);
-	
+	private String check;
+	private String suite="false";
+	private Boolean essaiValid = false;
+	private String descriptionFormule="";
+	private String descriptionMachine="";
 	private List<SelectItem> formules = new ArrayList<SelectItem>();
 	private List<SelectItem> machines = new ArrayList<SelectItem>();
 	private List<ModeleAutomate> machinesDispo = new ArrayList<ModeleAutomate>();
 	private String selectedFormule;
 	private String selectedMachine;
 	private String region;
-	private int quantite;
+	private int quantite =1;
 	
 	
-
 	public String getRegion() {
 		return region;
 	}
@@ -62,15 +65,7 @@ public class ChoixContratBean {
 	public List<SelectItem> getMachines() {
 		return machines;
 	}
-	private String description;
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 	public List<SelectItem> getFormules() {
 		return formules;
 	}
@@ -82,36 +77,41 @@ public class ChoixContratBean {
 		this.selectedFormule = selectedFormule;
 	}
 
-	public String getDescriptionFormuleSelected() {
-		return description;
-	}
-	public void setDescriptionFormuleSelected(String descriptionFormuleSelected) {
-		this.description = descriptionFormuleSelected;
-	}
+	
 
 
 	public void selectionChanged(){
 		
 	}
 
-public void getDescriptionMachine(){
+public void getDescriptionMachineAjax(){
+	essaiValid=false;
 	for (ModeleAutomate automate: machinesDispo)
 	{
 		if(automate.getNom().equals(this.selectedMachine))
 		{
-			description= "Description de la machine :" +selectedMachine + " : "+ automate.getDescription();
+			descriptionMachine= "Description de la machine :" +selectedMachine + " : "+ automate.getDescription();
 		}
 	}
 }
 
 
-	public void getDescriptionFormule(){
+	public String getDescriptionFormule() {
+	return descriptionFormule;
+}
+
+public String getDescriptionMachine() {
+	return descriptionMachine;
+}
+
+	public void getDescriptionFormuleAjax(){
 
 		{
+			essaiValid=false;
 			for (Formule formule : formulesList) {
 				if (formule.getLibelleFormule().equals(this.selectedFormule))
 				{
-					description= "Description de la formule "+ selectedFormule+ " : "+ formule.getCommentaireFormule();
+					descriptionFormule= "Description de la formule "+ selectedFormule+ " : "+ formule.getCommentaireFormule();
 				}
 			}
 		}
@@ -120,14 +120,23 @@ public void getDescriptionMachine(){
 		//	descriptionFormuleSelected="lala";
 	}
 	
-	public void Submit1(){
+	public String Submit1(){
+		System.out.println("submit1");
+		essaiValid=true;
 		if(selectedFormule=="")
-			description= "choisir une formule ! ";
+			{
+			
+			check= "choisir une formule d'abord ! ";
+			return suite;}
 		else if(selectedMachine=="")
-			description= "choisir une machine ! ";
+			{check= "choisir une machine ! ";
+		return suite;}
 		else
-			{selectedFormule= "Formule choisie :" + selectedFormule;
-		httpSession.setAttribute("contratok", "ok");}
+			{check="ok";
+			selectedFormule= "Formule choisie :" + selectedFormule;
+		suite="true";
+		return suite;}
+		
 	}
 public void kill()
 {
@@ -156,6 +165,30 @@ public void kill()
 
 
 
+	}
+
+	public String getSuite() {
+		return suite;
+	}
+
+	public void setSuite(String suite) {
+		this.suite = suite;
+	}
+
+	public void setCheck(String check) {
+		this.check = check;
+	}
+
+	public String getCheck() {
+		return check;
+	}
+
+	public void setEssaiValid(Boolean essaiValid) {
+		this.essaiValid = essaiValid;
+	}
+
+	public Boolean getEssaiValid() {
+		return essaiValid;
 	}
 
 }

@@ -12,7 +12,7 @@
 	</facelets:define>
 
 	<facelets:define name="Contenu">
-		
+		<a4j:outputPanel layout="block">
 		 <jstl:if test="${sessionScope['session']==null}" >
    		   <div id="cacheur" style="margin-top:20px;width:1000px; height: 600px; background-color:gray; margin:auto; opacity:0.8; position:absolute;"></div> 
 <div id="simplediv" style="margin:auto;padding:15px;border-radius: 5px;position:relative; -moz-border-radius: 2em; background-color:#FF9900;border:1px solid black;width:200px;height:100px;">
@@ -21,7 +21,10 @@
    </jstl:if>
    <jsfCore:view id="creationContrat">
 			<jsf:form>
-				<div id="general"><richfaces:simpleTogglePanel
+		
+				<div id="general">
+					
+				<richfaces:simpleTogglePanel
 					switchType="ajax" label="unecommande">
 
 					<jsfCore:facet name="header">
@@ -47,8 +50,8 @@
 
 					<jsfCore:selectItems value="#{ChoixContratBean.formules}" />
 					<a4j:support event="onselect"
-						action="#{ChoixContratBean.getDescriptionFormule}"
-						reRender="reponse" />
+						action="#{ChoixContratBean.getDescriptionFormuleAjax}"
+						reRender="reponseFormule, check" />
 
 
 					<!-- </jsf:selectOneMenu>-->
@@ -71,25 +74,35 @@
 
 			<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
 			<a4j:support event="onselect"
-				action="#{ChoixContratBean.getDescriptionMachine}"
-				reRender="reponse" />
+				action="#{ChoixContratBean.getDescriptionMachineAjax}"
+				reRender="reponseMachine, check" />
 
 
 			<!-- </jsf:selectOneMenu>-->
 							</richfaces:comboBox></td>
 
 							<td><richfaces:panel>
-								<jsf:outputText id="reponse"
-									value="#{ChoixContratBean.description}" />
-
-							</richfaces:panel></td>
+								<jsf:outputText id="reponseFormule"
+									value="#{ChoixContratBean.descriptionFormule}" />
+									</richfaces:panel>
+									<richfaces:panel>
+						<jsf:outputText id="reponseMachine"
+									value="#{ChoixContratBean.descriptionMachine}" />
+							</richfaces:panel>
+							<a4j:outputPanel id="check">
+							<richfaces:panel rendered="#{ChoixContratBean.essaiValid}">
+							<jsf:outputText value="#{ChoixContratBean.check}" /></richfaces:panel>
+							</a4j:outputPanel>
+							</td>
 						</tr>
 
 					</table>
-				</richfaces:simpleTogglePanel> <jsf:commandButton action="#{ChoixContratBean.Submit1}"
-					value="valider"></jsf:commandButton> 
-		<jstl:if test="${sessionScope['contratok']!=null}">
-					<richfaces:simpleTogglePanel switchType="ajax"
+				</richfaces:simpleTogglePanel> 
+		<a4j:commandButton  action="#{ChoixContratBean.Submit1}" reRender="suite, check" value="valider"  > </a4j:commandButton>
+		
+			
+		<a4j:outputPanel id="suite" >
+							<richfaces:simpleTogglePanel rendered="#{ChoixContratBean.suite}" switchType="ajax"
 						label="Modalites de contrat">
 						<table border="1" cellpadding="4" cellspacing="0">
 							<tr>
@@ -108,7 +121,7 @@
         								<jsfCore:selectItem itemValue="Rhones-Alpe"/>
        									 <jsfCore:selectItem itemValue="Poitou-Charentes"/>
 								</richfaces:comboBox>          
-								 Fr&#233;quence d'approvisionnement <richfaces:comboBox>
+								 Nombre d'approvisionnement par mois <richfaces:comboBox>
 								 <jsfCore:selectItem itemValue="Tous les jours"/>            
         								<jsfCore:selectItem itemValue="Tous les deux jours"/>
         								<jsfCore:selectItem itemValue="Par semaine"/>
@@ -125,10 +138,13 @@
 							</tr>
 						</table>
 					</richfaces:simpleTogglePanel>
-				</jstl:if> <jsf:commandButton action="#{ChoixContratBean.kill}" value="kill"></jsf:commandButton>
+		
+				</a4j:outputPanel>
+				
 				</div>
 			</jsf:form>
 		</jsfCore:view>
+		</a4j:outputPanel>
 	</facelets:define>
 
 </facelets:composition>
