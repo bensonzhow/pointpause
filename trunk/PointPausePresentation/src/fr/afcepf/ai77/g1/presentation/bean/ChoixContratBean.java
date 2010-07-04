@@ -1,6 +1,9 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -9,7 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import fr.afcepf.ai77.g1.facade.DTOFactory;
+import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
+import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
+
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 
@@ -25,9 +34,15 @@ public class ChoixContratBean {
 	HttpServletRequest request = (HttpServletRequest) context
 			.getExternalContext().getRequest();
 	HttpSession httpSession = request.getSession(false);
+	public String commentaire;
+	
+	private Boolean flag;
+	private Date dateFin;
+	private Date dateDebut;
 	private String check;
 	private String suite="false";
 	private Boolean essaiValid = false;
+	private Integer frequence;
 	private String descriptionFormule="";
 	private String descriptionMachine="";
 	private List<SelectItem> formules = new ArrayList<SelectItem>();
@@ -37,8 +52,14 @@ public class ChoixContratBean {
 	private String selectedMachine;
 	private String region;
 	private int quantite =1;
-	
-	
+	private Integer verdict;
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 	public String getRegion() {
 		return region;
 	}
@@ -77,14 +98,7 @@ public class ChoixContratBean {
 		this.selectedFormule = selectedFormule;
 	}
 
-	
-
-
-	public void selectionChanged(){
-		
-	}
-
-public void getDescriptionMachineAjax(){
+	public void getDescriptionMachineAjax(){
 	essaiValid=false;
 	for (ModeleAutomate automate: machinesDispo)
 	{
@@ -116,9 +130,41 @@ public String getDescriptionMachine() {
 			}
 		}
 
-
-		//	descriptionFormuleSelected="lala";
 	}
+	public Integer Inserer(){
+		System.out.println("inserer");
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();		
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context
+				.getExternalContext().getRequest();
+	
+		HttpSession httpSession = request.getSession(false);
+		
+		SessionDTO session = (SessionDTO)httpSession.getAttribute("session");
+		ContratDTO contrat = new ContratDTO();
+		contrat.setFreqApprovisionnement(frequence);
+		System.out.println("commentaire");
+		System.out.println(commentaire);
+		contrat.setFlag(flag);
+		/*contrat.setDateDebut(dateDebut);
+		contrat.setDateFin(dateFin);
+		
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateDebut);
+		int d1 = cal.get(Calendar.DATE);
+		cal.setTime(dateFin);
+		int d2 = cal.get(Calendar.DATE);
+		int duree= d2 - d1;
+		contrat.setDuree(duree);*/
+		contrat.setCommentaire(commentaire);
+		contrat.setGarantie(true);
+		contrat.setNumClient(session.getNumeroClient());
+		System.out.println("fin insertcontrat ");
+		return setVerdict(donneesContrat.insertContrat(contrat));
+		
+	}
+	
 	
 	public String Submit1(){
 		System.out.println("submit1");
@@ -189,6 +235,47 @@ public void kill()
 
 	public Boolean getEssaiValid() {
 		return essaiValid;
+	}
+
+	public void setFrequence(Integer frequence) {
+		this.frequence = frequence;
+	}
+
+	public Integer getFrequence() {
+		return frequence;
+	}
+
+	public void setFlag(Boolean flag) {
+		this.flag = flag;
+	}
+
+	public Boolean getFlag() {
+		return flag;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public Integer setVerdict(Integer verdict) {
+		this.verdict = verdict;
+		return verdict;
+	}
+
+	public Integer getVerdict() {
+		return verdict;
 	}
 
 }
