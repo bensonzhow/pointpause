@@ -21,12 +21,9 @@
    </jstl:if>
    <jsfCore:view id="creationContrat">
 			<jsf:form>
-		
 				<div id="general">
-					
 				<richfaces:simpleTogglePanel
 					switchType="ajax" label="unecommande">
-
 					<jsfCore:facet name="header">
 						Nouvelle commande ? 
 				 </jsfCore:facet>
@@ -94,6 +91,7 @@
 							<jsf:outputText value="#{ChoixContratBean.check}" /></richfaces:panel>
 							</a4j:outputPanel>
 							</td>
+							
 						</tr>
 
 					</table>
@@ -121,30 +119,53 @@
         								<jsfCore:selectItem itemValue="Rhones-Alpe"/>
        									 <jsfCore:selectItem itemValue="Poitou-Charentes"/>
 								</richfaces:comboBox>          
-								 Nombre d'approvisionnement par mois <richfaces:comboBox>
-								 <jsfCore:selectItem itemValue="Tous les jours"/>            
-        								<jsfCore:selectItem itemValue="Tous les deux jours"/>
-        								<jsfCore:selectItem itemValue="Par semaine"/>
-       									 <jsfCore:selectItem itemValue="Toutes les deux semaines"/>
-       									 <jsfCore:selectItem itemValue="Une fois par mois"/>
-       									 <jsfCore:selectItem itemValue="Une fois tous les deux mois"/>
-       									 <jsfCore:selectItem itemValue="Une fois tous les six mois"/>
-								 </richfaces:comboBox>
-								Dur&#233;e du contrat <richfaces:comboBox>
-									 <jsfCore:selectItem itemValue="Un an"/>
-									 	 <jsfCore:selectItem itemValue="Deux ans"/>                     
-								</richfaces:comboBox></td>
-
+								 Nombre d'approvisionnements par mois <richfaces:inputNumberSpinner enableManualInput="true"
+									value="#{ChoixContratBean.frequence}" minValue="1" step="1"></richfaces:inputNumberSpinner>
+								Date de d&#233;but du contrat 
+								
+								<jsf:panelGrid id="calendrier" columns="2">
+            <a4j:outputPanel id="calendar" layout="block">
+                    <richfaces:calendar value="#{ChoixContratBean.dateDebut}"  datePattern="dd/MM/yyyy"></richfaces:calendar> 
+            </a4j:outputPanel>
+        
+           
+            </jsf:panelGrid>  
+            Date de fin de contrat
+            <jsf:panelGrid id="calendrierFin" columns="2">
+            <a4j:outputPanel id="calendarFin" layout="block">
+                    <richfaces:calendar value="#{ChoixContratBean.dateFin}"  datePattern="dd/MM/yyyy">
+                    
+                    </richfaces:calendar> 
+            </a4j:outputPanel>
+        
+           
+            </jsf:panelGrid>  
+								</td>
+							</tr>
+							<tr> <td>
+							Voulez-vous suivre ce contrat dans votre tableau de bord ? <jsf:selectBooleanCheckbox value="#{ChoixContratBean.flag}"></jsf:selectBooleanCheckbox>
+							</td>
+							</tr>
+							<tr>
+							<td>
+							Des commentaires ? <jsf:inputTextarea value="#ChoixContratBean.commentaire"></jsf:inputTextarea>
+							</td>
 							</tr>
 						</table>
+						
+						
+						<jsf:outputText value="#{ChoixContratBean.verdict}"></jsf:outputText>
+							
 					</richfaces:simpleTogglePanel>
-		
+	
 				</a4j:outputPanel>
 				
+				<jsf:commandButton action="#{ChoixContratBean.Inserer}" value="valider"></jsf:commandButton>
 				</div>
 			</jsf:form>
 		</jsfCore:view>
 		</a4j:outputPanel>
+		
 	</facelets:define>
 
 </facelets:composition>
