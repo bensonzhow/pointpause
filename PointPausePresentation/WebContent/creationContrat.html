@@ -8,14 +8,18 @@
 <facelets:composition template="masterPage.html">
 	<facelets:define name="HeadScriptorCss">
 		<link type="text/css" href="css/contrat.css" rel="stylesheet" />
-		<script type="text/javascript" src="scripts/toggle.js"></script>
+		<script type="text/javascript" src="scripts/redirection.js"></script>
 	</facelets:define>
 
 	<facelets:define name="Contenu">
-		<jsfCore:view id="creationContrat">
+		
 		 <jstl:if test="${sessionScope['session']==null}" >
-   		<meta http-equiv="refresh" content="0; url=connexion.html" />
+   		   <div id="cacheur" style="margin-top:20px;width:1000px; height: 600px; background-color:gray; margin:auto; opacity:0.8; position:absolute;"></div> 
+<div id="simplediv" style="margin:auto;padding:15px;border-radius: 5px;position:relative; -moz-border-radius: 2em; background-color:#FF9900;border:1px solid black;width:200px;height:100px;">
+   		Vous devez vous connecter pour cela ! <br />
+   		<u>Cliquez pour fermer...</u></div>
    </jstl:if>
+   <jsfCore:view id="creationContrat">
 			<jsf:form>
 				<div id="general"><richfaces:simpleTogglePanel
 					switchType="ajax" label="unecommande">
