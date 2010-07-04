@@ -9,12 +9,19 @@
 
     
 <facelets:composition template="masterPage.html">
-  <facelets:define name="Contenu"> 
+<facelets:define name="HeadScriptorCss">
+ <script type="text/javascript" src="scripts/redirection.js"></script>
+</facelets:define>
+	<facelets:define name="Contenu"> 
+  
    <jstl:if test="${sessionScope['session']==null}" >
-   		<meta http-equiv="refresh" content="0; url=connexion.html" />
-   </jstl:if>
+   <div style="width:1000px; height: 600px; background-color:gray; margin:auto; opacity:0.8; position:absolute;"></div> 
+<div id="simplediv" style="margin:auto;padding:15px;border-radius: 5px;position:relative; -moz-border-radius: 2em; background-color:#FF9900;border:1px solid black;width:200px;height:100px;">
+   		Vous devez vous connecter pour cela ! <br />
+   		<u>Cliquez pour fermer...</u></div>
+</jstl:if>
  
-   	
+   
    
  Bienvenue M, [value du client], votre tableau de bord !
 
