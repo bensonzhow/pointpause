@@ -15,6 +15,8 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 
+import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
+import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
@@ -179,6 +181,17 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 			return listContrat;
 		}
 		
+	}
+
+	@Override
+	public Integer insertContrat(Contrat contrat) {
+		//pas oublier insérer bouquet aussi
+		// mettre un site client aussi pour la localisation... 
+		
+		hibernateTemplate.save(contrat);
+		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Contrat");
+		int numero = maxNumero.get(0);
+		return numero;
 	}
 
 }

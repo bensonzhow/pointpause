@@ -1,10 +1,14 @@
 package fr.afcepf.ai77.g1.metiers.tests;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import junit.framework.TestCase;
 import fr.afcepf.ai77.g1.facade.DTOFactory;
@@ -99,6 +103,45 @@ public class TestDTOInterfaces extends TestCase {
 			
 		}
 	
+	}
+	
+	public void testInsertContrat(){
+		IDonneesContratDTO donnees = DTOFactory.getIDonneesContratDTO();
+		ContratDTO contratDTO = new ContratDTO();
+		contratDTO.setCommentaire("je suis un contrat DTO de test");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String date = "19/01/1998";
+		Date debut = new Date();
+		try {
+			debut = sdf.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String dateFin = "25/05/2001";
+		Date fin = new Date();
+		try {
+			fin = sdf.parse(dateFin);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		contratDTO.setDateDebut(debut);
+		contratDTO.setDateFin(fin);
+		contratDTO.setFlag(false);
+		contratDTO.setFreqApprovisionnement(5);
+		contratDTO.setGarantie(false);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(debut);
+		int d1 = cal.get(Calendar.DATE);
+		cal.setTime(fin);
+		int d2 = cal.get(Calendar.DATE);
+		int duree= d2 - d1;
+		contratDTO.setDuree(duree);
+		contratDTO.setNumClient(2);
+		System.out.println(donnees.insertContrat(contratDTO));
+	//marche au 04/07/2010 chez anna	
 	}
 	
 }
