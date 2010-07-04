@@ -12,95 +12,103 @@
 	</facelets:define>
 
 	<facelets:define name="Contenu">
-		<a4j:outputPanel layout="block">
-		 <jstl:if test="${sessionScope['session']==null}" >
-   		   <div id="cacheur" style="margin-top:20px;width:1000px; height: 600px; background-color:gray; margin:auto; opacity:0.8; position:absolute;"></div> 
-<div id="simplediv" style="margin:auto;padding:15px;border-radius: 5px;position:relative; -moz-border-radius: 2em; background-color:#FF9900;border:1px solid black;width:200px;height:100px;">
-   		Vous devez vous connecter pour cela ! <br />
-   		<u>Cliquez pour fermer...</u></div>
-   </jstl:if>
-   <jsfCore:view id="creationContrat">
-			<jsf:form>
+		
+			<jstl:if test="${sessionScope['session']==null}">
+				<div id="cacheur"
+					style="margin-top: 20px; width: 1000px; height: 600px; background-color: gray; margin: auto; opacity: 0.8; position: absolute;"></div>
+				<div id="simplediv"
+					style="margin: auto; padding: 15px; border-radius: 5px; position: relative; -moz-border-radius: 2em; background-color: #FF9900; border: 1px solid black; width: 200px; height: 100px;">
+				Vous devez vous connecter pour cela ! <br />
+				<u>Cliquez pour fermer...</u></div>
+			</jstl:if>
+			
+			<jsfCore:subview id="creationContrat">
+				<jsf:form>
 				<div id="general">
-				<richfaces:simpleTogglePanel
-					switchType="ajax" label="unecommande">
-					<jsfCore:facet name="header">
+				<a4j:region>
+					<richfaces:simpleTogglePanel
+						switchType="ajax" label="unecommande">
+						<jsfCore:facet name="header">
 						Nouvelle commande ? 
 				 </jsfCore:facet>
-					<table>
-						<tr>
-							<th>Quantite</th>
-							<th>Formule</th>
-							<th>Machine</th>
-						</tr>
-						<tr>
-							<td><richfaces:inputNumberSpinner minValue="1"
-								enableManualInput="true" value="#{ChoixContratBean.quantite}"
-								step="1"></richfaces:inputNumberSpinner></td>
-							<td><richfaces:tabPanel swithType="ajax">
-								<richfaces:tab label="Nos formules">
+						<table>
+							<tr>
+								<th>Quantite</th>
+								<th>Formule</th>
+								<th>Machine</th>
+							</tr>
+							<tr>
+								<td><richfaces:inputNumberSpinner minValue="1"
+									enableManualInput="true" value="#{ChoixContratBean.quantite}"
+									step="1"></richfaces:inputNumberSpinner></td>
+								<td><richfaces:tabPanel swithType="ajax">
+									<richfaces:tab label="Nos formules">
 
-									<richfaces:comboBox selectFirstOnUpdate="true"
-										value="#{ChoixContratBean.selectedFormule}">
-										<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
-
-
-					<jsfCore:selectItems value="#{ChoixContratBean.formules}" />
-					<a4j:support event="onselect"
-						action="#{ChoixContratBean.getDescriptionFormuleAjax}"
-						reRender="reponseFormule, check" />
+										<richfaces:comboBox selectFirstOnUpdate="true"
+											value="#{ChoixContratBean.selectedFormule}">
+											<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
 
 
-					<!-- </jsf:selectOneMenu>-->
-				</richfaces:comboBox>
+											<jsfCore:selectItems value="#{ChoixContratBean.formules}" />
+											<a4j:support event="onselect"
+												action="#{ChoixContratBean.getDescriptionFormuleAjax}"
+												reRender="reponseFormule, check" />
 
 
-			</richfaces:tab>
-
-			<richfaces:tab label="A la carte">
-			composer sa formule
-</richfaces:tab>
-
-		</richfaces:tabPanel></td>
+											<!-- </jsf:selectOneMenu>-->
+										</richfaces:comboBox>
 
 
-		<td><richfaces:comboBox selectFirstOnUpdate="true"
-			value="#{ChoixContratBean.selectedMachine}">
-			<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
+									</richfaces:tab>
+
+									<richfaces:tab label="A la carte">
+										composer sa formule
+										</richfaces:tab>
+
+								</richfaces:tabPanel></td>
 
 
-			<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
-			<a4j:support event="onselect"
-				action="#{ChoixContratBean.getDescriptionMachineAjax}"
-				reRender="reponseMachine, check" />
+								<td><richfaces:comboBox selectFirstOnUpdate="true"
+									value="#{ChoixContratBean.selectedMachine}">
+									<!-- <jsf:selectOneMenu value="#{ChoixContratBean.selectedFormule}"> -->
 
 
-			<!-- </jsf:selectOneMenu>-->
-							</richfaces:comboBox></td>
+									<jsfCore:selectItems value="#{ChoixContratBean.machines}" />
+									<a4j:support event="onselect"
+										action="#{ChoixContratBean.getDescriptionMachineAjax}"
+										reRender="reponseMachine, check" />
 
-							<td><richfaces:panel>
-								<jsf:outputText id="reponseFormule"
-									value="#{ChoixContratBean.descriptionFormule}" />
+
+									<!-- </jsf:selectOneMenu>-->
+								</richfaces:comboBox></td>
+
+								<td><richfaces:panel>
+									<jsf:outputText id="reponseFormule"
+										value="#{ChoixContratBean.descriptionFormule}" />
+								</richfaces:panel> 
+								<richfaces:panel>
+									<jsf:outputText id="reponseMachine"
+										value="#{ChoixContratBean.descriptionMachine}" />
+								</richfaces:panel> 
+								<a4j:outputPanel id="check">
+									<richfaces:panel rendered="#{ChoixContratBean.essaiValid}">
+										<jsf:outputText value="#{ChoixContratBean.check}" />
 									</richfaces:panel>
-									<richfaces:panel>
-						<jsf:outputText id="reponseMachine"
-									value="#{ChoixContratBean.descriptionMachine}" />
-							</richfaces:panel>
-							<a4j:outputPanel id="check">
-							<richfaces:panel rendered="#{ChoixContratBean.essaiValid}">
-							<jsf:outputText value="#{ChoixContratBean.check}" /></richfaces:panel>
-							</a4j:outputPanel>
-							</td>
-							
-						</tr>
+								</a4j:outputPanel></td>
 
-					</table>
-				</richfaces:simpleTogglePanel> 
-		<a4j:commandButton  action="#{ChoixContratBean.Submit1}" reRender="suite, check" value="valider"  > </a4j:commandButton>
-		
-			
-		<a4j:outputPanel id="suite" >
-							<richfaces:simpleTogglePanel rendered="#{ChoixContratBean.suite}" switchType="ajax"
+							</tr>
+
+						</table>
+					</richfaces:simpleTogglePanel>
+					<a4j:commandButton  action="#{ChoixContratBean.Submit1}" reRender="suite, check" value="valider"  > </a4j:commandButton>
+					</a4j:region>
+					</div>
+
+	
+	
+	<jsf:panelGrid id="suite" >
+		<jsf:panelGroup rendered="#{ChoixContratBean.suite}">
+					<richfaces:simpleTogglePanel switchType="ajax" rendered="true"
 						label="Modalites de contrat">
 						<table border="1" cellpadding="4" cellspacing="0">
 							<tr>
@@ -108,64 +116,63 @@
 								<th>Modalit&#233;s</th>
 							</tr>
 							<tr>
-								<td><richfaces:inputNumberSpinner enableManualInput="true"
+								<td><richfaces:inputNumberSpinner enableManualInput="true" 
 									value="#{ChoixContratBean.quantite}" minValue="1" step="1"></richfaces:inputNumberSpinner>
 								</td>
-								<td> Localisation
-								
-								<richfaces:comboBox value="#{ChoixContratBean.region}" directInputSuggestions="true" >
-       									 <jsfCore:selectItem itemValue="Ile de France"/>            
-        								<jsfCore:selectItem itemValue="Nord-Aquitaine"/>
-        								<jsfCore:selectItem itemValue="Rhones-Alpe"/>
-       									 <jsfCore:selectItem itemValue="Poitou-Charentes"/>
-								</richfaces:comboBox>          
-								 Nombre d'approvisionnements par mois <richfaces:inputNumberSpinner enableManualInput="true"
-									value="#{ChoixContratBean.frequence}" minValue="1" step="1"></richfaces:inputNumberSpinner>
-								Date de d&#233;but du contrat 
-								
-								<jsf:panelGrid id="calendrier" columns="2">
-            <a4j:outputPanel id="calendar" layout="block">
-                    <richfaces:calendar value="#{ChoixContratBean.dateDebut}"  datePattern="dd/MM/yyyy"></richfaces:calendar> 
-            </a4j:outputPanel>
-        
-           
-            </jsf:panelGrid>  
-            Date de fin de contrat
-            <jsf:panelGrid id="calendrierFin" columns="2">
-            <a4j:outputPanel id="calendarFin" layout="block">
-                    <richfaces:calendar value="#{ChoixContratBean.dateFin}"  datePattern="dd/MM/yyyy">
-                    
-                    </richfaces:calendar> 
-            </a4j:outputPanel>
-        
-           
-            </jsf:panelGrid>  
-								</td>
-							</tr>
-							<tr> <td>
-							Voulez-vous suivre ce contrat dans votre tableau de bord ? <jsf:selectBooleanCheckbox value="#{ChoixContratBean.flag}"></jsf:selectBooleanCheckbox>
-							</td>
+								<td>Localisation <richfaces:comboBox
+									value="#{ChoixContratBean.region}"
+									directInputSuggestions="true">
+									<jsfCore:selectItem itemValue="Ile de France" />
+									<jsfCore:selectItem itemValue="Nord-Aquitaine" />
+									<jsfCore:selectItem itemValue="Rhones-Alpe" />
+									<jsfCore:selectItem itemValue="Poitou-Charentes" />
+								</richfaces:comboBox> Nombre d'approvisionnements par mois <richfaces:inputNumberSpinner
+									enableManualInput="true" value="#{ChoixContratBean.frequence}"
+									minValue="1" step="1"></richfaces:inputNumberSpinner> Date de
+								d&#233;but du contrat <jsf:panelGrid id="calendrier" columns="2">
+									<a4j:outputPanel id="calendar" layout="block">
+										<richfaces:calendar value="#{ChoixContratBean.dateDebut}"
+											datePattern="dd/MM/yyyy"></richfaces:calendar>
+									</a4j:outputPanel>
+
+
+								</jsf:panelGrid> Date de fin de contrat <jsf:panelGrid id="calendrierFin"
+									columns="2">
+									<a4j:outputPanel id="calendarFin" layout="block">
+										<richfaces:calendar value="#{ChoixContratBean.dateFin}"
+											datePattern="dd/MM/yyyy">
+
+										</richfaces:calendar>
+									</a4j:outputPanel>
+
+
+								</jsf:panelGrid></td>
 							</tr>
 							<tr>
-							<td>
-							Des commentaires ? <jsf:inputTextarea value="#ChoixContratBean.commentaire"></jsf:inputTextarea>
-							</td>
+								<td>Voulez-vous suivre ce contrat dans votre tableau de
+								bord ? <jsf:selectBooleanCheckbox
+									value="#{ChoixContratBean.flag}"></jsf:selectBooleanCheckbox></td>
+							</tr>
+							<tr>
+								<td>Des commentaires ? <jsf:inputTextarea
+									value="#{ChoixContratBean.commentaire}"></jsf:inputTextarea>
+									test<jsf:inputText value="#{ChoixContratBean.test}" />
+									</td>
 							</tr>
 						</table>
-						
-						
+
+
 						<jsf:outputText value="#{ChoixContratBean.verdict}"></jsf:outputText>
-							
+<jsf:commandButton action="#{ChoixContratBean.Inserer}" value="valider"></jsf:commandButton>
 					</richfaces:simpleTogglePanel>
-	
-				</a4j:outputPanel>
-				
-				<jsf:commandButton action="#{ChoixContratBean.Inserer}" value="valider"></jsf:commandButton>
-				</div>
-			</jsf:form>
-		</jsfCore:view>
-		</a4j:outputPanel>
+
 		
+</jsf:panelGroup>
+</jsf:panelGrid>
+		</jsf:form>
+		</jsfCore:subview>
+
+
 	</facelets:define>
 
 </facelets:composition>
