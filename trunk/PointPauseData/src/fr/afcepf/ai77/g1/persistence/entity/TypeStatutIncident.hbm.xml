@@ -16,7 +16,7 @@
 		</property>
 
 		<property name="couleur">
-			<column name="libele_type_statut_incident" sql-type="int"
+			<column name="couleur_type_statut_incident" sql-type="int"
 				not-null="false" />
 		</property>
 

@@ -10,6 +10,9 @@ public class StatutIncidentDTO implements Serializable , Comparable<StatutIncide
 	private InterventionDTO intervention;
 	private Date dateNouveauStatut;
 	private String commentaire;
+	
+	
+	
 	public Integer getNumero() {
 		return numero;
 	}

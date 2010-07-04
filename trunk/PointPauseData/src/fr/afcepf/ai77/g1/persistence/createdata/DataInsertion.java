@@ -338,7 +338,7 @@ public class DataInsertion {
 		//createIncidentForInstall(11);
 		//createIncidentForInstall(11);
 
-		//getAllIncidentsForClient(2);
+		getAllIncidentsForClient(2);
 
 	}
 
