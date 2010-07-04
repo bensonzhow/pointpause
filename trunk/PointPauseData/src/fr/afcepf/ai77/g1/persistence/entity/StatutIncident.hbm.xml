@@ -22,9 +22,12 @@
 		</property>
 
 
+<!--
+		<one-to-one name="intervention" class="Intervention" cascade="all"  />
+-->
 
-		<one-to-one name="intervention" class="Intervention" />
-
+		<many-to-one name="intervention" column="numero_intervention"
+			class="Intervention" cascade="all" not-found="ignore" not-null="false" />
 
 		<many-to-one name="incident" column="numero_incident"
 			class="Incident" cascade="all" not-found="ignore" not-null="false" />

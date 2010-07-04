@@ -2,7 +2,7 @@ package fr.afcepf.ai77.g1.persistence.entity;
 
 import java.util.Date;
 
-public class StatutIncident {
+public class StatutIncident  implements Comparable<StatutIncident> {
 	
 	
 	private Integer numero=null;
@@ -65,6 +65,12 @@ public class StatutIncident {
 
 	public StatutIncident(){
 	
+	}
+	
+	@Override
+	public int compareTo(StatutIncident arg0) {
+		// TODO Auto-generated method stub
+		return getDateChangementStatut().compareTo(arg0.getDateChangementStatut());
 	}
 	
 }

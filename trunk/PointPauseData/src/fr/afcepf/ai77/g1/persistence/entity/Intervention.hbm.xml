@@ -37,9 +37,9 @@
     	<key column="numero_intervention" />
     	<one-to-many class="ProduitsIntervention" />
     </set>    
+  
     
-    <one-to-one name="statutIncident" class="StatutIncident" />
-    
+  
     
   </class>
 </hibernate-mapping>
