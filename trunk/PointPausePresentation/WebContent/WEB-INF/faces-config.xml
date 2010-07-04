@@ -13,6 +13,13 @@
     <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  
+  
+ <managed-bean>
+    <managed-bean-name>SBean</managed-bean-name>
+    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.Suggestionbean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
   <managed-bean>
     <managed-bean-name>tableaubordMB</managed-bean-name>
     <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TableauBordBean</managed-bean-class>
@@ -69,7 +76,7 @@
  
  
  <navigation-rule>
-    <from-view-id>*</from-view-id>
+    <from-view-id>PointPausePresentation/*</from-view-id>
     <navigation-case>
             <from-action>#{connectionMB.logOut}</from-action>
             <from-outcome>Failure</from-outcome>
