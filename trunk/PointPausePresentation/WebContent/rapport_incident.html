@@ -25,25 +25,56 @@
 
 
 		<jsfCore:view id="rapportincident">
-			<div class="mainrapportincidentdiv">
-				<a4j:repeat value='#{rapportincidentMB.listeIncidents}' var="incident">
-				
-					<a4j:outputPanel styleClass="rapportincidentdiv" >
-					
-						<div class="incidentshortinfo">
-							<h3>Incident #<jsf:outputText value="#{incident.numero}"/> </h3>
-							<b>Contrat : </b><jsf:outputText value="#{incident.numContrat}" /> <br/>
-							<b>Machine : </b><jsf:outputText value="#{incident.numInstallation}" /> <br/>
-							<b>Declare le : </b>
-								<jsf:outputText value="#{incident.dateDeclarationIncident}">
-									<jsfCore:convertDateTime type="date" dateStyle="short"/>
-								</jsf:outputText>
-						</div>
-					</a4j:outputPanel>
-	
+			<div class="mainrapportincidentdiv"><a4j:repeat
+				value='#{rapportincidentMB.listeIncidents}' var="incident">
 
-				</a4j:repeat>
-			</div>
+				<a4j:outputPanel styleClass="rapportincidentdiv">
+
+					<div class="incidentshortinfo">
+					<h3>Incident #<jsf:outputText value="#{incident.numero}" /></h3>
+					<b>Contrat : </b><jsf:outputText value="#{incident.numContrat}" />
+					<br />
+					<b>Machine : </b><jsf:outputText
+						value="#{incident.numInstallation}" /> <br />
+					<b>Declare le : </b> <jsf:outputText
+						value="#{incident.dateDeclarationIncident}">
+						<jsfCore:convertDateTime type="date" dateStyle="short" />
+					</jsf:outputText> <br />
+					<b>Probleme : </b><jsf:outputText value="#{incident.libelTypePb}" />
+					<br />
+					<b>Statut : </b><jsf:outputText
+						value="#{incident.libelStatutPriseEnCharge}" /></div>
+					
+					<richfaces:dataTable styleClass="statutincidenttable"
+						value="#{incident.historique}" var="statut" rows="5">
+
+						<jsfCore:facet name="header">
+							<jsf:outputText value="Historique" />
+						</jsfCore:facet>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Date :</jsfCore:facet>
+							<jsf:outputText value="#{statut.dateNouveauStatut}">
+								<jsfCore:convertDateTime type="date" dateStyle="short" />
+							</jsf:outputText>
+						</richfaces:column>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Statut :</jsfCore:facet>
+							<jsf:outputText value="#{statut.statut}" />
+						</richfaces:column>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Commentaire : </jsfCore:facet>
+							<jsf:outputText value="#{statut.commentaire}" />
+						</richfaces:column>
+
+					</richfaces:dataTable>
+
+				</a4j:outputPanel>
+
+
+			</a4j:repeat></div>
 
 		</jsfCore:view>
 	</facelets:define>
