@@ -1,6 +1,9 @@
 var $j = jQuery.noConflict();
  
 $j(document).ready(function($){
+if($('#cacheur').is(":visible")){
+	$('#general').hide();
+}
 $('#simplediv').click(function(){
 $(this).fadeOut("slow", redirectPage);
 }
