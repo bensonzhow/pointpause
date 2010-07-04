@@ -6,6 +6,7 @@ import java.util.Date;
 public class StatutIncidentDTO implements Serializable , Comparable<StatutIncidentDTO>{
 	private Integer numero;
 	private String statut;
+	private Integer intStatut;
 	private InterventionDTO intervention;
 	private Date dateNouveauStatut;
 	private String commentaire;
@@ -14,6 +15,12 @@ public class StatutIncidentDTO implements Serializable , Comparable<StatutIncide
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	public Integer getIntStatut() {
+		return intStatut;
+	}
+	public void setIntStatut(Integer intStatut) {
+		this.intStatut = intStatut;
 	}
 	public String getStatut() {
 		return statut;

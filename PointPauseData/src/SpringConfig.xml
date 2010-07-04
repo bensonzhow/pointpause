@@ -70,6 +70,7 @@
 				<value>fr/afcepf/ai77/g1/persistence/entity/TypePb.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/TypeAutomate.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/ModeleAutomate.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/TypeStatutIncident.hbm.xml</value>
 			</list>
 		</property>
 
