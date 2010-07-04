@@ -25,13 +25,24 @@ public class ChoixContratBean {
 	HttpServletRequest request = (HttpServletRequest) context
 			.getExternalContext().getRequest();
 	HttpSession httpSession = request.getSession(false);
+	
 	private List<SelectItem> formules = new ArrayList<SelectItem>();
 	private List<SelectItem> machines = new ArrayList<SelectItem>();
 	private List<ModeleAutomate> machinesDispo = new ArrayList<ModeleAutomate>();
 	private String selectedFormule;
 	private String selectedMachine;
+	private String region;
 	private int quantite;
 	
+	
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
 	public int getQuantite() {
 		return quantite;
 	}
@@ -79,7 +90,9 @@ public class ChoixContratBean {
 	}
 
 
-	
+	public void selectionChanged(){
+		
+	}
 
 public void getDescriptionMachine(){
 	for (ModeleAutomate automate: machinesDispo)
@@ -108,9 +121,11 @@ public void getDescriptionMachine(){
 	}
 	
 	public void Submit1(){
-		if(selectedFormule==""||selectedMachine=="" || quantite==0)
-			description= "choisir formule et machines ! ";
-		else if(selectedFormule!=""||selectedMachine!="")
+		if(selectedFormule=="")
+			description= "choisir une formule ! ";
+		else if(selectedMachine=="")
+			description= "choisir une machine ! ";
+		else
 			{selectedFormule= "Formule choisie :" + selectedFormule;
 		httpSession.setAttribute("contratok", "ok");}
 	}
