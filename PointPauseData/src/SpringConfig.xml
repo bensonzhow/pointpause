@@ -6,7 +6,7 @@
 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-
+<!-- IP Mourad 192.168.10.49 -->
 	<!-- ###################configuration d'Hibernate################### -->
 
 
@@ -69,6 +69,10 @@
 				<value>fr/afcepf/ai77/g1/persistence/entity/Formule.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/TypePb.hbm.xml</value>
 				<value>fr/afcepf/ai77/g1/persistence/entity/TypeAutomate.hbm.xml</value>
+
+				<value>fr/afcepf/ai77/g1/persistence/entity/ModeleAutomate.hbm.xml</value>
+				<value>fr/afcepf/ai77/g1/persistence/entity/TypeStatutIncident.hbm.xml</value>
+
 			</list>
 		</property>
 
@@ -164,6 +168,9 @@
 		<property name="donneesContrat">
 			<ref bean="IDonneesContratDAO" />
 		</property>
+		<property name="donneesClient">
+			<ref bean="IDonneesClientDAO" />
+		</property>
 	</bean>
 
 	<bean id="IDonneesChoixContratDTO"
@@ -172,6 +179,7 @@
 		<property name="donneesChoixContrat">
 			<ref bean="IDonneesChoixContratDAO" />
 		</property>
+		
 	</bean>
 
 	<bean id="IDonneesIncidentDTO"
@@ -186,6 +194,11 @@
 		<property name="donneesTypePb">
 			<ref bean="IDonneesTypePbDAO" />
 		</property>
+		<property name="donneesContrat">
+			<ref bean="IDonneesContratDAO" />
+		</property>		
+		
+		
 	</bean>
 
 
