@@ -1,0 +1,53 @@
+<?xml version = "1.0"?>
+<ImageList>
+
+<Image>
+	<size_0>thumbnails/machinecafe.jpg</size_0>
+	<size_2>images/machinecafe.jpg</size_2>
+	<info></info>
+</Image>
+
+
+
+
+
+<Image>
+	<size_0>thumbnails/machineduo.jpg</size_0>
+	<size_2>images/machineduo.jpg</size_2>
+	<info></info>
+</Image>
+
+
+
+
+
+<Image>
+	<size_0>thumbnails/machineeau.jpg</size_0>
+	<size_2>images/machineeau.jpg</size_2>
+	<info></info>
+</Image>
+
+
+
+
+
+<Image>
+	<size_0>thumbnails/machinesnack.jpg</size_0>
+	<size_2>images/machinesnack.jpg</size_2>
+	<info></info>
+</Image>
+
+
+
+
+
+<Image>
+	<size_0>thumbnails/machineboisson.jpg</size_0>
+	<size_2>images/machineboisson.jpg</size_2>
+	<info></info>
+</Image>
+
+
+
+
+</ImageList>
