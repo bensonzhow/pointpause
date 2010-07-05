@@ -275,7 +275,8 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 										Restrictions.eq("numero", numClient));
 
 								liste = crit.list();
-
+								
+								
 								// initiliser le bousin
 								for (Contrat contrat : liste) {
 									Hibernate.initialize(contrat);
