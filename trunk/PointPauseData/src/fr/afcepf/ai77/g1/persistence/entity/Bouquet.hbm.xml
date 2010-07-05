@@ -14,11 +14,19 @@
 			<column name="quantite" sql-type="int" not-null="false" />
 		</property>
 
+		
 
 
 		<many-to-one name="contrat" column="numero_contrat" class="Contrat"
 			cascade="all" not-null="false" />
 
+
+
+		<many-to-one name="formule" column="code_formule" class="Formule"
+			cascade="all" not-null="false" />
+			
+			<many-to-one name="modeleAutomate" column="numero_modele_automate" class="ModeleAutomate"
+			cascade="all" not-null="false" />
 
 		<set name="historiqueInstallations" table="installation_bouquet"  cascade="all" >
 			<key column="code_bouquet" />

@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class Bouquet {
 	private Integer codeBouquet=null;
-	//private Formule formule;
-	//private ModeleAutomate modeleAutomate;
+	private Formule formule;
+	private ModeleAutomate modeleAutomate;
 	private Contrat contrat;
 	private Integer quantite;
 	private Set<Installation> historiqueInstallations = new HashSet<Installation>();
@@ -25,6 +25,28 @@ public class Bouquet {
 
 	public void setContrat(Contrat contrat) {
 		this.contrat = contrat;
+	}
+
+	/**
+	 * @param modeleAutomate the modeleAutomate to set
+	 */
+	public void setModeleAutomate(ModeleAutomate modeleAutomate) {
+		this.modeleAutomate = modeleAutomate;
+	}
+
+	/**
+	 * @return the modeleAutomate
+	 */
+	public ModeleAutomate getModeleAutomate() {
+		return modeleAutomate;
+	}
+
+	public void setFormule(Formule formule) {
+		this.formule = formule;
+	}
+
+	public Formule getFormule() {
+		return formule;
 	}
 
 	public Integer getQuantite() {

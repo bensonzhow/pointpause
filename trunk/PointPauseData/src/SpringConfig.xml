@@ -171,6 +171,9 @@
 		<property name="donneesClient">
 			<ref bean="IDonneesClientDAO" />
 		</property>
+		<property name="donneesChoixContrat">
+			<ref bean="IDonneesChoixClientDAO" />
+		</property>
 	</bean>
 
 	<bean id="IDonneesChoixContratDTO"
