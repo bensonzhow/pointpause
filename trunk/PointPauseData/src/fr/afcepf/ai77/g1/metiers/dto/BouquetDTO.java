@@ -1,12 +1,13 @@
 package fr.afcepf.ai77.g1.metiers.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 
 import fr.afcepf.ai77.g1.persistence.entity.Installation;
 
-public class BouquetDTO {
+public class BouquetDTO implements Serializable{
 	private Integer codeBouquet=null;
 	private Integer codeFormule;
 	private Integer codemodeleAutomate;
