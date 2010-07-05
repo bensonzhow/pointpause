@@ -21,6 +21,7 @@ import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
+import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
@@ -210,6 +211,21 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Contrat");
 		int numero = maxNumero.get(0);
 		return numero;
+	}
+
+	@SuppressWarnings({ "null", "unchecked" })
+	@Override
+	public List<Integer> listeNumMachineByNumContrat(int numContrat) {
+		DetachedCriteria crit = DetachedCriteria.forClass(Installation.class);
+		crit = crit.createCriteria("historiqueBouquet", DetachedCriteria.INNER_JOIN)
+		.createCriteria("contrat", DetachedCriteria.INNER_JOIN).add(Restrictions.eq("numero", numContrat));
+		
+		List<Installation> listeInstallation = hibernateTemplate.findByCriteria(crit);
+		List<Integer> listeNumMachine = null;
+		for(Installation i : listeInstallation){
+			listeNumMachine.add(i.getNumero());
+		}
+		return listeNumMachine;
 	}
 
 }

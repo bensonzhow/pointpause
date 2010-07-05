@@ -27,4 +27,6 @@ public interface IDonneesContratDAO {
 	
 
 	Integer insertContrat(Contrat contrat);
+	
+	List<Integer> listeNumMachineByNumContrat(int numContrat);
 }
