@@ -21,15 +21,16 @@
                  			<td ></td>
                  			<td class="textTabIncident" width="100px" height="20px">N° de Contrat: </td>
                  			<td width="250px">
-                 				<jsf:selectOneListbox id="listeContrat" style="width:147px;" value="#{declareIncidentMB.valueContrat}" 
-                 											size="1" 
-                 											valueChangeListener="#{declareIncidentMB.valueChangeListener}"
-								onchange="submit()">
-                 					 <jsfCore:selectItems value="#{declareIncidentMB.numContrat}" />
-                 				</jsf:selectOneListbox>
-                 				
+	                 			<jsf:form id="form">
+	                 				<jsf:selectOneListbox id="listeContrat" style="width:147px;"  
+	                 											size="1" 
+	                 											valueChangeListener="#{declareIncidentMB.valueChangeListener}"
+																onchange="submit()">
+	                 					 <jsfCore:selectItems value="#{declareIncidentMB.numContrat}" />
+	                 				</jsf:selectOneListbox>
+	                 			</jsf:form>	
                  			</td>
-                 			<td class="textTabIncident" width="150px" style="font-size:62,5%">Date de constat: </td>
+                 			<td class="textTabIncident" width="150px" >Date de constat: </td>
                  			<td>
                  				<a4j:outputPanel id="calendarConstat" layout="block">
 									<richfaces:calendar value="#{declareIncidentMB.dateConstatIncident}"
@@ -43,7 +44,7 @@
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de machine: </td>
                  			<td>
-                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueMachine}">	
+                 				<jsf:selectOneListbox style="width:147px;" >	
                                  		<jsfCore:selectItems value="#{declareIncidentMB.listMachine}" />
                  				</jsf:selectOneListbox>
                  			</td>
