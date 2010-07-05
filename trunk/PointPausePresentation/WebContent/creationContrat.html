@@ -9,10 +9,9 @@
 	<facelets:define name="HeadScriptorCss">
 		<link type="text/css" href="css/contrat.css" rel="stylesheet" />
 		<script type="text/javascript" src="scripts/redirection.js"></script>
-	</facelets:define>
-
-	<facelets:define name="Contenu">
 		
+	</facelets:define>
+	<facelets:define name="Contenu">
 			<jstl:if test="${sessionScope['session']==null}">
 				<div id="cacheur"
 					style="margin-top: 20px; width: 1000px; height: 600px; background-color: gray; margin: auto; opacity: 0.8; position: absolute;"></div>
@@ -33,7 +32,7 @@
 				 </jsfCore:facet>
 						<table>
 							<tr>
-								<th>Quantite</th>
+								<th>Quantit&#233;</th>
 								<th>Formule</th>
 								<th>Machine</th>
 							</tr>
@@ -53,18 +52,13 @@
 											<a4j:support event="onselect"
 												action="#{ChoixContratBean.getDescriptionFormuleAjax}"
 												reRender="reponseFormule, check" />
-
-
 											<!-- </jsf:selectOneMenu>-->
 										</richfaces:comboBox>
-
-
 									</richfaces:tab>
 
 									<richfaces:tab label="A la carte">
 										composer sa formule
 										</richfaces:tab>
-
 								</richfaces:tabPanel></td>
 
 
@@ -101,6 +95,7 @@
 						</table>
 					</richfaces:simpleTogglePanel>
 					<a4j:commandButton  action="#{ChoixContratBean.Submit1}" reRender="suite, check" value="valider"  > </a4j:commandButton>
+	
 					</a4j:region>
 					</div>
 
@@ -116,8 +111,8 @@
 								<th>Modalit&#233;s</th>
 							</tr>
 							<tr>
-								<td><richfaces:inputNumberSpinner enableManualInput="true" 
-									value="#{ChoixContratBean.quantite}" minValue="1" step="1"></richfaces:inputNumberSpinner>
+								<td>Quantit&#233; choisie <jsf:outputText 
+									value="#{ChoixContratBean.quantite}"></jsf:outputText>
 								</td>
 								<td>Localisation <richfaces:comboBox
 									value="#{ChoixContratBean.region}"
@@ -156,23 +151,20 @@
 							<tr>
 								<td>Des commentaires ? <jsf:inputTextarea
 									value="#{ChoixContratBean.commentaire}"></jsf:inputTextarea>
-									test<jsf:inputText value="#{ChoixContratBean.test}" />
 									</td>
 							</tr>
 						</table>
 
 
 						<jsf:outputText value="#{ChoixContratBean.verdict}"></jsf:outputText>
+<a4j:commandButton actino="#{ChoixContratBean.NouvelleCommande}" value="Une autre commande avant de valider ?"></a4j:commandButton>	
+			
 <jsf:commandButton action="#{ChoixContratBean.Inserer}" value="valider"></jsf:commandButton>
 					</richfaces:simpleTogglePanel>
-
-		
 </jsf:panelGroup>
 </jsf:panelGrid>
+
 		</jsfCore:subview>
-
-
 	</facelets:define>
-
 </facelets:composition>
 </html>

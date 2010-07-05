@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import fr.afcepf.ai77.g1.facade.DTOFactory;
+import fr.afcepf.ai77.g1.metiers.dto.BouquetDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
@@ -19,8 +20,11 @@ import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
 
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
+
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
+
+
 
 
 
@@ -35,7 +39,8 @@ public class ChoixContratBean {
 			.getExternalContext().getRequest();
 	HttpSession httpSession = request.getSession(false);
 	public String commentaire;
-	private String test;
+	private String[] reponseFormule;
+	//private int nbCommande=1; 
 	private Boolean flag;
 	private Date dateFin ;
 	private Date dateDebut;
@@ -54,60 +59,21 @@ public class ChoixContratBean {
 	private String region;
 	private int quantite =1;
 	private Integer verdict;
-	public String getCommentaire() {
-		return commentaire;
-	}
-
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
-	}
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-	public int getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
-
-	public String getSelectedMachine() {
-		return selectedMachine;
-	}
-
-	public void setSelectedMachine(String selectedMachine) {
-		this.selectedMachine = selectedMachine;
-	}
-	private List<Formule> formulesList;
-	public List<SelectItem> getMachines() {
-		return machines;
-	}
 	
-	public List<SelectItem> getFormules() {
-		return formules;
-	}
-	
-	public String getSelectedFormule() {
-		return selectedFormule;
-	}
-	public void setSelectedFormule(String selectedFormule) {
-		this.selectedFormule = selectedFormule;
-	}
 
-	public void getDescriptionMachineAjax(){
+	public Integer getDescriptionMachineAjax(){
 	essaiValid=false;
+	Integer idMachine=0;
 	for (ModeleAutomate automate: machinesDispo)
 	{
 		if(automate.getNom().equals(this.selectedMachine))
 		{
 			descriptionMachine= "Description de la machine :" +selectedMachine + " : "+ automate.getDescription();
+			idMachine = automate.getId();
 		}
 	}
+	return idMachine;
+	
 }
 
 
@@ -118,23 +84,33 @@ public class ChoixContratBean {
 public String getDescriptionMachine() {
 	return descriptionMachine;
 }
-
-	public void getDescriptionFormuleAjax(){
+/*
+ * retourne le code formule 
+ */
+	public Integer getDescriptionFormuleAjax(){
 
 		{
 			essaiValid=false;
+			Integer codeFormule = 0; 
 			for (Formule formule : formulesList) {
 				if (formule.getLibelleFormule().equals(this.selectedFormule))
 				{
 					descriptionFormule= "Description de la formule "+ selectedFormule+ " : "+ formule.getCommentaireFormule();
+					codeFormule =formule.getCodeFormule();
 				}
 			}
+			return codeFormule;
 		}
 
 	}
+	/*public void NouvelleCommande(){
+		reponseFormule[1]="reponseFormule"+
+		nbCommande++;
+		suite=true;
+	}*/
+	
 	public Integer Inserer(){
 		System.out.println("inserer");
-		System.out.println("test= "+ test);
 		System.out.println("region"+ region);
 		//	System.out.println(dateDebut);
 	System.out.println("commentaire:"+commentaire);
@@ -149,6 +125,12 @@ public String getDescriptionMachine() {
 		
 		SessionDTO session = (SessionDTO)httpSession.getAttribute("session");
 		ContratDTO contrat = new ContratDTO();
+		BouquetDTO bouquet = new BouquetDTO();
+		
+		bouquet.setCodeFormule(getDescriptionFormuleAjax());
+		bouquet.setCodemodeleAutomate(getDescriptionMachineAjax());
+		bouquet.setQuantite(quantite);
+		
 		contrat.setFreqApprovisionnement(frequence);
 		System.out.println("commentaire");
 		
@@ -167,7 +149,10 @@ public String getDescriptionMachine() {
 		contrat.setGarantie(true);
 		contrat.setNumClient(session.getNumeroClient());
 		System.out.println("fin insertcontrat ");
-		return setVerdict(donneesContrat.insertContrat(contrat));
+		
+			verdict= donneesContrat.insertContrat(contrat);
+		
+		return verdict;
 		
 	}
 	
@@ -201,17 +186,18 @@ public void kill()
 
 		for (Formule formule : formulesList) {
 			SelectItem si = new SelectItem();
-			si.setLabel(formule.getLibelleFormule());
-			si.setDescription(formule.getLibelleFormule());
+			si.setLabel(formule.getCodeFormule().toString());
+			//si.setDescription(formule.getCommentaireFormule());
 			si.setValue(formule.getLibelleFormule());
+			
 			formules.add(si);
 		}
 		
 		machinesDispo= donneesContrat.getAllMachines();
 		for (ModeleAutomate machine : machinesDispo) {
 			SelectItem si = new SelectItem();
-			si.setLabel(machine.getNom());
-			si.setDescription(machine.getNom());
+			si.setLabel(machine.getId().toString());
+		//	si.setDescription(machine.getDescription());
 			si.setValue(machine.getNom());
 			machines.add(si);
 		}
@@ -270,13 +256,7 @@ public void kill()
 		return verdict;
 	}
 
-	public void setTest(String test) {
-		this.test = test;
-	}
-
-	public String getTest() {
-		return test;
-	}
+	
 
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
@@ -294,4 +274,65 @@ public void kill()
 		return dateDebut;
 	}
 
+//	public void setNbCommande(int nbCommande) {
+//		this.nbCommande = nbCommande;
+//	}
+//
+//	public int getNbCommande() {
+//		return nbCommande;
+//	}
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	public String getSelectedMachine() {
+		return selectedMachine;
+	}
+
+	public void setSelectedMachine(String selectedMachine) {
+		this.selectedMachine = selectedMachine;
+	}
+	private List<Formule> formulesList;
+	public List<SelectItem> getMachines() {
+		return machines;
+	}
+	
+	public List<SelectItem> getFormules() {
+		return formules;
+	}
+	
+	public String getSelectedFormule() {
+		return selectedFormule;
+	}
+	public void setSelectedFormule(String selectedFormule) {
+		this.selectedFormule = selectedFormule;
+	}
+
+
+	public void setReponseFormule(String[] reponseFormule) {
+		this.reponseFormule = reponseFormule;
+	}
+
+
+	public String[] getReponseFormule() {
+		return reponseFormule;
+	}
 }
