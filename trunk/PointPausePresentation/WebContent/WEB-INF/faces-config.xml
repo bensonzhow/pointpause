@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
- xmlns:xi="http://www.w3.org/2001/XInclude"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
- 
- <application>
-  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
- </application>
- 
- <managed-bean>
-    <managed-bean-name>connectionMB</managed-bean-name>
-    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConnectionBean</managed-bean-class>
-    <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- 
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
 
- 
-  <managed-bean>
-    <managed-bean-name>tableaubordMB</managed-bean-name>
-    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TableauBordBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+	</application>
+
+
+	<managed-bean>
+		<managed-bean-name>connectionMB</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConnectionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
  
  <managed-bean>
@@ -34,66 +27,85 @@
     <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
 
- <managed-bean>
-    <managed-bean-name>ChoixContratBean</managed-bean-name>
-    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ChoixContratBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- 
- 
-  <managed-bean>
-    <managed-bean-name>rapportincidentMB</managed-bean-name>
-    <managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.RapportIncidentBean</managed-bean-class>
-    <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
 
- <navigation-rule>
-    <from-view-id>/incident.html</from-view-id>
-       <navigation-case>
-     <from-action>#{declareIncidentMB.declare}</from-action>
-            <from-outcome>OK</from-outcome>
-            <to-view-id>/incident.html</to-view-id>
-    </navigation-case> 
- </navigation-rule>
- 
- 
- <navigation-rule>
-    <from-view-id>/connexion.html</from-view-id>
-       <navigation-case>
-     <from-action>#{connectionMB.connecter}</from-action>
-            <from-outcome>OK</from-outcome>
-            <to-view-id>/tableauBord.html</to-view-id>
-    
-    </navigation-case>
-    <navigation-case>
-            <from-action>#{connectionMB.connecter}</from-action>
-            <from-outcome>Failure</from-outcome>
-            <to-view-id>/tableauBord.html</to-view-id>
-    </navigation-case>
-    
-    
-     
- </navigation-rule>
 
- 
- 
- <navigation-rule>
-    <from-view-id>PointPausePresentation/*</from-view-id>
-    <navigation-case>
-            <from-action>#{connectionMB.logOut}</from-action>
-            <from-outcome>Failure</from-outcome>
-            <to-view-id>/tableauBord.html</to-view-id>
-    </navigation-case>
-    
-    <navigation-case>
-            <from-action>#{connectionMB.logOut}</from-action>
-            <from-outcome>OK</from-outcome>
-            <to-view-id>/connexion.html</to-view-id>
-    </navigation-case>
-    
-    
-    
- </navigation-rule> 
- 
- 
+
+	<managed-bean>
+		<managed-bean-name>tableaubordMB</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TableauBordBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+
+
+
+	<managed-bean>
+		<managed-bean-name>ChoixContratBean</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ChoixContratBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>testMB</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.TestBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>rapportincidentMB</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.RapportIncidentBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/incident.html</from-view-id>
+		<navigation-case>
+			<from-action>#{declareIncidentMB.declare}</from-action>
+			<from-outcome>OK</from-outcome>
+			<to-view-id>/incident.html</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<from-view-id>/connexion.html</from-view-id>
+		<navigation-case>
+			<from-action>#{connectionMB.connecter}</from-action>
+			<from-outcome>OK</from-outcome>
+			<to-view-id>/tableauBord.html</to-view-id>
+
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{connectionMB.connecter}</from-action>
+			<from-outcome>Failure</from-outcome>
+			<to-view-id>/tableauBord.html</to-view-id>
+		</navigation-case>
+
+
+
+	</navigation-rule>
+
+
+
+	<navigation-rule>
+		<from-view-id>PointPausePresentation/*</from-view-id>
+		<navigation-case>
+			<from-action>#{connectionMB.logOut}</from-action>
+			<from-outcome>Failure</from-outcome>
+			<to-view-id>/tableauBord.html</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{connectionMB.logOut}</from-action>
+			<from-outcome>OK</from-outcome>
+			<to-view-id>/connexion.html</to-view-id>
+		</navigation-case>
+
+
+
+	</navigation-rule>
+
+
 </faces-config>
