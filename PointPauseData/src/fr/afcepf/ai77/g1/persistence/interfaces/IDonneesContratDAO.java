@@ -33,4 +33,6 @@ public interface IDonneesContratDAO {
 	
 	List<Contrat> getAllContratBouquetInstallByClient(int numClient);
 	
+	List<Contrat> getLastContratsBouquetInstallByClient(int numClient);
+	
 }
