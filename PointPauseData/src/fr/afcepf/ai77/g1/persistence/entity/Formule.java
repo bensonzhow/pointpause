@@ -8,7 +8,7 @@ import org.hibernate.type.BigDecimalType;
 public class Formule implements Serializable{
 
 	
-	private int codeFormule; 
+	private Integer codeFormule; 
 	private String commentaireFormule;
 	private Double prix;
 	private Client client;
@@ -19,10 +19,10 @@ public class Formule implements Serializable{
 		this.client = client;
 	}
 	private String libelleFormule;
-	public int getCodeFormule() {
+	public Integer getCodeFormule() {
 		return codeFormule;
 	}
-	public void setCodeFormule(int pCodeFormule) {
+	public void setCodeFormule(Integer pCodeFormule) {
 		codeFormule = pCodeFormule;
 	}
 	public String getCommentaireFormule() {

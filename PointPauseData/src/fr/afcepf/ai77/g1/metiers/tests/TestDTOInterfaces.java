@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import junit.framework.TestCase;
 import fr.afcepf.ai77.g1.facade.DTOFactory;
+import fr.afcepf.ai77.g1.metiers.dto.BouquetDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ExampleDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
@@ -108,6 +109,11 @@ public class TestDTOInterfaces extends TestCase {
 	public void testInsertContrat(){
 		IDonneesContratDTO donnees = DTOFactory.getIDonneesContratDTO();
 		ContratDTO contratDTO = new ContratDTO();
+		BouquetDTO bouquetDTO = new BouquetDTO();
+		bouquetDTO.setCodeFormule(2);
+		bouquetDTO.setQuantite(150);
+		bouquetDTO.setCodemodeleAutomate(4);
+		
 		contratDTO.setCommentaire("je suis un contrat DTO de test");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String date = "19/01/1998";
@@ -140,7 +146,7 @@ public class TestDTOInterfaces extends TestCase {
 		int duree= d2 - d1;
 		contratDTO.setDuree(duree);
 		contratDTO.setNumClient(2);
-		System.out.println(donnees.insertContrat(contratDTO));
+		System.out.println(donnees.insertContrat(contratDTO, bouquetDTO));
 	//marche au 04/07/2010 chez anna	
 	}
 	

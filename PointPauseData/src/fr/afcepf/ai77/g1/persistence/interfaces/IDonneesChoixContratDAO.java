@@ -8,4 +8,6 @@ import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 public interface IDonneesChoixContratDAO {
 	public List<Formule> getAllGeneralFormules();
 	public List<ModeleAutomate> getAllAutomates();
+	public Formule getFormuleById(Integer id);
+	public ModeleAutomate getAutomateById(Integer id);
 }

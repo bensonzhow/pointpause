@@ -31,6 +31,11 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 		List<Formule> ttesformulesGeneral = hibernateTemplate.findByCriteria(crit);
 		return ttesformulesGeneral;
 	}
+	@Override
+	public Formule getFormuleById(Integer id) {
+		Formule formule = hibernateTemplate.get(Formule.class, id);
+		return formule;
+	}
 	
 	@Override
 	public List<ModeleAutomate> getAllAutomates() {
@@ -38,4 +43,9 @@ public class DonneesChoixContratDAOImpl implements IDonneesChoixContratDAO {
 		return ttAutomates;
 	}
 
+	@Override
+	public ModeleAutomate getAutomateById(Integer id) {
+		ModeleAutomate automate = hibernateTemplate.get(ModeleAutomate.class, id);
+		return automate;
+	}
 }

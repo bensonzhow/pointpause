@@ -1,13 +1,12 @@
 package fr.afcepf.ai77.g1.metiers.dto;
-import java.io.Serializable;
+
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
-import fr.afcepf.ai77.g1.persistence.entity.Client;
-import fr.afcepf.ai77.g1.persistence.entity.Formule;
+
 public class ContratDTO {
 	private Integer numero;
 	private Integer numClient;

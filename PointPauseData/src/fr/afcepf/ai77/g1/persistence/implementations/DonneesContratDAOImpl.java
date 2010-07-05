@@ -57,7 +57,6 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 			c = hibernateTemplate.get(Contrat.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
 			return c;
 		}
 	}
@@ -203,12 +202,22 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public Integer insertContrat(Contrat contrat) {
 		//pas oublier insérer bouquet aussi
 		// mettre un site client aussi pour la localisation... 
 		
 		hibernateTemplate.save(contrat);
 		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Contrat");
+		int numero = maxNumero.get(0);
+		return numero;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Integer insertBouquet(Bouquet bouquet) {
+		hibernateTemplate.save(bouquet);
+		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Bouquet");
 		int numero = maxNumero.get(0);
 		return numero;
 	}
