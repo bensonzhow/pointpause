@@ -103,17 +103,18 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 		
 		if (listeDAO==null) return null;
 		
+		
 		for (Contrat contrat : listeDAO){
 			
 			ContratDTO contDt = copyContrat(contrat);
+	
 			
 			for (Bouquet bouquet : contrat.getListeBouquets()){
 				BouquetDTO bdto = copyBouquet(bouquet);
 				contDt.getListeBouquets().add(bdto);
 			}
 			
-			
-			
+			listeContDt.add(contDt);
 		}
 		
 		return listeContDt;

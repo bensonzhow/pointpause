@@ -8,6 +8,7 @@ import java.util.Set;
 import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 
 public class ContratDTO {
+
 	private Integer numero;
 	private Integer numClient;
 	//private Contrat contrat;
@@ -92,7 +93,15 @@ public class ContratDTO {
 		return numClient;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "ContratDTO [numero=" + numero + ", numClient=" + numClient
+				+ ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", garantie=" + garantie + ", freqApprovisionnement="
+				+ freqApprovisionnement + ", dateSignature=" + dateSignature
+				+ ", duree=" + duree + ", commentaire=" + commentaire
+				+ ", flag=" + flag + ", listeBouquets=" + listeBouquets + "]";
+	}
 	
 }
 

@@ -17,8 +17,7 @@ public class BouquetDTO implements Serializable{
 	private String strModeleAutomate;
 	private String strFormule;
 	
-	
-	
+
 	public String getStrModeleAutomate() {
 		return strModeleAutomate;
 	}
@@ -94,6 +93,16 @@ public class BouquetDTO implements Serializable{
 		return codemodeleAutomate;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		return "BouquetDTO [codeBouquet=" + codeBouquet + ", codeFormule="
+				+ codeFormule + ", codemodeleAutomate=" + codemodeleAutomate
+				+ ", quantite=" + quantite + ", historiqueInstallations="
+				+ historiqueInstallations + ", strModeleAutomate="
+				+ strModeleAutomate + ", strFormule=" + strFormule + "]";
+	}
 
 	
 }

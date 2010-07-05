@@ -150,4 +150,25 @@ public class TestDTOInterfaces extends TestCase {
 	//marche au 04/07/2010 chez anna	
 	}
 	
+	
+	
+	public void testGetAllContratAndStuffsByClient(){
+		
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		
+		List<ContratDTO> liste = donneesContrat.getSyntheseContratbyClient(2);
+		
+		assertNotNull(liste);
+		
+		System.out.println(liste.size());
+		
+		for (ContratDTO c : liste){
+			System.out.println(c.toString());
+			for (BouquetDTO b : c.getListeBouquets()){
+				System.out.println("\t"+b.toString());
+			}
+		}
+		
+	}
+	
 }

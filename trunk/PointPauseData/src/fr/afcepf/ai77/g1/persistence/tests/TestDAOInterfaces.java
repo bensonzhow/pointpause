@@ -116,6 +116,15 @@ public class TestDAOInterfaces extends TestCase {
 		
 	}
 	
+	public void testGetAllContratsAndStuffsByClient(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesContratDAO donneesContrat = (IDonneesContratDAO) factory
+		.getBean("IDonneesContratDAO");
 
+		List<Contrat> liste = donneesContrat.getAllContratBouquetInstallByClient(2);
+		
+		
+	}
 
 }
