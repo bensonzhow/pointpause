@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,7 @@ import fr.afcepf.ai77.g1.metiers.dto.ListeMachineDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeMachinesDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl;
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
@@ -28,20 +31,16 @@ import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 public class DeclarationIncidentBean {
 	
-	FacesContext context = FacesContext.getCurrentInstance();
-	HttpServletRequest request = (HttpServletRequest) context
-	.getExternalContext().getRequest();
-	
-	
 	private Integer numMachine;
 	private List numContrat;
-	private List listMachine;
-	private String dateConstatIncident;
-	private String dateDeclarationIncident;
+	private List listMachine = new ArrayList();
+	private Date dateConstatIncident;
+	private Date dateDeclarationIncident;
 	private Boolean flag=false;
 	private List typePb;
-	private String value = "";
+	private String valueMachine = "";
 	private String valueContrat = "";
+	private String commentaire = "";
 
 	
 	public List getTypePb() {
@@ -50,10 +49,29 @@ public class DeclarationIncidentBean {
 		typePb.add(new SelectItem("Aucun"));
 		typePb.add(new SelectItem("dysfonctionnement"));
 		typePb.add(new SelectItem("panne"));
-		 
 		return typePb;
 	}
 	
+
+	public String getValueMachine() {
+		return valueMachine;
+	}
+
+
+	public void setValueMachine(String valueMachine) {
+		this.valueMachine = valueMachine;
+	}
+
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
 
 	public void setTypePb(List typePb) {
 		this.typePb = typePb;
@@ -67,19 +85,31 @@ public class DeclarationIncidentBean {
 		this.numMachine = numMachine;
 	}
 	
-
-	public List getListMachine() {
+	public void valueChangeListener(ValueChangeEvent event){  
+		System.out.println("Entré");
+		
+		HtmlSelectOneMenu monComponent = (HtmlSelectOneMenu) FacesContext
+		.getCurrentInstance().getViewRoot().findComponent(
+				"listeContrat");
+		
+		System.out.println(monComponent.getLocalValue());
 		listMachine = new ArrayList();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		HttpSession httpSession = request.getSession(false);
-		
-		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
-		ListeMachineDTO listeMachines = donneesIncident.getNumMachineByNumContrat(Integer.parseInt(valueContrat));
-		List<Integer> retour = listeMachines.getListeMachine();
+		System.out.println("donneesContrat");
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		System.out.println(valueContrat);
+		List<Integer> retour = donneesContrat.getListeMachineByContrat(Integer.parseInt(valueContrat));
+		System.out.println("retour");
 		for(Integer i : retour){
-			listMachine.add(new SelectItem(i.toString()));
+			System.out.println(i);
 		}
+	}  
+
+	public List getListMachine() {
+		
+		
 		
 		
 		return listMachine;
@@ -90,6 +120,7 @@ public class DeclarationIncidentBean {
 	}
 	
 	public List getNumContrat() {
+		
 	  	numContrat = new ArrayList();
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -110,19 +141,20 @@ public class DeclarationIncidentBean {
 		this.numContrat = numContrat;
 	}
 
-	public String getDateConstatIncident() {
+	public Date getDateConstatIncident() {
 		return dateConstatIncident;
 	}
 
-	public void setDateConstatIncident(String dateConstatIncident) {
+	public void setDateConstatIncident(Date dateConstatIncident) {
 		this.dateConstatIncident = dateConstatIncident;
 	}
 
-	public String getDateDeclarationIncident() {
+	public Date getDateDeclarationIncident() {
+		dateDeclarationIncident = new Date();
 		return dateDeclarationIncident;
 	}
 
-	public void setDateDeclarationIncident(String dateDeclarationIncident) {
+	public void setDateDeclarationIncident(Date dateDeclarationIncident) {
 		this.dateDeclarationIncident = dateDeclarationIncident;
 	}
 
@@ -143,11 +175,11 @@ public class DeclarationIncidentBean {
 	}
 	
 	public String getValue() {
-		return value;
+		return valueMachine;
 	}
 
 	public void setValue(String value) {
-		this.value = value;
+		this.valueMachine = value;
 	}
 
 
@@ -164,15 +196,7 @@ public class DeclarationIncidentBean {
 		SessionDTO session = (SessionDTO)httpSession.getAttribute("session");
 		ContratDTO contrat = new ContratDTO();
 		IncidentDTO incident = new IncidentDTO();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date date =null;
-		try {
-			dateConstatIncident = getDateConstatIncident();
-			date = sdf.parse(dateConstatIncident);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
-		incident.setDateConstatIncident(date);
+		incident.setDateConstatIncident(getDateConstatIncident());
 		incident.setDateDeclarationIncident(new Date());
 		incident.setFlag(flag);
 		incident.setNumTypePb(2);
@@ -186,4 +210,5 @@ public class DeclarationIncidentBean {
 		else
 		return "Failure";
 	}
+	
 }
