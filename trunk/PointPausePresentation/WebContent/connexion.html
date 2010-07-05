@@ -15,17 +15,26 @@
  		<jsfCore:subview id="connexion">
  		
  			<jsf:form>
- 		 			
- 			<richfaces:panel>
- 			
+ 		 		<div style="margin:auto; width:600px">	
+ 			<richfaces:panel styleClass="lesDiv">
+ 			<div class="lesDiv">
  			<jsf:panelGrid columns="2">
             <jsf:outputText value="Votre login"/>
             <jsf:inputText value="#{connectionMB.login}"/>
             <jsf:outputText value="Votre mot de passe"/>
             <jsf:inputSecret value="#{connectionMB.mdp}"/>
        <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
+      
+        <jsf:commandButton  value="nouveau client ?"></jsf:commandButton>
+         <!-- on fake mais pour que ce soit presentable -->
+        <a style="font-size:small; text-decoration:underline; color:black;" href="#">j'ai oublie mon mot de passe...</a>
         </jsf:panelGrid>
+        </div>
+        <div class="lesDiv">
+        <img  src="images/connexion.png" width="180px"></img>
+        </div>
 				</richfaces:panel>
+				</div>
 			</jsf:form>
 		</jsfCore:subview>
 	</facelets:define>
