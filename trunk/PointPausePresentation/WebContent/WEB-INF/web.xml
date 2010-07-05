@@ -23,7 +23,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   </context-param>
   <context-param>
     <param-name>org.richfaces.SKIN</param-name>
-    <param-value>blueSky</param-value>
+    <param-value>wine</param-value>
   </context-param>
   <filter>
     <display-name>Ajax4jsf Filter</display-name>
