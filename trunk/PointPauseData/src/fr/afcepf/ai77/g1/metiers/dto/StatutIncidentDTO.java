@@ -3,27 +3,17 @@ package fr.afcepf.ai77.g1.metiers.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class StatutIncidentDTO implements Serializable , Comparable<StatutIncidentDTO>{
+public class StatutIncidentDTO implements Serializable{
 	private Integer numero;
 	private String statut;
-	private Integer intStatut;
 	private InterventionDTO intervention;
 	private Date dateNouveauStatut;
 	private String commentaire;
-	
-	
-	
 	public Integer getNumero() {
 		return numero;
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
-	}
-	public Integer getIntStatut() {
-		return intStatut;
-	}
-	public void setIntStatut(Integer intStatut) {
-		this.intStatut = intStatut;
 	}
 	public String getStatut() {
 		return statut;
@@ -50,11 +40,7 @@ public class StatutIncidentDTO implements Serializable , Comparable<StatutIncide
 		this.commentaire = commentaire;
 	}
 	
-	@Override
-	public int compareTo(StatutIncidentDTO o) {
-		// TODO Auto-generated method stub
-		return getDateNouveauStatut().compareTo(o.getDateNouveauStatut());
-	}
+	
 	
 	
 

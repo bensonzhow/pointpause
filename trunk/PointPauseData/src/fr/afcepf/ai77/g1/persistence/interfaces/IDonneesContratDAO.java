@@ -25,5 +25,6 @@ public interface IDonneesContratDAO {
 
 	List<Contrat> getListContratFromListNumInstallation(List<Integer> listInstalls);
 	
+
 	Integer insertContrat(Contrat contrat);
 }
