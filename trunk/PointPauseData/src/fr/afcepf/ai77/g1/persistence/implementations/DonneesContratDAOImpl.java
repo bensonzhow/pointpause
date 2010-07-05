@@ -56,9 +56,10 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 			c = hibernateTemplate.get(Contrat.class, id);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return c;
-		}
+			e.printStackTrace();}
+			finally{
+			return c;}
+		
 	}
 
 	/**
@@ -217,7 +218,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	@SuppressWarnings("unchecked")
 	public Integer insertBouquet(Bouquet bouquet) {
 		hibernateTemplate.save(bouquet);
-		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Bouquet");
+		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(codeBouquet) from Bouquet");
 		int numero = maxNumero.get(0);
 		return numero;
 	}

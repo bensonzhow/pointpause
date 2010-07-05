@@ -67,12 +67,13 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 		contrat.setFreqApprovisionnement(contratDTO.getFreqApprovisionnement());
 		contrat.setGarantie(contratDTO.getGarantie());
 		contrat.setFlag(contratDTO.getFlag());
+		contrat.getListeBouquets().add(bouquet);
 		bouquet.setContrat(contrat);
 		bouquet.setFormule(f);
 		bouquet.setModeleAutomate(a);
 		bouquet.setQuantite(bouquetDTO.getQuantite());
 		Integer numContrat = donneesContrat.insertContrat(contrat);
-		Integer numBouquet = donneesContrat.insertBouquet(bouquet);
+	//	Integer numBouquet = donneesContrat.insertBouquet(bouquet);
 		return numContrat;
 		
 	}
