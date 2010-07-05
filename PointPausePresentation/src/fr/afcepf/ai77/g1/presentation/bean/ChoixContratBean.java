@@ -109,7 +109,7 @@ public String getDescriptionMachine() {
 		suite=true;
 	}*/
 	
-	public Integer Inserer(){
+	public String Inserer(){
 		System.out.println("inserer");
 		System.out.println("region"+ region);
 		//	System.out.println(dateDebut);
@@ -150,9 +150,8 @@ public String getDescriptionMachine() {
 		contrat.setNumClient(session.getNumeroClient());
 		System.out.println("fin insertcontrat ");
 		
-			verdict= donneesContrat.insertContrat(contrat);
-		
-		return verdict;
+			verdict= donneesContrat.insertContrat(contrat, bouquet);
+		return  verdict > 0 ? "OK" : "Failure";
 		
 	}
 	
