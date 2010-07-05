@@ -13,7 +13,7 @@ import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.InterventionDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
-import fr.afcepf.ai77.g1.metiers.dto.ListeMachinesDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeMachineDTO;
 import fr.afcepf.ai77.g1.metiers.dto.StatutIncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
@@ -21,6 +21,7 @@ import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
+import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesContratDAOImpl;
@@ -32,7 +33,9 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	private DonneesIncidentDAOImpl donneesIncident = null;
 	private DonneesClientDAOImpl donneesClient = null;
 	private DonneesTypePbDAOImpl donneesTypePb = null;
+
 	private DonneesContratDAOImpl donneesContrat = null;
+
 
 	/*--------------------------Getters & Setters-----------------------------------*/
 
@@ -96,6 +99,17 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		return res;
 	}
 
+	@Override
+	public ListeMachineDTO getNumMachineByNumContrat(int numContrat) {
+		List<TypeAutomate> listeMachine = donneesContrat
+				.getNumMachineByNumContrat(numContrat);
+		ListeMachineDTO listeMachineDTO = new ListeMachineDTO();
+		for(TypeAutomate ta : listeMachine){
+			listeMachineDTO.getListeMachine().add(ta.getId());
+		}
+		return listeMachineDTO;
+	}
+	
 	@Override
 	public ListeContratDTO getContratsByNumClient(int numClient) {
 		List<Contrat> listeContrat = donneesClient
