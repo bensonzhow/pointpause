@@ -46,9 +46,10 @@ public class RapportIncidentBean {
 		
 		listeIncidents = donneesIncident.getHistoriqueIncidentByClient(numClient);
 		
-		
+	
 		
 	}
+	
 	
 
 	
