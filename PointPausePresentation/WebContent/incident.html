@@ -32,7 +32,7 @@
                  			<td ></td>
                  			<td class="textTabIncident" width="100px" height="20px">N° de machine: </td>
                  			<td width="250px">
-                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.numMachine}">	
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.listMachine}">	
                                  <!-- <jsfCore:selectItems value="Proutprout" />   -->
                                  
                  				</jsf:selectOneListbox>
@@ -49,7 +49,8 @@
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de contrat: </td>
                  			<td>
-                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueContrat}" size="1">
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueContrat}" 
+                 											size="1" onchange="#{declareIncidentMB.listMachine}">
                  					 <jsfCore:selectItems value="#{declareIncidentMB.numContrat}" />
                  				</jsf:selectOneListbox>
                  			</td>
