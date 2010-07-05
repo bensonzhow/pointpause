@@ -22,7 +22,7 @@
             <jsf:outputText value="Votre login"/>
             <jsf:inputText value="#{connectionMB.login}"/>
             <jsf:outputText value="Votre mot de passe"/>
-            <jsf:inputText value="#{connectionMB.mdp}"/>
+            <jsf:inputSecret value="#{connectionMB.mdp}"/>
        <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
         </jsf:panelGrid>
 				</richfaces:panel>

@@ -23,7 +23,7 @@
 			</jstl:if>
 			
 			<jsfCore:subview id="creationContrat">
-				<jsf:form>
+			
 				<div id="general">
 				<a4j:region>
 					<richfaces:simpleTogglePanel
@@ -107,8 +107,8 @@
 	
 	
 	<jsf:panelGrid id="suite" >
-		<jsf:panelGroup rendered="#{ChoixContratBean.suite}">
-					<richfaces:simpleTogglePanel switchType="ajax" rendered="true"
+		<jsf:panelGroup  style="visibility:${ChoixContratBean.suite?'visible':'hidden'}"  >
+					<richfaces:simpleTogglePanel styleClass="panel" switchType="ajax" rendered="true"
 						label="Modalites de contrat">
 						<table border="1" cellpadding="4" cellspacing="0">
 							<tr>
@@ -169,7 +169,6 @@
 		
 </jsf:panelGroup>
 </jsf:panelGrid>
-		</jsf:form>
 		</jsfCore:subview>
 
 
