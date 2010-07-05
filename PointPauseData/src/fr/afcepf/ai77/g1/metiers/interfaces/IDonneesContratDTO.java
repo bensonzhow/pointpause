@@ -9,5 +9,5 @@ public interface IDonneesContratDTO {
 	public Integer insertContrat(ContratDTO contratDTO, BouquetDTO bouquetDTO);
 	List<Integer> getListeMachineByContrat(int numContratDTO);
 	
-	List<ContratDTO> getSynthèseContratbyClient(int numClient);
+	List<ContratDTO> getSyntheseContratbyClient(int numClient);
 }
