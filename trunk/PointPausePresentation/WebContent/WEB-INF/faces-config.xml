@@ -94,10 +94,27 @@
 
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/creationContrat.html</from-view-id>
+		<navigation-case>
+			<from-action>#{ChoixContratBean.Inserer}</from-action>
+			<from-outcome>OK</from-outcome>
+			<to-view-id>/succesCreationContrat.html</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{connectionMB.logOut}</from-action>
+			<from-outcome>Failure</from-outcome>
+			<to-view-id>/echecCreationContrat.html</to-view-id>
+		</navigation-case>
+
+
+
+	</navigation-rule>
 
 
 	<navigation-rule>
-		<from-view-id>PointPausePresentation/*</from-view-id>
+		<from-view-id>/PointPausePresentation/*</from-view-id>
 		<navigation-case>
 			<from-action>#{connectionMB.logOut}</from-action>
 			<from-outcome>Failure</from-outcome>
