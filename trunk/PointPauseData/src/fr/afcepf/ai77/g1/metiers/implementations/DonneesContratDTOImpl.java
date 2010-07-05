@@ -1,6 +1,7 @@
 package fr.afcepf.ai77.g1.metiers.implementations;
 
 import java.util.List;
+import java.util.Vector;
 
 import fr.afcepf.ai77.g1.metiers.dto.BouquetDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
@@ -88,6 +89,73 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 	public List<Integer> getListeMachineByContrat(int numContratDTO) {
 		List<Integer> listeMachine = donneesContrat.listeNumMachineByNumContrat(numContratDTO);
 		return listeMachine;
+	}
+	
+	
+	
+	@Override
+	public List<ContratDTO> getSynthèseContratbyClient(int numClient) {
+		// TODO Auto-generated method stub
+		
+		List<ContratDTO> listeContDt = new Vector<ContratDTO>();
+		
+		List<Contrat> listeDAO = donneesContrat.getAllContratBouquetInstallByClient(numClient);
+		
+		if (listeDAO==null) return null;
+		
+		for (Contrat contrat : listeDAO){
+			
+			ContratDTO contDt = copyContrat(contrat);
+			
+			for (Bouquet bouquet : contrat.getListeBouquets()){
+				BouquetDTO bdto = copyBouquet(bouquet);
+				contDt.getListeBouquets().add(bdto);
+			}
+			
+			
+			
+		}
+		
+		return listeContDt;
+	}
+	
+/*************************************************************************
+ * 
+ * sections utilitaires
+ * 
+ *************************************************************************/
+	
+	private ContratDTO copyContrat(Contrat contrat){
+		ContratDTO cdto = new ContratDTO();
+		
+		cdto.setNumero(contrat.getNumero());
+		cdto.setDateDebut(contrat.getDateDebut());
+		cdto.setDateFin(contrat.getDateFin());
+		cdto.setFreqApprovisionnement(contrat.getFreqApprovisionnement());
+		cdto.setGarantie(contrat.getGarantie());
+		
+		
+		return cdto;
+	}
+	
+	private BouquetDTO copyBouquet(Bouquet bouquet){
+		BouquetDTO bdto = new BouquetDTO();
+		
+		try{
+			bdto.setStrFormule(bouquet.getFormule().getLibelleFormule());
+		}catch(Exception e){
+			bdto.setStrFormule("indéterminée");
+		}
+		
+		try{
+			bdto.setStrModeleAutomate(bouquet.getModeleAutomate().getNom());
+		}catch(Exception e){
+			bdto.setStrModeleAutomate("indéterminé");
+		}
+		
+		bdto.setQuantite(bouquet.getQuantite());
+		
+		return bdto;
 	}
 
 }
