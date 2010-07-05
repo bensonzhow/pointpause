@@ -87,31 +87,36 @@ public class DeclarationIncidentBean {
 	
 	public void valueChangeListener(ValueChangeEvent event){  
 		System.out.println("Entré");
-		
-		HtmlSelectOneMenu monComponent = (HtmlSelectOneMenu) FacesContext
-		.getCurrentInstance().getViewRoot().findComponent(
-				"listeContrat");
-		
-		System.out.println(monComponent.getLocalValue());
-		listMachine = new ArrayList();
 		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		HttpSession httpSession = request.getSession(false);
-		System.out.println("donneesContrat");
-		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
-		System.out.println(valueContrat);
-		List<Integer> retour = donneesContrat.getListeMachineByContrat(Integer.parseInt(valueContrat));
-		System.out.println("retour");
-		for(Integer i : retour){
-			System.out.println(i);
-		}
+//		HtmlSelectOneMenu monComponent = (HtmlSelectOneMenu) FacesContext
+//		.getCurrentInstance().getViewRoot().findComponent(
+//				"form:listeContrat");
+		context.getViewRoot().findComponent("listeContrat");
+		System.out.println(context.getViewRoot().findComponent("form:listeContrat"));
+//		System.out.println(monComponent.getValue());
+		
+//		listMachine = new ArrayList();
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//		HttpSession httpSession = request.getSession(false);
+//		
+//		System.out.println("donneesContrat");
+//		
+//		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+//		
+//		System.out.println(valueContrat);
+//		
+//		List<Integer> retour = donneesContrat.getListeMachineByContrat(Integer.parseInt(monComponent.getLocalValue().toString()));
+//		
+//		System.out.println("retour");
+//		
+//		for(Integer i : retour){
+//			System.out.println(i);
+//		}
+//		listMachine = retour;
 	}  
 
 	public List getListMachine() {
-		
-		
-		
-		
 		return listMachine;
 	}
 
