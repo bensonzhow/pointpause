@@ -16,6 +16,8 @@ import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeMachineDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeMachinesDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
@@ -33,6 +35,7 @@ public class DeclarationIncidentBean {
 	
 	private Integer numMachine;
 	private List numContrat;
+	private List listMachine;
 	private String dateConstatIncident;
 	private String dateDeclarationIncident;
 	private Boolean flag=false;
@@ -40,11 +43,7 @@ public class DeclarationIncidentBean {
 	private String value = "";
 	private String valueContrat = "";
 
-
-	public Integer getNumMachine() {
-		return numMachine;
-	}
-
+	
 	public List getTypePb() {
 		
 		typePb = new ArrayList();
@@ -59,11 +58,35 @@ public class DeclarationIncidentBean {
 	public void setTypePb(List typePb) {
 		this.typePb = typePb;
 	}
+	
+	public Integer getNumMachine() {
+		return numMachine;
+	}
 
 	public void setNumMachine(Integer numMachine) {
 		this.numMachine = numMachine;
 	}
+	
 
+	public List getListMachine() {
+		listMachine = new ArrayList();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		
+		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
+		ListeMachineDTO listeMachines = donneesIncident.getNumMachineByNumContrat(Integer.parseInt(valueContrat));
+		List<Integer> retour = listeMachines.getListeMachine();
+		for(Integer i : retour){
+			listMachine.add(new SelectItem(i.toString()));
+		}
+		return listMachine;
+	}
+
+	public void setListMachine(List listMachine) {
+		this.listMachine = listMachine;
+	}
+	
 	public List getNumContrat() {
 	  	numContrat = new ArrayList();
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -79,12 +102,6 @@ public class DeclarationIncidentBean {
 		}
 		
 		return numContrat;
-//		numContrat = new ArrayList();
-//		numContrat.add(new SelectItem("est"));
-//		numContrat.add(new SelectItem("est"));
-//		numContrat.add(new SelectItem("est"));
-//		return numContrat;
-		
 	}
 
 	public void setNumContrat(List numContrat) {
