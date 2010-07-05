@@ -30,4 +30,7 @@ public interface IDonneesContratDAO {
 
 	List<Integer> listeNumMachineByNumContrat(int numContrat);
 	Integer insertBouquet(Bouquet bouquet);
+	
+	List<Contrat> getAllContratBouquetInstallByClient(int numClient);
+	
 }
