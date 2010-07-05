@@ -15,7 +15,7 @@ import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 public class DonneesContratDTOImpl implements IDonneesContratDTO {
 
 	private DonneesClientDAOImpl donneesClient = null;
-private IDonneesContratDAO donneesContrat = null;
+	private IDonneesContratDAO donneesContrat = null;
 	
 
 	public IDonneesContratDAO getDonneesContrat() {
@@ -58,6 +58,12 @@ private IDonneesContratDAO donneesContrat = null;
 		return null;
 		
 		
+	}
+
+	@Override
+	public List<Integer> getListeMachineByContrat(int numContratDTO) {
+		List<Integer> listeMachine = donneesContrat.listeNumMachineByNumContrat(numContratDTO);
+		return listeMachine;
 	}
 
 }
