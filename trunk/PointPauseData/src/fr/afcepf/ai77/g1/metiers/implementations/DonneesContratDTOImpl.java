@@ -94,7 +94,7 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 	
 	
 	@Override
-	public List<ContratDTO> getSynthèseContratbyClient(int numClient) {
+	public List<ContratDTO> getSyntheseContratbyClient(int numClient) {
 		// TODO Auto-generated method stub
 		
 		List<ContratDTO> listeContDt = new Vector<ContratDTO>();
