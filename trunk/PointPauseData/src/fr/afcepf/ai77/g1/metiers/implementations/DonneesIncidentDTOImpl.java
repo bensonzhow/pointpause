@@ -14,6 +14,7 @@ import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.InterventionDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeMachineDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeMachinesDTO;
 import fr.afcepf.ai77.g1.metiers.dto.StatutIncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
@@ -151,9 +152,11 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		for (Incident inc : listIncident) {
 			listNumInstall.add(inc.getNumeroDeploiement().getNumero());
 		}
-
+		
+		
 		List<Contrat> listContrat = donneesContrat
 				.getListContratFromListNumInstallation(listNumInstall);
+	
 
 		// on prepare la liste de DTO. On utilise une double boucle
 		// pour associer les numeros de contrat avec les incidentsDTO

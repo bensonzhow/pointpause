@@ -169,7 +169,6 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 					// TODO Auto-generated method stub
 					
 					List<Contrat> list = new Vector<Contrat>();
-							
 					try{
 
 						for (Integer numInstall : listInstalls){
