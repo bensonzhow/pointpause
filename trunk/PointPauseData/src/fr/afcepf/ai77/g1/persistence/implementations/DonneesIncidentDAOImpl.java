@@ -26,6 +26,8 @@ import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.Intervention;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
+import fr.afcepf.ai77.g1.persistence.entity.TypeStatutIncident;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
 
 public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
@@ -288,6 +290,34 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			listIncident = null;
 		} finally {
 			return listIncident;
+		}
+	}
+	
+	@Override
+	public TypePb getTypePbById(int problemeId) {
+		// TODO Auto-generated method stub
+		TypePb typepb = null;
+		try{
+			typepb=hibernateTemplate.get(TypePb.class, problemeId);
+		}catch(Exception e){
+			e.printStackTrace();
+			typepb=null;
+		}finally{
+			return typepb;
+		}
+	}
+	
+	@Override
+	public TypeStatutIncident getTypeStatutIncidentById(int numeroStatut) {
+		// TODO Auto-generated method stub
+		TypeStatutIncident typesi = null;
+		try{
+			typesi=hibernateTemplate.get(TypeStatutIncident.class, numeroStatut);
+		}catch(Exception e){
+			e.printStackTrace();
+			typesi=null;
+		}finally{
+			return typesi;
 		}
 	}
 
