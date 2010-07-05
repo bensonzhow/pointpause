@@ -361,8 +361,8 @@ public class DataInsertion {
 		 createIncidentForInstall(50,1,1);
 		 createIncidentForInstall(51,2,2);
 		 createIncidentForInstall(52,3,3);
-		 createIncidentForInstall(53,3,4);
-		 createIncidentForInstall(54,3,5);
+		 createIncidentForInstall(53,4,3);
+		 createIncidentForInstall(54,5,3);
 
 		getAllIncidentsForClient(20);
 

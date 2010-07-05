@@ -14,8 +14,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-
-
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 
@@ -34,21 +32,22 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		hibernateTemplate = new HibernateTemplate(sf);
 	}
 
-	public List getNumMachineByNumContrat(int numContrat){
+	public List getNumMachineByNumContrat(int numContrat) {
 		List listeMachine = null;
-		try{
+		try {
 			Contrat c = getContratById(numContrat);
-			DetachedCriteria crit = DetachedCriteria.forClass(TypeAutomate.class);
+			DetachedCriteria crit = DetachedCriteria
+					.forClass(TypeAutomate.class);
 			crit.add(Restrictions.eq("contrat", c));
 			listeMachine = hibernateTemplate.findByCriteria(crit);
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			return listeMachine;
 		}
-		
+
 	}
-	
+
 	@Override
 	public Contrat getContratById(Integer id) {
 		// TODO Auto-generated method stub
@@ -56,10 +55,11 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 			c = hibernateTemplate.get(Contrat.class, id);
 		} catch (Exception e) {
-			e.printStackTrace();}
-			finally{
-			return c;}
-		
+			e.printStackTrace();
+		} finally {
+			return c;
+		}
+
 	}
 
 	/**
@@ -131,12 +131,13 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 			DetachedCriteria crit = DetachedCriteria.forClass(Contrat.class);
 
-			crit = crit.createCriteria("listeBouquets",
-					DetachedCriteria.INNER_JOIN).createCriteria(
-					"historiqueInstallations", DetachedCriteria.INNER_JOIN)
-					.add(
-							Restrictions.eq("numero", new Integer(
-									numInstallation)));
+			crit = crit
+					.createCriteria("listeBouquets",
+							DetachedCriteria.INNER_JOIN)
+					.createCriteria("historiqueInstallations",
+							DetachedCriteria.INNER_JOIN)
+					.add(Restrictions
+							.eq("numero", new Integer(numInstallation)));
 
 			bob = hibernateTemplate.findByCriteria(crit);
 
@@ -153,63 +154,68 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		}
 	}
 
-
 	@Override
 	public List<Contrat> getListContratFromListNumInstallation(
 			final List<Integer> listInstalls) {
 		// TODO Auto-generated method stub
-		List<Contrat> listContrat=null;
-		try{
-			
-			
-			listContrat = hibernateTemplate.execute(new HibernateCallback<List<Contrat>>() {
-				
-				@Override
-				public List<Contrat> doInHibernate(Session session) throws HibernateException,
-						SQLException {
-					// TODO Auto-generated method stub
-					
-					List<Contrat> list = new Vector<Contrat>();
-					try{
+		List<Contrat> listContrat = null;
+		try {
 
-						for (Integer numInstall : listInstalls){
-							Criteria crit = session.createCriteria(Contrat.class);
-							
-							crit = crit.createCriteria("listeBouquets", Criteria.INNER_JOIN)
-							.createCriteria("historiqueInstallations", Criteria.INNER_JOIN)
-							.add(Restrictions.eq("numero",numInstall));
-							
-							list.add((Contrat)crit.uniqueResult());
-							
-						}					
-					}catch(Exception e){
-						e.printStackTrace();
-						list=null;
-					}finally{
-						return list;
-					}
-				}
-				
-			});
-			
-			
-		}catch (Exception e){
+			listContrat = hibernateTemplate
+					.execute(new HibernateCallback<List<Contrat>>() {
+
+						@Override
+						public List<Contrat> doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							// TODO Auto-generated method stub
+
+							List<Contrat> list = new Vector<Contrat>();
+							try {
+
+								for (Integer numInstall : listInstalls) {
+									Criteria crit = session
+											.createCriteria(Contrat.class);
+
+									crit = crit
+											.createCriteria("listeBouquets",
+													Criteria.INNER_JOIN)
+											.createCriteria(
+													"historiqueInstallations",
+													Criteria.INNER_JOIN)
+											.add(Restrictions.eq("numero",
+													numInstall));
+
+									list.add((Contrat) crit.uniqueResult());
+
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+								list = null;
+							} finally {
+								return list;
+							}
+						}
+
+					});
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			listContrat=null;
-		}finally{
+			listContrat = null;
+		} finally {
 			return listContrat;
 		}
-		
+
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public Integer insertContrat(Contrat contrat) {
-		//pas oublier insérer bouquet aussi
-		// mettre un site client aussi pour la localisation... 
-		
+		// pas oublier insérer bouquet aussi
+		// mettre un site client aussi pour la localisation...
+
 		hibernateTemplate.save(contrat);
-		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(numero) from Contrat");
+		List<Integer> maxNumero = (List<Integer>) hibernateTemplate
+				.find("SELECT max(numero) from Contrat");
 		int numero = maxNumero.get(0);
 		return numero;
 	}
@@ -218,7 +224,8 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	@SuppressWarnings("unchecked")
 	public Integer insertBouquet(Bouquet bouquet) {
 		hibernateTemplate.save(bouquet);
-		List<Integer> maxNumero = (List<Integer>)hibernateTemplate.find("SELECT max(codeBouquet) from Bouquet");
+		List<Integer> maxNumero = (List<Integer>) hibernateTemplate
+				.find("SELECT max(codeBouquet) from Bouquet");
 		int numero = maxNumero.get(0);
 		return numero;
 	}
@@ -227,15 +234,82 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	@Override
 	public List<Integer> listeNumMachineByNumContrat(int numContrat) {
 		DetachedCriteria crit = DetachedCriteria.forClass(Installation.class);
-		crit = crit.createCriteria("historiqueBouquet", DetachedCriteria.INNER_JOIN)
-		.createCriteria("contrat", DetachedCriteria.INNER_JOIN).add(Restrictions.eq("numero", numContrat));
-		
-		List<Installation> listeInstallation = hibernateTemplate.findByCriteria(crit);
+		crit = crit
+				.createCriteria("historiqueBouquet",
+						DetachedCriteria.INNER_JOIN)
+				.createCriteria("contrat", DetachedCriteria.INNER_JOIN)
+				.add(Restrictions.eq("numero", numContrat));
+
+		List<Installation> listeInstallation = hibernateTemplate
+				.findByCriteria(crit);
 		List<Integer> listeNumMachine = null;
-		for(Installation i : listeInstallation){
+		for (Installation i : listeInstallation) {
 			listeNumMachine.add(i.getNumero());
 		}
 		return listeNumMachine;
+	}
+	
+	
+	
+	
+
+	@Override
+	public List<Contrat> getAllContratBouquetInstallByClient(final int numClient) {
+		List<Contrat> listContrat = null;
+		try {
+
+			listContrat = hibernateTemplate
+					.execute(new HibernateCallback<List<Contrat>>() {
+						@Override
+						public List<Contrat> doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							// TODO Auto-generated method stub
+							List<Contrat> liste = null;
+							try {
+
+								Criteria crit = session
+										.createCriteria(Contrat.class);
+
+								crit = crit.createCriteria("client",
+										Criteria.INNER_JOIN).add(
+										Restrictions.eq("numero", numClient));
+
+								liste = crit.list();
+
+								// initiliser le bousin
+								for (Contrat contrat : liste) {
+									Hibernate.initialize(contrat);
+									Hibernate.initialize(contrat
+											.getListeBouquets());
+									for (Bouquet bouquet : contrat
+											.getListeBouquets()) {
+										Hibernate.initialize(bouquet);
+										Hibernate.initialize(bouquet
+												.getFormule());
+										Hibernate.initialize(bouquet
+												.getModeleAutomate());
+										Hibernate.initialize(bouquet
+												.getHistoriqueInstallations());
+									}
+
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+								liste = null;
+							} finally {
+								return liste;
+							}
+
+						}
+					});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			listContrat = null;
+		} finally {
+			return listContrat;
+		}
+
 	}
 
 }

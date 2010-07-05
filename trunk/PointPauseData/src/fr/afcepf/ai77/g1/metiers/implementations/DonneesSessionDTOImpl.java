@@ -33,7 +33,7 @@ public class DonneesSessionDTOImpl implements IDonneesSessionDTO {
 		session.setLang(client.getLangue());
 		session.setLogin(client.getLogin());
 		session.setPass(client.getPass());
-		session.setNom(client.getNom());
+		session.setNom(client.getNomContact());
 		session.setNumeroClient(client.getNumero());
 		
 		return session;
