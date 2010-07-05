@@ -80,6 +80,8 @@ public class DeclarationIncidentBean {
 		for(Integer i : retour){
 			listMachine.add(new SelectItem(i.toString()));
 		}
+		
+		
 		return listMachine;
 	}
 
