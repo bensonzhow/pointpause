@@ -269,12 +269,14 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 									Hibernate.initialize(stinc.getTypeStatut());
 									Hibernate.initialize(stinc
 											.getIntervention());
-									
+							
 									if (stinc.getIntervention()!=null)
 										Hibernate.initialize(stinc.getIntervention().getEmploye());
 									
 												
+
 								}
+
 							}
 
 							return reliste;

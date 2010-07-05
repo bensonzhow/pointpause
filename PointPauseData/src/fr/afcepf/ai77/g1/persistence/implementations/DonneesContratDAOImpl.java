@@ -15,11 +15,14 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 
+
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
+
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
+import fr.afcepf.ai77.g1.persistence.entity.TypeAutomate;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 
 public class DonneesContratDAOImpl implements IDonneesContratDAO {
@@ -30,6 +33,21 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		hibernateTemplate = new HibernateTemplate(sf);
 	}
 
+	public List getNumMachineByNumContrat(int numContrat){
+		List listeMachine = null;
+		try{
+			Contrat c = getContratById(numContrat);
+			DetachedCriteria crit = DetachedCriteria.forClass(TypeAutomate.class);
+			crit.add(Restrictions.eq("contrat", c));
+			listeMachine = hibernateTemplate.findByCriteria(crit);
+		}catch (Exception e){
+			e.printStackTrace();
+		}finally{
+			return listeMachine;
+		}
+		
+	}
+	
 	@Override
 	public Contrat getContratById(Integer id) {
 		// TODO Auto-generated method stub
@@ -133,6 +151,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 			return contrat;
 		}
 	}
+
 
 	@Override
 	public List<Contrat> getListContratFromListNumInstallation(

@@ -98,7 +98,6 @@ public class DonneesClientDAOImpl implements IDonneesClientDAO {
 		}finally{
 			return listeContrat;
 		}
-		
 	}
 
 	@Override
