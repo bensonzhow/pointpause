@@ -55,6 +55,7 @@
    }
     #Contenu{
    text-align: center;
+   font-size: x-small;
    width: 1000px;
    padding-top: 20px;
    padding-bottom: 20px;
@@ -66,10 +67,17 @@
    margin: auto;
    font-size: 62.5%;
    }
-  .declareIncident{
+   .banieresav{
+   background-image: url(../images/baniereSAV.jpg);
+   margin: auto;
+   width: 800px;
+   height: 226px;
+   margin-bottom: 50px;
+   }
+   .declareIncident{
    margin: auto;
    margin-bottom: 35px;
-   width: 850px;
+   width: 800px;
    }
    .tableIncident{
    width: 830px;

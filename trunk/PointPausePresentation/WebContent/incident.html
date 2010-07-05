@@ -5,24 +5,13 @@
 	xmlns:a4j="http://richfaces.org/a4j">	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <facelets:composition template="masterPage.html">
-<facelets:define name="HeadScriptorCss"><script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="ui/jquery.ui.core.js"></script>
-	<script type="text/javascript" src="ui/jquery.ui.widget.js"></script>
-	<script type="text/javascript" src="ui/jquery.ui.datepicker.js"></script>
-	<link type="text/css" href="css/demos.css" rel="stylesheet" />
+<facelets:define name="HeadScriptorCss">
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
-	<script type="text/javascript">
-	$(function() {
-		$(".datepicker").datepicker();
-	});
-	</script>
-	<script type="text/javascript">
-	$(function() {
-		$(".datepicker2").datepicker();
-	});
-	</script></facelets:define>
+	</facelets:define>
  	<facelets:define name="Contenu">
  		<div id="Incident">
+ 			<div  class="banieresav" >
+ 			</div>
                 <richfaces:panel  styleClass="declareIncident" >
                  	<table class="tableIncident">
                  		<tr>
@@ -30,35 +19,41 @@
                  		</tr>
                  		<tr>
                  			<td ></td>
-                 			<td class="textTabIncident" width="100px" height="20px">N° de machine: </td>
+                 			<td class="textTabIncident" width="100px" height="20px">N° de Contrat: </td>
                  			<td width="250px">
-                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.listMachine}">	
-                                 <!-- <jsfCore:selectItems value="Proutprout" />   -->
-                                 
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueContrat}" 
+                 											size="1" 
+                 											valueChangeListener="#{declareIncidentMB.valueChangeListener}"
+								onchange="submit()">
+                 					 <jsfCore:selectItems value="#{declareIncidentMB.numContrat}" />
                  				</jsf:selectOneListbox>
+                 				
                  			</td>
                  			<td class="textTabIncident" width="150px" style="font-size:62,5%">Date de constat: </td>
                  			<td>
-                 				<div class="demo">
-									<jsf:inputText class ="datepicker" value="#{declareIncidentMB.dateConstatIncident}"/>
-								</div>
+                 				<a4j:outputPanel id="calendarConstat" layout="block">
+									<richfaces:calendar value="#{declareIncidentMB.dateConstatIncident}"
+											datePattern="dd/MM/yyyy">
+									</richfaces:calendar>
+								</a4j:outputPanel>
                  			</td>
                  			
                  		</tr>
                  		<tr>
                  			<td></td>
-                 			<td class="textTabIncident" width="100px">N° de contrat: </td>
+                 			<td class="textTabIncident" width="100px">N° de machine: </td>
                  			<td>
-                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueContrat}" 
-                 											size="1" onchange="#{declareIncidentMB.listMachine}">
-                 					 <jsfCore:selectItems value="#{declareIncidentMB.numContrat}" />
+                 				<jsf:selectOneListbox style="width:147px;" value="#{declareIncidentMB.valueMachine}">	
+                                 		<jsfCore:selectItems value="#{declareIncidentMB.listMachine}" />
                  				</jsf:selectOneListbox>
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de Déclaration: </td>
                  			<td>
-                 				<div class="demo">
-									<jsf:inputText class="datepicker2" value="#{declareIncidentMB.dateDeclarationIncident}"/>
-								</div>
+                 				<a4j:outputPanel id="calendarDeclaration" layout="block">
+									<richfaces:calendar value="#{declareIncidentMB.dateDeclarationIncident}"
+											datePattern="dd/MM/yyyy" showApplyButton="true" >
+									</richfaces:calendar>
+								</a4j:outputPanel>
                  			</td>
                  		</tr>
                  		<tr>
@@ -68,18 +63,16 @@
 	                                 <jsfCore:selectItems value="#{declareIncidentMB.typePb}" />
                  				</jsf:selectOneListbox>
                  			</td>
-                 			<td class="textTabIncident">Télephone: </td>
-                 			<td><jsf:inputText id="telContact" value=""/></td>
                  		</tr>
                  		<tr>
                  			<td></td>
                  			<td valign="top" align="right">Commentaire: </td>
-                 			<td colspan="3"><jsf:inputTextarea  id="comContact" cols="66" rows="5" />
+                 			<td colspan="3"><jsf:inputTextarea  id="comContact" cols="66" rows="5" value="#{declareIncidentMB.commentaire}" />
                  			</td>
                  		</tr>
                  		<tr>
                  			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox value="#{declareIncidentMB.flag}" /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
-                 			<td><jsf:commandButton id="submitIncident" action="#{declareIncidentMB.declare}" value="Confirmer" style="width:147px; height:30px;" /></td>
+                 			<td><jsf:commandButton id="submitIncident" action="#{declareIncidentMB.declare}" value="Suivant" style="width:147px; height:30px;" /></td>
                  		</tr>
                  	</table>
                  	
@@ -95,17 +88,17 @@
                  			<td width="250px">
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de constat: </td>
-                 			<td>
+                 			<td> <jsf:outputLabel value="#{declareIncidentMB.dateConstatIncident}"></jsf:outputLabel>
                  			</td>
                  			
                  		</tr>
                  		<tr>
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de contrat: </td>
-                 			<td>
+                 			<td><jsf:outputLabel value="#{declareIncidentMB.valueContrat}"></jsf:outputLabel>
                  			</td>
                  			<td class="textTabIncident" width="150px">Date de Déclaration: </td>
-                 			<td>
+                 			<td><jsf:outputLabel value="#{declareIncidentMB.dateDeclarationIncident}"></jsf:outputLabel>
                  			</td>
                  		</tr>
                  		<tr>
@@ -117,6 +110,7 @@
                  		<tr>
                  			<td></td>
                  			<td valign="top" align="right">Commentaire: </td>
+                 			<td><jsf:outputLabel value="#{declareIncidentMB.commentaire}"></jsf:outputLabel></td>
                  		</tr>
                  		<tr>
                  			<td class="textTabIncident" colspan="4"> Voulez allez suivre cette incident dans votre tableau de bord</td>
