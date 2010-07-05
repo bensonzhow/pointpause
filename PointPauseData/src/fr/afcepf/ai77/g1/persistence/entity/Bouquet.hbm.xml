@@ -14,11 +14,8 @@
 			<column name="quantite" sql-type="int" not-null="false" />
 		</property>
 
-		
-
-
 		<many-to-one name="contrat" column="numero_contrat" class="Contrat"
-			cascade="all" not-null="false" />
+			cascade="save-update" not-null="false" />
 
 
 
