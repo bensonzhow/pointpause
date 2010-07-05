@@ -8,7 +8,12 @@ border:1px solid black;
 margin:auto;
 
 }
-
+.panel{
+	width:992px;
+	}
+	#Contenu{
+background-color: rgb(255,255,255);
+	}
 p#dvp{
 	
 font-size:medium;

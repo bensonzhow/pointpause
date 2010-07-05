@@ -37,10 +37,11 @@ public class ChoixContratBean {
 	public String commentaire;
 	private String test;
 	private Boolean flag;
-	private Date dateFin;
+	private Date dateFin ;
 	private Date dateDebut;
+	
 	private String check;
-	private String suite="false";
+	private Boolean suite;
 	private Boolean essaiValid = false;
 	private Integer frequence;
 	private String descriptionFormule="";
@@ -135,6 +136,7 @@ public String getDescriptionMachine() {
 		System.out.println("inserer");
 		System.out.println("test= "+ test);
 		System.out.println("region"+ region);
+		//	System.out.println(dateDebut);
 	System.out.println("commentaire:"+commentaire);
 		System.out.println("quantite"+quantite);
 		System.out.println("commentaire");
@@ -150,18 +152,17 @@ public String getDescriptionMachine() {
 		contrat.setFreqApprovisionnement(frequence);
 		System.out.println("commentaire");
 		
+		contrat.setDateDebut(dateDebut);
 		contrat.setFlag(flag);
-		/*contrat.setDateDebut(dateDebut);
-		contrat.setDateFin(dateFin);
-		
-		
+			contrat.setDateFin(dateFin);
+				
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(dateDebut);
 		int d1 = cal.get(Calendar.DATE);
 		cal.setTime(dateFin);
 		int d2 = cal.get(Calendar.DATE);
 		int duree= d2 - d1;
-		contrat.setDuree(duree);*/
+		contrat.setDuree(duree);
 		contrat.setCommentaire(commentaire);
 		contrat.setGarantie(true);
 		contrat.setNumClient(session.getNumeroClient());
@@ -171,7 +172,7 @@ public String getDescriptionMachine() {
 	}
 	
 	
-	public String Submit1(){
+	public Boolean Submit1(){
 		System.out.println("submit1");
 		essaiValid=true;
 		if(selectedFormule=="")
@@ -185,7 +186,7 @@ public String getDescriptionMachine() {
 		else
 			{check="ok";
 			selectedFormule= "Formule choisie :" + selectedFormule;
-		suite="true";
+		suite=true;
 		return suite;}
 		
 	}
@@ -194,6 +195,7 @@ public void kill()
 	httpSession.setAttribute("contratok", null);
 }
 	public ChoixContratBean(){
+		
 		IDonneesChoixContratDTO  donneesContrat = DTOFactory.getIDonneesChoixContratDTO();
 		formulesList= donneesContrat.getAllGeneral();
 
@@ -218,11 +220,11 @@ public void kill()
 
 	}
 
-	public String getSuite() {
+	public Boolean getSuite() {
 		return suite;
 	}
 
-	public void setSuite(String suite) {
+	public void setSuite(Boolean suite) {
 		this.suite = suite;
 	}
 
@@ -258,22 +260,7 @@ public void kill()
 		return flag;
 	}
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-
-	public Date getDateFin() {
-		return dateFin;
-	}
-
+	
 	public Integer setVerdict(Integer verdict) {
 		this.verdict = verdict;
 		return verdict;
@@ -289,6 +276,22 @@ public void kill()
 
 	public String getTest() {
 		return test;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
 	}
 
 }
