@@ -19,9 +19,17 @@ public class ContratDTO {
 	private int duree;
 	private String commentaire;
 	private Boolean flag;
-	private Set<Bouquet> listeBouquets = new HashSet<Bouquet>();
+	private Set<BouquetDTO> listeBouquets = new HashSet<BouquetDTO>();
 	
 	
+	
+	
+	public Set<BouquetDTO> getListeBouquets() {
+		return listeBouquets;
+	}
+	public void setListeBouquets(Set<BouquetDTO> listeBouquets) {
+		this.listeBouquets = listeBouquets;
+	}
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -70,12 +78,7 @@ public class ContratDTO {
 	public void setFlag(Boolean flag) {
 		this.flag = flag;
 	}
-	public Set<Bouquet> getListeBouquets() {
-		return listeBouquets;
-	}
-	public void setListeBouquets(Set<Bouquet> listeBouquets) {
-		this.listeBouquets = listeBouquets;
-	}
+	
 	public Integer getNumero() {
 		return numero;
 	}

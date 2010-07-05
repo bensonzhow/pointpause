@@ -14,6 +14,27 @@ public class BouquetDTO implements Serializable{
 	private Integer quantite;
 	private Set<Installation> historiqueInstallations = new HashSet<Installation>();
 
+	private String strModeleAutomate;
+	private String strFormule;
+	
+	
+	
+	public String getStrModeleAutomate() {
+		return strModeleAutomate;
+	}
+
+	public void setStrModeleAutomate(String strModeleAutomate) {
+		this.strModeleAutomate = strModeleAutomate;
+	}
+
+	public String getStrFormule() {
+		return strFormule;
+	}
+
+	public void setStrFormule(String strFormule) {
+		this.strFormule = strFormule;
+	}
+
 	public Integer getCodeBouquet() {
 		return codeBouquet;
 	}
