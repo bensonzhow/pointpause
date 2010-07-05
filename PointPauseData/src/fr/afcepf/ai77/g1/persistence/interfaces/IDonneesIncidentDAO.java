@@ -4,6 +4,8 @@ import java.util.List;
 
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
+import fr.afcepf.ai77.g1.persistence.entity.TypeStatutIncident;
 
 public interface IDonneesIncidentDAO {
 	
@@ -50,5 +52,10 @@ public interface IDonneesIncidentDAO {
 	 * 
 	 ************************************************************************ */
 	List<Incident> getSuiviIncidentByClient(Integer clientID, boolean unfinishedOnly,int min, int max);	
+	
+	TypePb getTypePbById(int problemeId);
+	
+	TypeStatutIncident getTypeStatutIncidentById(int numeroStatut);
+	
 	
 }

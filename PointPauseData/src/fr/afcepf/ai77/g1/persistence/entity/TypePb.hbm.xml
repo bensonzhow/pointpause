@@ -3,18 +3,21 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="fr.afcepf.ai77.g1.persistence.entity">
-  <class name="TypePb" table="type_probleme">
-  	
-  	<id name="numTypePb" type="integer" >
-  		<column name="numero_type_probleme" sql-type="int" not-null="true"/>
-  		<generator class="increment"/>
-  	</id>
-  
-   	<property name="libelle">
-      <column name="libelle_type_probleme" length="30" not-null="false"/> 
-    </property> 	
-    
-  
-  
-  </class>
+	<class name="TypePb" table="type_probleme">
+
+		<id name="numTypePb" type="integer">
+			<column name="numero_type_probleme" sql-type="int" not-null="true" />
+			<generator class="increment" />
+		</id>
+
+		<property name="libelle">
+			<column name="libelle_type_probleme" length="30" not-null="false" />
+		</property>
+
+		<set name="listeIncident" cascade="save-update" inverse="true">
+			<key column="numero_type_probleme" />
+			<one-to-many class="Incident" />
+		</set>
+
+	</class>
 </hibernate-mapping>

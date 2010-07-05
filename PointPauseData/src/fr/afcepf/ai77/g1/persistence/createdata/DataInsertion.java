@@ -21,6 +21,8 @@ import fr.afcepf.ai77.g1.persistence.entity.Intervention;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.SiteClient;
 import fr.afcepf.ai77.g1.persistence.entity.StatutIncident;
+import fr.afcepf.ai77.g1.persistence.entity.TypePb;
+import fr.afcepf.ai77.g1.persistence.entity.TypeStatutIncident;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesBouquetDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
@@ -228,7 +230,8 @@ public class DataInsertion {
 
 	}
 
-	public static void createIncidentForInstall(int numInstall) {
+	public static void createIncidentForInstall(int numInstall, int erreur,
+			int stade) {
 		IDonneesInstallationDAO donneesInstallation = DataInsertion
 				.getDonneesInstallation();
 
@@ -239,6 +242,11 @@ public class DataInsertion {
 
 		Incident incident = new Incident(null, true, new Date(), new Date(),
 				install);
+		
+		TypePb pb = donneesIncident.getTypePbById(erreur);
+		
+		incident.setTypePb(pb);
+		
 
 		/*
 		 * 
@@ -247,54 +255,72 @@ public class DataInsertion {
 
 		StatutIncident statut;
 		Intervention interv;
-		
+
+		TypeStatutIncident typesi;
+
 		Calendar calendar = Calendar.getInstance();
-	
-		
 
-		//phase 1
-		statut = new StatutIncident();
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		statut.setDateChangementStatut(calendar.getTime());
-		statut.setCommentaire("constat");
-		statut = setIntervention(statut, "diagnostic");
-		
-		statut.setIncident(incident);
-		incident.getListeStatutsIncidents().add(statut);
-		
-		
-		//phase 2
-		statut = new StatutIncident();
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		statut.setDateChangementStatut(calendar.getTime());
-		statut.setCommentaire("pris en charge");
-		statut = setIntervention(statut, "réparation");
-		
-		statut.setIncident(incident);
-		incident.getListeStatutsIncidents().add(statut);
-		
-		//phase 3
-		statut = new StatutIncident();
-		calendar.add(Calendar.DAY_OF_MONTH, 1);
-		statut.setDateChangementStatut(calendar.getTime());
-		statut.setCommentaire("résolu");
-		
-		statut.setIncident(incident);
-		incident.getListeStatutsIncidents().add(statut);
+		if (stade > 0) {
 
-		//ajout dans la base
+			// phase 1
+			statut = new StatutIncident();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			statut.setDateChangementStatut(calendar.getTime());
+			statut.setCommentaire("constat");
+			statut = setIntervention(statut, "diagnostic");
+			
+			typesi = donneesIncident.getTypeStatutIncidentById(1);
+			
+			statut.setTypeStatut(typesi);
+
+			statut.setIncident(incident);
+			incident.getListeStatutsIncidents().add(statut);
+		}
+
+		if (stade > 1) {
+			// phase 2
+			statut = new StatutIncident();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			statut.setDateChangementStatut(calendar.getTime());
+			statut.setCommentaire("pris en charge");
+			statut = setIntervention(statut, "réparation");
+
+			typesi = donneesIncident.getTypeStatutIncidentById(2);
+			
+			statut.setTypeStatut(typesi);			
+			
+			statut.setIncident(incident);
+			incident.getListeStatutsIncidents().add(statut);
+		}
+
+		if (stade > 2) {
+			// phase 3
+			statut = new StatutIncident();
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			statut.setDateChangementStatut(calendar.getTime());
+			statut.setCommentaire("résolu");
+			
+			typesi = donneesIncident.getTypeStatutIncidentById(3);
+			
+			statut.setTypeStatut(typesi);
+
+			statut.setIncident(incident);
+			incident.getListeStatutsIncidents().add(statut);
+		}
+		// ajout dans la base
 		donneesIncident.insertIncident(incident);
 	}
-	
-	public static StatutIncident setIntervention(StatutIncident statut, String comment){
+
+	public static StatutIncident setIntervention(StatutIncident statut,
+			String comment) {
 		Intervention interv = new Intervention();
 		interv.setCommentaire(comment);
 		interv.setDateDebutIntervention(new Date());
 		interv.setDateFinIntervention(new Date());
-		
+
 		interv.setStatutIncident(statut);
-		statut.setIntervention(interv);		
-		
+		statut.setIntervention(interv);
+
 		return statut;
 	}
 
@@ -332,13 +358,13 @@ public class DataInsertion {
 		// installBouquet(1);
 		// removeInstallBouquet(1);
 
-//		createIncidentForInstall(10);
-//		createIncidentForInstall(11);
-//		createIncidentForInstall(12);
-//		createIncidentForInstall(13);
-//		createIncidentForInstall(14);
+		 createIncidentForInstall(50,1,1);
+		 createIncidentForInstall(51,2,2);
+		 createIncidentForInstall(52,3,3);
+		 createIncidentForInstall(53,3,4);
+		 createIncidentForInstall(54,3,5);
 
-		getAllIncidentsForClient(19);
+		getAllIncidentsForClient(20);
 
 	}
 
