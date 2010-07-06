@@ -6,7 +6,7 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:jstl="http://java.sun.com/jstl/core"
 	xmlns:jsp="http://java.sun.com/jsp/page">
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
 <facelets:composition template="masterPage.html">
 <facelets:define name="HeadScriptorCss">
@@ -28,11 +28,57 @@
 <jsfCore:subview id="tableauBord">
 	<jsf:form>
 
+
 		
 	<richfaces:panel>
 		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
 		
+				
+   			<richfaces:dataTable value='#{tableaubordMB.dataModel}' var="contrat">
+
+					<richfaces:column>
+						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateDebut}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header"> Date de fin :		</jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateFin}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+
+					<richfaces:column>
+						<jsfCore:facet name="header">Commentaire :</jsfCore:facet>
+						<jsf:outputText value="#{contrat.commentaire}" />
+						
+					</richfaces:column>
+
+					<richfaces:column>
+						<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
+						<jsf:selectBooleanCheckbox value="#{contrat.flag}">
+						<a4j:support event="onclick" action="#{tableaubordMB.switchFlag}"></a4j:support>
+						</jsf:selectBooleanCheckbox>
+						
+					</richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.numero}" />
+					</richfaces:column>
+
+				</richfaces:dataTable>
+		
 	</richfaces:panel>
+	
+	
+	
+	
+	
+	
+	
 	<richfaces:panel>
 		<jsfCore:facet name="header"> Vos derniers incidents
 	  </jsfCore:facet>
