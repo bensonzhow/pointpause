@@ -142,11 +142,9 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	public List<IncidentDTO> getHistoriqueIncidentByClient(int numClient) {
 		// TODO Auto-generated method stub
 
-		// récuperer la liste des incidents
 		List<Incident> listIncident = donneesIncident
 				.getSuiviIncidentByClient(numClient);
 
-		// récupérer la liste des contrats correspondants
 		List<Integer> listNumInstall = new Vector<Integer>();
 
 		for (Incident inc : listIncident) {
@@ -201,7 +199,6 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 				newIncDto.setNumContrat(-1);
 			}
 
-			// maintenant qu'on a copié les données de base de l'incident,
 			// il faut s'occuper de ses statut incident
 
 			for (StatutIncident stinc : incident.getListeStatutsIncidents()) {
@@ -222,8 +219,6 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 
 				// FIXME
 				/*
-				 * a rajouter plus tard, quand on aura mappé le type statut et
-				 * peuplé la base avec des données
 				 * 
 				 * stincdto.setStatut(stinc.getTypeStatutIncident().getLibelle());
 				 */
@@ -257,7 +252,6 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 			//trier la liste des statutincidents
 			newIncDto.sortMyStatus();
 			
-			//maintenant que la liste est triée, on peut récupérer les infos du dernier statut pour les 
 			//mettre dans l'incident directement
 			
 			StatutIncidentDTO statutDTO = newIncDto.getLastStatutDTO(); 
@@ -269,7 +263,6 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 				newIncDto.setLibelStatutPriseEnCharge("indetermine");				
 			}
 			
-			// maintenant que le bousin est créé, on l'ajoute
 			listIncidentDTO.add(newIncDto);
 
 		}
