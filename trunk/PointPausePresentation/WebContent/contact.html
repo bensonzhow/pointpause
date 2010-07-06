@@ -4,91 +4,93 @@
 	xmlns:richfaces="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 	<head>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  
-  <script>
-  $(document).ready(function() {
-    $("#accordion").accordion();
-  });
-  </script>
+ 	 <link type="text/css" href="css/jquery-ui-1.8.2.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="ui/jquery-ui-1.8.2.custom.min.js"></script>
 
+	<script type="text/javascript">
+	$(function() {
+		$("#accordion").accordion();
+	});
+	</script>
   </head>
 <facelets:composition template="masterPage.html">
-
- 
+	<facelets:define name="Contenu">
          <div id="centre" align="center">
-             <div id="accordion">
-              	<h3><a href="#">Ile de France</a></h3>
-              	<div>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      <strong> <u>Site de Paris</u> :</strong>
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      Valerie DUPOND - Service des Ressources Humaines - 3 Boulevard Malesherbes - 75008 - Paris 
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                        <strong>Télephonne :</strong> 06.12.52.63.45
-                    </font>    <br />
-                    <font face="microsoft Sans Serif">
-                        <strong>Mail :</strong> valeriedupond@pp.fr
-                    </font>
-              		</p>
-              		<img class="ContactParis"/>
-              	</div>
-              	<h3><a href="#">Rhône-Alpes</a></h3>
-              	<div>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      <strong> <u>Site de Lyon</u> :</strong>
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      Stéphane MARTIN - Service des Ressources Humaines - 18 Rue de Condé - 69002 - Lyon 
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                        <strong>Télephonne :</strong> 06.12.52.63.46
-                    </font>    <br />
-                    <font face="microsoft Sans Serif">
-                        <strong>Mail :</strong> stephane-Martin@pp.fr
-                    </font>
-              		</p>
-              		<img class="ContactLyon"/>
-              	</div>
-              	<h3><a href="#">Aquitaine</a></h3>
-              	<div>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      <strong> <u>Site de Bordeaux</u> :</strong>
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                      Philippe MAURICE - Service des Ressources Humaines - 18 Rue de Condé - 69002 - Lyon 
-                    </font>
-              		</p>
-              		<p>
-              		   <font face="microsoft Sans Serif">
-                        <strong>Télephonne :</strong> 06.12.52.63.47
-                    </font>    <br />
-                    <font face="microsoft Sans Serif">
-                        <strong>Mail :</strong> stephane-Martin@pp.fr
-                    </font>
-              		</p>
-              		<img class="ContactBordeaux"/>
-              	</div>
-             
+             <div class="demo">
+	             <div id="accordion">
+	              	<h3><a href="#">Ile de France</a></h3>
+	              	<div>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      <strong> <u>Site de Paris</u> :</strong>
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      Valerie DUPOND - Service des Ressources Humaines - 3 Boulevard Malesherbes - 75008 - Paris 
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                        <strong>Télephonne :</strong> 06.12.52.63.45
+	                    </font>    <br />
+	                    <font face="microsoft Sans Serif">
+	                        <strong>Mail :</strong> valeriedupond@pp.fr
+	                    </font>
+	              		</p>
+	              		<img class="ContactParis"/>
+	              	</div>
+	              	<h3><a href="#">Rhône-Alpes</a></h3>
+	              	<div>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      <strong> <u>Site de Lyon</u> :</strong>
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      Stéphane MARTIN - Service des Ressources Humaines - 18 Rue de Condé - 69002 - Lyon 
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                        <strong>Télephonne :</strong> 06.12.52.63.46
+	                    </font>    <br />
+	                    <font face="microsoft Sans Serif">
+	                        <strong>Mail :</strong> stephane-Martin@pp.fr
+	                    </font>
+	              		</p>
+	              		<img class="ContactLyon"/>
+	              	</div>
+	              	<h3><a href="#">Aquitaine</a></h3>
+	              	<div>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      <strong> <u>Site de Bordeaux</u> :</strong>
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                      Philippe MAURICE - Service des Ressources Humaines - 18 Rue de Condé - 69002 - Lyon 
+	                    </font>
+	              		</p>
+	              		<p>
+	              		   <font face="microsoft Sans Serif">
+	                        <strong>Télephonne :</strong> 06.12.52.63.47
+	                    </font>    <br />
+	                    <font face="microsoft Sans Serif">
+	                        <strong>Mail :</strong> stephane-Martin@pp.fr
+	                    </font>
+	              		</p>
+	              		<img class="ContactBordeaux"/>
+	              	</div>
+	             
+	         	</div>
          </div>
        </div>
       
    
-
+	</facelets:define>
 </facelets:composition>
 </html>
