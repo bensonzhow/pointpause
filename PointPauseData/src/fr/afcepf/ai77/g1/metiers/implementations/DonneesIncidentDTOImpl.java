@@ -277,4 +277,15 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		return listIncidentDTO;
 	}
 
+	@Override
+	public boolean switchIncidentFlag(int numIncident) {
+		// TODO Auto-generated method stub
+		
+		Incident inc = donneesIncident.getIncidentByNumero(numIncident);
+		inc.setFlag(! inc.getFlag());
+		boolean res = donneesIncident.updateIncident(inc);
+		
+		return res;
+	}
+
 }
