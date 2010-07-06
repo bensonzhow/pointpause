@@ -22,7 +22,7 @@ public class RapportContratBean {
 	public void setListeContrats(List<ContratDTO> listeContrats) {
 		this.listeContrats = listeContrats;
 	}
-	
+	 
 	public RapportContratBean(){
 		
 		FacesContext context = FacesContext.getCurrentInstance();
