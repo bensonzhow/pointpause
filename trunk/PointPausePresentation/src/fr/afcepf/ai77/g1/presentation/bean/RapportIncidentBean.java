@@ -15,6 +15,7 @@ import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.dto.StatutIncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
+import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.presentation.beanutils.StatIncidentUtils;
 import fr.afcepf.ai77.g1.presentation.beanutils.StatutIncidentStat;
 import fr.afcepf.ai77.g1.presentation.beanutils.TypeIncidentStat;
@@ -156,6 +157,26 @@ public class RapportIncidentBean {
 		} else {
 			setListeIncidents(hiddenListIncident);
 		}
+	}
+	
+	public void setFlagForIncident(){
+		    
+		 FacesContext context = FacesContext.getCurrentInstance();  
+		 String value = context.getExternalContext().getRequestParameterValuesMap().get("nincident")[0];	
+		 int nincident= Integer.parseInt(value);
+		 
+		 
+		 //changer le flag dans la DB
+		 IDonneesIncidentDTO donneesIncident= DTOFactory.getIDonneesIncidentDTO();
+		 donneesIncident.switchIncidentFlag(nincident);
+		 
+		 //changer le flag dans l'objet listé
+		 for (IncidentDTO incident : completeListIncident){
+			 if (incident.getNumero()==nincident){
+				 incident.setFlag(! incident.getFlag());
+				 break;
+			 }
+		 }
 	}
 
 }

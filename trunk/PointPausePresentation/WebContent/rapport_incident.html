@@ -14,8 +14,6 @@
 
 	<facelets:define name="Contenu">
 
-
-
 		<jstl:if test="${sessionScope['session']==null}">
 			<div id="cacheur"
 				style="margin-top: 20px; width: 1000px; height: 600px; background-color: gray; margin: auto; opacity: 0.8; position: absolute;"></div>
@@ -35,7 +33,7 @@
 			<richfaces:dataTable
 				value="#{rapportincidentMB.listeStatTypeIncidents}" var="stat">
 				<jsfCore:facet name="header">
-						<jsf:outputText value="Les pannes" />
+					<jsf:outputText value="Les pannes" />
 				</jsfCore:facet>
 				<richfaces:column>
 					<jsfCore:facet name="header">Type de panne</jsfCore:facet>
@@ -63,76 +61,85 @@
 					<jsf:outputText value="#{stat.combien}" />
 				</richfaces:column>
 			</richfaces:dataTable> <br />
-			
+
 			<jsf:selectBooleanCheckbox value="#{rapportincidentMB.displayAll}">
 				afficher tous les incidents
-				<a4j:support event="onclick" reRender="secondaryrepeater" action="#{rapportincidentMB.switchView}" />              
-			</jsf:selectBooleanCheckbox>
-
-			
-			</div>
-
-			<div class="secondaryincidentdiv">
-			
-			<a4j:repeat id="secondaryrepeater" 
-				value='#{rapportincidentMB.listeIncidents}' var="incident">
+				<a4j:support event="onclick" reRender="renderedContent"
+					action="#{rapportincidentMB.switchView}" />
+			</jsf:selectBooleanCheckbox></div>
 
 
 
-				<div class="rapportincidentdiv#{incident.statutPriseEnCharge}">
-
-				<div class="incidentshortinfo">
-
-				<h3>Incident #<jsf:outputText value="#{incident.numero}" /></h3>
-				<b>Contrat : </b><jsf:outputText value="#{incident.numContrat}" />
-				<br />
-				<b>Machine : </b><jsf:outputText value="#{incident.numInstallation}" />
-				<br />
-				<b>Declare le : </b> <jsf:outputText
-					value="#{incident.dateDeclarationIncident}">
-					<jsfCore:convertDateTime type="date" dateStyle="short" />
-				</jsf:outputText> <br />
-				<b>Probleme : </b><jsf:outputText value="#{incident.libelTypePb}" />
-				<br />
-				<b>Statut : <jsf:outputText
-					value="#{incident.libelStatutPriseEnCharge}" /></b></div>
-
-				<richfaces:dataTable styleClass="statutincidenttable"
-					value="#{incident.historique}" var="statut">
-
-					<jsfCore:facet name="header">
-						<jsf:outputText value="Historique" />
-					</jsfCore:facet>
-
-					<richfaces:column>
-						<jsfCore:facet name="header">Date :</jsfCore:facet>
-						<jsf:outputText value="#{statut.dateNouveauStatut}">
-							<jsfCore:convertDateTime type="date" dateStyle="short" />
-						</jsf:outputText>
-					</richfaces:column>
-
-					<richfaces:column>
-						<jsfCore:facet name="header">Statut :</jsfCore:facet>
-						<jsf:outputText value="#{statut.statut}" />
-					</richfaces:column>
-
-					<richfaces:column>
-						<jsfCore:facet name="header">Commentaire : </jsfCore:facet>
-						<jsf:outputText value="#{statut.commentaire}" />
-					</richfaces:column>
-
-				</richfaces:dataTable>
 
 
-				<div class="clearer"></div>
-				</div>
+			<jsf:panelGroup styleClass="secondaryincidentdiv"
+				id="renderedContent" rendered="true">
+
+				<a4j:repeat value='#{rapportincidentMB.listeIncidents}'
+					var="incident">
+
+					<div class="rapportincidentdiv#{incident.statutPriseEnCharge}">
+
+					<div class="incidentshortinfo">
+
+					<h3>Incident #<jsf:outputText value="#{incident.numero}" /></h3>
+					<b>Contrat : </b><jsf:outputText value="#{incident.numContrat}" />
+					<br />
+					<b>Machine : </b><jsf:outputText
+						value="#{incident.numInstallation}" /> <br />
+					<b>Declare le : </b> <jsf:outputText
+						value="#{incident.dateDeclarationIncident}">
+						<jsfCore:convertDateTime type="date" dateStyle="short" />
+					</jsf:outputText> <br />
+					<b>Probleme : </b><jsf:outputText value="#{incident.libelTypePb}" />
+					<br />
+					<b>Statut : <jsf:outputText
+						value="#{incident.libelStatutPriseEnCharge}" /></b></div>
+
+					<richfaces:dataTable styleClass="statutincidenttable"
+						value="#{incident.historique}" var="statut">
+
+						<jsfCore:facet name="header">
+							<jsf:outputText value="Historique" />
+						</jsfCore:facet>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Date :</jsfCore:facet>
+							<jsf:outputText value="#{statut.dateNouveauStatut}">
+								<jsfCore:convertDateTime type="date" dateStyle="short" />
+							</jsf:outputText>
+						</richfaces:column>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Statut :</jsfCore:facet>
+							<jsf:outputText value="#{statut.statut}" />
+						</richfaces:column>
+
+						<richfaces:column>
+							<jsfCore:facet name="header">Commentaire : </jsfCore:facet>
+							<jsf:outputText value="#{statut.commentaire}" />
+						</richfaces:column>
+
+					</richfaces:dataTable>
 
 
-			</a4j:repeat></div>
+					<div class="clearer"></div>
+					<jsf:selectBooleanCheckbox value="#{incident.flag}">
+						Suivre cet incident dans le tableau de bord ?				
+						<a4j:support event="onclick"
+								action="#{rapportincidentMB.setFlagForIncident}" >
+						<jsfCore:param name="nincident" value="${incident.numero}" />	
+						</a4j:support>						
+					</jsf:selectBooleanCheckbox>
+					
+					
+					</div>
 
 
-			</div>
+				</a4j:repeat>
 
+
+			</jsf:panelGroup></div>
 		</jsfCore:view>
 	</facelets:define>
 
