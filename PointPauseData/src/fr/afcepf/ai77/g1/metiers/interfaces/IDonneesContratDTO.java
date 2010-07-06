@@ -10,4 +10,5 @@ public interface IDonneesContratDTO {
 	List<Integer> getListeMachineByContrat(int numContratDTO);
 	
 	List<ContratDTO> getSyntheseContratbyClient(int numClient);
+	List<ContratDTO> getLastContratPourTableau(int numClient);
 }

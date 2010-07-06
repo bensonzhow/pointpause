@@ -15,7 +15,7 @@ public interface IDonneesIncidentDTO {
 	ListeMachineDTO getNumMachineByNumContrat(int numContrat);
 	
 	List<IncidentDTO> getHistoriqueIncidentByClient(int numClient); 
-	
+
 	boolean switchIncidentFlag(int numIncident);
 	
 }

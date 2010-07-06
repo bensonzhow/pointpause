@@ -39,6 +39,14 @@ public class TestDAOInterfaces extends TestCase {
 		assertTrue(client.getNom().contains("COGIP"));
 
 	}
+	// pr tableau de bord récupérer les derniers contrats
+	public void testGetLastContrat(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesContratDAO donneesContrat = (IDonneesContratDAO) factory.getBean("IDonneesContratDAO");
+		List<Contrat> lastContrats = donneesContrat.getLastContratsBouquetInstallByClient(4);
+		System.out.println(lastContrats);
+	}
 
 	public void testGetClientDAOByLogin() {
 		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(

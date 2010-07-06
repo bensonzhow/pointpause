@@ -52,6 +52,14 @@ public class TestDTOInterfaces extends TestCase {
 		
 	}
 	
+	public void testLastContratDTO(){
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		List<ContratDTO> listeContratDTO = donneesContrat.getLastContratPourTableau(4);
+		for (ContratDTO contratDTO : listeContratDTO) {
+			System.out.println("numero contrat " + contratDTO.getNumero());
+			System.out.println("commentaires eventuels " + contratDTO.getCommentaire());
+		}
+	}
 	public void testInsertIncident(){
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		
@@ -85,7 +93,7 @@ public class TestDTOInterfaces extends TestCase {
 		List<IncidentDTO> liste = donneesIncident.getHistoriqueIncidentByClient(19);
 		
 		for (IncidentDTO incident : liste){
-			System.out.println("Incident n° "+incident.getNumero()+", installation n°"+incident.getNumInstallation());
+			System.out.println("Incident nï¿½ "+incident.getNumero()+", installation nï¿½"+incident.getNumInstallation());
 			System.out.println("\t client : "+incident.getNumClient());
 			System.out.println("\t numero contrat : "+incident.getNumContrat());
 			System.out.println("\t date declaration : "+incident.getDateDeclarationIncident());
