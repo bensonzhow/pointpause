@@ -1,6 +1,7 @@
 package fr.afcepf.ai77.g1.metiers.dto;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -119,6 +120,20 @@ public class IncidentDTO implements Serializable {
 				+ ", numContrat=" + numContrat + ", numInstallation="
 				+ numInstallation + ", numTypeProb=" + numTypePb
 				+ ", numero=" + numero + "]";
+	}
+	
+	public void sortMyStatus(){
+		if (getHistorique()!=null) Collections.sort(getHistorique());
+		
+	}
+	
+	public StatutIncidentDTO getLastStatutDTO(){
+		try{
+			StatutIncidentDTO statutDTO = getHistorique().get(getHistorique().size()-1);
+			return statutDTO;
+		}catch(Exception e){
+			return null;				
+		}		
 	}
 	
 }
