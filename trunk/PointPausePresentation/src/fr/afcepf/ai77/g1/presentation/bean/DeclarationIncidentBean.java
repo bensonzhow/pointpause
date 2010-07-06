@@ -1,13 +1,9 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -18,16 +14,9 @@ import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
-import fr.afcepf.ai77.g1.metiers.dto.ListeMachineDTO;
-import fr.afcepf.ai77.g1.metiers.dto.ListeMachinesDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
-import fr.afcepf.ai77.g1.metiers.implementations.DonneesIncidentDTOImpl;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
-import fr.afcepf.ai77.g1.persistence.entity.Client;
-import fr.afcepf.ai77.g1.persistence.entity.Contrat;
-import fr.afcepf.ai77.g1.persistence.entity.TypePb;
-import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 
 public class DeclarationIncidentBean {
 	
@@ -41,8 +30,19 @@ public class DeclarationIncidentBean {
 	private String valueMachine = "";
 	private String valueContrat = "";
 	private String commentaire = "";
+	private String toto;
 
 	
+	public String getToto() {
+		return toto;
+	}
+
+
+	public void setToto(String toto) {
+		this.toto = toto;
+	}
+
+
 	public List getTypePb() {
 		
 		typePb = new ArrayList();
@@ -85,35 +85,16 @@ public class DeclarationIncidentBean {
 		this.numMachine = numMachine;
 	}
 	
+	private void recuperationNumeroMachine(Integer numeroContrat){
+		listMachine = new ArrayList(); 
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		System.out.println(numeroContrat);
+		listMachine = donneesContrat.getListeMachineByContrat(numeroContrat);
+	}
+	
 	public void valueChangeListener(ValueChangeEvent event){  
-		System.out.println("Entré");
-		FacesContext context = FacesContext.getCurrentInstance();
-//		HtmlSelectOneMenu monComponent = (HtmlSelectOneMenu) FacesContext
-//		.getCurrentInstance().getViewRoot().findComponent(
-//				"form:listeContrat");
-		context.getViewRoot().findComponent("listeContrat");
-		System.out.println(context.getViewRoot().findComponent("form:listeContrat"));
-//		System.out.println(monComponent.getValue());
-		
-//		listMachine = new ArrayList();
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-//		HttpSession httpSession = request.getSession(false);
-//		
-//		System.out.println("donneesContrat");
-//		
-//		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
-//		
-//		System.out.println(valueContrat);
-//		
-//		List<Integer> retour = donneesContrat.getListeMachineByContrat(Integer.parseInt(monComponent.getLocalValue().toString()));
-//		
-//		System.out.println("retour");
-//		
-//		for(Integer i : retour){
-//			System.out.println(i);
-//		}
-//		listMachine = retour;
+		Integer idContrat = Integer.parseInt(event.getNewValue().toString());
+		recuperationNumeroMachine(idContrat);
 	}  
 
 	public List getListMachine() {
@@ -135,7 +116,9 @@ public class DeclarationIncidentBean {
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		ListeContratDTO listeContrat = donneesIncident.getContratsByNumClient(session.getNumeroClient());
 		List<Integer> retour = listeContrat.getListeContrat();
+		int cpt=0;
 		for(Integer i : retour){
+			if(cpt==0){cpt++;recuperationNumeroMachine(i);}
 			numContrat.add(new SelectItem(i.toString()));
 		}
 		
