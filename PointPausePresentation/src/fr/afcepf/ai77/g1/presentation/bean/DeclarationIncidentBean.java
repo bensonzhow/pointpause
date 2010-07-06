@@ -1,5 +1,7 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +24,7 @@ public class DeclarationIncidentBean {
 	
 	private Integer numMachine;
 	private List numContrat;
-	private List listMachine = new ArrayList();
+	private List listMachine;
 	private Date dateConstatIncident;
 	private Date dateDeclarationIncident;
 	private Boolean flag=false;
@@ -30,19 +32,9 @@ public class DeclarationIncidentBean {
 	private String valueMachine = "";
 	private String valueContrat = "";
 	private String commentaire = "";
-	private String toto;
-
+	private Integer idContrat;
+	private boolean voirpanel = false;
 	
-	public String getToto() {
-		return toto;
-	}
-
-
-	public void setToto(String toto) {
-		this.toto = toto;
-	}
-
-
 	public List getTypePb() {
 		
 		typePb = new ArrayList();
@@ -89,12 +81,16 @@ public class DeclarationIncidentBean {
 		listMachine = new ArrayList(); 
 		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
 		System.out.println(numeroContrat);
-		listMachine = donneesContrat.getListeMachineByContrat(numeroContrat);
+		List<Integer> retour = donneesContrat.getListeMachineByContrat(numeroContrat);
+		for(Integer i : retour){
+			listMachine.add(new SelectItem(i)); 
+		}
 	}
-	
+	private boolean test = true;
 	public void valueChangeListener(ValueChangeEvent event){  
-		Integer idContrat = Integer.parseInt(event.getNewValue().toString());
+		idContrat = Integer.parseInt(event.getNewValue().toString());
 		recuperationNumeroMachine(idContrat);
+		test = false;
 	}  
 
 	public List getListMachine() {
@@ -118,9 +114,10 @@ public class DeclarationIncidentBean {
 		List<Integer> retour = listeContrat.getListeContrat();
 		int cpt=0;
 		for(Integer i : retour){
-			if(cpt==0){cpt++;recuperationNumeroMachine(i);}
+			if(cpt==0 && test){cpt++;recuperationNumeroMachine(i);}
 			numContrat.add(new SelectItem(i.toString()));
 		}
+		//recuperationNumeroMachine(idContrat);
 		
 		return numContrat;
 	}
@@ -169,6 +166,30 @@ public class DeclarationIncidentBean {
 	public void setValue(String value) {
 		this.valueMachine = value;
 	}
+	
+	public void confirmation(){
+		voirpanel = true;
+	}
+
+
+	public Integer getIdContrat() {
+		return idContrat;
+	}
+
+
+	public void setIdContrat(Integer idContrat) {
+		this.idContrat = idContrat;
+	}
+
+
+	public boolean isVoirpanel() {
+		return voirpanel;
+	}
+
+
+	public void setVoirpanel(boolean voirpanel) {
+		this.voirpanel = voirpanel;
+	}
 
 
 	public String declare(){
@@ -192,9 +213,11 @@ public class DeclarationIncidentBean {
 		//incident.setNumContrat(contrat.)
 		
 		int res = donneesIncident.insertIncident(incident);
+
 		
-		if(res != -1)
+		if(res != -1){
 			return "ok";
+		}
 		else
 		return "Failure";
 	}
