@@ -82,10 +82,7 @@
    .tableIncident{
    width: 830px;
    }
-   .textTabIncident{
-   text-align: right;
-   height: 30px;
-   }
+   
    #comContact{
    cols: 67;
    rows: 6;
@@ -93,7 +90,14 @@
    .recapitulationIncident{
    margin: auto;
    margin-bottom: 35px;
-   width: 850px;
+   width: 800px;
+   font-family: microsoft Sans Serif;
+   }
+   .classTd{
+   width: 50px;
+   }
+   .classTdText{
+   width: 220px;
    }
    
    #textAcceuil{
