@@ -14,6 +14,8 @@
 
 	<facelets:define name="Contenu">
 
+
+
 		<jstl:if test="${sessionScope['session']==null}">
 			<div id="cacheur"
 				style="margin-top: 20px; width: 1000px; height: 600px; background-color: gray; margin: auto; opacity: 0.8; position: absolute;"></div>
@@ -23,10 +25,31 @@
 			<u>Cliquez pour fermer...</u></div>
 		</jstl:if>
 
-
 		<jsfCore:view id="rapportincident">
+
+
 			<div class="mainrapportincidentdiv">
-				<a4j:repeat value='#{rapportincidentMB.listeIncidents}' var="incident">
+				
+				<div class="syntheticincidentdiv">
+					<h2>En cours :</h2><br/>
+					<richfaces:dataTable value="#{rapportincidentMB.listeIncidentStat}" var="stat">
+						<richfaces:column>
+						<jsfCore:facet name="header">Type de panne :</jsfCore:facet>
+						<jsf:outputText value="#{stat.libelleProbleme}" />
+					</richfaces:column>
+
+					<richfaces:column>
+						<jsfCore:facet name="header">En cours : </jsfCore:facet>
+						<jsf:outputText value="#{stat.combien}" />
+					</richfaces:column>				
+					</richfaces:dataTable>	 
+	
+				</div>
+	
+				<div class="secondaryincidentdiv">
+
+			<a4j:repeat
+				value='#{rapportincidentMB.listeIncidents}' var="incident">
 
 
 
@@ -46,8 +69,7 @@
 				<b>Probleme : </b><jsf:outputText value="#{incident.libelTypePb}" />
 				<br />
 				<b>Statut : <jsf:outputText
-					value="#{incident.libelStatutPriseEnCharge}" /></b>
-					</div>
+					value="#{incident.libelStatutPriseEnCharge}" /></b></div>
 
 				<richfaces:dataTable styleClass="statutincidenttable"
 					value="#{incident.historique}" var="statut">
@@ -81,6 +103,9 @@
 
 
 			</a4j:repeat></div>
+			
+							
+				</div>
 
 		</jsfCore:view>
 	</facelets:define>
