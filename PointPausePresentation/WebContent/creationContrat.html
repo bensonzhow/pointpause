@@ -97,8 +97,7 @@
 					<a4j:commandButton  action="#{ChoixContratBean.Submit1}" reRender="suite, check" value="valider"  > </a4j:commandButton>
 	
 					</a4j:region>
-					</div>
-
+					
 	
 	
 	<jsf:panelGrid id="suite" >
@@ -127,20 +126,27 @@
 								d&#233;but du contrat <jsf:panelGrid id="calendrier" columns="2">
 									<a4j:outputPanel id="calendar" layout="block">
 										<richfaces:calendar value="#{ChoixContratBean.dateDebut}"
-											datePattern="dd/MM/yyyy"></richfaces:calendar>
-									</a4j:outputPanel>
-
-
-								</jsf:panelGrid> Date de fin de contrat <jsf:panelGrid id="calendrierFin"
-									columns="2">
-									<a4j:outputPanel id="calendarFin" layout="block">
-										<richfaces:calendar value="#{ChoixContratBean.dateFin}"
-											datePattern="dd/MM/yyyy">
-
+											datePattern="dd/MM/yyyy" immediate="true">
+											<a4j:support event="onchanged" ajaxSingle="true" action="#{ChoixContratBean.verifierDuree}" reRender="verifDuree"></a4j:support>
 										</richfaces:calendar>
 									</a4j:outputPanel>
 
 
+								</jsf:panelGrid> Date de fin de contrat 
+								<jsf:panelGrid id="calendrierFin" columns="2">
+									<a4j:outputPanel id="calendarFin" layout="block">
+										<richfaces:calendar value="#{ChoixContratBean.dateFin}"
+											datePattern="dd/MM/yyyy" immediate="true">
+											<a4j:support event="onchanged" ajaxSingle="true" action="#{ChoixContratBean.verifierDuree}" reRender="verifDuree"></a4j:support>
+										</richfaces:calendar>
+										
+								<jsf:panelGroup  id="verifDuree" style="visibility:${ChoixContratBean.alertBool?'visible':'hidden'}">
+								<richfaces:panel>
+										<jsf:outputText style="color:red;" rendered="#{ChoixContratBean.alertBool}" value="#{ChoixContratBean.avert}" />
+										</richfaces:panel>
+									</jsf:panelGroup>
+								</a4j:outputPanel>
+								
 								</jsf:panelGrid></td>
 							</tr>
 							<tr>
@@ -163,6 +169,7 @@
 					</richfaces:simpleTogglePanel>
 </jsf:panelGroup>
 </jsf:panelGrid>
+</div>
 
 		</jsfCore:subview>
 	</facelets:define>

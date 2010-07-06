@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -34,6 +35,16 @@ import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
  *
  */
 public class ChoixContratBean {
+	String avert;
+	Boolean alertBool;
+	public Boolean getAlertBool() {
+		return alertBool;
+	}
+
+
+	public void setAlertBool(Boolean alertBool) {
+		this.alertBool = alertBool;
+	}
 	FacesContext context = FacesContext.getCurrentInstance();
 	HttpServletRequest request = (HttpServletRequest) context
 			.getExternalContext().getRequest();
@@ -137,25 +148,57 @@ public String getDescriptionMachine() {
 		contrat.setDateDebut(dateDebut);
 		contrat.setFlag(flag);
 			contrat.setDateFin(dateFin);
-				
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(dateDebut);
-		int d1 = cal.get(Calendar.DATE);
-		cal.setTime(dateFin);
-		int d2 = cal.get(Calendar.DATE);
-		int duree= d2 - d1;
-		contrat.setDuree(duree);
+			long duree = dateFin.getTime()- dateDebut.getTime();
+			int dureeJours= (int)TimeUnit.DAYS.convert(duree,TimeUnit.MILLISECONDS);
+		if(dureeJours<180){
+			verifierDuree();
+			return "Failure";
+		}
+		contrat.setDuree(dureeJours);
 		contrat.setCommentaire(commentaire);
 		contrat.setGarantie(true);
 		contrat.setNumClient(session.getNumeroClient());
 		System.out.println("fin insertcontrat ");
 		
 			verdict= donneesContrat.insertContrat(contrat, bouquet);
+			if(verdict>0)
+				httpSession.removeAttribute("ChoixContratBean");
 		return  verdict > 0 ? "OK" : "Failure";
 		
 	}
 	
-	
+	public void verifierDuree(){
+		System.out.println("on time selected");
+		System.out.println("date fin: "+ dateFin);
+		System.out.println("date debut : "+dateDebut);
+		if(dateDebut==null)
+		{
+			alertBool=true;
+			avert="choisir une date de début aussi...";
+			return;
+		}
+		if(dateFin==null){
+			alertBool=false;
+			return;
+		}
+		long duree = dateFin.getTime()- dateDebut.getTime();
+		int dureeJours= (int)TimeUnit.DAYS.convert(duree,TimeUnit.MILLISECONDS);
+	    
+		if(dureeJours<180){
+			alertBool=true;
+			avert="votre contrat doit faire plus de 6 mois";
+		}
+		else{
+			alertBool=false;
+			avert="";
+		}
+	}
+	public void update()
+	{
+		System.out.println("update");
+		System.out.println("formule sel " +selectedFormule);
+		System.out.println(dateDebut);
+	}
 	public Boolean Submit1(){
 		System.out.println("submit1");
 		essaiValid=true;
@@ -208,6 +251,16 @@ public void kill()
 	public Boolean getSuite() {
 		return suite;
 	}
+
+	public String getAvert() {
+		return avert;
+	}
+
+
+	public void setAvert(String avert) {
+		this.avert = avert;
+	}
+
 
 	public void setSuite(Boolean suite) {
 		this.suite = suite;
