@@ -6,42 +6,23 @@
 	text-align: center;
 }
 
-/*.rapportincidentdivred {*/
-/*	width: 900px;*/
-/*	border: 1 px solid black;*/
-/*	margin: 5 px;*/
-/*	background-color : Tomato  ;*/
-/*}*/
-/**/
-/**/
-/**/
-/*.rapportincidentdivorange {*/
-/*	width: 900px;*/
-/*	border: 1 px solid black;*/
-/*	margin: 5 px;*/
-/*	background-color : Darkorange  ;*/
-/*}*/
-/**/
-/**/
-/*.rapportincidentdivgreen {*/
-/*	width: 900px;*/
-/*	border: 1 px solid black;*/
-/*	margin: 5 px;*/
-/*	background-color : MediumSeaGreen ;*/
-/*}*/
-/**/
-/**/
-/*.rapportincidentdivgrey {*/
-/*	width: 900px;*/
-/*	border: 1 px solid black;*/
-/*	margin: 5 px;*/
-/*	background-color : gray;*/
-/*}*/
+
+.syntheticincidentdiv{
+		width:200px;
+		float:left;
+	
+}
+
+.secondaryincidentdiv{
+	width:600px;
+	float:left;
+	heigth:1000px;	
+}
 
 
 
 .rapportincidentdiv1 {
-	width: 900px;
+	width: 600px;
 	border: 1 px solid black;
 	margin: 5 px;
 	background-color : Tomato  ;
@@ -50,7 +31,7 @@
 
 
 .rapportincidentdiv2 {
-	width: 900px;
+	width: 600px;
 	border: 1 px solid black;
 	margin: 5 px;
 	background-color : Darkorange  ;
@@ -58,7 +39,7 @@
 
 
 .rapportincidentdiv3 {
-	width: 900px;
+	width: 600px;
 	border: 1 px solid black;
 	margin: 5 px;
 	background-color : MediumSeaGreen ;
@@ -66,7 +47,7 @@
 
 
 .rapportincidentdiv-1 {
-	width: 900px;
+	width: 600px;
 	border: 1 px solid black;
 	margin: 5 px;
 	background-color : gray;
@@ -79,16 +60,11 @@
 	width: 300px;
 	float: left;
 	text-align: left;
-	margin-right: 15px;
-	margin-left: 30px;
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
 
 .statutincidenttable {
 	float: left;
-	width: 400px;
-	margin-top: 30px;
+	width: 300px;
 }
 
 .clearer {
@@ -96,3 +72,4 @@
 	height: 1px;
 	clear: both;
 }
+
