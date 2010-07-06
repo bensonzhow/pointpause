@@ -1,5 +1,6 @@
 package fr.afcepf.ai77.g1.presentation.bean;
 
+import java.awt.BufferCapabilities.FlipContents;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -14,24 +15,46 @@ import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.dto.StatutIncidentDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
+import fr.afcepf.ai77.g1.presentation.beanutils.StatIncidentUtils;
+import fr.afcepf.ai77.g1.presentation.beanutils.StatutIncidentStat;
+import fr.afcepf.ai77.g1.presentation.beanutils.TypeIncidentStat;
 
 public class RapportIncidentBean {
 
 	private Integer numeroClient;
 	private List<IncidentDTO> listeIncidents = null;
-	private List<IncidentDTO> hiddenListIncident = null;
-	private List<IncidentDTO> completeListIncident = null;
-	private List<IncidentStat> listeIncidentStat = new Vector<IncidentStat>();
+	private List<IncidentDTO> hiddenListIncident = new Vector<IncidentDTO>();
+	private List<IncidentDTO> completeListIncident = new Vector<IncidentDTO>();
 
+	private List<TypeIncidentStat> listeStatTypeIncidents = null;
+	private List<StatutIncidentStat> listeStatStatutIncident = null;
 
-	
+	private boolean displayAll = false;
 
-	public List<IncidentStat> getListeIncidentStat() {
-		return listeIncidentStat;
+	public boolean isDisplayAll() {
+		return displayAll;
 	}
 
-	public void setListeIncidentStat(List<IncidentStat> listeIncidentStat) {
-		this.listeIncidentStat = listeIncidentStat;
+	public void setDisplayAll(boolean displayAll) {
+		this.displayAll = displayAll;
+	}
+
+	public List<TypeIncidentStat> getListeStatTypeIncidents() {
+		return listeStatTypeIncidents;
+	}
+
+	public void setListeStatTypeIncidents(
+			List<TypeIncidentStat> listeStatTypeIncidents) {
+		this.listeStatTypeIncidents = listeStatTypeIncidents;
+	}
+
+	public List<StatutIncidentStat> getListeStatStatutIncident() {
+		return listeStatStatutIncident;
+	}
+
+	public void setListeStatStatutIncident(
+			List<StatutIncidentStat> listeStatStatutIncident) {
+		this.listeStatStatutIncident = listeStatStatutIncident;
 	}
 
 	public Integer getNumeroClient() {
@@ -57,10 +80,7 @@ public class RapportIncidentBean {
 	public void setListeIncidents(List<IncidentDTO> listeIncidents) {
 		this.listeIncidents = listeIncidents;
 	}
-	
-	
-	
-	
+
 	public List<IncidentDTO> getCompleteListIncident() {
 		return completeListIncident;
 	}
@@ -68,7 +88,6 @@ public class RapportIncidentBean {
 	public void setCompleteListIncident(List<IncidentDTO> completeListIncident) {
 		this.completeListIncident = completeListIncident;
 	}
-
 
 	public RapportIncidentBean() {
 
@@ -88,71 +107,40 @@ public class RapportIncidentBean {
 		completeListIncident = donneesIncident
 				.getHistoriqueIncidentByClient(numClient);
 
-		//initialiser les infos de la page
+		// initialiser les infos de la page
 		initInfos();
-		
+
 		// par défaut on affiche la liste complete
-		setCompleteList();
+		setHiddentList();
 
 	}
 
-	
-	private void initInfos(){
-		//faire la liste cachée d'abord
+	private void initInfos() {
+		// faire la liste cachée d'abord
 		computeHiddenList();
-		
-		//calculer les stats;
-		for (IncidentDTO incident : completeListIncident){
-			try{
-				StatutIncidentDTO statut = incident.getHistorique().get(
-						incident.getHistorique().size() - 1);
-				
-				//si l'incident n'est pas de statut terminé, on doit 
-				//rajouter le type de probleme.
-				if (statut.getIntStatut()!=3){
-					
-					//rechercher si la stat existe déjà
-					IncidentStat stat = null;
-					for (IncidentStat incStat : listeIncidentStat){
-						if (incStat.isMe(incident.getNumTypePb())) {stat=incStat;break;}
-					}
-					
-					//si elle existe déjà on a juste à l'incrémenter, sinon on crée un nouveau
-					if (stat!=null){
-						stat.setCombien(stat.getCombien()+1);
-					}
-					else{
-						stat=new IncidentStat(1,incident.getNumTypePb(),incident.getLibelTypePb());
-						listeIncidentStat.add(stat);
-					}
-					
-				}
-								
-			}catch(Exception e){
-				//ignore
-			}
-		}
-		
+
+		listeStatStatutIncident = StatIncidentUtils
+				.getStatsStatutIncident(completeListIncident);
+		listeStatTypeIncidents = StatIncidentUtils
+				.getStatsTypeIncident(completeListIncident);
+
 	}
-	
 
 	private void setCompleteList() {
 		setListeIncidents(completeListIncident);
 	}
-	
-	private void setHiddentList(){
+
+	private void setHiddentList() {
 		setListeIncidents(hiddenListIncident);
 	}
 
 	private void computeHiddenList() {
-		
 
 		for (IncidentDTO incident : completeListIncident) {
 
 			try {
-				StatutIncidentDTO statut = incident.getHistorique().get(
-						incident.getHistorique().size() - 1);
-				if (statut.getIntStatut()!=3)
+				StatutIncidentDTO statut = incident.getLastStatutDTO();
+				if (statut.getIntStatut() != 3)
 					hiddenListIncident.add(incident);
 			} catch (Exception e) {
 				// ignore;
@@ -161,55 +149,13 @@ public class RapportIncidentBean {
 		}
 
 	}
-	
-	
-	public class IncidentStat{
-		Integer combien;
-		Integer codeProbleme;
-		String libelleProbleme;
-		
-		
-		public Integer getCombien() {
-			return combien;
+
+	public void switchView() {
+		if (displayAll) {
+			setListeIncidents(completeListIncident);
+		} else {
+			setListeIncidents(hiddenListIncident);
 		}
-
-		public void setCombien(Integer combien) {
-			this.combien = combien;
-		}
-
-		public Integer getCodeProbleme() {
-			return codeProbleme;
-		}
-
-		public void setCodeProbleme(Integer codeProbleme) {
-			this.codeProbleme = codeProbleme;
-		}
-
-		public String getLibelleProbleme() {
-			return libelleProbleme;
-		}
-
-		public void setLibelleProbleme(String libelleProbleme) {
-			this.libelleProbleme = libelleProbleme;
-		}
-
-		public IncidentStat(){
-			combien=0;
-		}
-
-
-		public IncidentStat(Integer combien, Integer codeProbleme,
-				String libelleProbleme) {
-			super();
-			this.combien = combien;
-			this.codeProbleme = codeProbleme;
-			this.libelleProbleme = libelleProbleme;
-		}
-
-		public boolean isMe(Integer codeProbleme){
-			return (this.codeProbleme==codeProbleme);
-		}
-
 	}
 
 }
