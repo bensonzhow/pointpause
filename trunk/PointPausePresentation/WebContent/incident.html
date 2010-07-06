@@ -15,14 +15,14 @@
                 <richfaces:panel  styleClass="declareIncident" >
                  	<table class="tableIncident">
                  		<tr>
-                 			<th colspan="2"><font size="2px">Declaration d'incident :</font></th>
+                 			<th colspan="2" height="15px"><font size="3px">Declaration d'incident :</font></th>
                  		</tr>
                  		<tr>
                  			<td ></td>
                  			<td class="textTabIncident" width="100px" height="20px">N° de Contrat: </td>
                  			<td width="250px">
 	                 			<jsf:form id="form">
-	                 				<jsf:selectOneListbox value="#{declareIncidentMB.toto}" id="listeContrat" style="width:147px;"  
+	                 				<jsf:selectOneListbox id="listeContrat" style="width:147px;"  
 	                 											size="1" 
 	                 											valueChangeListener="#{declareIncidentMB.valueChangeListener}"
 																onchange="submit()">
@@ -44,7 +44,7 @@
                  			<td></td>
                  			<td class="textTabIncident" width="100px">N° de machine: </td>
                  			<td>
-                 				<jsf:selectOneListbox style="width:147px;" >	
+                 				<jsf:selectOneListbox style="width:147px;" size="1" value="#{declareIncidentMB.numMachine}">	
                                  		<jsfCore:selectItems value="#{declareIncidentMB.listMachine}" />
                  				</jsf:selectOneListbox>
                  			</td>
@@ -72,51 +72,30 @@
                  			</td>
                  		</tr>
                  		<tr>
-                 			<td class="textTabIncident" colspan="4"><jsf:selectBooleanCheckbox value="#{declareIncidentMB.flag}" /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
-                 			<td><jsf:commandButton id="submitIncident" action="#{declareIncidentMB.declare}" value="Suivant" style="width:147px; height:30px;" /></td>
+                 			<td class="textTabIncident" colspan="4" style="text-align:right;"><jsf:selectBooleanCheckbox value="#{declareIncidentMB.flag}" /> Voulez vous suivre cette incident dans votre tableau de bord ?</td>
+                 			<td><jsf:commandButton id="submitCofirmation" action="#{declareIncidentMB.confirmation}" value="Suivant" style="width:147px; height:30px;" /></td>
                  		</tr>
                  	</table>
                  	
                  </richfaces:panel>
-                 <richfaces:panel styleClass="recapitulationIncident" >
-                 	<table class="tableRecapIncident" border="1px">
-                 		<tr>
-                 			<th colspan="2"><font size="2px">Votre Récapitulatif: </font></th>
-                 		</tr>
-                 		<tr>
-                 			<td ></td>
-                 			<td class="textTabIncident" width="100px" height="20px">N° de machine: </td>
-                 			<td width="250px">
-                 			</td>
-                 			<td class="textTabIncident" width="150px">Date de constat: </td>
-                 			<td> <jsf:outputLabel value="#{declareIncidentMB.dateConstatIncident}"></jsf:outputLabel>
-                 			</td>
-                 			
-                 		</tr>
-                 		<tr>
-                 			<td></td>
-                 			<td class="textTabIncident" width="100px">N° de contrat: </td>
-                 			<td><jsf:outputLabel value="#{declareIncidentMB.valueContrat}"></jsf:outputLabel>
-                 			</td>
-                 			<td class="textTabIncident" width="150px">Date de Déclaration: </td>
-                 			<td><jsf:outputLabel value="#{declareIncidentMB.dateDeclarationIncident}"></jsf:outputLabel>
-                 			</td>
-                 		</tr>
-                 		<tr>
-                 			<td></td>
-                 			<td class="textTabIncident" >Contact: </td>
-                 			<td></td> 
-                 			<td class="textTabIncident">Télephone: </td>
-                 		</tr>
-                 		<tr>
-                 			<td></td>
-                 			<td valign="top" align="right">Commentaire: </td>
-                 			<td><jsf:outputLabel value="#{declareIncidentMB.commentaire}"></jsf:outputLabel></td>
-                 		</tr>
-                 		<tr>
-                 			<td class="textTabIncident" colspan="4"> Voulez allez suivre cette incident dans votre tableau de bord</td>
-                 		</tr>
-                 	</table>
+                 <richfaces:panel rendered="#{declareIncidentMB.voirpanel}"  styleClass="recapitulationIncident" >
+                 	<table class="tableRecapIncident" width="780px" >
+                 		<tr><th height="15px" style="text-align:left;" colspan="2"><strong><font size="3px">Votre récapitulatif :</font></strong></th></tr>
+                 		<tr><td height="15px" ></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td class="classTdText">Numéro de contrat </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.idContrat}"/></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td>Numéro de machine concernée </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.numMachine}"/></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td>Date de constat de l'incident </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.dateConstatIncident}"><jsfCore:convertDateTime pattern="dd/MM/yyyy"/></jsf:outputText></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td>Date de déclaration de l'incident </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.dateDeclarationIncident}"><jsfCore:convertDateTime pattern="dd/MM/yyyy"/></jsf:outputText></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td>Le type de problème </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.value}"/></td></tr>
+                 		<tr><td class="classTd"></td>
+                 		<td>Commentaire(s) </td><td>:</td><td> <jsf:outputText value="#{declareIncidentMB.commentaire}"/></td></tr>
+                 		<tr><td colspan="4" style="text-align:right;"><jsf:commandButton id="submitIncident" action="#{declareIncidentMB.declare}" value="Confirmer" style="width:147px; height:30px;"/></td></tr>
+                 	 </table>
                  </richfaces:panel>
  		</div>
  	
