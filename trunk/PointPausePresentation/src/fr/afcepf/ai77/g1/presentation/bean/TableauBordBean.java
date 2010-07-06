@@ -22,10 +22,7 @@ public class TableauBordBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		HttpSession httpSession = request.getSession(false);
-		SessionDTO session = (SessionDTO) httpSession.getAttribute("session");
-		 
-		if (session ==null) return;
-		
+		SessionDTO session = (SessionDTO) httpSession.getAttribute("session");		
 		setNomClient(session.getNom());
 		
 		
