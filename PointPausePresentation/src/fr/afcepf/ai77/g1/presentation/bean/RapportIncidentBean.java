@@ -30,7 +30,7 @@ public class RapportIncidentBean {
 	public void setListeIncidents(List<IncidentDTO> listeIncidents) {
 		this.listeIncidents = listeIncidents;
 	}
-	
+	 
 	
 	public RapportIncidentBean(){
 		

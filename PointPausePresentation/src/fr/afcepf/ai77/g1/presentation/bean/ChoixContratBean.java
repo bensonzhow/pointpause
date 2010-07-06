@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.BouquetDTO;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
-import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO;
+import fr.afcepf.ai77.g1.metiers.dto.ListeContratDTO; 
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesChoixContratDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
