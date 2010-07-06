@@ -1,6 +1,7 @@
 package fr.afcepf.ai77.g1.persistence.implementations;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,10 +12,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
@@ -242,12 +246,19 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 
 		List<Installation> listeInstallation = hibernateTemplate
 		.findByCriteria(crit);
-		List<Integer> listeNumMachine = null;
+		List<Integer> listeNumMachine = new ArrayList<Integer>();
 		for (Installation i : listeInstallation) {
 			listeNumMachine.add(i.getNumero());
 		}
 		return listeNumMachine;
 	}
+	
+//	static XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("SpringConfig.xml"));
+//	
+//	public static void main(String[] args) {
+//		IDonneesContratDTO donneesContrat = (IDonneesContratDTO) factory.getBean("IDonneesContratDTO");
+//		System.out.println(donneesContrat.getListeMachineByContrat(10));
+//	}
 
 
 
