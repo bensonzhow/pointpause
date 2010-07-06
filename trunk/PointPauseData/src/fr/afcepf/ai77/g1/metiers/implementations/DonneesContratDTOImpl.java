@@ -1,5 +1,6 @@
 package fr.afcepf.ai77.g1.metiers.implementations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -22,13 +23,13 @@ import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
 public class DonneesContratDTOImpl implements IDonneesContratDTO {
 
 	private IDonneesClientDAO donneesClient = null;
-	
-	private IDonneesChoixContratDAO donneesChoixContrat=null;
-	
-	private IDonneesContratDAO donneesContrat = null;
-	
 
-public IDonneesChoixContratDAO getDonneesChoixContrat() {
+	private IDonneesChoixContratDAO donneesChoixContrat=null;
+
+	private IDonneesContratDAO donneesContrat = null;
+
+
+	public IDonneesChoixContratDAO getDonneesChoixContrat() {
 		return donneesChoixContrat;
 	}
 
@@ -74,15 +75,15 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 		bouquet.setModeleAutomate(a);
 		bouquet.setQuantite(bouquetDTO.getQuantite());
 		Integer numContrat = donneesContrat.insertContrat(contrat);
-	//	Integer numBouquet = donneesContrat.insertBouquet(bouquet);
+		//	Integer numBouquet = donneesContrat.insertBouquet(bouquet);
 		return numContrat;
-		
+
 	}
 	@Override
 	public ContratDTO getContrat() {
 		return null;
-		
-		
+
+
 	}
 
 	@Override
@@ -90,73 +91,100 @@ public IDonneesChoixContratDAO getDonneesChoixContrat() {
 		List<Integer> listeMachine = donneesContrat.listeNumMachineByNumContrat(numContratDTO);
 		return listeMachine;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public List<ContratDTO> getSyntheseContratbyClient(int numClient) {
 		// TODO Auto-generated method stub
-		
+
 		List<ContratDTO> listeContDt = new Vector<ContratDTO>();
-		
+
 		List<Contrat> listeDAO = donneesContrat.getAllContratBouquetInstallByClient(numClient);
-		
+
 		if (listeDAO==null) return null;
-		
-		
+
+
 		for (Contrat contrat : listeDAO){
-			
+
 			ContratDTO contDt = copyContrat(contrat);
-	
-			
+
+
 			for (Bouquet bouquet : contrat.getListeBouquets()){
 				BouquetDTO bdto = copyBouquet(bouquet);
 				contDt.getListeBouquets().add(bdto);
 			}
-			
+
 			listeContDt.add(contDt);
 		}
-		
+
 		return listeContDt;
 	}
-	
-/*************************************************************************
- * 
- * sections utilitaires
- * 
- *************************************************************************/
-	
+
+	/*************************************************************************
+	 * 
+	 * sections utilitaires
+	 * 
+	 *************************************************************************/
+
 	private ContratDTO copyContrat(Contrat contrat){
 		ContratDTO cdto = new ContratDTO();
-		
+
 		cdto.setNumero(contrat.getNumero());
 		cdto.setDateDebut(contrat.getDateDebut());
 		cdto.setDateFin(contrat.getDateFin());
 		cdto.setFreqApprovisionnement(contrat.getFreqApprovisionnement());
 		cdto.setGarantie(contrat.getGarantie());
-		
-		
+
+
 		return cdto;
 	}
-	
+
 	private BouquetDTO copyBouquet(Bouquet bouquet){
 		BouquetDTO bdto = new BouquetDTO();
-		
+
 		try{
 			bdto.setStrFormule(bouquet.getFormule().getLibelleFormule());
 		}catch(Exception e){
-			bdto.setStrFormule("indéterminée");
+			bdto.setStrFormule("indï¿½terminï¿½e");
 		}
-		
+
 		try{
 			bdto.setStrModeleAutomate(bouquet.getModeleAutomate().getNom());
 		}catch(Exception e){
-			bdto.setStrModeleAutomate("indéterminé");
+			bdto.setStrModeleAutomate("indï¿½terminï¿½");
 		}
-		
+
 		bdto.setQuantite(bouquet.getQuantite());
-		
+
 		return bdto;
+	}
+
+	@Override
+	public List<ContratDTO> getLastContratPourTableau(int numClient) {
+		List<Contrat> contrats = donneesContrat.getLastContratsBouquetInstallByClient(numClient);
+		List<ContratDTO> contratsDTO = new ArrayList<ContratDTO>();
+		for (Contrat contrat : contrats) {
+			ContratDTO contratDTO = new ContratDTO();
+			//Ã§a va meme si null va setter null au dto, par contre pas pour les objets faut les tester genre bouquets et client
+			contratDTO.setDateDebut(contrat.getDateDebut());
+			contratDTO.setDateFin(contrat.getDateFin());
+			contratDTO.setDuree(contrat.getDuree());
+			contratDTO.setCommentaire(contrat.getCommentaire());
+			contratDTO.setFlag(contrat.getFlag());
+			contratDTO.setFreqApprovisionnement(contrat.getFreqApprovisionnement());
+			contratDTO.setGarantie(contrat.getGarantie());
+			contratDTO.setNumero(contrat.getNumero());
+			if(contrat.getClient()!=null)
+				contratDTO.setNumClient(contrat.getClient().getNumero());
+			contratsDTO.add(contratDTO);
+			//TODO pour l'instant on ne rÃ©cupÃ¨re pas les boquuets liÃ©s Ã  un contrat, il faudra le faire
+			//if(contrat.getListeBouquets()!=null)
+			//Ã  faire : faudra boucler sur la liste des bouquets contrats et les setter dans les bouquetDTO de contrat DTO horrible !!
+			//contratDTO.setListeBouquets(contrat.getListeBouquets());
+
+		}
+		return contratsDTO;
 	}
 
 }

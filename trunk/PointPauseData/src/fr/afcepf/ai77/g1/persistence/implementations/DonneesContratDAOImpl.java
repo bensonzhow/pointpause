@@ -11,6 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
@@ -41,7 +42,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 			Contrat c = getContratById(numContrat);
 			DetachedCriteria crit = DetachedCriteria
-			.forClass(TypeAutomate.class);
+					.forClass(TypeAutomate.class);
 			crit.add(Restrictions.eq("contrat", c));
 			listeMachine = hibernateTemplate.findByCriteria(crit);
 		} catch (Exception e) {
@@ -68,7 +69,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 
 	/**
 	 * 
-	 * Raaahlala ce qu'il faut pas faire, p#%*n de m$¤€e !
+	 * Raaahlala ce qu'il faut pas faire, p#%*n de m$ï¿½ï¿½e !
 	 * 
 	 */
 	@Override
@@ -80,7 +81,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 			c = hibernateTemplate.execute(new HibernateCallback<Contrat>() {
 				@Override
 				public Contrat doInHibernate(Session session)
-				throws HibernateException, SQLException {
+						throws HibernateException, SQLException {
 					// TODO Auto-generated method stub
 					Contrat tempc = (Contrat) session.get(Contrat.class, id);
 
@@ -135,13 +136,12 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 			DetachedCriteria crit = DetachedCriteria.forClass(Contrat.class);
 
-			crit = crit
-			.createCriteria("listeBouquets",
-					DetachedCriteria.INNER_JOIN)
-					.createCriteria("historiqueInstallations",
-							DetachedCriteria.INNER_JOIN)
-							.add(Restrictions
-									.eq("numero", new Integer(numInstallation)));
+			crit = crit.createCriteria("listeBouquets",
+					DetachedCriteria.INNER_JOIN).createCriteria(
+					"historiqueInstallations", DetachedCriteria.INNER_JOIN)
+					.add(
+							Restrictions.eq("numero", new Integer(
+									numInstallation)));
 
 			bob = hibernateTemplate.findByCriteria(crit);
 
@@ -166,41 +166,40 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		try {
 
 			listContrat = hibernateTemplate
-			.execute(new HibernateCallback<List<Contrat>>() {
+					.execute(new HibernateCallback<List<Contrat>>() {
 
-				@Override
-				public List<Contrat> doInHibernate(Session session)
-				throws HibernateException, SQLException {
-					// TODO Auto-generated method stub
+						@Override
+						public List<Contrat> doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							// TODO Auto-generated method stub
 
-					List<Contrat> list = new Vector<Contrat>();
-					try {
+							List<Contrat> list = new Vector<Contrat>();
+							try {
 
-						for (Integer numInstall : listInstalls) {
-							Criteria crit = session
-							.createCriteria(Contrat.class);
+								for (Integer numInstall : listInstalls) {
+									Criteria crit = session
+											.createCriteria(Contrat.class);
 
-							crit = crit
-							.createCriteria("listeBouquets",
-									Criteria.INNER_JOIN)
-									.createCriteria(
-											"historiqueInstallations",
+									crit = crit.createCriteria("listeBouquets",
 											Criteria.INNER_JOIN)
-											.add(Restrictions.eq("numero",
-													numInstall));
+											.createCriteria(
+													"historiqueInstallations",
+													Criteria.INNER_JOIN).add(
+													Restrictions.eq("numero",
+															numInstall));
 
-							list.add((Contrat) crit.uniqueResult());
+									list.add((Contrat) crit.uniqueResult());
 
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+								list = null;
+							} finally {
+								return list;
+							}
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						list = null;
-					} finally {
-						return list;
-					}
-				}
 
-			});
+					});
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,12 +213,12 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Integer insertContrat(Contrat contrat) {
-		// pas oublier insérer bouquet aussi
+		// pas oublier insï¿½rer bouquet aussi
 		// mettre un site client aussi pour la localisation...
 
 		hibernateTemplate.save(contrat);
 		List<Integer> maxNumero = (List<Integer>) hibernateTemplate
-		.find("SELECT max(numero) from Contrat");
+				.find("SELECT max(numero) from Contrat");
 		int numero = maxNumero.get(0);
 		return numero;
 	}
@@ -229,23 +228,22 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 	public Integer insertBouquet(Bouquet bouquet) {
 		hibernateTemplate.save(bouquet);
 		List<Integer> maxNumero = (List<Integer>) hibernateTemplate
-		.find("SELECT max(codeBouquet) from Bouquet");
+				.find("SELECT max(codeBouquet) from Bouquet");
 		int numero = maxNumero.get(0);
 		return numero;
 	}
 
-	@SuppressWarnings({ "null", "unchecked" })
+	@SuppressWarnings( { "null", "unchecked" })
 	@Override
 	public List<Integer> listeNumMachineByNumContrat(int numContrat) {
 		DetachedCriteria crit = DetachedCriteria.forClass(Installation.class);
-		crit = crit
-		.createCriteria("historiqueBouquet",
-				DetachedCriteria.INNER_JOIN)
-				.createCriteria("contrat", DetachedCriteria.INNER_JOIN)
-				.add(Restrictions.eq("numero", numContrat));
+		crit = crit.createCriteria("historiqueBouquet",
+				DetachedCriteria.INNER_JOIN).createCriteria("contrat",
+				DetachedCriteria.INNER_JOIN).add(
+				Restrictions.eq("numero", numContrat));
 
 		List<Installation> listeInstallation = hibernateTemplate
-		.findByCriteria(crit);
+				.findByCriteria(crit);
 		List<Integer> listeNumMachine = new ArrayList<Integer>();
 		for (Installation i : listeInstallation) {
 			listeNumMachine.add(i.getNumero());
@@ -260,60 +258,55 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 //		System.out.println(donneesContrat.getListeMachineByContrat(10));
 //	}
 
-
-
-
-
 	@Override
 	public List<Contrat> getAllContratBouquetInstallByClient(final int numClient) {
 		List<Contrat> listContrat = null;
 		try {
 
 			listContrat = hibernateTemplate
-			.execute(new HibernateCallback<List<Contrat>>() {
-				@Override
-				public List<Contrat> doInHibernate(Session session)
-				throws HibernateException, SQLException {
-					// TODO Auto-generated method stub
-					List<Contrat> liste = null;
-					try {
+					.execute(new HibernateCallback<List<Contrat>>() {
+						@Override
+						public List<Contrat> doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							// TODO Auto-generated method stub
+							List<Contrat> liste = null;
+							try {
 
-						Criteria crit = session
-						.createCriteria(Contrat.class);
+								Criteria crit = session
+										.createCriteria(Contrat.class);
 
-						crit = crit.createCriteria("client",
-								Criteria.INNER_JOIN).add(
+								crit = crit.createCriteria("client",
+										Criteria.INNER_JOIN).add(
 										Restrictions.eq("numero", numClient));
 
-						liste = crit.list();
+								liste = crit.list();
 
+								// initiliser le bousin
+								for (Contrat contrat : liste) {
+									Hibernate.initialize(contrat);
+									Hibernate.initialize(contrat
+											.getListeBouquets());
+									for (Bouquet bouquet : contrat
+											.getListeBouquets()) {
+										Hibernate.initialize(bouquet);
+										Hibernate.initialize(bouquet
+												.getFormule());
+										Hibernate.initialize(bouquet
+												.getModeleAutomate());
+										Hibernate.initialize(bouquet
+												.getHistoriqueInstallations());
+									}
 
-						// initiliser le bousin
-						for (Contrat contrat : liste) {
-							Hibernate.initialize(contrat);
-							Hibernate.initialize(contrat
-									.getListeBouquets());
-							for (Bouquet bouquet : contrat
-									.getListeBouquets()) {
-								Hibernate.initialize(bouquet);
-								Hibernate.initialize(bouquet
-										.getFormule());
-								Hibernate.initialize(bouquet
-										.getModeleAutomate());
-								Hibernate.initialize(bouquet
-										.getHistoriqueInstallations());
+								}
+							} catch (Exception ex) {
+								ex.printStackTrace();
+								liste = null;
+							} finally {
+								return liste;
 							}
 
 						}
-					} catch (Exception ex) {
-						ex.printStackTrace();
-						liste = null;
-					} finally {
-						return liste;
-					}
-
-				}
-			});
+					});
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -323,54 +316,58 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		}
 	}
 
-
 	/**
-	 * pour le tableau de bord les 7 derniers contrats
-	 * à terminer !!!
+	 * pour le tableau de bord les 7 derniers contrats ï¿½ terminer !!!
 	 */
 	@Override
-	public List<Contrat> getLastContratsBouquetInstallByClient(final int numClient) {
-		List<Contrat> liste7derniersContratsFlag;
-		List<Contrat> listContratFlagguesParClient = hibernateTemplate
-		.execute(new HibernateCallback<List<Contrat>>() {
-			@Override
-			public List<Contrat> doInHibernate(Session session)
-			throws HibernateException, SQLException {
-				List<Contrat> liste;
-				Criteria crit = session.createCriteria(Contrat.class);
-				crit = crit.createCriteria("client", Criteria.INNER_JOIN).add(
-				Restrictions.eq("numero", numClient)).add(Restrictions.eq("flag", 1)).setMaxResults(7);
-				//là on a tous les contrats flaggués d'un client
-				liste = crit.list();
-							return liste;	}	
-					});
-		//si le client a + que 7 contrats flaggués on coupe la liste à 7 pour le tableau de bord et on la renverra
-		if (listContratFlagguesParClient.size()>=7){
-			liste7derniersContratsFlag = listContratFlagguesParClient.subList(0, 7);
-		}
-		else 
-		{
-			hibernateTemplate.executeFind(new HibernateCallback<List<Contrat>>() {
+	public List<Contrat> getLastContratsBouquetInstallByClient(
+			final int numClient) {
 
-				@Override
-				public List<Contrat> doInHibernate(Session session)
-						throws HibernateException, SQLException {
-					
-							return null;
-				/*	session.
-					return null;
-				}
-				
-			}*/
-				}
-		});
-		}
-			return listContratFlagguesParClient;
-		//else
-		
+		List<Contrat> listLastContratFlagguesParClient = hibernateTemplate
+				.execute(new HibernateCallback<List<Contrat>>() {
+					@Override
+					public List<Contrat> doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						List<Contrat> liste;
+						Criteria crit = session.createCriteria(Contrat.class);
+						crit = crit.add(Restrictions.eq("flag", true)).addOrder(
+								Order.desc("dateDebut")).createCriteria(
+								"client", Criteria.INNER_JOIN).add(
+								Restrictions.eq("numero", numClient))
+								.setMaxResults(7);
+						// lÃ  on a tous les contrats flagguÃ©s d'un client
+						liste = crit.list();
+						
+						int reste = 7 - liste.size();
+						
+						if (reste>0){
+							List<Contrat> listNonFlag;
+							crit = session.createCriteria(Contrat.class);
+							crit = crit.add(Restrictions.eq("flag", false)).addOrder(
+									Order.desc("dateDebut")).createCriteria(
+									"client", Criteria.INNER_JOIN).add(
+									Restrictions.eq("numero", numClient))
+									.setMaxResults(reste);
+							// lÃ  on a tous les contrats flagguÃ©s d'un client
+							listNonFlag = crit.list();	
+							liste.addAll(listNonFlag);
+							
+							
+						}
 
+						return liste;
+
+					}
+				});
+		// si le client a + que 7 contrats flagguï¿½s on coupe la liste ï¿½ 7 pour
+		// le tableau de bord et on la renverra
+		// if (listContratFlagguesParClient.size()>=7){
+		// liste7derniersContratsFlag = listContratFlagguesParClient.subList(0,
+		// 7);
+		// }
+
+		return listLastContratFlagguesParClient;
 	}
+	// else
 
 }
-
-
