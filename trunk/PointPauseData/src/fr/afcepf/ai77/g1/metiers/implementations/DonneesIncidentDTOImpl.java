@@ -255,15 +255,16 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 			}
 
 			//trier la liste des statutincidents
-			if (newIncDto.getHistorique()!=null) Collections.sort(newIncDto.getHistorique());
+			newIncDto.sortMyStatus();
 			
 			//maintenant que la liste est triée, on peut récupérer les infos du dernier statut pour les 
 			//mettre dans l'incident directement
-			try{
-				StatutIncidentDTO statutDTO = newIncDto.getHistorique().get(newIncDto.getHistorique().size()-1);
+			
+			StatutIncidentDTO statutDTO = newIncDto.getLastStatutDTO(); 
+			if(statutDTO!=null){
 				newIncDto.setStatutPriseEnCharge(statutDTO.getIntStatut());
 				newIncDto.setLibelStatutPriseEnCharge(statutDTO.getStatut());
-			}catch(Exception e){
+			}else{
 				newIncDto.setStatutPriseEnCharge(-1);
 				newIncDto.setLibelStatutPriseEnCharge("indetermine");				
 			}
