@@ -29,26 +29,52 @@
 
 
 			<div class="mainrapportincidentdiv">
-				
-				<div class="syntheticincidentdiv">
-					<h2>En cours :</h2><br/>
-					<richfaces:dataTable value="#{rapportincidentMB.listeIncidentStat}" var="stat">
-						<richfaces:column>
-						<jsfCore:facet name="header">Type de panne :</jsfCore:facet>
-						<jsf:outputText value="#{stat.libelleProbleme}" />
-					</richfaces:column>
 
-					<richfaces:column>
-						<jsfCore:facet name="header">En cours : </jsfCore:facet>
-						<jsf:outputText value="#{stat.combien}" />
-					</richfaces:column>				
-					</richfaces:dataTable>	 
-	
-				</div>
-	
-				<div class="secondaryincidentdiv">
+			<div class="syntheticincidentdiv">
+			<h2>En cours :</h2>
+			<richfaces:dataTable
+				value="#{rapportincidentMB.listeStatTypeIncidents}" var="stat">
+				<jsfCore:facet name="header">
+						<jsf:outputText value="Les pannes" />
+				</jsfCore:facet>
+				<richfaces:column>
+					<jsfCore:facet name="header">Type de panne</jsfCore:facet>
+					<jsf:outputText value="#{stat.libelleProbleme}" />
+				</richfaces:column>
 
-			<a4j:repeat
+				<richfaces:column>
+					<jsfCore:facet name="header">En cours</jsfCore:facet>
+					<jsf:outputText value="#{stat.combien}" />
+				</richfaces:column>
+			</richfaces:dataTable> <br />
+			<br />
+			<richfaces:dataTable
+				value="#{rapportincidentMB.listeStatStatutIncident}" var="stat">
+				<jsfCore:facet name="header">
+					<jsf:outputText value="Notre prise en charge" />
+				</jsfCore:facet>
+				<richfaces:column>
+					<jsfCore:facet name="header">statut d'incident</jsfCore:facet>
+					<jsf:outputText value="#{stat.libelleStatut}" />
+				</richfaces:column>
+
+				<richfaces:column>
+					<jsfCore:facet name="header">En cours</jsfCore:facet>
+					<jsf:outputText value="#{stat.combien}" />
+				</richfaces:column>
+			</richfaces:dataTable> <br />
+			
+			<jsf:selectBooleanCheckbox value="#{rapportincidentMB.displayAll}">
+				afficher tous les incidents
+				<a4j:support event="onclick" reRender="secondaryrepeater" action="#{rapportincidentMB.switchView}" />              
+			</jsf:selectBooleanCheckbox>
+
+			
+			</div>
+
+			<div class="secondaryincidentdiv">
+			
+			<a4j:repeat id="secondaryrepeater" 
 				value='#{rapportincidentMB.listeIncidents}' var="incident">
 
 
@@ -103,9 +129,9 @@
 
 
 			</a4j:repeat></div>
-			
-							
-				</div>
+
+
+			</div>
 
 		</jsfCore:view>
 	</facelets:define>
