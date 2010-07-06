@@ -3,7 +3,7 @@
 .mainrapportincidentdiv {
 	witdh: 900px;
 	background-color: white;
-	text-align: center;
+	margin:auto;
 }
 
 
@@ -16,7 +16,8 @@
 .secondaryincidentdiv{
 	width:600px;
 	float:left;
-	heigth:1000px;	
+	heigth:1000px;
+	overflow: auto;	
 }
 
 
