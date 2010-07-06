@@ -117,13 +117,33 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 		}
 	}
 
+	
+	/*
+	 * 
+	 * (non-Javadoc)
+	 * @see fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO#insertIncident(fr.afcepf.ai77.g1.persistence.entity.Incident)
+	 * 
+	 * maintenant, on insère aussi le statut incident à la volée
+	 */
+	
 	@Override
 	public Integer insertIncident(Incident incident) {
 		try {
+			
+			StatutIncident statut = new StatutIncident();
+			statut.setDateChangementStatut(incident.getDateDeclarationIncident());
+			
+			TypeStatutIncident type = new TypeStatutIncident();
+			type.setNumeroType(1);
+			
+			statut.setTypeStatut(type);	
+			statut.setIncident(incident);
+			incident.getListeStatutsIncidents().add(statut);
+			
 			hibernateTemplate.save(incident);
 
-			// FIXME : retourner le vrai max
-			return 0;
+			// normalement, hibernate affecte le numero lui même (merci Youssef !)
+			return incident.getNumero();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;

@@ -1,5 +1,6 @@
 package fr.afcepf.ai77.g1.persistence.tests;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -9,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
+import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.Installation;
 import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
@@ -16,6 +18,7 @@ import fr.afcepf.ai77.g1.persistence.implementations.DAOImplConfig;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesChoixContratDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesClientDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesContratDAO;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesTypePbDAO;
 import fr.afcepf.ai77.g1.persistence.interfaces.IExampleDAO;
 import junit.framework.TestCase;
@@ -123,6 +126,23 @@ public class TestDAOInterfaces extends TestCase {
 		.getBean("IDonneesContratDAO");
 
 		List<Contrat> liste = donneesContrat.getAllContratBouquetInstallByClient(2);
+		
+		
+	}
+	
+	public void testInsertIncident2(){
+		
+		Incident incident = new Incident();
+		incident.setDateDeclarationIncident(new Date());
+		incident.setFlag(false);
+		
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesIncidentDAO donneesIncident = (IDonneesIncidentDAO) factory
+		.getBean("IDonneesIncidentDAO");		
+		
+		donneesIncident.insertIncident(incident);
+		
 		
 		
 	}
