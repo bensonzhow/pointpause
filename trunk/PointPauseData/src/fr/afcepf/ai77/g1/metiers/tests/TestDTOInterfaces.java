@@ -171,4 +171,10 @@ public class TestDTOInterfaces extends TestCase {
 		
 	}
 	
+	public void testSwitchIncidentFlag(){
+		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
+		boolean res = donneesIncident.switchIncidentFlag(1);
+		assertTrue(res);
+	}
+	
 }

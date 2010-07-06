@@ -15,7 +15,10 @@ public interface IDonneesIncidentDAO {
 	Incident getIncidentByNumero(int numero, LoadingPolicy policies);
 	
 	List<Incident> getIncidentByContrat(int numContrat);
+	
 	Integer insertIncident(Incident incident);
+	
+	boolean updateIncident(Incident incident);
 	
 	
 	
@@ -57,5 +60,5 @@ public interface IDonneesIncidentDAO {
 	
 	TypeStatutIncident getTypeStatutIncidentById(int numeroStatut);
 	
-	
+
 }

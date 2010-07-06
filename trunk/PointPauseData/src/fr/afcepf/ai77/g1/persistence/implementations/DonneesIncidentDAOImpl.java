@@ -56,50 +56,58 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	}
 
 	@Override
-	public Incident getIncidentByNumero(final int numero, final LoadingPolicy policies) {
+	public Incident getIncidentByNumero(final int numero,
+			final LoadingPolicy policies) {
 		// TODO Auto-generated method stub
 		Incident incident = null;
 		try {
 
-			incident = hibernateTemplate.execute(new HibernateCallback<Incident>() {
-				@Override
-				public Incident doInHibernate(Session session)
-						throws HibernateException, SQLException {
-					// TODO Auto-generated method stub
-					Incident tempc = (Incident) session.get(Incident.class, numero);
+			incident = hibernateTemplate
+					.execute(new HibernateCallback<Incident>() {
+						@Override
+						public Incident doInHibernate(Session session)
+								throws HibernateException, SQLException {
+							// TODO Auto-generated method stub
+							Incident tempc = (Incident) session.get(
+									Incident.class, numero);
 
-					if (policies != null) {
-						Hibernate.initialize(tempc);
-						for (String policy : policies.getPolicies()) {
-							
-							if (policy.equals("installation")) {
-								Hibernate.initialize(tempc.getNumeroDeploiement());
-								continue;
-							}
-							
-							if (policy.equals("statutIncident")) {
-								Hibernate.initialize(tempc.getListeStatutsIncidents());
-								for (StatutIncident stinc : tempc.getListeStatutsIncidents()){
-									Hibernate.initialize(stinc);
+							if (policies != null) {
+								Hibernate.initialize(tempc);
+								for (String policy : policies.getPolicies()) {
+
+									if (policy.equals("installation")) {
+										Hibernate.initialize(tempc
+												.getNumeroDeploiement());
+										continue;
+									}
+
+									if (policy.equals("statutIncident")) {
+										Hibernate.initialize(tempc
+												.getListeStatutsIncidents());
+										for (StatutIncident stinc : tempc
+												.getListeStatutsIncidents()) {
+											Hibernate.initialize(stinc);
+										}
+										continue;
+									}
+
+									if (policy.equals("intervention")) {
+										for (StatutIncident stinc : tempc
+												.getListeStatutsIncidents()) {
+											Hibernate.initialize(stinc);
+											Hibernate.initialize(stinc
+													.getIntervention());
+										}
+										continue;
+									}
+
 								}
-								continue;
+
 							}
-							
-							if (policy.equals("intervention")) {
-								for (StatutIncident stinc : tempc.getListeStatutsIncidents()){
-									Hibernate.initialize(stinc);
-									Hibernate.initialize(stinc.getIntervention());
-								}continue;
-							}							
-							
-							
+
+							return tempc;
 						}
-
-					}
-
-					return tempc;
-				}
-			});
+					});
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,7 +196,6 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							 * premiere etape : cherche la liste des incidents
 							 */
 
-							
 							/*
 							 * Query query = session.createQuery(
 							 * "select myincident from Incident as myincident "
@@ -208,7 +215,6 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							 * liste = query.list();
 							 */
 
-							
 							Criteria critere = session.createCriteria(
 									Incident.class).addOrder(
 									Order.desc("dateDeclarationIncident"));
@@ -252,7 +258,8 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 							/*
 							 * deuxieme etape : charger les StatutIncidents, les
-							 * interventions , les employes en charge des interventions
+							 * interventions , les employes en charge des
+							 * interventions
 							 */
 
 							for (Incident incident : reliste) {
@@ -261,9 +268,9 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 
 								Hibernate.initialize(incident
 										.getListeStatutsIncidents());
-								
 
-								Hibernate.initialize(incident.getNumeroDeploiement());
+								Hibernate.initialize(incident
+										.getNumeroDeploiement());
 
 								for (StatutIncident stinc : incident
 										.getListeStatutsIncidents()) {
@@ -271,11 +278,12 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 									Hibernate.initialize(stinc.getTypeStatut());
 									Hibernate.initialize(stinc
 											.getIntervention());
-							
-									if (stinc.getIntervention()!=null)
-										Hibernate.initialize(stinc.getIntervention().getEmploye());
-									
-												
+
+									if (stinc.getIntervention() != null)
+										Hibernate
+												.initialize(stinc
+														.getIntervention()
+														.getEmploye());
 
 								}
 
@@ -292,32 +300,47 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			return listIncident;
 		}
 	}
-	
+
 	@Override
 	public TypePb getTypePbById(int problemeId) {
 		// TODO Auto-generated method stub
 		TypePb typepb = null;
-		try{
-			typepb=hibernateTemplate.get(TypePb.class, problemeId);
-		}catch(Exception e){
+		try {
+			typepb = hibernateTemplate.get(TypePb.class, problemeId);
+		} catch (Exception e) {
 			e.printStackTrace();
-			typepb=null;
-		}finally{
+			typepb = null;
+		} finally {
 			return typepb;
 		}
 	}
-	
+
 	@Override
 	public TypeStatutIncident getTypeStatutIncidentById(int numeroStatut) {
 		// TODO Auto-generated method stub
 		TypeStatutIncident typesi = null;
+		try {
+			typesi = hibernateTemplate.get(TypeStatutIncident.class,
+					numeroStatut);
+		} catch (Exception e) {
+			e.printStackTrace();
+			typesi = null;
+		} finally {
+			return typesi;
+		}
+	}
+
+	@Override
+	public boolean updateIncident(Incident incident) {
+		// TODO Auto-generated method stub
+		boolean res=false;
 		try{
-			typesi=hibernateTemplate.get(TypeStatutIncident.class, numeroStatut);
+			hibernateTemplate.update(incident);
+			res=true;
 		}catch(Exception e){
 			e.printStackTrace();
-			typesi=null;
 		}finally{
-			return typesi;
+			return res;
 		}
 	}
 
