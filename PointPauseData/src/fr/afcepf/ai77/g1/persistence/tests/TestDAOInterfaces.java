@@ -155,4 +155,19 @@ public class TestDAOInterfaces extends TestCase {
 		
 	}
 
+	
+	public void testGetTypePb(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesTypePbDAO donneesTypePb = (IDonneesTypePbDAO) factory
+		.getBean("IDonneesTypePbDAO");
+		
+		List<String> listeLibelles = donneesTypePb.getTypePb();
+		
+		
+		//assertTrue(listeLibelles.size()==7);
+		
+		for (String s : listeLibelles) System.out.println(s);
+	}
+	
 }
