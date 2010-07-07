@@ -70,7 +70,7 @@
 		<from-view-id>/incident.html</from-view-id>
 		<navigation-case>
 			<from-action>#{declareIncidentMB.declare}</from-action>
-			<from-outcome>OK</from-outcome>
+			<from-outcome>ok</from-outcome>
 			<to-view-id>/incident.html</to-view-id>
 		</navigation-case>
 	</navigation-rule>
