@@ -26,8 +26,7 @@ public class TableauBordBean {
 
 	private List<ContratDTO> lastContrats;
 	private int idRowSelected;
-	private String flagRed="/images/flag.jpg";
-	private String flagNone="/images/Deflag.jpg";
+
 	IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();	
 	
 	FacesContext context = FacesContext.getCurrentInstance();
@@ -124,44 +123,7 @@ public class TableauBordBean {
 	}
 
 	/**
-	 * @param valueImage the valueImage to set
-	 */
-	public void setValueImage(String valueImage) {
-		this.valueImage = valueImage;
-	}
-
-	/**
-	 * @return the valueImage
-	 */
-	public String getValueImage() {
-		return valueImage;
-	}
-
-	/**
-	 * @param flagRed the flagRed to set
-	 */
-	public void setFlagRed(String flagRed) {
-		this.flagRed = flagRed;
-	}
-
-	/**
-	 * @return the flagRed
-	 */
-	public String getFlagRed() {
-		return flagRed;
-	}
-
-	/**
 	 * @param flagNone the flagNone to set
 	 */
-	public void setFlagNone(String flagNone) {
-		this.flagNone = flagNone;
-	}
-
-	/**
-	 * @return the flagNone
-	 */
-	public String getFlagNone() {
-		return flagNone;
-	}
+	
 }
