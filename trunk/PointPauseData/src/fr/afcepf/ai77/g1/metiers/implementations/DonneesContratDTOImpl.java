@@ -16,6 +16,7 @@ import fr.afcepf.ai77.g1.persistence.entity.Client;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Formule;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
+import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 import fr.afcepf.ai77.g1.persistence.entity.ModeleAutomate;
 import fr.afcepf.ai77.g1.persistence.entity.TypePb;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
@@ -113,6 +114,17 @@ public ContratDTO getContratById(int numContrat){
 	ContratDTO cdto = copyContrat(contrat);
 	return cdto;
 }
+
+@Override
+public ContratDTO getContratBouquetById(int numContrat){
+	LoadingPolicy policy = new LoadingPolicy();
+	policy.getPolicies().add("bouquet");
+	Contrat contrat = donneesContrat.getContratById(numContrat,policy);
+	ContratDTO cdto = copyContrat(contrat);
+	
+	return cdto;
+}
+
 
 	@Override
 	public List<ContratDTO> getSyntheseContratbyClient(int numClient) {
