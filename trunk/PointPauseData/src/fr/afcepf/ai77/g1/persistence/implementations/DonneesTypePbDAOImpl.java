@@ -39,14 +39,18 @@ public class DonneesTypePbDAOImpl implements IDonneesTypePbDAO {
 	}
 
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getTypePb() {
+		List<TypePb> liste = new ArrayList<TypePb>();
 		List<String> typePb = new ArrayList<String>();
 		try {
-			typePb = hibernateTemplate
-					.find("libelle_type_probleme");
+			liste = hibernateTemplate
+					.find("from TypePb");
+			for(TypePb tp : liste){
+				typePb.add(tp.getLibelle());
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Récuperation des type de poblemes impossible...");
 		}
 		return typePb;
