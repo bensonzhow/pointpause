@@ -20,6 +20,8 @@ public class ConnectionBean {
 	HttpSession httpSession = request.getSession(false);
 	private String login;
 	private String mdp;
+	private Boolean inscriptionBool=false;
+	private String verif;
 
 	// private String statut;
 
@@ -50,6 +52,7 @@ public class ConnectionBean {
 	}
 
 	public String connecter() {
+		System.out.println("connecter");
 		IDonneesSessionDTO donneesSession = DTOFactory.getIDonneesSessionDTO();
 
 		SessionDTO session = donneesSession.getSessionDTO(login, mdp);
@@ -57,7 +60,7 @@ public class ConnectionBean {
 		if (session == null) {
 			System.out.println("login failed");
 			httpSession.setAttribute("session", null);
-			// statut="probleme d'identifiants";
+			verif="mauvais identifiants";
 			return "Failure";
 		} else {
 			System.out.println("login success");
@@ -73,6 +76,40 @@ public class ConnectionBean {
 		 return "OK";
 		 else
 		return "Failure";
+	}
+	
+	public void afficherInscription(){
+		System.out.println("afficherInscription");
+		inscriptionBool=true;
+	
+	}
+
+	/**
+	 * @param inscriptionBool the inscriptionBool to set
+	 */
+	public void setInscriptionBool(Boolean inscriptionBool) {
+		this.inscriptionBool = inscriptionBool;
+	}
+
+	/**
+	 * @return the inscriptionBool
+	 */
+	public Boolean getInscriptionBool() {
+		return inscriptionBool;
+	}
+
+	/**
+	 * @param verif the verif to set
+	 */
+	public void setVerif(String verif) {
+		this.verif = verif;
+	}
+
+	/**
+	 * @return the verif
+	 */
+	public String getVerif() {
+		return verif;
 	}
 	
 }

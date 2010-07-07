@@ -20,6 +20,7 @@ public class ConsultationContratBean {
 		
 	HttpSession httpSession = request.getSession(false);
 	SessionDTO session = (SessionDTO) httpSession.getAttribute("session");	
+	private int idRowSelected;
 	
  public ConsultationContratBean(){
 	 if(session!=null)
@@ -29,10 +30,37 @@ public class ConsultationContratBean {
 //	}
  }
  
+ public void switchFlag(){
+		System.out.println("on passe dans switch");
+		System.out.println(idRowSelected);
+	
+	System.out.println("avant getContratById");	
+		ContratDTO cdto = donneesContrat.getContratBouquetById(idRowSelected);
+		System.out.println("après getContratById");
+		if (cdto.getFlag())
+		{cdto.setFlag(false);	
+		}
+		else
+		{	cdto.setFlag(true);
+		}
+	   donneesContrat.updateContrat(cdto);
+	   System.out.println("l'update contrat passe");
+	   listeContratsByClient= donneesContrat.getAllContratsBouquetInstallByClient(session.getNumeroClient());
+		
+	}
+ 
  public void setListeContratsByClient(List<ContratDTO> listeContratsByClient) {
 	this.listeContratsByClient = listeContratsByClient;
 }
 
+
+public int getIdRowSelected() {
+	return idRowSelected;
+}
+
+public void setIdRowSelected(int idRowSelected) {
+	this.idRowSelected = idRowSelected;
+}
 
 public List<ContratDTO> getListeContratsByClient() {
 	return listeContratsByClient;

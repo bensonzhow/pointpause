@@ -32,6 +32,11 @@
 					
    			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{tableaubordMB.lastContrats}' var="contrat">
 					<richfaces:column>
+						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.numero}" />
+					</richfaces:column>
+					
+					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">
 							<jsfCore:convertDateTime type="date" dateStyle="short" />
@@ -49,7 +54,6 @@
 					<richfaces:column>
 						<jsfCore:facet name="header">Commentaire :</jsfCore:facet>
 						<jsf:outputText value="#{contrat.commentaire}" />
-						
 					</richfaces:column>
 
 					<richfaces:column>
@@ -61,17 +65,15 @@
                        <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
                        </jsf:panelGroup>
                 		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
-                    </a4j:commandLink>
-					
+                    </a4j:commandLink>		
 					</richfaces:column>
-					<richfaces:column>
-						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
-						<jsf:outputText value="#{contrat.numero}" />
-					</richfaces:column>
-					
+			
 					<richfaces:column>
 						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
-						<jsf:outputText value="#{contrat.dateSignature}" />
+						<jstl:if test="${contrat.dateSignature == null}">
+						<jsf:outputText value="en attente de signature" /></jstl:if>
+						<jstl:if test="${contrat.dateSignature != null}">
+						<jsf:outputText value="#{contrat.dateSignature}"></jsf:outputText></jstl:if>
 					</richfaces:column>
 
 				</richfaces:dataTable>
@@ -84,19 +86,49 @@
 	
 	
 	
-	<richfaces:panel>
-		<jsfCore:facet name="header"> Vos derniers incidents
-	  </jsfCore:facet>
-	jj<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />	
+	
+	
+	
+		<richfaces:panel style="margin:auto;">
+		<jsfCore:facet name="header"> Vos derniers incidents  </jsfCore:facet>
+					partie en construction...
+   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flagsInc"  value='#{tableaubordMB.lastIncidents}' var="incident">
+					<richfaces:column>
+						<jsfCore:facet name="header">Numéro d'incident : </jsfCore:facet>
+						<jsf:outputText value="#{incident.numero}" />
+					</richfaces:column>
+					
+					<richfaces:column>
+						<jsfCore:facet name="header"> Date de déclaration :		</jsfCore:facet>
+						<jsf:outputText value="#{incident.dateDeclarationIncident}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header"> Contrat lié :		</jsfCore:facet>
+						<jsf:outputText value="#{incident.numContrat}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+
+					<richfaces:column>
+						<jsfCore:facet name="header">Commentaire :</jsfCore:facet>
+						<jsf:outputText value="#{incident.commentaire}" />
+					</richfaces:column>
+
+
+			
+					<richfaces:column>
+						<jsfCore:facet name="header">Statut de prise en charge : </jsfCore:facet>
+						<jsf:outputText value="#{incident.libelStatutPriseEnCharge}" />
+					</richfaces:column>
+
+				</richfaces:dataTable>
+		
 	</richfaces:panel>
+		
 		
 	</jsf:form>
 </jsfCore:subview> 
