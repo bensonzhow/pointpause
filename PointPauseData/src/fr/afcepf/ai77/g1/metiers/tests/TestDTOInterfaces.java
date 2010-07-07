@@ -192,4 +192,10 @@ public class TestDTOInterfaces extends TestCase {
 		boolean res = donneesContrat.updateContrat(contratdto);
 		assertTrue(res);
 	}
+	
+	public void testgetContratbyClient(){
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		List<ContratDTO> contratsDTO =donneesContrat.getAllContratsBouquetInstallByClient(4);
+		
+	}
 }
