@@ -68,16 +68,18 @@
 					</richfaces:column>
 					<richfaces:column>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
-                        action="#{tableaubordMB.switchFlag}" >
-                      <jsf:panelGrid id="flags" rendered="true" >
-                       <jsf:graphicImage id="flag" width="30px" value="#{tableauMB.flagRed}" rendered="#{contrat.flag}" style="border:0">
-                       <a4j:support event="onclick" action="#{tableaubordMB.changeAspectFlag">
-                       <a4j:actionparam value="#{tableaubordMB.valueImage}
-                       </a4j:support>                     
-                       </jsf:graphicImage>
-                       <jsf:graphicImage id="deflag" width="30px" value="#{tableauMB.flagNone}" rendered="#{!contrat.flag}"  style="border:0" />
+                        action="#{tableaubordMB.switchFlag}" reRender="flags" >
+                      
+                     <jsf:panelGroup id="flags" rendered="true">
+                      
+                        
+                        <jsf:outputText rendered="true" value="#{contrat.flag}"> </jsf:outputText>
+                        
+                       <jsf:graphicImage id="flag" width="30px" value="/images/flag.jpg" rendered="#{contrat.flag}" style="border:0"/>     
+                       
+                       <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
                      
-                       </jsf:panelGrid>
+                       </jsf:panelGroup>
                 		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
                     </a4j:commandLink>
 					
