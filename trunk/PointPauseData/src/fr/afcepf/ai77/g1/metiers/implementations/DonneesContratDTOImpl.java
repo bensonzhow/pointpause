@@ -170,7 +170,7 @@ public ContratDTO getContratById(int numContrat){
 
 	@Override
 	public List<ContratDTO> getAllContratsBouquetInstallByClient(int numClient) {
-		List<ContratDTO> allContratsDTO = null;
+		List<ContratDTO> allContratsDTO = new Vector<ContratDTO>();
 		List<Contrat> listeContrat = donneesContrat.getAllContratBouquetInstallByClient(numClient);
 		for (Contrat contrat : listeContrat) {
 			ContratDTO cdto = copyContrat(contrat);
@@ -188,12 +188,14 @@ public ContratDTO getContratById(int numContrat){
 		BouquetDTO bouquetDTO = new BouquetDTO();
 		bouquetDTO.setCodeBouquet(bouquet.getCodeBouquet());
 		bouquetDTO.setCodeFormule(bouquet.getFormule().getCodeFormule());
-		bouquetDTO.setCodemodeleAutomate(bouquet.getModeleAutomate().getId());
+		
 		bouquetDTO.setQuantite(bouquet.getQuantite());
 		if (bouquet.getFormule()!=null)
 		bouquetDTO.setStrFormule(bouquet.getFormule().getLibelleFormule());
 		if (bouquet.getModeleAutomate()!=null)
+		{
 		bouquetDTO.setStrModeleAutomate(bouquet.getModeleAutomate().getNom());
+		bouquetDTO.setCodemodeleAutomate(bouquet.getModeleAutomate().getId());}
 		if(bouquet.getHistoriqueInstallations()!=null)
 		bouquetDTO.setHistoriqueInstallations(bouquet.getHistoriqueInstallations());
 		return bouquetDTO;
