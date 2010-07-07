@@ -200,6 +200,9 @@
 		<property name="donneesContrat">
 			<ref bean="IDonneesContratDAO" />
 		</property>		
+		<property name="donneesInstallation">
+			<ref bean="IDonneesInstallationDAO" />
+		</property>	
 		
 		
 	</bean>

@@ -29,6 +29,7 @@ import fr.afcepf.ai77.g1.persistence.implementations.DonneesClientDAOImpl;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesContratDAOImpl;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesIncidentDAOImpl;
 import fr.afcepf.ai77.g1.persistence.implementations.DonneesTypePbDAOImpl;
+import fr.afcepf.ai77.g1.persistence.interfaces.IDonneesInstallationDAO;
 
 public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 
@@ -36,9 +37,18 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	private DonneesClientDAOImpl donneesClient = null;
 	private DonneesTypePbDAOImpl donneesTypePb = null;
 	private DonneesContratDAOImpl donneesContrat = null;
+	private IDonneesInstallationDAO donneesInstallation = null;
 
 
 	/*--------------------------Getters & Setters-----------------------------------*/
+
+	public IDonneesInstallationDAO getDonneesInstallation() {
+		return donneesInstallation;
+	}
+
+	public void setDonneesInstallation(IDonneesInstallationDAO donneesInstallation) {
+		this.donneesInstallation = donneesInstallation;
+	}
 
 	public DonneesContratDAOImpl getDonneesContrat() {
 		return donneesContrat;
@@ -87,10 +97,13 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 
 		Client c = donneesClient.getClientByNumero(iDTO.getNumClient());
 		TypePb tp = donneesTypePb.getTypePbByNumero(iDTO.getNumTypePb());
+		Installation installation = donneesInstallation.getInstallation(iDTO.getNumInstallation());
 
 		Incident incident = new Incident();
 		incident.setClient(c);
 		incident.setTypePb(tp);
+		incident.setNumeroDeploiement(installation);
+		installation.getListeIncidents().add(incident);
 		incident.setDateDeclarationIncident(iDTO.getDateDeclarationIncident());
 		incident.setDateConstatIncident(iDTO.getDateConstatIncident());
 		incident.setFlag(iDTO.getFlag());
