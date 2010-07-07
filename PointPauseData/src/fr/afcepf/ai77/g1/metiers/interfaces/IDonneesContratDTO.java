@@ -14,5 +14,6 @@ public interface IDonneesContratDTO {
 	List<ContratDTO> getAllContratsBouquetInstallByClient(int numClient);
 	ContratDTO getContratById(int numContrat);
 	Boolean updateContrat(ContratDTO contratdto);
+	ContratDTO getContratBouquetById(int numContrat);
 	
 }

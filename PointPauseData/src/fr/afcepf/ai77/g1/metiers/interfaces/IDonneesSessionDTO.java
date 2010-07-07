@@ -6,5 +6,5 @@ public interface IDonneesSessionDTO {
 
 	/*retourne un SessionDTO si ok, null si pas ok*/
 	SessionDTO getSessionDTO(String login, String password);
-	
+	//SessionDTO insertClient(ClientDTO
 }

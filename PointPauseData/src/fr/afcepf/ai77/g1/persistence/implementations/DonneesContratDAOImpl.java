@@ -90,6 +90,10 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 						for (String policy : policies.getPolicies()) {
 							if (policy.equals("bouquet")) {
 								Hibernate.initialize(tempc.getListeBouquets());
+								for(Bouquet bouquet : tempc.getListeBouquets()){
+									Hibernate.initialize(bouquet.getFormule());
+									Hibernate.initialize(bouquet.getModeleAutomate());
+								}
 								continue;
 							}
 						}
@@ -354,11 +358,23 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 							
 							
 						}
-
-						return liste;
-
+						for (Contrat contrat : liste) {
+							Hibernate.initialize(contrat);
+							Hibernate.initialize(contrat
+									.getListeBouquets());
+							for (Bouquet bouquet : contrat
+									.getListeBouquets()) {
+								Hibernate.initialize(bouquet);
+								Hibernate.initialize(bouquet
+										.getFormule());
+								Hibernate.initialize(bouquet
+										.getModeleAutomate());
+								Hibernate.initialize(bouquet
+										.getHistoriqueInstallations());
+							}
 					}
-				});
+						return liste;
+				} });
 		// si le client a + que 7 contrats flaggu�s on coupe la liste � 7 pour
 		// le tableau de bord et on la renverra
 		// if (listContratFlagguesParClient.size()>=7){
