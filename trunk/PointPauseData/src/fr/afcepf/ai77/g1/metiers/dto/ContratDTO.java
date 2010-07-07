@@ -2,6 +2,8 @@ package fr.afcepf.ai77.g1.metiers.dto;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Vector;
 
 import java.util.Set;
 
@@ -20,15 +22,15 @@ public class ContratDTO {
 	private int duree;
 	private String commentaire;
 	private Boolean flag;
-	private Set<BouquetDTO> listeBouquets = new HashSet<BouquetDTO>();
+	private List<BouquetDTO> listeBouquets = new Vector<BouquetDTO>();
 	
 	
 	
 	
-	public Set<BouquetDTO> getListeBouquets() {
+	public List<BouquetDTO> getListeBouquets() {
 		return listeBouquets;
 	}
-	public void setListeBouquets(Set<BouquetDTO> listeBouquets) {
+	public void setListeBouquets(List<BouquetDTO> listeBouquets) {
 		this.listeBouquets = listeBouquets;
 	}
 	public Date getDateDebut() {
