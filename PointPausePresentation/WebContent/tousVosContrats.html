@@ -70,6 +70,20 @@
 						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateSignature}" />
 					</richfaces:column>
+					
+					<richfaces:column>
+						<jsfCore:facet name="header">Machines et formules associées : </jsfCore:facet>
+						<div class="clic">
+						<richfaces:dataTable styleClass="depliable" switchType="Ajax" style="text-align:center; margin:auto;" ajaxSingle="true" sortable="true" value='#{contrat.listeBouquets}' var="bouquet">
+							<richfaces:column>	
+							Nom de formule :<jsf:outputText value="#{bouquet.strFormule}" /> <br />
+							Nom de machine :<jsf:outputText value="#{bouquet.strModeleAutomate}"></jsf:outputText> <br />
+							En nombre de : <jsf:outputText value="#{bouquet.quantite}"></jsf:outputText>
+						</richfaces:column>
+						</richfaces:dataTable>
+						</div>
+						</richfaces:column>
+					
 
 				</richfaces:dataTable>
 		
