@@ -14,41 +14,50 @@
 }
 
 .secondaryincidentdiv{
-	width:600px;
+	width:700px;
 	float:left;
 	heigth:1000px;
 	overflow: auto;	
+	margin-bottom:20px;
 }
 
 
 
 .rapportincidentdiv1 {
-	width: 600px;
+	width: 700px;
 	border: 1 px solid black;
-	margin: 5 px;
-	background-color : Tomato  ;
+	margin: auto;
+/*	background-color : Tomato  ;*/
+	
+
+	
 }
 
 
 
 .rapportincidentdiv2 {
-	width: 600px;
+	width: 700px;
 	border: 1 px solid black;
-	margin: 5 px;
-	background-color : Darkorange  ;
+	margin: auto;
+/*	background-color : Darkorange  ;*/
+	
+	
 }
 
 
 .rapportincidentdiv3 {
-	width: 600px;
+	width: 700px;
 	border: 1 px solid black;
-	margin: 5 px;
-	background-color : MediumSeaGreen ;
+	margin: auto;
+/*	background-color : MediumSeaGreen ;*/
+	
+
 }
 
 
+
 .rapportincidentdiv-1 {
-	width: 600px;
+	width: 700px;
 	border: 1 px solid black;
 	margin: 5 px;
 	background-color : gray;
@@ -57,11 +66,40 @@
 
 
 
+
 .incidentshortinfo {
-	width: 300px;
+	width: 250px;
 	float: left;
 	text-align: left;
 }
+
+
+.imageincidentdiv1{
+	float: left;
+	witdh:80px;
+	margin:auto;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+
+.imageincidentdiv2{
+	float: left;
+	witdh:80px;
+	margin:auto;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+
+.imageincidentdiv3{
+	float: left;
+	witdh:80px;
+	margin:auto;
+	margin-left:20px;
+	margin-right:20px;
+}
+
 
 .statutincidenttable {
 	float: left;

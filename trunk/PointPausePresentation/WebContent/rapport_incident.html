@@ -69,9 +69,6 @@
 			</jsf:selectBooleanCheckbox></div>
 
 
-
-
-
 			<jsf:panelGroup styleClass="secondaryincidentdiv"
 				id="renderedContent" rendered="true">
 
@@ -96,6 +93,12 @@
 					<b>Statut : <jsf:outputText
 						value="#{incident.libelStatutPriseEnCharge}" /></b></div>
 
+
+					<div class="imageincidentdiv#{incident.statutPriseEnCharge}"  >
+						<img alt="(image not found)" src="images/statut${incident.statutPriseEnCharge}.png"></img>
+					</div>
+					
+					
 					<richfaces:dataTable styleClass="statutincidenttable"
 						value="#{incident.historique}" var="statut">
 
@@ -124,7 +127,7 @@
 
 
 					<div class="clearer"></div>
-					<jsf:selectBooleanCheckbox value="#{incident.flag}">
+					<jsf:selectBooleanCheckbox value="#{incident.flag}" style="text-align:right;">
 						Suivre cet incident dans le tableau de bord ?				
 						<a4j:support event="onclick"
 								action="#{rapportincidentMB.setFlagForIncident}" >
