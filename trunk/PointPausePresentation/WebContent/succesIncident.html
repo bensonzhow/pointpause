@@ -1,0 +1,23 @@
+
+<html xmlns:facelets="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://java.sun.com/jsf/html"
+	xmlns:jsfCore="http://java.sun.com/jsf/core"
+	xmlns:richfaces="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+		xmlns:jstl="http://java.sun.com/jstl/core">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<facelets:composition template="masterPage.html">
+ 	
+ 	<facelets:define name="Contenu">
+	
+ 		<jsfCore:subview id="connexion">
+ 		<b>Votre incident à bien été pris en compte ! </b>
+ 		<p><b>Nous nous excusons pour la gène occasionnée et s'efforçont de le résoudre au plus vite.</b></p>
+ 		<br />
+	Vous allez être redirigé dans 5 secondes...
+	<meta http-equiv="Refresh" content="4;url=tableauBord.html"></meta>
+ 		</jsfCore:subview>
+ 		</facelets:define>
+ 		</facelets:composition>
+ 		
+</html>

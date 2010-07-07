@@ -143,6 +143,9 @@
    width: 150px;
    margin-bottom: 10px;
    }
+   #id-header-panelBar{
+   font-size: large;
+   }
   
 /* Layout helpers
 ----------------------------------*/

@@ -4,19 +4,122 @@
 	xmlns:jsfCore="http://java.sun.com/jsf/core"
 	xmlns:richfaces="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 <facelets:composition template="masterPage.html">
  	<facelets:define name="Contenu">
- 		<div width="1000px">
-	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="860" height="560" align="middle">
-	<param name="allowScriptAccess" value="sameDomain" />
-	<param name="movie" value="JetPhotoView.swf" />
-	<param name="quality" value="high" />
-
-	<param name="wmode" value="transparent" />
-	<embed src="JetPhotoView.swf" width="860" height="560" align="middle" quality="high" wmode="transparent" bgcolor="#000000" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" ></embed>
-
-		</object>
+ 		<div width="1000px" align="center">
+ 		<richfaces:tabPanel  width="1000px">
+	 		<richfaces:tab label="Machines...">
+	 		
+				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="900" height="560" align="middle">
+				<param name="allowScriptAccess" value="sameDomain" />
+				<param name="movie" value="JetPhotoView.swf" />
+				<param name="quality" value="high" />
+			
+				<param name="wmode" value="transparent" />
+				<embed src="JetPhotoView.swf" width="900" height="560" align="middle" quality="high" wmode="transparent" bgcolor="#000000" allowscriptaccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" ></embed>
+				</object>
+			
+			</richfaces:tab>
+			<richfaces:tab label="Produits..." >
+				<richfaces:panelBar  width="975">
+			        <richfaces:panelBarItem id="id-header-panelBar"
+			            label="Boisson chaudes">
+			            <div  align="center"><img src="images/Boissonschaudes.jpg"  width="200" align="middle"></img>
+			            </div>
+			            <h style="font-size:large; color:rgb(255,153,0);">Café torréfié</h>
+			 			<p style="font-size:small;">
+							Grands noms du café sur le plan européen ou torréfacteurs régionaux, 
+							vous trouverez à coup sûr chez PointPause, un café en grain à votre goût.
+						</p>
+						<p></p>
+						<h style="font-size:large; color:rgb(255,153,0);">Café lyophilisé</h>
+			 			<p style="font-size:small;">
+							Marumba traditionnel ou Marumba 100% Arabica labellisé Bio et Max Havelaar, 
+							deux cafés élaborés par PointPause que vous ne trouverez que chez nous.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Le Cappuccino et les cafés "gourmands"</h>
+			 			<p style="font-size:small;">
+							Mélange d´onctuosité et de douceur, le Cappuccino séduit de plus en plus de consommatrices. 
+							Mais aussi le café Vanille et toutes ses déclinaisons.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Le Chocolat</h>
+			 			<p style="font-size:small;">
+							L´indispensable boisson au chocolat, pour le plaisir de tous. Le chocolat onctueux et savoureux, complète le petit déjeuner, 
+							réchauffe pendant la journée. 
+							Le parfum d´un souvenir d´enfance avec notre marque CHOCODIA.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Le Thé</h>
+			 			<p style="font-size:small;">
+							Une marque de référence : Lipton, la quatrième marque de boissons dans le monde et la première marque de thé en France.
+							Lipton nature - Lipton citron - Lipton lait .
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Le Potage</h>
+			 			<p style="font-size:small;">
+							Un produit qui satisfait les petites faims et réchauffe le corps. 
+							La qualité des matières premières et la qualité nutritive des légumes sont préservées.
+						</p>
+						
+			        </richfaces:panelBarItem>
+			        <richfaces:panelBarItem
+			            label="Boissons fraiches">
+			            <div  align="center"><img src="images/Boissonsfroides.jpg"  width="200" align="middle"></img>
+			            </div>
+			            <h style="font-size:large; color:rgb(255,153,0);">Cola, standard et light</h>
+			 			<p style="font-size:small;">
+							La boisson qui tonifie, qui rafraîchit, Elle est consommée seule ou en accompagnement d´un encas.
+						</p>
+						<p></p>
+						<h style="font-size:large; color:rgb(255,153,0);">Boissons aux fruits gazeuses ou plates</h>
+			 			<p style="font-size:small;">
+							Elles sont l´alliance entre le monde des softs et la présence de fruits ; 
+							Elles satisfont les soifs des adultes et des enfants par leurs côtés frais et légers.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">La boisson thé pêche</h>
+			 			<p style="font-size:small;">
+							Une boisson fraîche au thé, parfumée à la pêche, un produit dynamique qui redonne du tonus, 
+							une sensation d´être désaltéré et la saveur de la pêche en plus.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Les jus de fruits</h>
+			 			<p style="font-size:small;">
+								Compositions de jus de fruits à base de concentré ou 100% jus.
+								Sans sucre ajouté, conformément à la législation. 
+								Pour vous offrir tous les bénéfices d´un jus de fruits. 
+								Plusieurs parfums pour satisfaire toutes les envies : Jus d´orange, Jus de pomme, Tropical.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Eaux plates et gazeuses</h>
+			 			<p style="font-size:small;">
+							Eaux minérales ou eaux de source, vendues en format 50 cl, elles sont indispensables aux consommateurs nomades.
+						</p>
+			            
+			        </richfaces:panelBarItem>
+			        <richfaces:panelBarItem
+			            label="Biscuits et Confiseries">
+			            <div  align="center"><img src="images/Biscuits.jpg"  width="200" align="middle"></img>
+			            </div> 
+			             <h style="font-size:large; color:rgb(255,153,0);">Biscuits</h>
+			 			<p style="font-size:small;">
+							Au chocolat, aux noisettes, ou à la noix de coco, 
+							vous trouverez sûrement un biscuit pour vous faire plaisir et satisfaire une petite envie.</p>
+							<p>Les grandes marques présentes dans nos distributeur sont régulièrement reformulées pour s´adapter 
+							aux goûts du plus grand nombre de consommateurs.
+						</p>
+						<p></p>
+						<h style="font-size:large; color:rgb(255,153,0);">Barres céreales</h>
+			 			<p style="font-size:small;">
+							Que vous soyez sportif, ou que vous fassiez attention à votre ligne, 
+							nous mettons à votre disposition des barres de céréales énergisantes, 
+							ainsi qu´une gamme allégée et équilibrée.
+						</p>
+						<h style="font-size:large; color:rgb(255,153,0);">Confiseries</h>
+			 			<p style="font-size:small;">
+							Nos distributeurs vous proposent toute une gamme de bonbons et chewing-gum qui satisfera les plus gourmands.
+						</p>
+			            
+			        </richfaces:panelBarItem>
+    			</richfaces:panelBar>
+			</richfaces:tab>
+		</richfaces:tabPanel>
 		</div>
 	</facelets:define>
 </facelets:composition>
