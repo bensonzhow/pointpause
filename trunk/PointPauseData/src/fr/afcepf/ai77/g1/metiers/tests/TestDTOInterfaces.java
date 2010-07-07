@@ -184,5 +184,12 @@ public class TestDTOInterfaces extends TestCase {
 		boolean res = donneesIncident.switchIncidentFlag(1);
 		assertTrue(res);
 	}
-	
+
+	public void testSwitchContratFlag(){
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		ContratDTO contratdto = donneesContrat.getContratById(71);
+		contratdto.setFlag(true);
+		boolean res = donneesContrat.updateContrat(contratdto);
+		assertTrue(res);
+	}
 }
