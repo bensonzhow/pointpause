@@ -7,6 +7,7 @@
 
 <facelets:composition template="masterPage.html">
 	<facelets:define name="HeadScriptorCss">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 		<link type="text/css" href="css/contrat.css" rel="stylesheet" />
 		<link type="text/css" href="css/rapportincident.css" rel="stylesheet" />
 		<script type="text/javascript" src="scripts/redirection.js"></script>
@@ -23,6 +24,57 @@
 			<u>Cliquez pour fermer...</u></div>
 		</jstl:if>
 
+<richfaces:panel style="margin:auto;">
+		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
+					
+   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{tableaubordMB.tousContrats}' var="contrat">
+					<richfaces:column>
+						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateDebut}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header"> Date de fin :		</jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateFin}">
+							<jsfCore:convertDateTime type="date" dateStyle="short" />
+						</jsf:outputText>
+				
+					</richfaces:column>
+
+					<richfaces:column>
+						<jsfCore:facet name="header">Commentaire :</jsfCore:facet>
+						<jsf:outputText value="#{contrat.commentaire}" />
+						
+					</richfaces:column>
+
+					<richfaces:column>
+					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
+					<a4j:commandLink ajaxSingle="true" id="editlink"
+                        action="#{tableaubordMB.switchFlag}" reRender="flags" >
+                     <jsf:panelGroup rendered="true">  
+                       <jsf:graphicImage id="flag" width="30px" value="/images/flag.jpg" rendered="#{contrat.flag}" style="border:0"/>     
+                       <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
+                       </jsf:panelGroup>
+                		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
+                    </a4j:commandLink>
+					
+					</richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.numero}" />
+					</richfaces:column>
+					
+					<richfaces:column>
+						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateSignature}" />
+					</richfaces:column>
+
+				</richfaces:dataTable>
+		
+	</richfaces:panel>
+	
 </facelets:define>
 </facelets:composition>
 </html>
