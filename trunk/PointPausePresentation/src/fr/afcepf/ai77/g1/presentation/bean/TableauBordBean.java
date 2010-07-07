@@ -16,6 +16,7 @@ import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
+import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 
 public class TableauBordBean {
 
@@ -68,7 +69,9 @@ public class TableauBordBean {
 		System.out.println("on passe dans switch");
 		System.out.println(idRowSelected);
 	test= "oui";
-		ContratDTO cdto = donneesContrat.getContratById(idRowSelected);
+	System.out.println("avant getContratById");	
+		ContratDTO cdto = donneesContrat.getContratBouquetById(session.getNumeroClient());
+		System.out.println("après getContratById");
 		if (cdto.getFlag())
 		{cdto.setFlag(false);
 		flagRendered=false;}
@@ -76,6 +79,7 @@ public class TableauBordBean {
 		{	cdto.setFlag(true);
 		flagRendered=true;}
 	   donneesContrat.updateContrat(cdto);
+	   System.out.println("l'update contrat passe");
 	  setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
 		
 	}

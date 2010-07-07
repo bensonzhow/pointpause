@@ -1,7 +1,11 @@
  var $j = jQuery.noConflict();
  
 $j(document).ready(function($){
-
+	
+	$('div .depliable').hide();
+$('div .clic').click(function(){
+	$(this).slideToggle();
+});
 
 $('ul .cache').hide();
 
