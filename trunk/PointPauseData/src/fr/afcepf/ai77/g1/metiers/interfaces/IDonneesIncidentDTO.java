@@ -18,5 +18,6 @@ public interface IDonneesIncidentDTO {
 
 	boolean switchIncidentFlag(int numIncident);
 	List<String> getListtypePb();
+	List<IncidentDTO> getLastIncidentFlagByClient(int numClient);
 	
 }

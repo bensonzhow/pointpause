@@ -22,8 +22,8 @@ public interface IDonneesIncidentDAO {
 	
 	
 	
-	/*rechercher la liste des incidents pour un même client
-	 * note : on initialisera automatiquement les statutincidents associés
+	/*rechercher la liste des incidents pour un mï¿½me client
+	 * note : on initialisera automatiquement les statutincidents associï¿½s
 	 */
 	List<Incident> getSuiviIncidentByClient(Integer clientID);
 	
@@ -31,26 +31,26 @@ public interface IDonneesIncidentDAO {
 	/*Variante, permet de filter lesquels sont termines*/	
 	List<Incident> getSuiviIncidentByclient(Integer clientID, boolean unfinishedOnly);
 	
-	/*Variante, permettant de préciser quel intervalle */
+	/*Variante, permettant de prï¿½ciser quel intervalle */
 	List<Incident> getSuiviIncidentByClient(Integer clientID, int min, int max);	
 	
 	/**********************************************************
 	 * 
 	 * La complete !
 	 * 
-	 * cette méthode va remonter tous les incidents du client, ainsi que les statuts incidents
-	 * et interventions eventuellement associées.
+	 * cette mï¿½thode va remonter tous les incidents du client, ainsi que les statuts incidents
+	 * et interventions eventuellement associï¿½es.
 	 * 
-	 * Les données sont retournées triées par ordre descendant sur la date de déclaration.
+	 * Les donnï¿½es sont retournï¿½es triï¿½es par ordre descendant sur la date de dï¿½claration.
 	 * 
 	 * unfinished : true -> on ne selectione que les interventions non terminees
 	 * 				false-> on les prend toutes
 	 * 
-	 * min		: <0   -> on récupère le résultat depuis le début
-	 * 			: >=0  -> on récupère le résultat que depuis le rang min
+	 * min		: <0   -> on rï¿½cupï¿½re le rï¿½sultat depuis le dï¿½but
+	 * 			: >=0  -> on rï¿½cupï¿½re le rï¿½sultat que depuis le rang min
 	 * 
-	 * max 		: <0   -> on récupère depuis min jusqu'au dernier résultat
-	 * 			: >=0  -> on récupère depuis min jusqu'à max, ou dernier résultat (ca dépend de ce qui arrive en premier) 
+	 * max 		: <0   -> on rï¿½cupï¿½re depuis min jusqu'au dernier rï¿½sultat
+	 * 			: >=0  -> on rï¿½cupï¿½re depuis min jusqu'ï¿½ max, ou dernier rï¿½sultat (ca dï¿½pend de ce qui arrive en premier) 
 	 * 
 	 * 
 	 ************************************************************************ */
@@ -59,6 +59,8 @@ public interface IDonneesIncidentDAO {
 	TypePb getTypePbById(int problemeId);
 	
 	TypeStatutIncident getTypeStatutIncidentById(int numeroStatut);
+
+	List<Incident> getLastIncidentByClient(int numClient);
 	
 
 }

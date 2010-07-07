@@ -16,11 +16,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.mapping.Collection;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import fr.afcepf.ai77.g1.persistence.entity.Bouquet;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.Incident;
 import fr.afcepf.ai77.g1.persistence.entity.Intervention;
@@ -43,6 +45,61 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 		return null;
 	}
 
+	@Override
+	public List<Incident> getLastIncidentByClient(
+			final int numClient) {
+
+		List<Incident> listLastContratFlagguesParClient = hibernateTemplate
+				.execute(new HibernateCallback<List<Incident>>() {
+					@Override
+					public List<Incident> doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						List<Incident> liste;
+						Criteria crit = session.createCriteria(Incident.class);
+						crit = crit.add(Restrictions.eq("flag", true)).addOrder(
+								Order.desc("dateDeclarationIncident")).createCriteria(
+								"client", Criteria.INNER_JOIN).add(
+								Restrictions.eq("numero", numClient))
+								.setMaxResults(7);
+						// lÃ  on a tous les contrats flagguÃ©s d'un client
+						liste = crit.list();
+						
+						int reste = 7 - liste.size();
+						
+						if (reste>0){
+							List<Incident> listNonFlag;
+							crit = session.createCriteria(Incident.class);
+							crit = crit.add(Restrictions.eq("flag", false)).addOrder(
+									Order.desc("dateDeclarationIncident")).createCriteria(
+									"client", Criteria.INNER_JOIN).add(
+									Restrictions.eq("numero", numClient))
+									.setMaxResults(reste);
+							// lÃ  on a tous les contrats flagguÃ©s d'un client
+							listNonFlag = crit.list();	
+							liste.addAll(listNonFlag);
+							for (Incident incident: liste) {
+								Hibernate.initialize(incident);
+								//dÃ©commenter ce qu'on a besoin 
+								//Hibernate.initialize(incident.getClient());
+								
+									Hibernate.initialize(incident.getListeStatutsIncidents());
+									Hibernate.initialize(incident.getNumeroDeploiement());
+									Hibernate.initialize(incident.getTypePb());
+								
+									for (StatutIncident stinc : incident
+											.getListeStatutsIncidents()) {
+										Hibernate.initialize(stinc);
+										Hibernate.initialize(stinc.getTypeStatut());
+									}
+								}
+
+						}
+
+						return liste;
+						
+					} });
+		return listLastContratFlagguesParClient;}
+	
 	@Override
 	public Incident getIncidentByNumero(int numero) {
 
@@ -123,7 +180,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	 * (non-Javadoc)
 	 * @see fr.afcepf.ai77.g1.persistence.interfaces.IDonneesIncidentDAO#insertIncident(fr.afcepf.ai77.g1.persistence.entity.Incident)
 	 * 
-	 * maintenant, on insère aussi le statut incident à la volée
+	 * maintenant, on insï¿½re aussi le statut incident ï¿½ la volï¿½e
 	 */
 	
 	@Override
@@ -141,7 +198,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			
 			hibernateTemplate.save(incident);
 
-			// normalement, hibernate affecte le numero lui même (merci Youssef !)
+			// normalement, hibernate affecte le numero lui mï¿½me (merci Youssef !)
 			return incident.getNumero();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,7 +208,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	}
 
 	/**************************************************************************
-	 * Récupérer des incidents pour un client
+	 * Rï¿½cupï¿½rer des incidents pour un client
 	 **************************************************************************/
 
 	@Override
@@ -169,7 +226,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 	 * getSuiviIncidentByclient(java.lang.Integer, boolean)
 	 * 
 	 * todo : des qu'on est au point avec les type_statut_incident, ajouter les
-	 * criteres pour gérer le cas des incidents résolus en fonction de
+	 * criteres pour gï¿½rer le cas des incidents rï¿½solus en fonction de
 	 * unfinishedOnly
 	 */
 
@@ -239,7 +296,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 									Order.desc("dateDeclarationIncident"));
 
 							// FIXME : mettre la gestion de la restriction
-							// sur les interventions terminées ici
+							// sur les interventions terminï¿½es ici
 
 							critere = critere
 									.createCriteria("numeroDeploiement",
@@ -256,7 +313,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 							liste = critere.list();
 
 							/*
-							 * raffiner les résultats en fonction des min et max
+							 * raffiner les rï¿½sultats en fonction des min et max
 							 */
 
 							int minimum = (min < 0) ? 0 : min;
