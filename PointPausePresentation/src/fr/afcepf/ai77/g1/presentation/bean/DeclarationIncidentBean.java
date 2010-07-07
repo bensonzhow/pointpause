@@ -34,15 +34,7 @@ public class DeclarationIncidentBean {
 	private String commentaire = "";
 	private Integer idContrat;
 	private boolean voirpanel = false;
-	
-	public List getTypePb() {
-		
-		typePb = new ArrayList();
-		typePb.add(new SelectItem("Aucun"));
-		typePb.add(new SelectItem("dysfonctionnement"));
-		typePb.add(new SelectItem("panne"));
-		return typePb;
-	}
+	private String value;
 	
 
 	public String getValueMachine() {
@@ -64,7 +56,17 @@ public class DeclarationIncidentBean {
 		this.commentaire = commentaire;
 	}
 
-
+	
+	public List getTypePb() {
+		typePb = new ArrayList();
+		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
+		List<String> liste = donneesIncident.getListtypePb();
+		for(String s : liste){
+			typePb.add(new SelectItem(s));
+		}
+		return typePb;
+	}
+	
 	public void setTypePb(List typePb) {
 		this.typePb = typePb;
 	}
@@ -160,11 +162,11 @@ public class DeclarationIncidentBean {
 	}
 	
 	public String getValue() {
-		return valueMachine;
+		return value;
 	}
 
 	public void setValue(String value) {
-		this.valueMachine = value;
+		this.value = value;
 	}
 	
 	public void confirmation(){
@@ -191,7 +193,32 @@ public class DeclarationIncidentBean {
 		this.voirpanel = voirpanel;
 	}
 
-
+	public Integer searchNumTypePb(String value){
+		Integer i = 0;
+		if(value.equals("Non installée")){
+			i = 1;
+		}
+		if(value.equals("dysfonctionnement")){
+			i = 2;
+		}
+		if(value.equals("panne électrique")){
+			i = 3;
+		}
+		if(value.equals("problème monnayeur")){
+			i = 4;
+		}
+		if(value.equals("problème câblerie")){
+			i = 5;
+		}
+		if(value.equals("machine fracturée")){
+			i = 6;
+		}
+		if(value.equals("vol de produits")){
+			i = 7;
+		}
+		return i;
+	}
+	
 	public String declare(){
 		System.out.println("Entrer");
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
@@ -208,13 +235,12 @@ public class DeclarationIncidentBean {
 		incident.setDateConstatIncident(getDateConstatIncident());
 		incident.setDateDeclarationIncident(new Date());
 		incident.setFlag(flag);
-		incident.setNumTypePb(2);
+		incident.setNumTypePb(searchNumTypePb(value));
 		incident.setNumClient(session.getNumeroClient());
-		//incident.setNumContrat(contrat.)
+		incident.setNumContrat(idContrat);
 		
 		int res = donneesIncident.insertIncident(incident);
 
-		
 		if(res != -1){
 			return "ok";
 		}
