@@ -134,7 +134,58 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		}
 		return listeContratDTO;
 	}
-
+	@Override
+	public List<IncidentDTO> getLastIncidentFlagByClient(int numClient){
+		List<Incident> incidents = donneesIncident.getLastIncidentByClient(numClient);
+		List<IncidentDTO> incidentsDTO = new Vector<IncidentDTO>();
+		Iterator<Incident> it = incidents.iterator();
+		if (incidents == null)
+			return null;
+		while (it.hasNext() ){
+			Incident incident = it.next();
+			IncidentDTO incidentDTO = new IncidentDTO();
+			incidentDTO.setDateConstatIncident(incident.getDateConstatIncident());
+			incidentDTO.setDateDeclarationIncident(incident.getDateDeclarationIncident());
+			incidentDTO.setFlag(incident.getFlag());
+			if (incident.getTypePb()!=null)
+			incidentDTO.setLibelTypePb(incident.getTypePb().getLibelle());
+			
+			incidentDTO.setNumero(incident.getNumero());
+			incidentDTO.setNumClient(numClient);
+			incidentsDTO.add(incidentDTO);
+			if(incident.getNumeroDeploiement()!=null)
+			incidentDTO.setNumInstallation(incident.getNumeroDeploiement().getNumero());
+			
+			StatutIncidentDTO stincdto = new StatutIncidentDTO();
+		
+				for (StatutIncident stinc : incident.getListeStatutsIncidents()) {
+					
+					stincdto.setCommentaire(stinc.getCommentaire());
+					stincdto.setDateNouveauStatut(stinc.getDateChangementStatut());
+					stincdto.setNumero(stinc.getNumero());
+					
+				
+					try{
+						stincdto.setStatut(stinc.getTypeStatut().getLibelle());
+						stincdto.setIntStatut(stinc.getTypeStatut().getNumeroType());
+					}catch(Exception e){
+						stincdto.setStatut("indetermine");
+						stincdto.setIntStatut(-1);
+					}
+					incidentDTO.getHistorique().add(stincdto);
+			}
+				StatutIncidentDTO statutDTO = incidentDTO.getLastStatutDTO(); 
+				if(statutDTO!=null){
+					incidentDTO.setStatutPriseEnCharge(statutDTO.getIntStatut());
+					incidentDTO.setLibelStatutPriseEnCharge(statutDTO.getStatut());
+				}else{
+					incidentDTO.setStatutPriseEnCharge(-1);
+					incidentDTO.setLibelStatutPriseEnCharge("indetermine");				
+				}
+			
+		}
+		return incidentsDTO;
+	}
 	public ListeMachinesDTO getMachinesByNumClient(int numClient) {
 		List<Installation> listeInstallation = donneesClient
 				.getInstallationByNumClient(numClient);
@@ -300,7 +351,7 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 			try {
 				liste = donneesTypePb.getTypePb();
 			} catch (Exception e) {
-				System.out.println("DTO : Récupération impossible des types de problème...");
+				System.out.println("DTO : Rï¿½cupï¿½ration impossible des types de problï¿½me...");
 			}
 		return liste;
 	}

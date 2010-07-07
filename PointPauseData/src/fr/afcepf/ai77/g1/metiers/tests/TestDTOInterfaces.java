@@ -60,6 +60,14 @@ public class TestDTOInterfaces extends TestCase {
 			System.out.println("commentaires eventuels " + contratDTO.getCommentaire());
 		}
 	}
+	public void testLastIncidentDTO() {
+		IDonneesIncidentDTO donneesContrat = DTOFactory.getIDonneesIncidentDTO();
+		List<IncidentDTO> listeContratDTO = donneesContrat.getLastIncidentFlagByClient(4);
+		for (IncidentDTO incidentDTO : listeContratDTO) {
+			System.out.println("numero contrat " + incidentDTO.getNumero());
+			System.out.println("commentaires eventuels " + incidentDTO.getLibelTypePb());
+		}
+	}
 	public void testInsertIncident(){
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		
