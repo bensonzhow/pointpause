@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12777302476400" configfile="/PointPausePresentation/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="tableauBord.html" x="554" y="845" id="pf12777302932811" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf12779784695930 pf12779784695931 pf12782591403280" path="/tableauBord.html"/>
-  <nodes xsi:type="pageflow:PFPage" name="connexion.html" x="338" y="744" id="pf12779784695933" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf12779784695930 pf12779784695931" inlinks="pf12782591403281" path="/connexion.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="tableauBord.html" x="554" y="1613" id="pf12777302932811" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf12779784695930 pf12779784695931 pf12785077303430" path="/tableauBord.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="connexion.html" x="338" y="1512" id="pf12779784695933" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" outlinks="pf12779784695930 pf12779784695931" inlinks="pf12785077303431" path="/connexion.html"/>
   <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="178" id="pf12779784695935" referenceLink="//@navigationRule.2/@fromViewId|" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="incident.html" x="122" y="562" id="pf12779788890318" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf12779788890319" inlinks="pf12779788890319" path="/incident.html"/>
-  <nodes xsi:type="pageflow:PFPage" name="PointPausePresentation/*" x="122" y="946" id="pf12782591403282" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf12782591403280 pf12782591403281" path="PointPausePresentation/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="incident.html" x="122" y="946" id="pf12779788890318" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf12779788890319 pf12785077507659" inlinks="pf12779788890319" path="/incident.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="PointPausePresentation/*" x="122" y="1330" id="pf12782591403282" referenceLink="//@navigationRule.2/@fromViewId|" path="PointPausePresentation/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="creationContrat.html" x="122" y="562" id="pf12785077303433" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf12785077303434 pf12785077303435" path="/creationContrat.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="succesCreationContrat.html" x="338" y="370" id="pf12785077303436" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf12785077303434" path="/succesCreationContrat.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="echecCreationContrat.html" x="338" y="754" id="pf12785077303437" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf12785077303435" path="/echecCreationContrat.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="PointPausePresentation/*" x="122" y="1714" id="pf12785077303438" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf12785077303430 pf12785077303431" path="/PointPausePresentation/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="echecDeclarationIncident.html" id="pf127850775076510" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12785077507659" path="/echecDeclarationIncident.html"/>
   <links id="pf12779784695930" target="pf12777302932811" source="pf12779784695933" outcome="OK" fromaction="#{connectionMB.connecter}"/>
   <links id="pf12779784695931" target="pf12777302932811" source="pf12779784695933" outcome="Failure" fromaction="#{connectionMB.connecter}"/>
-  <links id="pf12782591403280" target="pf12777302932811" source="pf12782591403282" outcome="Failure" fromaction="#{connectionMB.logOut}"/>
-  <links id="pf12782591403281" target="pf12779784695933" source="pf12782591403282" outcome="OK" fromaction="#{connectionMB.logOut}"/>
-  <links id="pf12779788890319" target="pf12779788890318" source="pf12779788890318" outcome="OK" fromaction="#{declareIncidentMB.declare}">
+  <links id="pf12785077303434" target="pf12785077303436" source="pf12785077303433" outcome="OK" fromaction="#{ChoixContratBean.Inserer}"/>
+  <links id="pf12785077303435" target="pf12785077303437" source="pf12785077303433" outcome="Failure" fromaction="#{connectionMB.logOut}"/>
+  <links id="pf12785077303430" target="pf12777302932811" source="pf12785077303438" outcome="Failure" fromaction="#{connectionMB.logOut}"/>
+  <links id="pf12785077303431" target="pf12779784695933" source="pf12785077303438" outcome="OK" fromaction="#{connectionMB.logOut}"/>
+  <links id="pf12779788890319" target="pf12779788890318" source="pf12779788890318" outcome="ok" fromaction="#{declareIncidentMB.declare}">
     <bendPoints d1Height="-36" d2Height="-36"/>
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
+  <links id="pf12785077507659" target="pf127850775076510" source="pf12779788890318" outcome="Failure" fromaction="#{declareIncidentMB.declare}"/>
 </pageflow:Pageflow>

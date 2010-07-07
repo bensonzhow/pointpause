@@ -238,6 +238,7 @@ public class DeclarationIncidentBean {
 		incident.setNumTypePb(searchNumTypePb(value));
 		incident.setNumClient(session.getNumeroClient());
 		incident.setNumContrat(idContrat);
+		incident.setNumInstallation(numMachine);
 		
 		int res = donneesIncident.insertIncident(incident);
 
