@@ -76,7 +76,7 @@
 		<navigation-case>
 			<from-action>#{declareIncidentMB.declare}</from-action>
 			<from-outcome>ok</from-outcome>
-			<to-view-id>/incident.html</to-view-id>
+			<to-view-id>/succesIncident.html</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
