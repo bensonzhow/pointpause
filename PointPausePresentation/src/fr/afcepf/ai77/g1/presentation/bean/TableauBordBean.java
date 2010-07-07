@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
+import javax.faces.model.DataModelEvent;
+import javax.faces.model.DataModelListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,9 +20,101 @@ import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 public class TableauBordBean {
 
 	private String nomClient;
-	private List<ContratDTO> getLastContrats;
-	private DataModel dataModel = new ListDataModel();
+	public String test;
+	private Boolean flagDeflag;
+	private Boolean flagRendered;
+
+	private List<ContratDTO> lastContrats;
+	private int idRowSelected;
+	private String flagRed="/images/flag.jpg";
+	private String flagNone="/images/Deflag.jpg";
+	IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();	
 	
+	FacesContext context = FacesContext.getCurrentInstance();
+	HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		
+	HttpSession httpSession = request.getSession(false);
+	SessionDTO session = (SessionDTO) httpSession.getAttribute("session");	
+	/**
+	 * @param lastContrats the lastContrats to set
+	 */
+	public void setLastContrats(List<ContratDTO> lastContrats) {
+		this.lastContrats = lastContrats;
+	}
+
+	/**
+	 * @return the lastContrats
+	 */
+	public List<ContratDTO> getLastContrats() {
+		return lastContrats;
+	}
+
+	public TableauBordBean(){
+		System.out.println("passage dans le constructeur");
+		if(session==null)
+			return;
+		setNomClient(session.getNom());
+		
+		//charger la liste des contrats
+		
+		setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
+		for (ContratDTO contrat : lastContrats) {
+			System.out.println(contrat.getNumero());
+			System.out.println(contrat.getFlag());
+		}
+	
+	}
+
+	public void switchFlag(){
+		System.out.println("on passe dans switch");
+		System.out.println(idRowSelected);
+	test= "oui";
+		ContratDTO cdto = donneesContrat.getContratById(idRowSelected);
+		if (cdto.getFlag())
+		{cdto.setFlag(false);
+		flagRendered=false;}
+		else
+		{	cdto.setFlag(true);
+		flagRendered=true;}
+	   donneesContrat.updateContrat(cdto);
+	 //  setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
+		
+	}
+
+	/**
+	 * @param idRowSelected the idRowSelected to set
+	 */
+	public void setIdRowSelected(int idRowSelected) {
+		this.idRowSelected = idRowSelected;
+	}
+
+	/**
+	 * @return the idRowSelected
+	 */
+	public int getIdRowSelected() {
+		return idRowSelected;
+	}
+	public Boolean getFlagDeflag() {
+		return flagDeflag;
+	}
+
+	public void setFlagDeflag(Boolean flagDeflag) {
+		this.flagDeflag = flagDeflag;
+	}
+
+	/**
+	 * @param flagRendered the flagRendered to set
+	 */
+	public void setFlagRendered(Boolean flagRendered) {
+		this.flagRendered = flagRendered;
+	}
+
+	/**
+	 * @return the flagRendered
+	 */
+	public Boolean getFlagRendered() {
+		return flagRendered;
+	}
 	public String getNomClient() {
 		return nomClient;
 	}
@@ -28,53 +122,46 @@ public class TableauBordBean {
 	public void setNomClient(String nomClient) {
 		this.nomClient = nomClient;
 	}
-	
-	
-	
 
 	/**
-	 * @param getLastContrats the getLastContrats to set
+	 * @param valueImage the valueImage to set
 	 */
-	public void setGetLastContrats(List<ContratDTO> getLastContrats) {
-		this.getLastContrats = getLastContrats;
+	public void setValueImage(String valueImage) {
+		this.valueImage = valueImage;
 	}
 
 	/**
-	 * @return the getLastContrats
+	 * @return the valueImage
 	 */
-	public List<ContratDTO> getGetLastContrats() {
-		return getLastContrats;
+	public String getValueImage() {
+		return valueImage;
 	}
 
-	public TableauBordBean(){
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		HttpSession httpSession = request.getSession(false);
-		SessionDTO session = (SessionDTO) httpSession.getAttribute("session");		
-		if(session==null)
-			return;
-		setNomClient(session.getNom());
-		
-		//charger la liste des contrats
-		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();	
-		setGetLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
-
-		dataModel.setWrappedData(getLastContrats);
-		
-	}
-	
-	public DataModel getDataModel() {
-		return dataModel;
+	/**
+	 * @param flagRed the flagRed to set
+	 */
+	public void setFlagRed(String flagRed) {
+		this.flagRed = flagRed;
 	}
 
-	public void setDataModel(DataModel dataModel) {
-		this.dataModel = dataModel;
+	/**
+	 * @return the flagRed
+	 */
+	public String getFlagRed() {
+		return flagRed;
 	}
 
-	public void switchFlag(){
-		System.out.println("on passe dans switch");
-		ContratDTO contrat = (ContratDTO) dataModel.getRowData();
-		System.out.println(contrat.getNumero());
+	/**
+	 * @param flagNone the flagNone to set
+	 */
+	public void setFlagNone(String flagNone) {
+		this.flagNone = flagNone;
 	}
-	
+
+	/**
+	 * @return the flagNone
+	 */
+	public String getFlagNone() {
+		return flagNone;
+	}
 }

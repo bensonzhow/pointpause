@@ -34,7 +34,7 @@
 		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
 		
 				
-   			<richfaces:dataTable value='#{tableaubordMB.dataModel}' var="contrat">
+   			<richfaces:dataTable value='#{tableaubordMB.lastContrats}' var="contrat">
 
 					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
@@ -59,14 +59,39 @@
 
 					<richfaces:column>
 						<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
-						<jsf:selectBooleanCheckbox value="#{contrat.flag}">
-						<a4j:support event="onclick" action="#{tableaubordMB.switchFlag}"></a4j:support>
-						</jsf:selectBooleanCheckbox>
+						<jsf:selectBooleanCheckbox value="#{contrat.flag}" immediate="true" bypassUpdates="true">
+						<a4j:support event="onclick" action="#{tableaubordMB.switchFlag}">
+						 <a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
+						</a4j:support>
+									</jsf:selectBooleanCheckbox>
 						
+					</richfaces:column>
+					<richfaces:column>
+					<a4j:commandLink ajaxSingle="true" id="editlink"
+                        action="#{tableaubordMB.switchFlag}" >
+                      <jsf:panelGrid id="flags" rendered="true" >
+                       <jsf:graphicImage id="flag" width="30px" value="#{tableauMB.flagRed}" rendered="#{contrat.flag}" style="border:0">
+                       <a4j:support event="onclick" action="#{tableaubordMB.changeAspectFlag">
+                       <a4j:actionparam value="#{tableaubordMB.valueImage}
+                       </a4j:support>                     
+                       </jsf:graphicImage>
+                       <jsf:graphicImage id="deflag" width="30px" value="#{tableauMB.flagNone}" rendered="#{!contrat.flag}"  style="border:0" />
+                     
+                       </jsf:panelGrid>
+                		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
+                    </a4j:commandLink>
+					
 					</richfaces:column>
 					<richfaces:column>
 						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.numero}" />
+					</richfaces:column>
+					<richfaces:column id="test">
+					 <jsf:outputText value="#{tableauMB.test}"> </jsf:outputText>
+					 </richfaces:column>
+					<richfaces:column>
+						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.dateSignature}" />
 					</richfaces:column>
 
 				</richfaces:dataTable>
