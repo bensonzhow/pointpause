@@ -103,7 +103,7 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		incident.setClient(c);
 		incident.setTypePb(tp);
 		incident.setNumeroDeploiement(installation);
-		installation.getListeIncidents().add(incident);
+		//installation.getListeIncidents().add(incident);
 		incident.setDateDeclarationIncident(iDTO.getDateDeclarationIncident());
 		incident.setDateConstatIncident(iDTO.getDateConstatIncident());
 		incident.setFlag(iDTO.getFlag());

@@ -198,4 +198,14 @@ public class TestDTOInterfaces extends TestCase {
 		List<ContratDTO> contratsDTO =donneesContrat.getAllContratsBouquetInstallByClient(4);
 		
 	}
+	
+	public void testGetInstallByContrat(){
+		IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();
+		
+		List<Integer> liste = donneesContrat.getListeMachineByContrat(5);
+		
+		System.out.println(liste.size());
+	}
+	
+	
 }
