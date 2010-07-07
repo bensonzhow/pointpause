@@ -4,6 +4,7 @@
 	xmlns:jsfCore="http://java.sun.com/jsf/core"
 	xmlns:richfaces="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:jstl="http://java.sun.com/jstl/core"
 >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
@@ -46,7 +47,10 @@
 			<div id="baniere">
 
 			</div>
-
+<jstl:if test="${sessionScope['session']==null}" >
+<div id="connexion"><a href="connexion.html">Se connecter</a>	</div>
+</jstl:if>		
+<jstl:if test="${sessionScope['session']!=null}" >
 			<ul id="conteneurMenu" class="horizontal">
 				<li>
 					<a>Mes Contrats</a>
@@ -90,6 +94,7 @@
 
     			</li>
 			</ul>
+			</jstl:if>
 
 
 

@@ -76,7 +76,7 @@ public class TableauBordBean {
 		{	cdto.setFlag(true);
 		flagRendered=true;}
 	   donneesContrat.updateContrat(cdto);
-	 //  setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
+	  setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
 		
 	}
 
