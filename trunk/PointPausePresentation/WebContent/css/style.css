@@ -30,6 +30,11 @@
    color: rgb(87,87,87);
    }
    
+   #img{
+   width: 800px;
+   margin: auto;
+   }
+   
    .ContactParis{ 
    background-image: url(../images/ContactParis.png);
    background-repeat: no-repeat;
