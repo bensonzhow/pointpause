@@ -17,5 +17,6 @@ public interface IDonneesIncidentDTO {
 	List<IncidentDTO> getHistoriqueIncidentByClient(int numClient); 
 
 	boolean switchIncidentFlag(int numIncident);
+	List<String> getListtypePb();
 	
 }

@@ -1,5 +1,8 @@
 package fr.afcepf.ai77.g1.persistence.implementations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -33,6 +36,20 @@ public class DonneesTypePbDAOImpl implements IDonneesTypePbDAO {
 	public Integer insertTypePb(TypePb typePb) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getTypePb() {
+		List<String> typePb = new ArrayList<String>();
+		try {
+			typePb = hibernateTemplate
+					.find("libelle_type_probleme");
+		} catch (Exception e) {
+			System.out.println("Récuperation des type de poblemes impossible...");
+		}
+		return typePb;
 	}
 
 }
