@@ -23,7 +23,8 @@ public class ConsultationContratBean {
 	
  public ConsultationContratBean(){
 	 if(session!=null)
-	 listeContratsByClient= donneesContrat.getContratById(session.getNumeroClient()); 
+	 listeContratsByClient= donneesContrat.getAllContratsBouquetInstallByClient(session.getNumeroClient());
+	 
  }
  
  public void setListeContratsByClient(List<ContratDTO> listeContratsByClient) {
