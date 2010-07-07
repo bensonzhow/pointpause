@@ -8,6 +8,17 @@
    #onglet{
    height:40px;
    }
+   #connexion{
+
+   -moz-border-radius: 2em;
+   background-color: gray;
+   border:1px solid black;
+  
+   }
+   
+   #connexion a{
+    color:white;
+   }
    
    #onglet ul li{
    float: left;

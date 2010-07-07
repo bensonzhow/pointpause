@@ -34,7 +34,7 @@
 		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
 		
 				
-   			<richfaces:dataTable value='#{tableaubordMB.lastContrats}' var="contrat">
+   			<richfaces:dataTable id="flags"  value='#{tableaubordMB.lastContrats}' var="contrat">
 
 					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
@@ -57,28 +57,15 @@
 						
 					</richfaces:column>
 
+				
 					<richfaces:column>
-						<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
-						<jsf:selectBooleanCheckbox value="#{contrat.flag}" immediate="true" bypassUpdates="true">
-						<a4j:support event="onclick" action="#{tableaubordMB.switchFlag}">
-						 <a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
-						</a4j:support>
-									</jsf:selectBooleanCheckbox>
-						
-					</richfaces:column>
-					<richfaces:column>
+					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
                         action="#{tableaubordMB.switchFlag}" reRender="flags" >
-                      
-                     <jsf:panelGroup id="flags" rendered="true">
-                      
-                        
-                        <jsf:outputText rendered="true" value="#{contrat.flag}"> </jsf:outputText>
-                        
+                     <jsf:panelGroup rendered="true">
+                      <jsf:outputText rendered="true" value="#{contrat.flag}"> </jsf:outputText>  
                        <jsf:graphicImage id="flag" width="30px" value="/images/flag.jpg" rendered="#{contrat.flag}" style="border:0"/>     
-                       
                        <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
-                     
                        </jsf:panelGroup>
                 		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
                     </a4j:commandLink>
@@ -88,9 +75,7 @@
 						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.numero}" />
 					</richfaces:column>
-					<richfaces:column id="test">
-					 <jsf:outputText value="#{tableauMB.test}"> </jsf:outputText>
-					 </richfaces:column>
+					
 					<richfaces:column>
 						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateSignature}" />
