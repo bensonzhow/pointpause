@@ -13,8 +13,10 @@ import org.richfaces.model.impl.ListDataModel;
 
 import fr.afcepf.ai77.g1.facade.DTOFactory;
 import fr.afcepf.ai77.g1.metiers.dto.ContratDTO;
+import fr.afcepf.ai77.g1.metiers.dto.IncidentDTO;
 import fr.afcepf.ai77.g1.metiers.dto.SessionDTO;
 import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesContratDTO;
+import fr.afcepf.ai77.g1.metiers.interfaces.IDonneesIncidentDTO;
 import fr.afcepf.ai77.g1.persistence.entity.Contrat;
 import fr.afcepf.ai77.g1.persistence.entity.LoadingPolicy;
 
@@ -26,10 +28,11 @@ public class TableauBordBean {
 	private Boolean flagRendered;
 
 	private List<ContratDTO> lastContrats;
+	private List<IncidentDTO> lastIncidents;
 	private int idRowSelected;
 
 	IDonneesContratDTO donneesContrat = DTOFactory.getIDonneesContratDTO();	
-	
+	IDonneesIncidentDTO donnesIncident = DTOFactory.getIDonneesIncidentDTO();
 	FacesContext context = FacesContext.getCurrentInstance();
 	HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		
@@ -58,11 +61,25 @@ public class TableauBordBean {
 		//charger la liste des contrats
 		
 		setLastContrats(donneesContrat.getLastContratPourTableau(session.getNumeroClient()));
+		lastIncidents= donnesIncident.getLastIncidentFlagByClient(session.getNumeroClient());
+		for (IncidentDTO inc : lastIncidents) {
+			System.out.println(inc.getLibelTypePb());
+			System.out.println(inc.getNumero());
+		}
 		for (ContratDTO contrat : lastContrats) {
 			System.out.println(contrat.getNumero());
 			System.out.println(contrat.getFlag());
 		}
 	
+	}
+	
+	
+	public List<IncidentDTO> getLastIncidents() {
+		return lastIncidents;
+	}
+
+	public void setLastIncidents(List<IncidentDTO> lastIncidents) {
+		this.lastIncidents = lastIncidents;
 	}
 
 	public void switchFlag(){
@@ -70,10 +87,10 @@ public class TableauBordBean {
 		System.out.println(idRowSelected);
 	test= "oui";
 	System.out.println("avant getContratById");	
-		ContratDTO cdto = donneesContrat.getContratBouquetById(session.getNumeroClient());
+		ContratDTO cdto = donneesContrat.getContratBouquetById(idRowSelected);
 		System.out.println("après getContratById");
 		if (cdto.getFlag())
-		{cdto.setFlag(false);
+		{cdto.setFlag(false);	
 		flagRendered=false;}
 		else
 		{	cdto.setFlag(true);

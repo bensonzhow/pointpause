@@ -212,7 +212,7 @@ public String getDescriptionMachine() {
 		return suite;}
 		else
 			{check="ok";
-			selectedFormule= "Formule choisie :" + selectedFormule;
+			selectedFormule= "Formule choisie : " + selectedFormule;
 		suite=true;
 		return suite;}
 		

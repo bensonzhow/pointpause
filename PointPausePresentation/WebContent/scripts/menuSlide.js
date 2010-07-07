@@ -2,9 +2,8 @@
  
 $j(document).ready(function($){
 	
-	$('div .depliable').hide();
-$('div .clic').click(function(){
-	$(this).slideToggle();
+$('.clic').click(function(){
+	$('#depliable', this).slideToggle();
 });
 
 $('ul .cache').hide();

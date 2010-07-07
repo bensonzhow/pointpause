@@ -15,7 +15,7 @@
  		<jsfCore:subview id="connexion">
  		
  			<jsf:form>
- 		 		<div style="margin:auto; width:600px">	
+ 		 		<div style="margin:auto; width:620px">	
  			<richfaces:panel styleClass="lesDiv">
  			<div class="lesDiv">
  			<jsf:panelGrid columns="2">
@@ -23,18 +23,44 @@
             <jsf:inputText value="#{connectionMB.login}"/>
             <jsf:outputText value="Votre mot de passe"/>
             <jsf:inputSecret value="#{connectionMB.mdp}"/>
-       <jsf:commandButton action="#{connectionMB.connecter}" value="connecter !"></jsf:commandButton>
-      
-        <jsf:commandButton  value="nouveau client ?"></jsf:commandButton>
-         <!-- on fake mais pour que ce soit presentable -->
-        <a style="font-size:small; text-decoration:underline; color:black;" href="#">j'ai oublié mon mot de passe...</a>
+        <a style="font-size:small; text-decoration:underline; color:black;" href="#">j'ai oublié mon mot de passe !</a>
+        <a4j:commandLink  action="#{connectionMB.connecter}" reRender="verif" value="connecter !" styleClass="boutonConnexion">
+        </a4j:commandLink>
+        <a4j:commandLink  action="#{connectionMB.afficherInscription}" rel="#ancre" reRender="inscription" style="font-size:small; text-decoration:underline; color:black;">Nouveau client ?...
+        </a4j:commandLink>
+        <jsf:outputText style="color:red; font-size:small;" rendered="true" id="verif" value="#{connectionMB.verif}"></jsf:outputText>
         </jsf:panelGrid>
         </div>
-        <div class="lesDiv">
+       <div class="lesDiv">
         <img  src="images/connexion.png" width="180px"></img>
         </div>
-				</richfaces:panel>
-				</div>
+         
+        </richfaces:panel>
+        </div>
+        <div class="lesDiv" style="margin:25px 188px; width:600px">
+       
+
+       <jsf:panelGroup id="inscription">
+       <jsf:panelGroup  style="visibility:${connectionMB.inscriptionBool?'visible':'hidden'}">
+        <richfaces:panel>
+        <jsfCore:facet name="header">
+     	 Inscription
+        </jsfCore:facet>
+        <jsf:panelGrid columns="4" >
+		
+		Nom : <jsf:inputText></jsf:inputText>
+		Prénom : <jsf:inputText></jsf:inputText>
+		Login : <jsf:inputText></jsf:inputText>
+		Password : <jsf:inputText></jsf:inputText>
+		Email : <jsf:inputText></jsf:inputText>
+		Confirmer l'email : <jsf:inputText></jsf:inputText>
+		
+		</jsf:panelGrid>
+		</richfaces:panel>
+				</jsf:panelGroup>
+			</jsf:panelGroup>	
+			</div>
+			 <a name="ancre"></a>
 			</jsf:form>
 		</jsfCore:subview>
 	</facelets:define>

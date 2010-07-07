@@ -104,14 +104,14 @@
 	<jsf:panelGrid id="suite" >
 		<jsf:panelGroup  style="visibility:${ChoixContratBean.suite?'visible':'hidden'}"  >
 					<richfaces:simpleTogglePanel styleClass="panel" switchType="ajax" rendered="true"
-						label="Modalites de contrat">
+						label="Modalités de contrat">
 						<table border="1" cellpadding="4" cellspacing="0">
 							<tr>
 								<th>"#{ChoixContratBean.selectedFormule}"</th>
 								<th>Modalit&#233;s</th>
 							</tr>
 							<tr>
-								<td>Nombre de machines <jsf:outputText 
+								<td>Nombre de machines :&#160;<jsf:outputText 
 									value="#{ChoixContratBean.quantite}"></jsf:outputText>
 								</td>
 								<td>Localisation <richfaces:comboBox
@@ -124,7 +124,7 @@
 								</richfaces:comboBox> Nombre d'approvisionnements par mois <richfaces:inputNumberSpinner
 									enableManualInput="true" value="#{ChoixContratBean.frequence}"
 									minValue="1" step="1"></richfaces:inputNumberSpinner> Date de
-								d&#233;but du contrat <jsf:panelGrid id="calendrier" columns="2">
+								début du contrat <jsf:panelGrid id="calendrier" columns="2">
 									<a4j:outputPanel id="calendar" layout="block">
 										<richfaces:calendar value="#{ChoixContratBean.dateDebut}"
 											datePattern="dd/MM/yyyy" immediate="true">

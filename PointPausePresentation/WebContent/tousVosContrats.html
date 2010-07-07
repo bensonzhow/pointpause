@@ -11,6 +11,8 @@
 		<link type="text/css" href="css/contrat.css" rel="stylesheet" />
 		<link type="text/css" href="css/rapportincident.css" rel="stylesheet" />
 		<script type="text/javascript" src="scripts/redirection.js"></script>
+		
+		
 	</facelets:define>
 
 	<facelets:define name="Contenu">
@@ -27,7 +29,12 @@
 <richfaces:panel style="margin:auto;">
 		<jsfCore:facet name="header"> Tous vos contrats  </jsfCore:facet>
 					
-   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{ConsultContratMB.listeContratsByClient}' var="contrat">
+   			<richfaces:dataTable rendered="true" style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{ConsultContratMB.listeContratsByClient}' var="contrat">
+					<richfaces:column>
+						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
+						<jsf:outputText value="#{contrat.numero}" />
+					</richfaces:column>
+					
 					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">
@@ -52,38 +59,43 @@
 					<richfaces:column>
 					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
-                        action="#{tableaubordMB.switchFlag}" reRender="flags" >
+                        action="#{ConsultContratMB.switchFlag}" reRender="flags" >
                      <jsf:panelGroup rendered="true">  
                        <jsf:graphicImage id="flag" width="30px" value="/images/flag.jpg" rendered="#{contrat.flag}" style="border:0"/>     
                        <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
                        </jsf:panelGroup>
-                		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{tableaubordMB.idRowSelected}" />
+                		<a4j:actionparam name="idRowSelected" value="#{contrat.numero}" assignTo="#{ConsultContratMB.idRowSelected}" />
                     </a4j:commandLink>
 					
 					</richfaces:column>
-					<richfaces:column>
-						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
-						<jsf:outputText value="#{contrat.numero}" />
-					</richfaces:column>
+					
 					
 					<richfaces:column>
 						<jsfCore:facet name="header">Date de signature : </jsfCore:facet>
-						<jsf:outputText value="#{contrat.dateSignature}" />
+						<jstl:if test="${contrat.dateSignature == null}">
+						<jsf:outputText value="en attente de signature" /></jstl:if>
+						<jstl:if test="${contrat.dateSignature != null}">
+						<jsf:outputText value="#{contrat.dateSignature}"></jsf:outputText></jstl:if>
 					</richfaces:column>
 					
-					<richfaces:column>
+					<richfaces:column styleClass="clic">
 						<jsfCore:facet name="header">Machines et formules associées : </jsfCore:facet>
-						<div class="clic">
-						<richfaces:dataTable styleClass="depliable" switchType="Ajax" style="text-align:center; margin:auto;" ajaxSingle="true" sortable="true" value='#{contrat.listeBouquets}' var="bouquet">
-							<richfaces:column>	
+						
+						<richfaces:dataTable switchType="Ajax" style="text-align:center; margin:auto;" ajaxSingle="true" sortable="true" value='#{contrat.listeBouquets}' var="bouquet">
+							
+							<richfaces:column >	
+							<div id="depliable">
 							Nom de formule :<jsf:outputText value="#{bouquet.strFormule}" /> <br />
 							Nom de machine :<jsf:outputText value="#{bouquet.strModeleAutomate}"></jsf:outputText> <br />
 							En nombre de : <jsf:outputText value="#{bouquet.quantite}"></jsf:outputText>
-						</richfaces:column>
-						</richfaces:dataTable>
+							 <p style="margin:0; color:blue;">Fermer ! </p>
 						</div>
 						</richfaces:column>
-					
+						
+						</richfaces:dataTable>
+						
+						</richfaces:column>
+		
 
 				</richfaces:dataTable>
 		
