@@ -27,15 +27,10 @@
 
 <jsfCore:subview id="tableauBord">
 	<jsf:form>
-
-
-		
-	<richfaces:panel>
+	<richfaces:panel style="margin:auto;">
 		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
-		
-				
-   			<richfaces:dataTable id="flags"  value='#{tableaubordMB.lastContrats}' var="contrat">
-
+					
+   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{tableaubordMB.lastContrats}' var="contrat">
 					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">
@@ -57,13 +52,11 @@
 						
 					</richfaces:column>
 
-				
 					<richfaces:column>
 					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
                         action="#{tableaubordMB.switchFlag}" reRender="flags" >
-                     <jsf:panelGroup rendered="true">
-                      <jsf:outputText rendered="true" value="#{contrat.flag}"> </jsf:outputText>  
+                     <jsf:panelGroup rendered="true">  
                        <jsf:graphicImage id="flag" width="30px" value="/images/flag.jpg" rendered="#{contrat.flag}" style="border:0"/>     
                        <jsf:graphicImage id="deflag" width="30px" value="/images/Deflag.jpg" rendered="#{!contrat.flag}"  style="border:0" />
                        </jsf:panelGroup>
