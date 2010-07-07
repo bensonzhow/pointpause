@@ -17,7 +17,7 @@ function(){jQuery(".cache", this).slideUp('normal');});
 
 
 
-/*/pour les onglets sélectionnés à mettre en orange
+/*/pour les onglets sï¿½lectionnï¿½s ï¿½ mettre en orange
 $("#onglet>ul>li").load(function(){
 	
 	  $("#onglet ul li").removeClass('Selectionne').addClass("OngletPrincipal");	
@@ -28,7 +28,7 @@ $("#onglet>ul>li").load(function(){
 
 });*/
 
-//on enleve tous les oranges des onglets et on garde celui qui vient d'être sélectionné.
+//on enleve tous les oranges des onglets et on garde celui qui vient d'ï¿½tre sï¿½lectionnï¿½.
 $("#onglet ul li").removeClass('Selectionne').addClass("OngletPrincipal");
 var urlActuel = window.location.pathname;
 var collection = urlActuel.split("/");
@@ -41,6 +41,10 @@ if (url=="accueil.html") {
 if (url=="societe.html") {
 	$("#onglet>ul>#societe").removeClass('OngletPrincipal').addClass("Selectionne");
 	 $("#onglet>ul>#societe").unbind('hover');
+}
+if (url=="catalogue.html") {
+	$("#onglet>ul>#catalogue").removeClass('OngletPrincipal').addClass("Selectionne");
+	 $("#onglet>ul>#catalogue").unbind('hover');
 }
 
 if (url=="contact.html") {
