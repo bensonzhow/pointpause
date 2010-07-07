@@ -25,9 +25,9 @@
 		</jstl:if>
 
 <richfaces:panel style="margin:auto;">
-		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
+		<jsfCore:facet name="header"> Tous vos contrats  </jsfCore:facet>
 					
-   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{tableaubordMB.tousContrats}' var="contrat">
+   			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{ConsultContratMB.listeContratsByClient}' var="contrat">
 					<richfaces:column>
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">

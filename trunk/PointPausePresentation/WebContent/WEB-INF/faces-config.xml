@@ -8,6 +8,11 @@
 	</application>
 
 
+<managed-bean>
+		<managed-bean-name>ConsultContratMB</managed-bean-name>
+		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConsultationContratBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>connectionMB</managed-bean-name>
 		<managed-bean-class>fr.afcepf.ai77.g1.presentation.bean.ConnectionBean</managed-bean-class>
