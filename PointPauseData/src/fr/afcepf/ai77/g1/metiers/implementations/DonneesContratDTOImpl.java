@@ -53,6 +53,8 @@ public class DonneesContratDTOImpl implements IDonneesContratDTO {
 	public void setDonneesContrat(IDonneesContratDAO donneesContrat) {
 		this.donneesContrat = donneesContrat;
 	}
+	
+	
 	@Override
 	public Integer insertContrat(ContratDTO contratDTO, BouquetDTO bouquetDTO){
 		Client c = donneesClient.getClientByNumero(contratDTO.getNumClient());
@@ -92,7 +94,22 @@ public class DonneesContratDTOImpl implements IDonneesContratDTO {
 		return listeMachine;
 	}
 
-
+//sert surtout pour le flag /deflag
+@Override
+public Boolean updateContrat(ContratDTO contratdto){
+	Contrat c = donneesContrat.getContratById(contratdto.getNumero());
+	c.setFlag(contratdto.getFlag());
+	Boolean b;
+	 b = donneesContrat.updateContrat(c);
+	 return b;
+	
+}
+@Override
+public ContratDTO getContratById(int numContrat){
+	Contrat contrat = donneesContrat.getContratById(numContrat);
+	ContratDTO cdto = copyContrat(contrat);
+	return cdto;
+}
 
 	@Override
 	public List<ContratDTO> getSyntheseContratbyClient(int numClient) {
@@ -135,9 +152,36 @@ public class DonneesContratDTOImpl implements IDonneesContratDTO {
 		cdto.setDateFin(contrat.getDateFin());
 		cdto.setFreqApprovisionnement(contrat.getFreqApprovisionnement());
 		cdto.setGarantie(contrat.getGarantie());
+		cdto.setFlag(contrat.getFlag());
+		cdto.setCommentaire(contrat.getCommentaire());
+		if(contrat.getClient() !=null)
+		cdto.setNumClient(contrat.getClient().getNumero());
 
 
 		return cdto;
+	}
+	
+	private Contrat toContrat (ContratDTO contratDTO){
+		Client c = donneesClient.getClientByNumero(contratDTO.getNumClient());
+		//Formule f = donneesChoixContrat.getFormuleById(bouquetDTO.getCodeFormule());
+		//ModeleAutomate a = donneesChoixContrat.getAutomateById(bouquetDTO.getCodemodeleAutomate());
+		Contrat contrat = new Contrat();
+		//Bouquet bouquet = new Bouquet();
+		contrat.setClient(c);
+		contrat.setCommentaire(contratDTO.getCommentaire());
+		contrat.setDateDebut(contratDTO.getDateDebut());
+		contrat.setDateFin(contratDTO.getDateFin());
+		contrat.setDuree(contratDTO.getDuree());
+		contrat.setFlag(contratDTO.getFlag());
+		contrat.setFreqApprovisionnement(contratDTO.getFreqApprovisionnement());
+		contrat.setGarantie(contratDTO.getGarantie());
+		contrat.setFlag(contratDTO.getFlag());
+		//contrat.getListeBouquets().add(bouquet);
+//		bouquet.setContrat(contrat);
+//		bouquet.setFormule(f);
+//		bouquet.setModeleAutomate(a);
+//		bouquet.setQuantite(bouquetDTO.getQuantite());
+		return contrat;
 	}
 
 	private BouquetDTO copyBouquet(Bouquet bouquet){

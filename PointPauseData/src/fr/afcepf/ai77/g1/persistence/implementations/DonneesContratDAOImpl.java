@@ -66,7 +66,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		}
 
 	}
-
+	
 	/**
 	 * 
 	 * Raaahlala ce qu'il faut pas faire, p#%*n de m$��e !
@@ -120,7 +120,7 @@ public class DonneesContratDAOImpl implements IDonneesContratDAO {
 		Boolean result = true;
 		try {
 			hibernateTemplate.saveOrUpdate(contrat);
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			result = false;
 		} finally {
