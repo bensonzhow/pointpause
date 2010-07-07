@@ -133,8 +133,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			StatutIncident statut = new StatutIncident();
 			statut.setDateChangementStatut(incident.getDateDeclarationIncident());
 			
-			TypeStatutIncident type = new TypeStatutIncident();
-			type.setNumeroType(1);
+			TypeStatutIncident type = getTypeStatutIncidentById(1);
 			
 			statut.setTypeStatut(type);	
 			statut.setIncident(incident);
