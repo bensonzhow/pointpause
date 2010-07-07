@@ -1,5 +1,6 @@
 package fr.afcepf.ai77.g1.metiers.implementations;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
@@ -34,7 +35,6 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 	private DonneesIncidentDAOImpl donneesIncident = null;
 	private DonneesClientDAOImpl donneesClient = null;
 	private DonneesTypePbDAOImpl donneesTypePb = null;
-
 	private DonneesContratDAOImpl donneesContrat = null;
 
 
@@ -279,6 +279,17 @@ public class DonneesIncidentDTOImpl implements IDonneesIncidentDTO {
 		boolean res = donneesIncident.updateIncident(inc);
 		
 		return res;
+	}
+
+	@Override
+	public List<String> getListtypePb() {
+		List<String> liste = new ArrayList<String>();
+			try {
+				liste = donneesTypePb.getTypePb();
+			} catch (Exception e) {
+				System.out.println("DTO : Récupération impossible des types de problème...");
+			}
+		return liste;
 	}
 
 }
