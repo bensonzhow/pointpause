@@ -74,6 +74,15 @@
 			<to-view-id>/incident.html</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/incident.html</from-view-id>
+		<navigation-case>
+			<from-action>#{declareIncidentMB.declare}</from-action>
+			<from-outcome>Failure</from-outcome>
+			<to-view-id>/echecDeclarationIncident.html</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 
 	<navigation-rule>
