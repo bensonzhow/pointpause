@@ -31,21 +31,22 @@
 					
    			<richfaces:dataTable rendered="true" style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{ConsultContratMB.listeContratsByClient}' var="contrat">
 					<richfaces:column>
-						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
+						<jsfCore:facet name="header" sortBy="#{contrat.numero}">Numéro de contrat : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.numero}" />
 					</richfaces:column>
 					
-					<richfaces:column>
+					<richfaces:column sortBy="#{contrat.dateDebut}">
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">
 							<jsfCore:convertDateTime type="date" dateStyle="short" />
 						</jsf:outputText>
 				
 					</richfaces:column>
-					<richfaces:column>
+					<richfaces:column sortBy="#{contrat.dateFin}">
 						<jsfCore:facet name="header"> Date de fin :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateFin}">
 							<jsfCore:convertDateTime type="date" dateStyle="short" />
+							
 						</jsf:outputText>
 				
 					</richfaces:column>
@@ -56,7 +57,7 @@
 						
 					</richfaces:column>
 
-					<richfaces:column>
+					<richfaces:column sortBy="#{contrat.flag}">
 					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
                         action="#{ConsultContratMB.switchFlag}" reRender="flags" >
