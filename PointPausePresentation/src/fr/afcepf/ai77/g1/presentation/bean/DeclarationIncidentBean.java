@@ -195,25 +195,25 @@ public class DeclarationIncidentBean {
 
 	public Integer searchNumTypePb(String value){
 		Integer i = 0;
-		if(value.equals("Non installée")){
+		if(value.contains("ne sais")){
 			i = 1;
 		}
-		if(value.equals("dysfonctionnement")){
+		if(value.contains("dysfonc")){
 			i = 2;
 		}
-		if(value.equals("panne électrique")){
+		if(value.contains("ctrique")){
 			i = 3;
 		}
-		if(value.equals("problème monnayeur")){
+		if(value.contains("monnayeur")){
 			i = 4;
 		}
-		if(value.equals("problème câblerie")){
+		if(value.contains("blerie")){
 			i = 5;
 		}
-		if(value.equals("machine fracturée")){
+		if(value.contains("machine fractu")){
 			i = 6;
 		}
-		if(value.equals("vol de produits")){
+		if(value.contains("vol de produits")){
 			i = 7;
 		}
 		return i;
@@ -236,6 +236,7 @@ public class DeclarationIncidentBean {
 		incident.setDateDeclarationIncident(new Date());
 		incident.setFlag(flag);
 		incident.setNumTypePb(searchNumTypePb(value));
+		System.out.println(incident.getNumTypePb());
 		incident.setNumClient(session.getNumeroClient());
 		incident.setNumContrat(idContrat);
 		incident.setNumInstallation(numMachine);

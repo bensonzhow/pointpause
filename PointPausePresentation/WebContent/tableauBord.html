@@ -31,12 +31,12 @@
 		<jsfCore:facet name="header"> Vos derniers contrats  </jsfCore:facet>
 					
    			<richfaces:dataTable style="text-align:center; margin:auto;" sortable="true" id="flags"  value='#{tableaubordMB.lastContrats}' var="contrat">
-					<richfaces:column>
+					<richfaces:column sortBy="#{contrat.numero}">
 						<jsfCore:facet name="header">Numéro de contrat : </jsfCore:facet>
 						<jsf:outputText value="#{contrat.numero}" />
 					</richfaces:column>
 					
-					<richfaces:column>
+					<richfaces:column sortBy="#{contrat.dateDebut}">
 						<jsfCore:facet name="header"> Date de début :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateDebut}">
 							<jsfCore:convertDateTime type="date" dateStyle="short" />
@@ -44,7 +44,7 @@
 				
 					</richfaces:column>
 					<richfaces:column>
-						<jsfCore:facet name="header"> Date de fin :		</jsfCore:facet>
+						<jsfCore:facet name="header" sortBy="#{contrat.dateFin}"> Date de fin :		</jsfCore:facet>
 						<jsf:outputText value="#{contrat.dateFin}">
 							<jsfCore:convertDateTime type="date" dateStyle="short" />
 						</jsf:outputText>
@@ -57,7 +57,7 @@
 					</richfaces:column>
 
 					<richfaces:column>
-					<jsfCore:facet name="header">Flaggué :</jsfCore:facet>
+					<jsfCore:facet name="header" sortBy="#{contrat.flag}">Flaggué :</jsfCore:facet>
 					<a4j:commandLink ajaxSingle="true" id="editlink"
                         action="#{tableaubordMB.switchFlag}" reRender="flags" >
                      <jsf:panelGroup rendered="true">  
