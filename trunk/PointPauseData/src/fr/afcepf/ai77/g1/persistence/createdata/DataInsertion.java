@@ -152,7 +152,7 @@ public class DataInsertion {
 		// manager.getListeClients().add(richguy);
 
 		/*
-		 * création de son contrat
+		 * crï¿½ation de son contrat
 		 */
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, 1);
@@ -283,7 +283,7 @@ public class DataInsertion {
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			statut.setDateChangementStatut(calendar.getTime());
 			statut.setCommentaire("pris en charge");
-			statut = setIntervention(statut, "réparation");
+			statut = setIntervention(statut, "rÃ©paration");
 
 			typesi = donneesIncident.getTypeStatutIncidentById(2);
 			
@@ -298,7 +298,7 @@ public class DataInsertion {
 			statut = new StatutIncident();
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 			statut.setDateChangementStatut(calendar.getTime());
-			statut.setCommentaire("résolu");
+			statut.setCommentaire("rÃ©solu");
 			
 			typesi = donneesIncident.getTypeStatutIncidentById(3);
 			
@@ -333,12 +333,12 @@ public class DataInsertion {
 
 		for (Incident inc : listeIncident) {
 
-			System.out.println("incident numero n°" + inc.getNumero()
-					+ " a propos de " + "l'incident n°:"
+			System.out.println("incident numero nï¿½" + inc.getNumero()
+					+ " a propos de " + "l'incident nï¿½:"
 					+ inc.getNumeroDeploiement().getNumero());
 
 			for (StatutIncident stinc : inc.getListeStatutsIncidents()) {
-				System.out.println("\t statut n°" + stinc.getNumero() + " : "
+				System.out.println("\t statut nï¿½" + stinc.getNumero() + " : "
 						+ stinc.getCommentaire());
 			}
 
@@ -355,16 +355,16 @@ public class DataInsertion {
 
 		// createBouquetContrat(1);
 
-		// installBouquet(1);
+		 installBouquet(6);
 		// removeInstallBouquet(1);
 
-		 createIncidentForInstall(50,1,1);
-		 createIncidentForInstall(51,2,2);
-		 createIncidentForInstall(52,3,3);
-		 createIncidentForInstall(53,4,3);
-		 createIncidentForInstall(54,5,3);
+		/* createIncidentForInstall(11,1,1);
+		 createIncidentForInstall(12,2,2);
+		 createIncidentForInstall(13,3,3);
+		 createIncidentForInstall(14,4,3);
+		 createIncidentForInstall(15,5,3);*/
 
-		getAllIncidentsForClient(20);
+//		getAllIncidentsForClient(20);
 
 	}
 

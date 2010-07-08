@@ -98,12 +98,13 @@ public class TestDTOInterfaces extends TestCase {
 	public void testGetIncidentByClient(){
 		IDonneesIncidentDTO donneesIncident = DTOFactory.getIDonneesIncidentDTO();
 		
-		List<IncidentDTO> liste = donneesIncident.getHistoriqueIncidentByClient(19);
+		List<IncidentDTO> liste = donneesIncident.getHistoriqueIncidentByClient(4);
 		
 		for (IncidentDTO incident : liste){
 			System.out.println("Incident n� "+incident.getNumero()+", installation n�"+incident.getNumInstallation());
 			System.out.println("\t client : "+incident.getNumClient());
 			System.out.println("\t numero contrat : "+incident.getNumContrat());
+			System.out.println("\t type : "+incident.getLibelTypePb());
 			System.out.println("\t date declaration : "+incident.getDateDeclarationIncident());
 			System.out.println("\t date constat : "+incident.getDateDeclarationIncident());
 			
