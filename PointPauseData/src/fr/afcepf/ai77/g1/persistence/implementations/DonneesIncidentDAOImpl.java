@@ -190,6 +190,7 @@ public class DonneesIncidentDAOImpl implements IDonneesIncidentDAO {
 			StatutIncident statut = new StatutIncident();
 			statut.setDateChangementStatut(incident.getDateDeclarationIncident());
 			
+			//commenter les 3 lignes suivantes si besoin. bug incompréhensible quand on insère via createData
 			TypeStatutIncident type = getTypeStatutIncidentById(1);
 			
 			statut.setTypeStatut(type);	

@@ -170,4 +170,16 @@ public class TestDAOInterfaces extends TestCase {
 		for (String s : listeLibelles) System.out.println(s);
 	}
 	
+	public void testGetLastIncidents(){
+		XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource(
+		"SpringConfig.xml"));
+		IDonneesIncidentDAO donneesInc = (IDonneesIncidentDAO) factory
+		.getBean("IDonneesIncidentDAO");
+		
+		List<Incident> liste = donneesInc.getLastIncidentByClient(4);
+		
+		assertTrue(liste.size()>0);
+				
+	}
+	
 }
