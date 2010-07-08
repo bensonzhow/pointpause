@@ -146,7 +146,37 @@
    #id-header-panelBar{
    font-size: large;
    }
-  
+   
+   #Presentation{
+   background-image: url("../images/Presentation.jpg");
+   background-repeat: no-repeat;
+   margin-bottom: 50px;
+   width: 1000px;
+   height: 581px;
+   }
+   #Engagement{
+   background-image: url("../images/Engagement.jpg");
+   background-repeat: no-repeat;
+   margin-bottom: 50px;
+   width: 1000px; 
+   height: 785px;
+   }
+   #Membre{
+   background-image: url("../images/Membres.jpg");
+   background-repeat: no-repeat;
+   margin-bottom: 50px;
+   width: 1000px;
+   height: 611px;
+   }
+   #Developpement{
+   background-image: url("../images/developpementdurable.jpg");
+   background-repeat: no-repeat;
+   margin-bottom: 50px;
+   width: 1000px;
+   height: 581px
+   }
+   
+   
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden { display: none; }
