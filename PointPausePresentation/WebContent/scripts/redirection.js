@@ -17,6 +17,6 @@ $(this).fadeOut("slow", redirectPage);
 
 function redirectPage() {
     
-    window.location = "http://localhost:8080/PointPausePresentation/connexion.html";
+    window.location = "http://192.168.10.85:8081/PointPausePresentation/connexion.html";
 }
 });
